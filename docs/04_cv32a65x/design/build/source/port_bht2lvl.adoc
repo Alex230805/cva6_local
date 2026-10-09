@@ -1,0 +1,30 @@
+////
+   Copyright 2024 Thales DIS France SAS
+   Licensed under the Solderpad Hardware License, Version 2.1 (the "License");
+   you may not use this file except in compliance with the License.
+   SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+   You may obtain a copy of the License at https://solderpad.org/licenses/
+
+   Original Author: Jean-Roch COULON - Thales
+////
+
+[[_CVA6_bht2lvl_ports]]
+
+.*bht2lvl module* IO ports
+|===
+|Signal | IO | Description | connexion | Type
+
+|`clk_i` | in | none | none | logic
+
+|`rst_ni` | in | none | none | logic
+
+|`flush_i` | in | none | none | logic
+
+|`vpc_i` | in | none | none | logic[CVA6Cfg.VLEN-1:0]
+
+|`bht_update_i` | in | none | none | bht_update_t
+
+|`bht_prediction_o` | out | none | none | ariane_pkg::bht_prediction_t[CVA6Cfg.INSTR_PER_FETCH-1:0]
+
+|===
+
