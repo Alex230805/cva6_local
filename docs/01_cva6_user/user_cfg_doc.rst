@@ -20,6 +20,10 @@
      - ``int unsigned``
      - General Purpose Register Size (in bits)
 
+   * - ``VLEN``
+     - ``int unsigned``
+     - Virtual address Size (in bits)
+
    * - ``RVA``
      - ``bit``
      - Atomic RISC-V extension
@@ -27,6 +31,10 @@
    * - ``RVB``
      - ``bit``
      - Bit manipulation RISC-V extension
+
+   * - ``ZKN``
+     - ``bit``
+     - Scalar Cryptography RISC-V extension
 
    * - ``RVV``
      - ``bit``
@@ -48,9 +56,17 @@
      - ``bit``
      - Zcmp RISC-V extension
 
+   * - ``RVZCMT``
+     - ``bit``
+     - Zcmt RISC-V extension
+
    * - ``RVZiCond``
      - ``bit``
      - Zicond RISC-V extension
+
+   * - ``RVZiCbom``
+     - ``bit``
+     - Zicbom RISC-V extension (cache management / CBO)
 
    * - ``RVZicntr``
      - ``bit``
@@ -100,6 +116,10 @@
      - ``bit``
      - User mode
 
+   * - ``SoftwareInterruptEn``
+     - ``bit``
+     - Software interrupts are enabled
+
    * - ``DebugEn``
      - ``bit``
      - Debug support
@@ -115,6 +135,66 @@
    * - ``ExceptionAddress``
      - ``logic [63:0]``
      - Address to jump when exception
+
+   * - ``Sdtrig``
+     - ``bit``
+     - Trigger Module Sdtrig Extension
+
+   * - ``SdtrigMcontrol6``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigMcontrol6ExecAddr``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigMcontrol6ExecData``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigMcontrol6Store``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigMcontrol6LoadAddr``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigMcontrol6LoadData``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigIcount``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigEtrigger``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigItrigger``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigNrTriggers``
+     - ``int``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigTriggerChaining``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigSupportedActions``
+     - ``logic [1:0]``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigSupportedMatch``
+     - ``logic [9:0]``
+     - TO_BE_COMPLETED
+
+   * - ``SdtrigSupportTextra``
+     - ``bit``
+     - TO_BE_COMPLETED
 
    * - ``TvalEn``
      - ``bit``
@@ -139,6 +219,10 @@
    * - ``PMPEntryReadOnly``
      - ``bit [63:0]``
      - PMP CSR read-only bits
+
+   * - ``PMPNapotEn``
+     - ``bit``
+     - PMP NA4 and NAPOT mode enable
 
    * - ``NrNonIdempotentRules``
      - ``int unsigned``
@@ -179,6 +263,10 @@
    * - ``CvxifEn``
      - ``bit``
      - CV-X-IF coprocessor interface enable
+
+   * - ``CoproType``
+     - ``copro_type_t``
+     - Coprocessor type
 
    * - ``NOCType``
      - ``noc_type_e``
@@ -240,6 +328,26 @@
      - ``int unsigned``
      - Data cache line width
 
+   * - ``DcacheFlushOnFence``
+     - ``bit``
+     - explicit CBO operations for better overall performance
+
+   * - ``DcacheFlushOnFenceI``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``DcacheInvalidateOnFlush``
+     - ``bit``
+     - TO_BE_COMPLETED
+
+   * - ``DcacheEccEnable``
+     - ``bit``
+     - Is Error Detection and Correction enabled in the L1D ?
+
+   * - ``DcacheEccScrubberEnable``
+     - ``bit``
+     - Is Error Detection and Correction scrubber integrated in the L1D ?
+
    * - ``DataUserEn``
      - ``int unsigned``
      - User field on data bus enable
@@ -258,7 +366,11 @@
 
    * - ``FpgaEn``
      - ``bit``
-     - Is FPGA optimization of CV32A6
+     - Is FPGA optimization of CV32A6 for Xilinx and Altera
+
+   * - ``FpgaAlteraEn``
+     - ``bit``
+     - Is FPGA optimization for Altera FPGA
 
    * - ``TechnoCut``
      - ``bit``
@@ -267,6 +379,10 @@
    * - ``SuperscalarEn``
      - ``bit``
      - Enable superscalar* with 2 issue ports and 2 commit ports.
+
+   * - ``ALUBypass``
+     - ``bit``
+     - Enable ALU-ALU bypass (superscalar mode only)
 
    * - ``NrCommitPorts``
      - ``int unsigned``
@@ -300,9 +416,17 @@
      - ``int unsigned``
      - Branch target buffer entries
 
+   * - ``BPType``
+     - ``bp_type_t``
+     - Branch predictor type
+
    * - ``BHTEntries``
      - ``int unsigned``
      - Branch history entries
+
+   * - ``BHTHist``
+     - ``int unsigned``
+     - Branch history bits
 
    * - ``InstrTlbEntries``
      - ``int unsigned``
@@ -319,3 +443,7 @@
    * - ``SharedTlbDepth``
      - ``int unsigned``
      - MMU depth of shared TLB
+
+   * - ``SvnapotEn``
+     - ``bit``
+     - Option to enable Svnapot extension

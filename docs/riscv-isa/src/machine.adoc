@@ -3111,6 +3111,7 @@ endif::[]
 ifndef::archi-default,RVZsmepmp-true[]
 `mseccfg` is an optional 64-bit read/write register,
 that controls security features.
+endif::[]
 
 ifdef::archi-not-default+XLEN-32[]
 As XLEN=32, `mseccfgh` is a 32-bit read/write register
