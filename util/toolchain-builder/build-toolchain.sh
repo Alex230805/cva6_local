@@ -51,6 +51,9 @@ print_usage() {
     echo "                     missing parent directories will be created as needed.)"
 }
 
+
+#NUM_JOBS=24
+
 # Helper function to parse the cmdline args.
 # Takes the complete list of cmdline args, drops them as they get parsed.
 parse_cmdline() {
