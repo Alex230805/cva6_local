@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RISC-V Documentation Resources &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CVA6
+              <img src="../../../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">RISC-V Documentation Resources</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/riscv-isa/riscv-isa-manual/docs-resources/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="risc-v-documentation-resources">
+<h1>RISC-V Documentation Resources<a class="headerlink" href="#risc-v-documentation-resources" title="Link to this heading"></a></h1>
+<p>This repository (repo) contains the resources needed to build docs with the RISC-V themes, fonts, and logos.</p>
+<p>Specification repos created after January 2022 are generally created from the
+<a class="reference external" href="https://github.com/riscv/docs-spec-template">docs-spec-template</a> repository and will
+have all the requisites parts included in a basic document.</p>
+<p>Older repos can be updated with 3 basic steps:</p>
+<ol class="simple">
+<li><p>Update the directory structure to reference the docs-resources, (this) repository.</p></li>
+<li><p>Update the main AsciiDoc source file to include new variables needed for build.</p></li>
+<li><p>Update the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to build using the new resources.</p></li>
+</ol>
+<section id="updating-the-directory-structure">
+<h2>Updating the directory structure<a class="headerlink" href="#updating-the-directory-structure" title="Link to this heading"></a></h2>
+<p>The three main directories in this repo contain various components of the RISC-V documentation
+template. The <code class="docutils literal notranslate"><span class="pre">docs-resources/images/</span></code> directory has artwork like the RISC-V logo. The <code class="docutils literal notranslate"><span class="pre">docs-resources/fonts/</span></code>
+directory contains the necessary fonts.  And, the <code class="docutils literal notranslate"><span class="pre">docs-resources/themes/</span></code> directory contains the YAML file
+for configuring the document.</p>
+<p>In order to be able to link a repo with this project, you must use
+<a class="reference external" href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">Git Submodules</a>.  While there are many ways to do this,
+we will take the simplest approach and use the submodule defaults,
+placing a <code class="docutils literal notranslate"><span class="pre">docs-resources/</span></code> directory in the repo head.  This can be accomplished by executing
+the following command in the top project directory (assuming http access):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodule</span> <span class="n">add</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">riscv</span><span class="o">/</span><span class="n">docs</span><span class="o">-</span><span class="n">resources</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>This command will create a <code class="docutils literal notranslate"><span class="pre">docs-resources/</span></code> directory when completed.  Additionally, the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>
+command should show new files of <code class="docutils literal notranslate"><span class="pre">docs-resources</span></code> and either a new or modified file of <code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code>
+depending upon whether Git Submodules are already in use in the project.</p>
+<p><strong>Note:</strong> The use of Submodules creates a “link” in Git between projects that are tied to
+specific commit id.  This provides “safety” for the including projects by making sure that
+they don’t inadvertently get broken.  However, it creates an additional maintenance responsibility
+to intermittently rebase the link and verify that nothing has been broken.  Project maintainers need to
+understand this and plan accordingly.</p>
+</section>
+<section id="updating-the-main-asciidoc-source-file">
+<h2>Updating the main AsciiDoc source file<a class="headerlink" href="#updating-the-main-asciidoc-source-file" title="Link to this heading"></a></h2>
+<p>From the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, find the main AsciiDoc file that is used to build the project.<br />It usually has the same base name as the .pdf which is generated.</p>
+<p>Open this file and ensure that the following variables are added to top the document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// These variables need customization for the specification
+:description: Short, text description of spec…
+:revdate:  Month day, Year
+:revnumber: X.Y.Z
+:revremark: This document is in Development state.  Change should be expected.
+
+// These variables should not require customization
+:company: RISC-V
+:url-riscv: http://riscv.org
+:doctype: book
+:preface-title: Preamble
+:colophon:
+:appendix-caption: Appendix
+:title-logo-image: image:docs-resources/images/risc-v_logo.svg[pdfwidth=3.25in,align=center]
+// Settings:
+:experimental:
+:reproducible:
+:WaveDromEditorApp: wavedrom-cli
+:icons: font
+:lang: en
+:listing-caption: Listing
+:sectnums:
+:sectnumlevels: 5
+:toclevels: 5
+:toc: left
+:source-highlighter: pygments
+ifdef::backend-pdf[]
+:source-highlighter: coderay
+endif::[]
+:data-uri:
+:hide-uri-scheme:
+:stem: latexmath
+:footnote:
+:xrefstyle: short
+</pre></div>
+</div>
+<p>The variables in the first section above should be visited and updated as appropriate.
+Additionally, any variables which already exist in the document should be evaluated
+for the better value, which most likely is the template value specified above for anything
+in the document.</p>
+</section>
+<section id="updating-the-makefile">
+<h2>Updating the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code><a class="headerlink" href="#updating-the-makefile" title="Link to this heading"></a></h2>
+<p>Typical build invocations for basic AsciiDoc builds look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%.pdf: %.adoc
+	asciidoctor-pdf $&lt;
+</pre></div>
+</div>
+<p>To build using the RISC-V template, this statement needs to look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%.pdf: %.adoc
+asciidoctor-pdf \
+  -a toc \
+  -a compress \
+  -a pdf-theme=docs-resources/themes/riscv-pdf.yml \
+  -a pdf-fontsdir=docs-resources/fonts \
+  -o $@ $&lt;
+</pre></div>
+</div>
+<p><strong>Note:</strong> if you want to include a bibliography, you can include a
+“-r asciidoctor-bibtex” statement.  Likewise, to use various diagramming
+capabilities, you can include “-r asciidoctor-diagram”.</p>
+</section>
+<section id="additional-items-to-consider-for-the-document">
+<h2>Additional items to consider for the document<a class="headerlink" href="#additional-items-to-consider-for-the-document" title="Link to this heading"></a></h2>
+<section id="license-and-copyright-statements">
+<h3>License and copyright statements<a class="headerlink" href="#license-and-copyright-statements" title="Link to this heading"></a></h3>
+<p>While making updates to documents, ensure that a License statement is included near the front
+of the document, preferably in the Preamble.  The Asciidoc text for this should look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">NOTE</span><span class="p">]</span>
+<span class="o">.</span><span class="n">Copyright</span> <span class="ow">and</span> <span class="n">licensure</span><span class="p">:</span>
+<span class="o">====</span>
+<span class="n">This</span> <span class="n">work</span> <span class="ow">is</span> <span class="n">licensed</span> <span class="n">under</span> <span class="n">a</span>
+<span class="n">link</span><span class="p">:</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">creativecommons</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">licenses</span><span class="o">/</span><span class="n">by</span><span class="o">/</span><span class="mf">4.0</span><span class="o">/</span><span class="p">[</span><span class="n">Creative</span> <span class="n">Commons</span> <span class="n">Attribution</span> <span class="mf">4.0</span> <span class="n">International</span> <span class="n">License</span><span class="p">]</span><span class="o">.</span>
+
+<span class="n">This</span> <span class="n">work</span> <span class="ow">is</span> <span class="n">Copyright</span> <span class="mi">2022</span> <span class="n">by</span> <span class="n">RISC</span><span class="o">-</span><span class="n">V</span> <span class="n">International</span><span class="o">.</span>
+<span class="o">====</span>
+</pre></div>
+</div>
+</section>
+<section id="document-state-markings">
+<h3>Document state markings<a class="headerlink" href="#document-state-markings" title="Link to this heading"></a></h3>
+<p>Document state should be reflected in the <code class="docutils literal notranslate"><span class="pre">:revmark:</span></code> variable and be contained in
+an in-document admonition statement near the front of the document (Preface or Preamble).</p>
+<p>The recommended values for <code class="docutils literal notranslate"><span class="pre">:revmark:</span></code> and the front matter admonition based on the document
+state are as follows:</p>
+<ul>
+<li><p>For <strong>Discussion Document</strong> state, use:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">:revmark:</span> <span class="pre">This</span> <span class="pre">document</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">Discussion</span> <span class="pre">state.</span>&#160; <span class="pre">Change</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">expected.</span></code></p></li>
+<li><p>Formal admonition text:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">WARNING</span><span class="p">]</span>
+<span class="o">.</span><span class="n">This</span> <span class="n">document</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">link</span><span class="p">:</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">riscv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">spec</span><span class="o">-</span><span class="n">state</span><span class="p">[</span><span class="n">Discussion</span> <span class="n">state</span><span class="p">]</span>
+<span class="o">====</span>
+<span class="n">Assume</span> <span class="n">everything</span> <span class="n">can</span> <span class="n">change</span><span class="o">.</span> <span class="n">This</span> <span class="n">document</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">complete</span> <span class="n">yet</span> <span class="ow">and</span> <span class="n">was</span> <span class="n">created</span> <span class="n">only</span>
+<span class="k">for</span> <span class="n">the</span> <span class="n">purpose</span> <span class="n">of</span> <span class="n">conversation</span> <span class="n">outside</span> <span class="n">of</span> <span class="n">the</span> <span class="n">document</span><span class="o">.</span>
+<span class="o">====</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>For <strong>Development</strong> state, use:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">:revmark:</span> <span class="pre">This</span> <span class="pre">document</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">Development</span> <span class="pre">state.</span>&#160; <span class="pre">Change</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">expected.</span></code></p></li>
+<li><p>Formal admonition text:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">WARNING</span><span class="p">]</span>
+<span class="o">.</span><span class="n">This</span> <span class="n">document</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">link</span><span class="p">:</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">riscv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">spec</span><span class="o">-</span><span class="n">state</span><span class="p">[</span><span class="n">Development</span> <span class="n">state</span><span class="p">]</span>
+<span class="o">====</span>
+<span class="n">Assume</span> <span class="n">everything</span> <span class="n">can</span> <span class="n">change</span><span class="o">.</span> <span class="n">This</span> <span class="n">draft</span> <span class="n">specification</span> <span class="n">will</span> <span class="n">change</span> <span class="n">before</span> <span class="n">being</span> <span class="n">accepted</span>
+<span class="k">as</span> <span class="n">standard</span><span class="p">,</span> <span class="n">so</span> <span class="n">implementations</span> <span class="n">made</span> <span class="n">to</span> <span class="n">this</span> <span class="n">draft</span> <span class="n">specification</span> <span class="n">will</span> <span class="n">likely</span> <span class="ow">not</span> <span class="n">conform</span>
+<span class="n">to</span> <span class="n">the</span> <span class="n">future</span> <span class="n">standard</span><span class="o">.</span>
+<span class="o">====</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>For <strong>Stable</strong> state, use:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">:revmark:</span> <span class="pre">This</span> <span class="pre">document</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">Stable</span> <span class="pre">state.</span>&#160; <span class="pre">Assume</span> <span class="pre">it</span> <span class="pre">may</span> <span class="pre">change.</span></code></p></li>
+<li><p>Formal admonition text:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">WARNING</span><span class="p">]</span>
+<span class="o">.</span><span class="n">This</span> <span class="n">document</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">link</span><span class="p">:</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">riscv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">spec</span><span class="o">-</span><span class="n">state</span><span class="p">[</span><span class="n">Stable</span> <span class="n">state</span><span class="p">]</span>
+<span class="o">====</span>
+<span class="n">Assume</span> <span class="n">anything</span> <span class="n">could</span> <span class="n">still</span> <span class="n">change</span><span class="p">,</span> <span class="n">but</span> <span class="n">limited</span> <span class="n">change</span> <span class="n">should</span> <span class="n">be</span> <span class="n">expected</span><span class="o">.</span>
+<span class="o">====</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>For <strong>Frozen</strong> state, use:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">:revmark:</span> <span class="pre">This</span> <span class="pre">document</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">Frozen</span> <span class="pre">state.</span>&#160; <span class="pre">Change</span> <span class="pre">is</span> <span class="pre">extremely</span> <span class="pre">unlikely.</span></code></p></li>
+<li><p>Formal admonition text:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">WARNING</span><span class="p">]</span>
+<span class="o">.</span><span class="n">This</span> <span class="n">document</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">link</span><span class="p">:</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">riscv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">spec</span><span class="o">-</span><span class="n">state</span><span class="p">[</span><span class="n">Frozen</span> <span class="n">state</span><span class="p">]</span>
+<span class="o">====</span>
+<span class="n">Change</span> <span class="ow">is</span> <span class="n">extremely</span> <span class="n">unlikely</span><span class="o">.</span> <span class="n">A</span> <span class="n">high</span> <span class="n">threshold</span> <span class="n">will</span> <span class="n">be</span> <span class="n">used</span><span class="p">,</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">change</span>
+<span class="n">will</span> <span class="n">only</span> <span class="n">occur</span> <span class="n">because</span> <span class="n">of</span> <span class="n">some</span> <span class="n">truly</span> <span class="n">critical</span> <span class="n">issue</span> <span class="n">being</span> <span class="n">identified</span> <span class="n">during</span>
+<span class="n">the</span> <span class="n">public</span> <span class="n">review</span> <span class="n">cycle</span><span class="o">.</span> <span class="n">Any</span> <span class="n">other</span> <span class="n">desired</span> <span class="ow">or</span> <span class="n">needed</span> <span class="n">changes</span> <span class="n">can</span> <span class="n">be</span> <span class="n">the</span> <span class="n">subject</span>
+<span class="n">of</span> <span class="n">a</span> <span class="n">follow</span><span class="o">-</span><span class="n">on</span> <span class="n">new</span> <span class="n">extension</span><span class="o">.</span>
+<span class="o">====</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>For <strong>Ratified</strong> state, use:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">:revmark:</span> <span class="pre">This</span> <span class="pre">document</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">Ratified</span> <span class="pre">state.</span>&#160; <span class="pre">No</span> <span class="pre">changes</span> <span class="pre">are</span> <span class="pre">allowed.</span></code></p></li>
+<li><p>Formal admonition text:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">WARNING</span><span class="p">]</span>
+<span class="o">.</span><span class="n">This</span> <span class="n">document</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">link</span><span class="p">:</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">riscv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">spec</span><span class="o">-</span><span class="n">state</span><span class="p">[</span><span class="n">Ratified</span> <span class="n">state</span><span class="p">]</span>
+<span class="o">====</span>
+<span class="n">No</span> <span class="n">changes</span> <span class="n">are</span> <span class="n">allowed</span><span class="o">.</span> <span class="n">Any</span> <span class="n">desired</span> <span class="ow">or</span> <span class="n">needed</span> <span class="n">changes</span> <span class="n">can</span> <span class="n">be</span> <span class="n">the</span> <span class="n">subject</span>
+<span class="n">of</span> <span class="n">a</span> <span class="n">follow</span><span class="o">-</span><span class="n">on</span> <span class="n">new</span> <span class="n">extension</span><span class="o">.</span> <span class="n">Ratified</span> <span class="n">extensions</span> <span class="n">are</span> <span class="n">never</span> <span class="n">revised</span><span class="o">.</span>
+<span class="o">====</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="fonts">
+<h1>Fonts<a class="headerlink" href="#fonts" title="Link to this heading"></a></h1>
+<p>The following fonts are included (linked to their source):</p>
+<ul class="simple">
+<li><p>(Atkinson Hyperlegible)[https://www.brailleinstitute.org/freefont] release 2020-0514 distributed under the terms of the (Open Font License)[https://braileinstitute.app.box.com/s/rin3vzegmcy7sil28yfqslz2r5etv5nl] (archived 2024-11-08)</p></li>
+<li><p>(Fira Code)[https://github.com/tonsky/FiraCode] release 6.2 distributed under the terms of the (SIL Open Font License 1.1)[https://github.com/tonsky/FiraCode/blob/master/LICENSE] (archived 2024-11-08)</p></li>
+</ul>
+<p>The license files are also included in the fonts directory for reference.</p>
+</section>
+<section id="additional-information">
+<h1>Additional information<a class="headerlink" href="#additional-information" title="Link to this heading"></a></h1>
+<p>For additional information, see the <a class="reference external" href="https://github.com/riscv/docs-dev-guide/blob/main/example.pdf">docs-dev-guide/example.pdf</a> or reach out to
+help&#64;riscv.org.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

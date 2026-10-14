@@ -1,0 +1,235 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PC Generation &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Instruction Fetch Stage" href="if_stage.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 Design Document (deprecated)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PC Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#branch-prediction">Branch Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="if_stage.html">Instruction Fetch Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="id_stage.html">Instruction Decode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issue_stage.html">Issue Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html">Execute Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html">Memory Management Unit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#translation-lookaside-buffer">Translation Lookaside Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#shared-translation-lookaside-buffer">Shared Translation Lookaside Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#page-table-walker">Page Table Walker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commit_stage.html">Commit Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 Design Document (deprecated)</a></li>
+      <li class="breadcrumb-item active">PC Generation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/03_cva6_design/pcgen_stage.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pc-generation">
+<h1>PC Generation<a class="headerlink" href="#pc-generation" title="Link to this heading"></a></h1>
+<p>PC gen is responsible for generating the next program counter. All
+program counters are logical addressed. If the logical to physical
+mapping changes a <code class="docutils literal notranslate"><span class="pre">fence.vm</span></code> instruction should flush the pipeline and TLBs.</p>
+<p>This stage contains speculation on the branch target address as well as
+the information if the branch is taken or not. In addition, it houses
+the branch target buffer (BTB) and a branch history table (BHT).</p>
+<p>If the BTB decodes a certain PC as a jump the BHT decides if the branch
+is taken or not. Because of the various state-full memory components
+this stage is split into two pipeline stages. PC Gen communicates with
+the IF via a handshake signal. Instruction fetch signals its readiness
+with an asserted ready signal while PC Gen signals a valid request by
+asserting the <code class="docutils literal notranslate"><span class="pre">fetch_valid</span></code> signal.</p>
+<p>The next PC can originate from the following sources (listed in order of
+precedence):</p>
+<ol class="simple">
+<li><p><strong>Default assignment</strong>: The default assignment is to fetch PC + 4.
+PC Gen always fetches on a word boundary (32-bit). Compressed
+instructions are handled in a later pipeline step.</p></li>
+<li><p><strong>Branch Predict</strong>: If the BHT and BTB predict a branch on a certain
+PC, PC Gen sets the next PC to the predicted address and also
+informs the IF stage that it performed a prediction on the PC. This
+is needed in various places further down the pipeline (for example
+to correct prediction). Branch information which is passed down the
+pipeline is encapsulated in a structure called <code class="docutils literal notranslate"><span class="pre">branchpredict_sbe_t</span></code>.
+In contrast to branch prediction information which is passed up the
+pipeline which is just called <code class="docutils literal notranslate"><span class="pre">bp_resolve_t</span></code>. This is used for
+corrective actions (see next bullet point). This naming convention
+should make it easy to detect the flow of branch information in the source code.</p></li>
+<li><p><strong>Control flow change request</strong>: A control flow change request
+occurs from the fact that the branch predictor mis-predicted. This
+can either be a ‘real’ mis-prediction or a branch which was not
+recognized as one. In any case we need to correct our action and
+start fetching from the correct address.</p></li>
+<li><p><strong>Return from environment call</strong>: A return from an environment call
+performs corrective action of the PC in terms of setting the
+successive PC to the one stored in the <code class="docutils literal notranslate"><span class="pre">[m|s]epc</span></code> register.</p></li>
+<li><p><strong>Exception/Interrupt</strong>: If an exception (or interrupt, which is in
+the context of RISC-V systems quite similar) occurs PC Gen will
+generate the next PC as part of the trap vector base address. The
+trap vector base address can be different depending on whether the
+exception traps to S-Mode or M-Mode (user mode exceptions are
+currently not supported). It is the purpose of the CSR Unit to
+figure out where to trap to and present the correct address to PC Gen.</p></li>
+<li><p><strong>Pipeline Flush because of CSR side effects</strong>: When a CSR
+with side-effects gets written we need to flush the whole pipeline
+and start fetching from the next instruction again in order to take
+the up-dated information into account (for example virtual memory base pointer changes).</p></li>
+<li><p><strong>Debug</strong>: Debug has the highest order of precedence as it can
+interrupt any control flow requests. It also the only source of
+control flow change which can actually happen simultaneously to any
+other of the forced control flow changes. The debug unit reports the
+request to change the PC and the PC which the CPU should change to.</p></li>
+</ol>
+<p>This unit also takes care of a signal called <code class="docutils literal notranslate"><span class="pre">fetch_enable</span></code> which
+purpose is to prevent fetching if not asserted. Also note that no
+flushing takes place in this unit. All the flush information is
+distributed by the controller. Actually the controller’s only purpose is
+to flush different pipeline stages.</p>
+<section id="branch-prediction">
+<h2>Branch Prediction<a class="headerlink" href="#branch-prediction" title="Link to this heading"></a></h2>
+<!-- ![Implementation of Ariane's BTB](../../img/ariane_overview.pdf) --><p><img alt="Ariane Block Diagram" src="../_images/branch_prediction.png" /></p>
+<p>All branch prediction data structures reside in a single register-file
+like data structure.
+It is indexed with the appropriate number of bits from the PC and
+contains information about the predicted target address as well as the
+outcome of a configurable-width saturation counter (two by default). The
+prediction result is used in the subsequent stage to jump (or not).</p>
+<p>In addition of providing prediction result the BTB also updates its
+information on mis-predictions. It can either correct the saturation
+counter or clear the branch prediction entry. The latter is done when
+the branch unit saw that the predicted PC didn’t match or an when an instruction
+with privilege changing side-effect is committing.</p>
+<p>The branch-outcome and the branch
+target address are calculated in the same functional unit therefore a
+mis-prediction on the target address is as costly as a mis-prediction on
+the branch decision. As the branch unit (the functional unit
+which does all the branch-handling) is already quite critical in terms
+of timing this is a potential improvement.</p>
+<p>As Ariane fully implements the compressed instruction set branches can also happen on 16-bit (or half word)
+instructions. As this would significantly increase the size of the BTB
+the BTB is indexed with a word aligned PC. This brings the potential
+draw-back that branch-prediction does always mis-predict on a
+instruction fetch word which contains two compressed branches. However, such case
+should be rare in reality.</p>
+<p>A trick we played here is to take the next PC (e.g.: the word aligned PC
+of the upper 16-bit of this instruction) of an un-aligned instruction to
+index the BTB. This naturally allows the the IF stage to fetch all
+necessary instruction data. Actually it will fetch two more unused bytes
+which are then discarded by the instruction re-aligner. For that
+reason we also need to keep an additional bit whether the instruction is
+on the lower or upper 16-bit.</p>
+<p>For branch prediction a potential source of
+unnecessary pipeline bubbles is aliasing. To prevent aliasing from
+happening (or at least make it more unlikely) a couple of tag bits
+(upper bits from the indexed PC) are used and compared on every access.
+This is a trade-off necessary as we are lacking sufficiently fast
+SRAMs which could be used to host the BTB. Instead we are forced to use
+register which have a significantly larger impact on over all area and
+power consumption.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="if_stage.html" class="btn btn-neutral float-right" title="Instruction Fetch Stage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

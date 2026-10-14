@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Programmer’s View" href="Programmer_View.html" />
+    <link rel="prev" title="OpenHW Group CVA6 User Manual" href="CVA6_user_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CVA6_user_guide.html">OpenHW Group CVA6 User Manual</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#work-in-progress">Work In Progress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#target-audience">Target Audience</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cva6-overview">CVA6 Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configurations">Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scope-of-the-ip">Scope of the IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specifications-and-references">Specifications and References</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#applicable-specifications">Applicable Specifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reference-documents">Reference Documents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html">Programmer’s View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Custom_Instructions.html">Custom RISC-V instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMA.html">PMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMP.html">PMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html">Traps, Interrupts, Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Compiler_Command_Lines.html">Compiler command lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html">CVA6 RISC-V Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html">RV32I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32M.html">RV32M</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32A.html">RV32A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html">RV32C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32ZCb.html">RV32Zcb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZcmp.html">RVZcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZba.html">RVZba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html">RVZbb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbc.html">RVZbc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbs.html">RVZbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html">RVZbkb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkc.html">RVZbkc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkx.html">RVZbkx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZkne.html">RVZkne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknd.html">RVZknd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknh.html">RVZknh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicsr.html">RVZicsr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZifencei.html">RVZifencei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicond.html">RVZicond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X_list.html">CV32A60X CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html">CV32A60X CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX_list.html">CV32A60AX CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX.html">CV32A60AX CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU_list.html">CV64A6_MMU CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU.html">CV64A6_MMU CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CV64A6_Control_Status_Registers.html">CV64A6 CSR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Cache_Control.html">CSR cache control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Performance_Counters.html">CSR Performance Counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters_Configuration.html">Parameters and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html">AXI Bus Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html">CV-X-IF Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html">Core Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 User Manual</a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_cva6_user/Introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<span id="cva6-user-guide-introduction"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>Copyright 2023 OpenHW Group and Thales</p>
+<p>SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1</p>
+<p>Licensed under the Solderpad Hardware License v 2.1 (the “License”); you may not use this file except in compliance with the License, or, at your option, the Apache License version 2.0.
+You may obtain a copy of the License at <a class="reference external" href="https://solderpad.org/licenses/SHL-2.1/">https://solderpad.org/licenses/SHL-2.1/</a>.
+Unless required by applicable law or agreed to in writing, any work distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.</p>
+</section>
+<section id="work-in-progress">
+<h2>Work In Progress<a class="headerlink" href="#work-in-progress" title="Link to this heading"></a></h2>
+<p>This document is a work in progress and the team currently drafting it focuses on its use to verify several configurations of CVA6.</p>
+<p>The current limitation of documentation on CVA6 is well understood.
+Rather than regretting this, the reader is encouraged to contribute to it to make CVA6 an even better core.
+To contribute to the project, refer to the <a class="reference external" href="https://github.com/openhwgroup/cva6/blob/master/CONTRIBUTING.md">Contributing</a> guidelines and get in touch with the team.</p>
+</section>
+<section id="target-audience">
+<h2>Target Audience<a class="headerlink" href="#target-audience" title="Link to this heading"></a></h2>
+<p>The CVA6 user manual targets:</p>
+<ul class="simple">
+<li><p>SW programmers</p></li>
+<li><p>HW designers who integrate CVA6 into a SoC/ASIC/FPGA</p></li>
+<li><p>Architects who design a coprocessor for the CV-X-IF interface and who need to create SW to use it</p></li>
+<li><p>HW designers who synthesize/place&amp;route/verify a design that embeds CVA6</p></li>
+<li><p>Verification engineers involved in the OpenHW Group’s CVA6 project who use this manual as a reference.</p></li>
+</ul>
+<p>The user guide does not target people who dig into CVA6 design. No internal mechanisms are described here,
+except if the user has some sort of control on it. A separate design document digs into the core microarchitecture.</p>
+</section>
+<section id="cva6-overview">
+<h2>CVA6 Overview<a class="headerlink" href="#cva6-overview" title="Link to this heading"></a></h2>
+<p><strong>CVA6</strong> is a RISC-V compatible application processor core that can be configured
+as a 32- or 64-bit core: <strong>CV32A6</strong> and <strong>CV64A6</strong>.</p>
+<p>CVA6 can be configured to the users’ and application needs thanks to several
+parameters and optional features (MMU, PMP, FPU, cache organization and size…).
+It targets <strong>FPGA</strong> and <strong>ASIC</strong> technologies.</p>
+<p>CVA6, as an application core, can run many operating systems. It has already been
+demonstrated with embedded <strong>Linux</strong> distributions (built with <strong>BuildRoot</strong> and
+<strong>Yocto</strong>), <strong>FreeRTOS</strong> and <strong>Zephyr</strong>.</p>
+<p>CVA6 features the <strong>CV-X-IF</strong> coprocessor interface to extend the set of instructions it can execute.</p>
+<p>The goal of CVA6 is to be <strong>fully compliant</strong> with RISC-V specifications and feature no or extremely
+few custom extensions (except through extensions on CV-X-IF interface).</p>
+<p>CV32A6 and CV64A6 share the same <strong>SystemVerilog</strong> source code, available in this <a class="reference external" href="https://github.com/openhwgroup/cva6/">GitHub</a> repository.</p>
+<p>CV64A6 is an industrial evolution of ARIANE created by ETH Zürich and the
+University of Bologna. CV32A6 is a later addition by Thales. CVA6 is now
+curated at the OpenHW Group by its members.</p>
+</section>
+<section id="configurations">
+<h2>Configurations<a class="headerlink" href="#configurations" title="Link to this heading"></a></h2>
+<p>CVA6 is actually a family of cores, as CVA6 can be configured to the users’ needs with more than 50 parameters.
+A configuration is defined as a given set of parameters.</p>
+<p>A few configurations undergo a complete verification process to bring them to <strong>TRL-5</strong>,
+the maturity level where they can be integrated in production ASICs.</p>
+<p>This manual includes generic descriptions of CVA6 capabilities, as well as their applicability to
+the verified configurations.</p>
+<p>As of today, two configurations are being verified and addressed in this document:</p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Configuration</p></th>
+<th class="head"><p>Short description</p></th>
+<th class="head"><p>Target</p></th>
+<th class="head"><p>Privilege levels</p></th>
+<th class="head"><p>Supported RISC-V ISA</p></th>
+<th class="head"><p>CV-X-IF</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>CV32A60AX</strong></p></td>
+<td><p>32-bit <strong>application</strong> core</p></td>
+<td><p>ASIC</p></td>
+<td><p>Machine, Supervisor, User</p></td>
+<td><p>RV32IMACZicsr_Zifencei_Zicount_Zba_Zbb_Zbc_Zbs_Zcb_Zicond</p></td>
+<td><p>Included</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>CV32A60X</strong></p></td>
+<td><p>32-bit <strong>embedded</strong> core</p></td>
+<td><p>ASIC</p></td>
+<td><p>Machine only</p></td>
+<td><p>RV32IMCZicsr_Zifencei_Zba_Zbb_Zbc_Zbs_Zcb</p></td>
+<td><p>Included</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>CV64A6_MMU</strong></p></td>
+<td><p>64-bit <strong>embedded</strong> core with MMU</p></td>
+<td><p>ASIC</p></td>
+<td><p>Machine, Supervisor, User</p></td>
+<td><p>RV64IMCZicsr_Zifencei_Zba_Zbb_Zbc_Zbs_Zcb</p></td>
+<td><p>Included</p></td>
+</tr>
+</tbody>
+</table>
+<p>CV32A60X is an interim part number until the team can decide if this configuration is single- or dual-issue.
+If the dual-issue architecture is selected, the part number will become CV32A65X to denote the extra performance.</p>
+<p>In the future, dedicated user manuals for each configuration could be generated. The team is looking for a contributor to implement this through <em>templating</em>.</p>
+</section>
+<section id="scope-of-the-ip">
+<h2>Scope of the IP<a class="headerlink" href="#scope-of-the-ip" title="Link to this heading"></a></h2>
+<p>The <strong>scope of the IP</strong> refers the subsystem that is documented here.</p>
+<img alt="../_images/cva6_scope.png" src="../_images/cva6_scope.png" />
+<p>As displayed in the picture above, the IP comprises:</p>
+<ul class="simple">
+<li><p>The CVA6 core;</p></li>
+<li><p>L1 write-through cache;</p></li>
+<li><p>Optional FPU;</p></li>
+<li><p>Optional MMU;</p></li>
+<li><p>Optional PMP;</p></li>
+<li><p>CSR;</p></li>
+<li><p>Performance counters;</p></li>
+<li><p>AXI interface;</p></li>
+<li><p>Interface with the P-Mesh coherence system of OpenPiton;</p></li>
+<li><p>CV-X-IF coprocessor interface (not shown).</p></li>
+</ul>
+<p>These are not part of the IP (several solutions can be used):</p>
+<ul class="simple">
+<li><p>CLINT or PLIC Interrupt modules;</p></li>
+<li><p>Debug module (such as DTM);</p></li>
+<li><p>Support of L1 write-back cache.</p></li>
+</ul>
+</section>
+<section id="specifications-and-references">
+<h2>Specifications and References<a class="headerlink" href="#specifications-and-references" title="Link to this heading"></a></h2>
+<section id="applicable-specifications">
+<h3>Applicable Specifications<a class="headerlink" href="#applicable-specifications" title="Link to this heading"></a></h3>
+<p>CVA6 strives to comply with the following specifications. When the
+specifications allow variations (parameters, optional features…),
+this users’ guide will detail them.</p>
+<div role="list" class="citation-list">
+<div class="citation" id="rvunpriv" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RVunpriv<span class="fn-bracket">]</span></span>
+<p>“The RISC-V Instruction Set Manual, Volume I: User-Level ISA,
+Document Version 20191213”, Editors Andrew Waterman and Krste Asanović,
+RISC-V Foundation, December 13, 2019.</p>
+</div>
+<div class="citation" id="rvpriv" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RVpriv<span class="fn-bracket">]</span></span>
+<p>“The RISC-V Instruction Set Manual, Volume II: Privileged
+Architecture, Document Version 20211203”, Editors Andrew Waterman, Krste
+Asanović and John Hauser, RISC-V Foundation, December 4, 2021.</p>
+</div>
+<div class="citation" id="rvdbg" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RVdbg<span class="fn-bracket">]</span></span>
+<p>“RISC-V External Debug Support, Document Version 0.13.2”,
+Editors Tim Newsome and Megan Wachs, RISC-V Foundation, March 22, 2019.</p>
+</div>
+<div class="citation" id="rvcompat" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RVcompat<span class="fn-bracket">]</span></span>
+<p>“RISC-V Architectural Compatibility Test Framework”,
+<a class="reference external" href="https://github.com/riscv-non-isa/riscv-arch-test">https://github.com/riscv-non-isa/riscv-arch-test</a>.</p>
+</div>
+<div class="citation" id="axi" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AXI<span class="fn-bracket">]</span></span>
+<p>AXI Specification,
+<a class="reference external" href="https://developer.arm.com/documentation/ihi0022/hc">https://developer.arm.com/documentation/ihi0022/hc</a>.</p>
+</div>
+<div class="citation" id="cv-x-if" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>CV-X-IF<span class="fn-bracket">]</span></span>
+<p>CV-X-IF coprocessor interface currently
+prepared at OpenHW Group; current version in
+<a class="reference external" href="https://docs.openhwgroup.org/projects/openhw-group-core-v-xif/">https://docs.openhwgroup.org/projects/openhw-group-core-v-xif/</a>.</p>
+</div>
+<div class="citation" id="openpiton" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>OpenPiton<span class="fn-bracket">]</span></span>
+<p>“OpenPiton Microarchitecture Specification”, Princeton
+University,
+<a class="reference external" href="https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf">https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf</a>.</p>
+</div>
+</div>
+</section>
+<section id="reference-documents">
+<h3>Reference Documents<a class="headerlink" href="#reference-documents" title="Link to this heading"></a></h3>
+<p>These are additional reference cited in this guide:</p>
+<div role="list" class="citation-list">
+<div class="citation" id="clint" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>CLINT<span class="fn-bracket">]</span></span>
+<p>Core-Local Interruptor (CLINT), “SiFive E31 Core Complex
+Manual v2p0”, chapter 6,
+<a class="reference external" href="https://static.dev.sifive.com/SiFive-E31-Manual-v2p0.pdf">https://static.dev.sifive.com/SiFive-E31-Manual-v2p0.pdf</a></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="CVA6_user_guide.html" class="btn btn-neutral float-left" title="OpenHW Group CVA6 User Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Programmer_View.html" class="btn btn-neutral float-right" title="Programmer’s View" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

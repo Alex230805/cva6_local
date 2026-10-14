@@ -1,0 +1,148 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RISC-V Instruction Set Manual &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CVA6
+              <img src="../../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">RISC-V Instruction Set Manual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/riscv-isa/riscv-isa-manual/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="risc-v-instruction-set-manual">
+<h1>RISC-V Instruction Set Manual<a class="headerlink" href="#risc-v-instruction-set-manual" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://github.com/riscv/riscv-isa-manual/actions/workflows/isa-build.yml"><img alt="RISC-V ISA Build" src="https://github.com/riscv/riscv-isa-manual/actions/workflows/isa-build.yml/badge.svg" /></a></p>
+<p>This repository contains the source files for the RISC-V Instruction Set Manual, which consists of the Privileged RISC-V Instruction Set Manual (LaTeX) and the Unprivileged RISC-V Instruction Set Manual (AsciiDoc). The preface of each document indicates the version of each standard that has been formally ratified by RISC-V International.</p>
+<p>This work is licensed under a <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. See the <a class="reference internal" href="../../02_cva6_requirements/cva6_requirements_specification.html#license"><span class="std std-ref">LICENSE</span></a> file for details.</p>
+<p>The RISC-V Instruction Set Manual is organized into the following volumes:</p>
+<ul class="simple">
+<li><p>Volume I: User-Level ISA</p></li>
+<li><p>Volume II: Privileged Architecture</p></li>
+</ul>
+<section id="official-and-draft-versions">
+<h2>Official and Draft Versions<a class="headerlink" href="#official-and-draft-versions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Official versions</strong> of the specifications are available at the <a class="reference external" href="https://riscv.org/specifications/">RISC-V International website</a>.</p></li>
+<li><p><strong>Compiled versions of the most recent drafts</strong> of the specifications can be found on the <a class="reference external" href="https://github.com/riscv/riscv-isa-manual/releases/latest">GitHub releases page</a>.</p></li>
+<li><p><strong>Older official versions</strong> of the specifications are archived at the <a class="reference external" href="https://github.com/riscv/riscv-isa-manual/releases/tag/archive">GitHub releases archive</a>.</p></li>
+</ul>
+<p>The canonical list of <strong>open-source RISC-V implementations’ marchid CSR values</strong> is available in the <a class="reference external" href="https://github.com/riscv/riscv-isa-manual/blob/main/marchid.md">marchid.md file</a>.</p>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h2>
+<p>If you would like to contribute to this documentation, please refer to the <a class="reference external" href="https://github.com/riscv/docs-dev-guide">Documentation Developer’s Guide</a>.</p>
+<p>The recommended method for building the PDF files is to use the Docker Image, as described in the <a class="reference external" href="https://github.com/riscv/riscv-docs-base-container-image">RISC-V Docs Base Container Image repository</a>.</p>
+<p>Alternative build methods, such as local builds and GitHub Action builds, are also available and described in the Documentation Developer’s Guide.</p>
+</section>
+<section id="images-not-rendered-for-epub-files">
+<h2>Images not rendered for EPUB files<a class="headerlink" href="#images-not-rendered-for-epub-files" title="Link to this heading"></a></h2>
+<p>If the eBook reader does not support embedded images, uncomment <code class="docutils literal notranslate"><span class="pre">:data-uri:</span></code> lines in <code class="docutils literal notranslate"><span class="pre">src/riscv-privileged.adoc</span></code> and <code class="docutils literal notranslate"><span class="pre">src/riscv-unprivileged.adoc</span></code>.</p>
+<section id="known-devices-that-cannot-handle-embedded-images">
+<h3>Known devices that cannot handle embedded images<a class="headerlink" href="#known-devices-that-cannot-handle-embedded-images" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>PocketBook InkPad 3</p></li>
+</ul>
+</section>
+</section>
+<section id="repo-activity">
+<h2>Repo Activity<a class="headerlink" href="#repo-activity" title="Link to this heading"></a></h2>
+<p><img alt="Alt" src="https://repobeats.axiom.co/api/embed/ccec87dc4502f2ed7c216b670b5ed8efc33a1d4c.svg" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

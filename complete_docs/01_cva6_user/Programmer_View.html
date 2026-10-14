@@ -1,0 +1,614 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programmer’s View &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Custom RISC-V instructions" href="Custom_Instructions.html" />
+    <link rel="prev" title="Introduction" href="Introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CVA6_user_guide.html">OpenHW Group CVA6 User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Programmer’s View</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#risc-v-extensions">RISC-V Extensions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cva6-family">CVA6 family</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cv32a60ax-extensions">CV32A60AX extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cv32a60x-extensions">CV32A60X extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cv64a6-mmu-extensions">CV64A6_MMU extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#risc-v-privileges">RISC-V Privileges</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">CVA6 family</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cv32a60ax-privilege-modes">CV32A60AX privilege modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cv32a60x-privilege-modes">CV32A60X privilege modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cv64a6-mmu-privilege-modes">CV64A6_MMU privilege modes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#risc-v-virtual-memory">RISC-V Virtual Memory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">CVA6 family</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cv32a60ax-virtual-memory">CV32A60AX virtual memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cv32a60x-virtual-memory">CV32A60X virtual memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cv64a6-mmu-virtual-memory">CV64A6_MMU virtual memory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-alignment">Memory Alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#harts">Harts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Custom_Instructions.html">Custom RISC-V instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMA.html">PMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMP.html">PMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html">Traps, Interrupts, Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Compiler_Command_Lines.html">Compiler command lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html">CVA6 RISC-V Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html">RV32I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32M.html">RV32M</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32A.html">RV32A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html">RV32C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32ZCb.html">RV32Zcb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZcmp.html">RVZcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZba.html">RVZba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html">RVZbb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbc.html">RVZbc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbs.html">RVZbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html">RVZbkb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkc.html">RVZbkc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkx.html">RVZbkx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZkne.html">RVZkne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknd.html">RVZknd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknh.html">RVZknh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicsr.html">RVZicsr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZifencei.html">RVZifencei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicond.html">RVZicond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X_list.html">CV32A60X CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html">CV32A60X CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX_list.html">CV32A60AX CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX.html">CV32A60AX CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU_list.html">CV64A6_MMU CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU.html">CV64A6_MMU CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CV64A6_Control_Status_Registers.html">CV64A6 CSR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Cache_Control.html">CSR cache control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Performance_Counters.html">CSR Performance Counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters_Configuration.html">Parameters and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html">AXI Bus Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html">CV-X-IF Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html">Core Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 User Manual</a></li>
+      <li class="breadcrumb-item active">Programmer’s View</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_cva6_user/Programmer_View.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="programmers-view">
+<span id="cva6-programmers-view"></span><h1>Programmer’s View<a class="headerlink" href="#programmers-view" title="Link to this heading"></a></h1>
+<p>RISC-V specifications allow many variations. This chapter provides more details about RISC-V variants available for the programmer.
+A global view of the CVA6 family is provided, as well as details for each verified configuration.</p>
+<section id="risc-v-extensions">
+<h2>RISC-V Extensions<a class="headerlink" href="#risc-v-extensions" title="Link to this heading"></a></h2>
+<section id="cva6-family">
+<h3>CVA6 family<a class="headerlink" href="#cva6-family" title="Link to this heading"></a></h3>
+<p>The following extensions are available for the CVA6 family.
+Some of them are optional and are enabled through parameters in the SystemVerilog design.</p>
+<p><strong>RV32</strong> denotes RISC-V 32-bit extensions. <strong>RV64</strong> denotes RISC-V 64-bit extensions.</p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Extension</p></th>
+<th class="head"><p>Optional</p></th>
+<th class="head"><p>RV32 (in CV32A6)</p></th>
+<th class="head"><p>RV64 (in CV64A6)</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>I- Base Integer Instruction Set</p></td>
+<td><p>No</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>A - Atomic Instructions</p></td>
+<td><p>Yes</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 1</p></td>
+</tr>
+<tr class="row-even"><td><p>Zb* - Bit-Manipulation</p></td>
+<td><p>Yes</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>C - Compressed Instructions</p></td>
+<td><p>Yes</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 1</p></td>
+</tr>
+<tr class="row-even"><td><p>Zcb - Code Size Reduction</p></td>
+<td><p>Yes</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Zcmp - Code Size Reduction</p></td>
+<td><p>Yes</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 1</p></td>
+</tr>
+<tr class="row-even"><td><p>Zcmt - Code Size Reduction</p></td>
+<td><p>Yes</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Zkn - NIST Algorithm Suite (comprised of Zbkb, Zbkc, Zbkx, Zkne, Zknd and Zknh)</p></td>
+<td><p>Yes</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 1</p></td>
+</tr>
+<tr class="row-even"><td><p>D - Double precision floating-point</p></td>
+<td><p>Yes</p></td>
+<td></td>
+<td><p>✔</p></td>
+<td><p>Note 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>F - Single precision floating-point</p></td>
+<td><p>Yes</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 1</p></td>
+</tr>
+<tr class="row-even"><td><p>M - Integer Multiply/Divide</p></td>
+<td><p>No</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Zicount - Performance Counters</p></td>
+<td><p>Yes</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 2</p></td>
+</tr>
+<tr class="row-even"><td><p>Zicsr - Control and Status Register Instructions</p></td>
+<td><p>No</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Zifencei - Instruction-Fetch Fence</p></td>
+<td><p>No</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 2</p></td>
+</tr>
+<tr class="row-even"><td><p>Zicond - Integer Conditional Operations(Ratification pending)</p></td>
+<td><p>Yes</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>Note 2</p></td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Note 1: These extensions have a slightly  different definition between RV32 and RV64. They are therefore denoted with digits (e.g. RV<strong>32</strong>M).</p></li>
+<li><p>Note 2: These extensions do not differ between RV32 and RV64. They are therefore denoted without digits below (e.g. RVZifencei).</p></li>
+</ul>
+<p><em>The following tables detail the availability of extensions for the various CVA6 configurations:</em></p>
+</section>
+<section id="cv32a60ax-extensions">
+<h3>CV32A60AX extensions<a class="headerlink" href="#cv32a60ax-extensions" title="Link to this heading"></a></h3>
+<p>These extensions are available in CV32A60AX:</p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Extension</p></th>
+<th class="head"><p>Available in CV32A60AX</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RV32I - Base Integer Instruction Set</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RV32A - Atomic Instructions</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>RV32Zb* - Bit-Manipulation (Zba, Zbb, Zbc, Zbs)</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RV32C - Compressed Instructions</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>RV32Zcb - Code Size Reduction</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RVZcmp - Code Size Reduction</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>RVZcmt - Code Size Reduction</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Zkn - NIST Algorithm Suite</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>RV32D - Double precision floating-point</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>RV32F - Single precision floating-point</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>RV32M - Integer Multiply/Divide</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RVZicount - Performance Counters</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>RVZicsr - Control and Status Register Instructions</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RVZifencei - Instruction-Fetch Fence</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>RVZicond - Integer Conditional Operations(Ratification pending)</p></td>
+<td><p>✔</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cv32a60x-extensions">
+<h3>CV32A60X extensions<a class="headerlink" href="#cv32a60x-extensions" title="Link to this heading"></a></h3>
+<p>These extensions are available in CV32A60X:</p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Extension</p></th>
+<th class="head"><p>Available in CV32A60AX</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RV32I - Base Integer Instruction Set</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RV32A - Atomic Instructions</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>RV32Zb* - Bit-Manipulation (Zba, Zbb, Zbc, Zbs)</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RV32C - Compressed Instructions</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>RV32Zcb - Code Size Reduction</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RVZcmp - Code Size Reduction</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>RVZcmt - Code Size Reduction</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Zkn - NIST Algorithm Suite</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>RV32D - Double precision floating-point</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>RV32F - Single precision floating-point</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>RV32M - Integer Multiply/Divide</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RVZicount - Performance Counters</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>RVZicsr - Control and Status Register Instructions</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RVZifencei - Instruction-Fetch Fence</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>RVZicond - Integer Conditional Operations(Ratification pending)</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cv64a6-mmu-extensions">
+<h3>CV64A6_MMU extensions<a class="headerlink" href="#cv64a6-mmu-extensions" title="Link to this heading"></a></h3>
+<p>These extensions are available in CV64A6_MMU:</p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Extension</p></th>
+<th class="head"><p>Available in CV64A6_MMU</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RV32I - Base Integer Instruction Set</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RV32A - Atomic Instructions</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>RV32Zb* - Bit-Manipulation (Zba, Zbb, Zbc, Zbs)</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RV32C - Compressed Instructions</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>RV32Zcb - Code Size Reduction</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RVZcmp - Code Size Reduction</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>RVZcmt - Code Size Reduction</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Zkn - NIST Algorithm Suite</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>RV32D - Double precision floating-point</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>RV32F - Single precision floating-point</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>RV32M - Integer Multiply/Divide</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RVZicount - Performance Counters</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>RVZicsr - Control and Status Register Instructions</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>RVZifencei - Instruction-Fetch Fence</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>RVZicond - Integer Conditional Operations(Ratification pending)</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="risc-v-privileges">
+<h2>RISC-V Privileges<a class="headerlink" href="#risc-v-privileges" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>CVA6 family<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>CVA6 supports these privilege modes:</p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Mode</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>M - Machine</p></td>
+</tr>
+<tr class="row-odd"><td><p>S - Supervior</p></td>
+</tr>
+<tr class="row-even"><td><p>U - User</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note: The addition of the H Extension is in the process. After that, HS, VS, and VU modes will also be available.</p>
+<p><em>The following tables detail the availability of privileges modes for the various CVA6 configurations:</em></p>
+</section>
+<section id="cv32a60ax-privilege-modes">
+<h3>CV32A60AX privilege modes<a class="headerlink" href="#cv32a60ax-privilege-modes" title="Link to this heading"></a></h3>
+<p>These privilege modes are available in CV32A60AX:</p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Privileges</p></th>
+<th class="head"><p>Available in CV32A60AX</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>M - Machine</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>S - Supervior</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>U - User</p></td>
+<td><p>✔</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cv32a60x-privilege-modes">
+<h3>CV32A60X privilege modes<a class="headerlink" href="#cv32a60x-privilege-modes" title="Link to this heading"></a></h3>
+<p>These privilege modes are available in CV32A60X:</p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Privileges</p></th>
+<th class="head"><p>Available in CV32A60X</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>M - Machine</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>S - Supervior</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>U - User</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cv64a6-mmu-privilege-modes">
+<h3>CV64A6_MMU privilege modes<a class="headerlink" href="#cv64a6-mmu-privilege-modes" title="Link to this heading"></a></h3>
+<p>These privilege modes are available in CV64A6_MMU:</p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Privileges</p></th>
+<th class="head"><p>Available in CV64A6_MMU</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>M - Machine</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-odd"><td><p>S - Supervior</p></td>
+<td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p>U - User</p></td>
+<td><p>✔</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="risc-v-virtual-memory">
+<h2>RISC-V Virtual Memory<a class="headerlink" href="#risc-v-virtual-memory" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3>CVA6 family<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>CV32A6 supports the RISC-V <strong>Sv32</strong> virtual memory when the <code class="docutils literal notranslate"><span class="pre">MMUEn</span></code> parameter is set to 1 (and <code class="docutils literal notranslate"><span class="pre">Xlen</span></code> is set to 32).</p>
+<p>CV64A6 supports the RISC-V <strong>Sv39</strong> virtual memory when the <code class="docutils literal notranslate"><span class="pre">MMUEn</span></code> parameter is set to 1 (and <code class="docutils literal notranslate"><span class="pre">Xlen</span></code> is set to 64). Additionally, the <strong>Svnapot</strong> extension can be enabled with Sv39 when <code class="docutils literal notranslate"><span class="pre">SvnapotEn</span></code> parameter is set to 1.</p>
+<p>Within CV64A6, the hypervisor extension is available and supports <strong>Sv39x4</strong> virtual memory when the <code class="docutils literal notranslate"><span class="pre">CVA6ConfigHExtEn</span></code> parameter is set to 1 (and <code class="docutils literal notranslate"><span class="pre">Xlen</span></code> is set to 64).</p>
+<p>By default, CV32A6 and CV64A6 are in RISC-V <strong>Bare</strong> mode. <strong>Sv32</strong> or <strong>Sv39</strong> are enabled by writing the required configuration to <code class="docutils literal notranslate"><span class="pre">satp</span></code> register mode bits.</p>
+<p>In CV32A6 the mode bit of <code class="docutils literal notranslate"><span class="pre">satp</span></code> register is bit 31.  <strong>Sv32</strong> is enabled by writing 1 to <code class="docutils literal notranslate"><span class="pre">satp[31]</span></code>.</p>
+<p>In CV64A6 the mode bits of <code class="docutils literal notranslate"><span class="pre">satp</span></code> register are bits [63:60]. <strong>Sv39</strong> is enabled by writing 8 to <code class="docutils literal notranslate"><span class="pre">satp[63:60]</span></code>.</p>
+<p>When the <code class="docutils literal notranslate"><span class="pre">MMUEn</span></code> parameter is set to 0, CV32A6 and CV64A6 are always in RISC-V <strong>Bare</strong> mode; <code class="docutils literal notranslate"><span class="pre">satp</span></code> mode bit(s) remain at 0 and writes to this register are ignored.</p>
+<p>By default, the hypervisor extension is disabled. It can be enabled by setting bit 7 in the <code class="docutils literal notranslate"><span class="pre">misa</span></code> CSR, which corresponds to the letter H.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">CVA6ConfigHExtEn</span></code> parameter is set to 0, the hypervisor extension is always disabled; bit 7 in the <code class="docutils literal notranslate"><span class="pre">misa</span></code> CSR remains at 0 and writes to this register are ignored.</p>
+<p>Even if the hypervisor extension is enabled, by default, address translation for Supervisor, Hypervisor and Virtual Supervisor are disabled. They can be enabled by writing the required configuration to <code class="docutils literal notranslate"><span class="pre">satp</span></code>, <code class="docutils literal notranslate"><span class="pre">hgatp</span></code> and <code class="docutils literal notranslate"><span class="pre">vsatp</span></code> registers respectively.</p>
+<p><strong>Sv39</strong> is enabled for Supervisor or Virtual Supervisor by writing 8 to <code class="docutils literal notranslate"><span class="pre">satp[63:60]</span></code> or <code class="docutils literal notranslate"><span class="pre">vsatp[63:60]</span></code> respectively.</p>
+<p><strong>Sv39x4</strong> is enabled for Hypervisor by writing 8 to <code class="docutils literal notranslate"><span class="pre">hgatp[63:60]</span></code>.</p>
+<p>Notes for the integrator:</p>
+<ul class="simple">
+<li><p>The virtual memory is implemented by a memory management unit (MMU) that accelerates the translation from virtual memory addresses (as handled by the core) to physical memory addresses. The MMU integrates translation lookaside buffers (TLB) and a hardware page table walker (PTW). The number of instruction and data TLB entries are configured with <code class="docutils literal notranslate"><span class="pre">InstrTlbEntries</span></code> and <code class="docutils literal notranslate"><span class="pre">DataTlbEntries</span></code>.</p></li>
+<li><p>The MMU offers a microarchitectural optimization featuring two levels of TLB: level 1 TLB (sized by <code class="docutils literal notranslate"><span class="pre">InstrTlbEntries</span></code> and <code class="docutils literal notranslate"><span class="pre">DataTlbEntries</span></code>) and a shared level 2 TLB. The shared level 2 TLB is enabled when the <code class="docutils literal notranslate"><span class="pre">UseSharedTlb</span></code> parameter is set to 1. The size of the shared TLB can be selected with the parameter <code class="docutils literal notranslate"><span class="pre">SharedTlbDepth</span></code>. The optimization has no consequences on the programmer’s view.</p></li>
+</ul>
+</section>
+<section id="cv32a60ax-virtual-memory">
+<h3>CV32A60AX virtual memory<a class="headerlink" href="#cv32a60ax-virtual-memory" title="Link to this heading"></a></h3>
+<p>CV32A60AX integrates an MMU and supports both the <strong>Bare</strong> and <strong>Sv32</strong> addressing modes.</p>
+</section>
+<section id="cv32a60x-virtual-memory">
+<h3>CV32A60X virtual memory<a class="headerlink" href="#cv32a60x-virtual-memory" title="Link to this heading"></a></h3>
+<p>CV32A60X integrates no MMU and only supports the <strong>Bare</strong> addressing mode.</p>
+</section>
+<section id="cv64a6-mmu-virtual-memory">
+<h3>CV64A6_MMU virtual memory<a class="headerlink" href="#cv64a6-mmu-virtual-memory" title="Link to this heading"></a></h3>
+<p>CV64A6_MMU integrates an MMU and supports both the <strong>Bare</strong> and <strong>Sv39</strong> addressing modes.</p>
+</section>
+</section>
+<section id="memory-alignment">
+<h2>Memory Alignment<a class="headerlink" href="#memory-alignment" title="Link to this heading"></a></h2>
+<p>CVA6 <strong>does not support non-aligned</strong> memory accesses.</p>
+<p><em>This is applicable to all configurations.</em></p>
+</section>
+<section id="harts">
+<h2>Harts<a class="headerlink" href="#harts" title="Link to this heading"></a></h2>
+<p>CVA6 features a <strong>single hart</strong>, i.e. a single hardware thread.</p>
+<p>Therefore the words <em>hart</em> and <em>core</em> have the same meaning in this guide.</p>
+<p><em>This is applicable to all configurations.</em></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Custom_Instructions.html" class="btn btn-neutral float-right" title="Custom RISC-V instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

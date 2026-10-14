@@ -1,0 +1,1973 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory Management Unit &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Commit Stage" href="commit_stage.html" />
+    <link rel="prev" title="Execute Stage" href="ex_stage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 Design Document (deprecated)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcgen_stage.html">PC Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="if_stage.html">Instruction Fetch Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="id_stage.html">Instruction Decode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issue_stage.html">Issue Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html">Execute Stage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Memory Management Unit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#translation-lookaside-buffer">Translation Lookaside Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shared-translation-lookaside-buffer">Shared Translation Lookaside Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#page-table-walker">Page Table Walker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commit_stage.html">Commit Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 Design Document (deprecated)</a></li>
+      <li class="breadcrumb-item active">Memory Management Unit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/03_cva6_design/MMU.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="memory-management-unit">
+<h1>Memory Management Unit<a class="headerlink" href="#memory-management-unit" title="Link to this heading"></a></h1>
+<p>The Memory Management Unit (MMU) module is a crucial component in the RISC-V-based processor, serving as the backbone for virtual memory management and address translation.</p>
+<figure class="align-center" id="figure-1-inputs-and-outputs-of-cva6-mmu">
+<a class="reference internal image-reference" href="../_images/mmu_in_out.png"><img alt="mmu_in_out" src="../_images/mmu_in_out.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 1:</strong> Inputs and Outputs of CVA6 MMU</span><a class="headerlink" href="#figure-1-inputs-and-outputs-of-cva6-mmu" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>At its core, the MMU plays a pivotal role in translating virtual addresses into their corresponding physical counterparts. This translation process is paramount for providing memory protection, isolation, and efficient memory management in modern computer systems. Importantly, it handles both instruction and data accesses, ensuring a seamless interaction between the processor and virtual memory. Within the MMU, several major blocks play pivotal roles in this address translation process. These includes:</p>
+<ul class="simple">
+<li><p>Instruction TLB (ITLB)</p></li>
+<li><p>Data TLB (DTLB)</p></li>
+<li><p>Shared TLB (optional)</p></li>
+<li><p>Page Table Walker (PTW)</p></li>
+</ul>
+<figure class="align-center" id="figure-2-major-blocks-in-cva6-mmu">
+<a class="reference internal image-reference" href="../_images/mmu_major_blocks.png"><img alt="mmu_major_blocks" src="../_images/mmu_major_blocks.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 2:</strong> Major Blocks in CVA6 MMU</span><a class="headerlink" href="#figure-2-major-blocks-in-cva6-mmu" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The MMU manages privilege levels and access control, enforcing permissions for user and supervisor modes while handling access exceptions. It employs Translation Lookaside Buffers (TLBs) for efficient address translation, reducing the need for page table access. TLB hits yield quick translations, but on misses, the shared TLB is consulted (when used), and if necessary, the Page Table Walker (PTW) performs page table walks, updating TLBs and managing exceptions during the process.</p>
+<p>In addition to these functionalities, the MMU seamlessly integrates support for Physical Memory Protection (PMP), enabling it to enforce access permissions and memory protection configurations as specified by the PMP settings. This additional layer of security and control enhances the management of memory accesses</p>
+<span style="font-size:18px; font-weight:bold;">Instruction and Data Interfaces</span><p>The MMU maintains interfaces with the instruction cache (ICache) and the load-store unit (LSU). It receives virtual addresses from these components and proceeds to translate them into physical addresses, a fundamental task for ensuring proper program execution and memory access.</p>
+<p>The MMU block can be parameterized to support sv32, sv39 and sv39x4 virtual memory. In CVA6, some of these parameters are configurable by the user, and some others are calculated depending on other parameters of the core. The available HW configuration parameters are the following:</p>
+<span style="font-size:18px; font-weight:bold;">List of configuration parameters for MMU</span><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Possible values</p></th>
+<th class="head"><p>User config</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">InstrTlbEntries</span></code></p></td>
+<td><p>Number of entries in Instruction TLB</p></td>
+<td><p>Natural</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;0</span> <span class="pre">and</span> <span class="pre">multiple</span> <span class="pre">of</span> <span class="pre">2</span></code></p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DataTlbEntries</span></code></p></td>
+<td><p>Number of entries in Data TLB</p></td>
+<td><p>Natural</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;0</span> <span class="pre">and</span> <span class="pre">multiple</span> <span class="pre">of</span> <span class="pre">2</span></code></p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SharedTlbDepth</span></code></p></td>
+<td><p>Size of shared TLB</p></td>
+<td><p>Natural</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;0</span> <span class="pre">and</span> <span class="pre">multiple</span> <span class="pre">of</span> <span class="pre">2</span></code></p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UseSharedTlb</span></code></p></td>
+<td><p>Indicates if the shared TLB optimization is used (1) or not (0)</p></td>
+<td><p>bit</p></td>
+<td><p>1 or 0</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RVH</span></code></p></td>
+<td><p>Indicates if Hypervisor extension is used (1) or not (0)</p></td>
+<td><p>bit</p></td>
+<td><p>1 or 0</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ASIDW</span></code></p></td>
+<td><p>Indicates the width of the Address Space Identifier (ASID)</p></td>
+<td><p>Natural</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;0</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VMIDW</span></code></p></td>
+<td><p>Indicates the width of the Virtual Machine space Identifier (VMID) - (used only when Hypervisor extension is enabled)</p></td>
+<td><p>Natural</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;0</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PPNW</span></code></p></td>
+<td><p>Indicates the width of the Physical Page Number (PPN)</p></td>
+<td><p>Natural</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;0</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GPPNW</span></code></p></td>
+<td><p>Indicates the width of the Guest Physical Page Number (GPPN) - (used only when Hypervisor extension is enabled)</p></td>
+<td><p>Natural</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;0</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SV</span></code></p></td>
+<td><p>Indicates the width of the Virtual Address Space</p></td>
+<td><p>Natural</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;0</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SVX</span></code></p></td>
+<td><p>Indicates the width of the extended Virtual Address Space when Hypervisor is used</p></td>
+<td><p>Natural</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;0</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VpnLen</span></code></p></td>
+<td><p>Length of Virtual Page Number (VPN)</p></td>
+<td><p>Natural</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;12</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PtLevels</span></code></p></td>
+<td><p>Number of page table levels</p></td>
+<td><p>Natural</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">log2(CVA6Cfg.XLEN)</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-size:18px; font-weight:bold;">Default Configuration parameters value for sv32, sv39 and sv39x4</span><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>sv32</p></th>
+<th class="head"><p>sv39</p></th>
+<th class="head"><p>sv39x4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">InstrTlbEntries</span></code></p></td>
+<td><p>2</p></td>
+<td><p>16</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DataTlbEntries</span></code></p></td>
+<td><p>2</p></td>
+<td><p>16</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SharedTlbDepth</span></code></p></td>
+<td><p>64</p></td>
+<td><p>64</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UseSharedTlb</span></code></p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RVH</span></code></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ASIDW</span></code></p></td>
+<td><p>9</p></td>
+<td><p>16</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VMIDW</span></code></p></td>
+<td><p>7</p></td>
+<td><p>14</p></td>
+<td><p>14</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PPNW</span></code></p></td>
+<td><p>22</p></td>
+<td><p>44</p></td>
+<td><p>44</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GPPNW</span></code></p></td>
+<td><p>22</p></td>
+<td><p>29</p></td>
+<td><p>29</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SV</span></code></p></td>
+<td><p>32</p></td>
+<td><p>39</p></td>
+<td><p>39</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SVX</span></code></p></td>
+<td><p>34</p></td>
+<td><p>41</p></td>
+<td><p>41</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VpnLen</span></code></p></td>
+<td><p>20</p></td>
+<td><p>27</p></td>
+<td><p>29</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PtLevels</span></code></p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-size:18px; font-weight:bold;">Signal Description of MMU</span><p style="text-align:center;"> <b>Table 1:</b> CVA6 MMU Input Output Signals </p><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>IO</p></th>
+<th class="head"><p>Connection Type</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">clk_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Subsystem</p></td>
+<td><p>logic</p></td>
+<td><p>Subsystem Clock</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rst_ni</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Subsystem</p></td>
+<td><p>logic</p></td>
+<td><p>Asynchronous reset active low</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">flush_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Sfence Committed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">enable_translation_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Enables address translation request for instruction</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable_g_translation_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Enables virtual memory translation for instructions</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">en_ld_st_translation_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Enables address translation request for load or store</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">en_ld_st_g_translation_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Enables virtual memory translation for load or store</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">icache_areq_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Cache Subsystem</p></td>
+<td><p>icache_arsp_t</p></td>
+<td><p>Icache Response</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">icache_areq_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Cache Subsystem</p></td>
+<td><p>icache_areq_t</p></td>
+<td><p>Icache Request</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">misaligned_ex_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Load Store Unit</p></td>
+<td><p>exception_t</p></td>
+<td><p>Indicate misaligned exception</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lsu_req_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Load Store Unit</p></td>
+<td><p>logic</p></td>
+<td><p>Request address translation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lsu_vaddr_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Load Store Unit</p></td>
+<td><p>logic [VLEN-1:0]</p></td>
+<td><p>Virtual Address In</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lsu_tinst_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Load Store Unit</p></td>
+<td><p>logic [31:0]</p></td>
+<td><p>Transformed Instruction In when Hypervisor Extension is enabled. Set to 0 (unused) when not.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lsu_is_store_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Store Unit</p></td>
+<td><p>logic</p></td>
+<td><p>Translation is requested by a store</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">csr_hs_ld_st_inst_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Indicate a hypervisor load store instruction.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lsu_dtlb_hit_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Store / Load Unit</p></td>
+<td><p>logic</p></td>
+<td><p>Indicate a DTLB hit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lsu_dtlb_ppn_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Load Unit</p></td>
+<td><p>logic [PPNW-1:0]</p></td>
+<td><p>Send PNN to LSU</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lsu_valid_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Load Store Unit</p></td>
+<td><p>logic</p></td>
+<td><p>Indicate a valid translation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lsu_paddr_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Store / Load Unit</p></td>
+<td><p>logic [PLEN-1:0]</p></td>
+<td><p>Translated Address</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lsu_exception_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Store / Load Unit</p></td>
+<td><p>exception_t</p></td>
+<td><p>Address Translation threw an exception</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">priv_lvl_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>priv_lvl_t</p></td>
+<td><p>Privilege level for instruction fetch interface</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">v_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Virtualization mode state</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ld_st_priv_lvl_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>priv_lvl_t</p></td>
+<td><p>Indicates the virtualization mode at which load and stores should happen</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ld_st_v_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Virtualization mode state</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sum_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Supervisor User Memory Access bit in xSTATUS CSR register</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vs_sum_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Virtual Supervisor User Memory Access bit in xSTATUS CSR register when Hypervisor extension is enabled.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mxr_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Make Executable Readable bit in xSTATUS CSR register</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vmxr_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Virtual Make Executable Readable bit in xSTATUS CSR register for virtual supervisor when Hypervisor extension is enabled.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hlvx_inst_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Store / Load Unit</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates that Instruction is a hypervisor load store with execute permissions</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hs_ld_st_inst_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates that Instruction is a hypervisor load store instruction</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">satp_ppn_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [PPNW-1:0]</p></td>
+<td><p>PPN of top level page table from SATP register</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vsatp_ppn_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [PPNW-1:0]</p></td>
+<td><p>PPN of top level page table from VSATP register when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hgatp_ppn_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [PPNW-1:0]</p></td>
+<td><p>PPN of top level page table from HGATP register when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">asid_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [ASIDW-1:0]</p></td>
+<td><p>ASID for the lookup</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vs_asid_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [ASIDW-1:0]</p></td>
+<td><p>ASID for the lookup for virtual supervisor when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vmid_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [VMIDW-1:0]</p></td>
+<td><p>VMID for the lookup when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">asid_to_be_flushed_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Execute Stage</p></td>
+<td><p>logic [ASIDW-1:0]</p></td>
+<td><p>ASID of the entry to be flushed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vmid_to_be_flushed_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Execute Stage</p></td>
+<td><p>logic [VMIDW-1:0]</p></td>
+<td><p>VMID of the entry to be flushed when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vaddr_to_be_flushed_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Execute Stage</p></td>
+<td><p>logic [VLEN-1:0]</p></td>
+<td><p>Virtual address of the entry to be flushed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gpaddr_to_be_flushed_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Execute Stage</p></td>
+<td><p>logic [GPLEN-1:0]</p></td>
+<td><p>Virtual address of the guest entry to be flushed when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">flush_tlb_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates SFENCE.VMA committed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">flush_tlb_vvma_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates SFENCE.VVMA committed</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">flush_tlb_gvma_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates SFENCE.GVMA committed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">itlb_miss_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Performance Counter</p></td>
+<td><p>logic</p></td>
+<td><p>Indicate an ITLB miss</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dtlb_miss_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Performance Counter</p></td>
+<td><p>logic</p></td>
+<td><p>Indicate a DTLB miss</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">req_port_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Cache Subsystem</p></td>
+<td><p>dcache_req_o_t</p></td>
+<td><p>D Cache Data Requests</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">req_port_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Cache Subsystem</p></td>
+<td><p>dcache_req_i_t</p></td>
+<td><p>D Cache Data Response</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pmpcfg_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>pmpcfg_t [15:0]</p></td>
+<td><p>PMP configurations</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pmpaddr_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [15:0][PLEN-3:0]</p></td>
+<td><p>PMP Address</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-size:18px; font-weight:bold;">Struct Description</span><p style="text-align:center;"> <b>Table 2:</b> I Cache Request Struct </b>(icache_areq_t</b>) </p><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fetch_valid</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Address Translation Valid</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fetch_paddr</span></code></p></td>
+<td><p>logic [PLEN-1:0]</p></td>
+<td><p>Physical Address In</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fetch_exception</span></code></p></td>
+<td><p>exception_t</p></td>
+<td><p>Exception occurred during fetch</p></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align:center;"> <b>Table 3:</b> I Cache Response Struct </b>(icache_arsq_t</b>) </p><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fetch_req</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Address Translation Request</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fetch_vaddr</span></code></p></td>
+<td><p>logic [VLEN-1:0]</p></td>
+<td><p>Virtual Address out</p></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align:center;"> <b>Table 4:</b> Exception Struct </b>(exception_t</b>) </p><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cause</span></code></p></td>
+<td><p>logic [XLEN-1:0]</p></td>
+<td><p>Cause of exception</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tval</span></code></p></td>
+<td><p>logic [XLEN-1:0]</p></td>
+<td><p>Additional information of causing exception (e.g. instruction causing it), address of LD/ST fault</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tval2</span></code></p></td>
+<td><p>logic [GPLEN-1:0]</p></td>
+<td><p>Additional information when the causing exception in a guest exception (used only in hypervisor mode)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tinst</span></code></p></td>
+<td><p>logic [31:0]</p></td>
+<td><p>Transformed instruction information</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gva</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Signals when a guest virtual address is written to tval</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">valid</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Indicate that exception is valid</p></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align:center;"> <b>Table 5:</b> PMP Configuration Struct </b>(pmpcfg_t</b>) </p><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">locked</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Lock this configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reserved</span></code></p></td>
+<td><p>logic[1:0]</p></td>
+<td><p>Reserved bits in pmpcfg CSR</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">addr_mode</span></code></p></td>
+<td><p>pmp_addr_mode_t</p></td>
+<td><p>Addressing Modes: OFF, TOR, NA4, NAPOT</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">access_type</span></code></p></td>
+<td><p>pmpcfg_access_t</p></td>
+<td><p>None, read, write, execute</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-size:18px; font-weight:bold;">Control Flow in MMU Module</span><figure class="align-center" id="figure-3-control-flow-in-cva6-mmu">
+<a class="reference internal image-reference" href="../_images/mmu_control_flow.png"><img alt="mmu_control_flow" src="../_images/mmu_control_flow.png" style="width: 95%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 3:</strong> Control Flow in CVA6 MMU</span><a class="headerlink" href="#figure-3-control-flow-in-cva6-mmu" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<span style="font-size:18px; font-weight:bold;">Exception Sources with Address Translation Enabled</span><p>Two potential exception sources exist:</p>
+<ul class="simple">
+<li><p>Hardware Page Table Walker (HPTW) throwing an exception, signifying a page fault exception.</p></li>
+<li><p>Access error due to insufficient permissions of PMP, known as an access exception.</p></li>
+</ul>
+<span style="font-size:18px; font-weight:bold;">Instruction Fetch Interface</span><p>The IF stage initiates a request to retrieve memory content at a specific virtual address. When the MMU is disabled, the instruction fetch request is directly passed to the I$ without modifications.</p>
+<span style="font-size:18px; font-weight:bold;">Address Translation in Instruction Interface</span><p>If virtual memory translation is enabled for instruction fetches, the following operations are performed in the instruction interface:</p>
+<ul class="simple">
+<li><p>Compatibility of requested virtual address with selected page based address translation scheme is checked.</p></li>
+<li><p>For page translation, the module determines the fetch physical address by combining the physical page number (PPN) from ITLB content and the offset from the virtual address. When hypervisor mode is enabled, the PPN from ITLB content is taken from the stage that is currently doing the translation.</p></li>
+<li><p>Depending on the size of the identified page the PPN of the fetch physical address is updated with the corresponding bits of the VPN to ensure alignment for superpage translation.</p></li>
+<li><p>If the Instruction TLB (ITLB) lookup hits, the fetch valid signal (which indicates a valid physical address) is activated in response to the input fetch request. Memory region accessibility is checked from the perspective of the fetch operation, potentially triggering a page fault exception in case of an access error or insufficient PMP permission.</p></li>
+<li><p>In case of an ITLB miss, if the page table walker (PTW) is active (only active if there is a shared TLB miss or the shared TLB is not used) and handling instruction fetches, the fetch valid signal is determined based on PTW errors or access exceptions.</p></li>
+</ul>
+<p>If the fetch physical address doesn’t match any execute region, an Instruction Access Fault is raised. When not translating, PMPs are immediately checked against the physical address for access verification.</p>
+<span style="font-size:18px; font-weight:bold;">Data Interface</span><span style="font-size:18px; font-weight:bold;">Address Translation in Data Interface</span><p>If address translation is enabled for load or store, and no misaligned exception has occurred, the following operations are performed in the data interface:</p>
+<ul class="simple">
+<li><p>Initially, translation is assumed to be invalid, signified by the MMU to LSU.</p></li>
+<li><p>The translated physical address is formed by combining the PPN from the Page Table Entry (PTE) and the offset from the virtual address requiring translation. This is sent one cycle later due to the additional bank of registers which delayed the MMU’s answer. The PPN from the PTE is also shared separately with LSU in the same cycle as the hit. When hypervisor mode is enabled, the PPN from the PTE is taken from the stage that is currently doing the translation.</p></li>
+<li><p>In the case of superpage translation, the PPN of the translated physical address and the separately shared PPN are updated with the VPN of the virtual address.</p></li>
+</ul>
+<p>If a Data TLB (DTLB) hit occurs, it indicates a valid translation, and various fault checks are performed depending on whether it’s a load or store request.</p>
+<ul class="simple">
+<li><p>For store requests, if the page is not writable, the dirty flag isn’t set, or privileges are violated, it results in a page fault corresponding to the store access. If PMPs are also violated, it leads to an access fault corresponding to the store access. Page faults take precedence over access faults.</p></li>
+<li><p>For load requests, a page fault is triggered if there are insufficient access privileges. PMPs are checked again during load access, resulting in an access fault corresponding to load access if PMPs are violated.</p></li>
+</ul>
+<p>In case of a DTLB miss, potential exceptions are monitored during the page table walk. If the PTW indicates a page fault, the corresponding page fault related to the requested type is signaled. If the PTW indicates an access exception, the load access fault is indicated through address translation because the page table walker can only throw load access faults.</p>
+<span style="font-size:18px; font-weight:bold;">Address Translation is Disabled</span><p>When address translation is not enabled, the physical address is immediately checked against Physical Memory Protections (PMPs). If there is a request from LSU, no misaligned exception, and PMPs are violated, it results in an access fault corresponding to the request being indicated.</p>
+</section>
+<section id="translation-lookaside-buffer">
+<h1>Translation Lookaside Buffer<a class="headerlink" href="#translation-lookaside-buffer" title="Link to this heading"></a></h1>
+<p>Page tables are accessed for translating virtual memory addresses to physical memory addresses. This translation needs to be carried out for every load and store instruction and also for every instruction fetch. Since page tables are resident in physical memory, accessing these tables in all these situations has a significant impact on performance. Page table accesses occur in patterns that are closely related in time. Furthermore, the spatial and temporal locality of data accesses or instruction fetches mean that the same page is referenced repeatedly. Taking advantage of these access patterns the processor keeps the information of recent address translations, to enable fast retrieval, in a small cache called the Translation Lookaside Buffer (TLB) or an address-translation cache.</p>
+<p>The CVA6 TLB is structured as a fully associative cache, where the virtual address that needs to be translated is compared against all the individual TLB entries. Given a virtual address, the processor examines the TLB (TLB lookup) to determine if the virtual page number (VPN) of the page being accessed is in the TLB. When a TLB entry is found (TLB hit), the TLB returns the corresponding physical page number (PPN) which is used to calculate the target physical address. If no TLB entry is found (TLB miss) the processor has to read individual page table entries from memory (Table walk). In CVA6 table walking is supported by dedicated hardware. Once the processor finishes the table walk, it has the Physical Page Number (PPN) corresponding to the Virtual Page Number (VPN) that needs to be translated. The processor adds an entry for this address translation to the TLB so future translations of that virtual address will happen quickly through the TLB.  During the table walk the processor may find out that the corresponding physical page is not resident in memory. At this stage a page table exception (Page Fault) is generated which gets handled by the operating system. The operating system places the appropriate page in memory, updates the appropriate page tables and returns execution to the instruction which generated the exception.</p>
+<p>The input and output signals of the TLB are shown in the following figure.</p>
+<figure class="align-center" id="figure-4-inputs-and-outputs-of-cva6-tlb">
+<a class="reference internal image-reference" href="../_images/in_out_tlb.png"><img alt="in_out_tlb" src="../_images/in_out_tlb.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 4:</strong> Inputs and Outputs of CVA6 TLB</span><a class="headerlink" href="#figure-4-inputs-and-outputs-of-cva6-tlb" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<span style="font-size:18px; font-weight:bold;">Signal Description of TLB</span><p style="text-align:center;"> <b>Table 6:</b> CVA6 TLB Input Output Signals </p><table class="docutils align-default" id="id1">
+<caption><span class="caption-text">:header-rows: 1</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>Signal</p></td>
+<td><p>IO</p></td>
+<td><p>connection</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">clk_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>SUBSYSTEM</p></td>
+<td><p>logic</p></td>
+<td><p>Subsystem Clock</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rst_ni</span></code></p></td>
+<td><p>in</p></td>
+<td><p>SUBSYSTEM</p></td>
+<td><p>logic</p></td>
+<td><p>Asynchronous reset active low</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">flush_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>SFENCE.VMA Committed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">flush_vvma_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>SFENCE.VVMA Committed</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">flush_gvma_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>SFENCE.GVMA Committed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">s_st_enbl_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates address translation request (s-stage) - used only in Hypervisor mode</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">g_st_enbl_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates address translation request (g-stage) - used only in Hypervisor mode</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">v_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates the virtualization mode state - used only in Hypervisor mode</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">update_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Shared TLB</p></td>
+<td><p>tlb_update_cva6_t</p></td>
+<td><p>Updated tag and content of TLB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lu_access_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Cache Subsystem</p></td>
+<td><p>logic</p></td>
+<td><p>Signal indicating a lookup access is being requested</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lu_asid_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CVA6 MMU</p></td>
+<td><p>logic[ASIDW-1:0]</p></td>
+<td><p>ASID for the lookup</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lu_vmid_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CVA6 MMU</p></td>
+<td><p>logic[VMIDW-1:0]</p></td>
+<td><p>VMID for the lookup when Hypervisor extension is enabled.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lu_vaddr_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Cache Subsystem</p></td>
+<td><p>logic[VLEN-1:0]</p></td>
+<td><p>Virtual address for the lookup</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lu_content_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>CVA6 MMU</p></td>
+<td><p>pte_cva6_t</p></td>
+<td><p>Output for the content of the TLB entry</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lu_g_content_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>CVA6 MMU</p></td>
+<td><p>pte_cva6_t</p></td>
+<td><p>Output for the content of the TLB entry (g-stage)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">asid_to_be_flushed_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Execute Stage</p></td>
+<td><p>logic [ASIDW-1:0]</p></td>
+<td><p>ASID of the entry to be flushed. Vector 1 is the analogous one for virtual supervisor when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vmid_to_be_flushed_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Execute Stage</p></td>
+<td><p>logic [VMIDW-1:0]</p></td>
+<td><p>VMID of the entry to be flushed when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vaddr_to_be_flushed_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Execute Stage</p></td>
+<td><p>logic [VLEN-1:0]</p></td>
+<td><p>Virtual address of the entry to be flushed. Vector 1 is the analogous one for virtual supervisor when Hypervisor extension is enabled.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gpaddr_to_be_flushed_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Execute Stage</p></td>
+<td><p>logic [VLEN-1:0]</p></td>
+<td><p>Virtual address of the guest entry to be flushed when Hypervisor extension is enabled.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lu_is_page_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>CVA6 MMU</p></td>
+<td><p>logic [PT_LEVELS-2:0]</p></td>
+<td><p>Output indicating whether the TLB entry corresponds to any page at the different page table levels</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lu_hit_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>CVA6 MMU</p></td>
+<td><p>logic</p></td>
+<td><p>Output indicating whether the lookup resulted in a hit or miss</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-size:18px; font-weight:bold;">Struct Description</span><p style="text-align:center;"> <b>Table 7:</b> CVA6 TLB Update Struct (<b>tlb_update_cva6_t</b>) </p><table class="docutils align-default" id="id2">
+<caption><span class="caption-text">:header-rows: 1</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p>Signal</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">valid</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Indicates whether the TLB update entry is valid or not</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">is_page</span></code></p></td>
+<td><p>logic [PtLevels-2:0][HYP_EXT:0]</p></td>
+<td><p>Indicates if the TLB entry corresponds to a any page at the different levels. When Hypervisor extension is used it includes information also for the G-stage.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vpn</span></code></p></td>
+<td><p>logic[VPN_LEN-1:0]</p></td>
+<td><p>Virtual Page Number (VPN) used for updating the TLB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">asid</span></code></p></td>
+<td><p>logic[ASIDW-1:0]</p></td>
+<td><p>ASID used for updating the TLB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vmid</span></code></p></td>
+<td><p>logic[VMIDW-1:0]</p></td>
+<td><p>VMID used for updating the TLB when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">v_st_enbl</span></code></p></td>
+<td><p>logic [HYP_EXT*2:0]</p></td>
+<td><p>Used only in Hypervisor mode. Indicates for which stage the translation was requested and for which it is therefore valid (s_stage, g_stage or virtualization enabled).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">content</span></code></p></td>
+<td><p>pte_cva6_t</p></td>
+<td><p>Content of the TLB update entry</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">g_content</span></code></p></td>
+<td><p>pte_cva6_t</p></td>
+<td><p>Content of the TLB update entry for g stage when Hypervisor extension is enabled</p></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align:center;"> <b>Table 8:</b> CVA6 PTE Struct (<b>pte_cva6_t</b>) </p><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ppn</span></code></p></td>
+<td><p>logic[PPNW-1:0]</p></td>
+<td><p>Physical Page Number (PPN)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rsw</span></code></p></td>
+<td><p>logic[1:0]</p></td>
+<td><p>Reserved for use by supervisor software</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td><p>logic</p></td>
+<td><div class="line-block">
+<div class="line">Dirty bit indicating whether the page has been modified (dirty) or not</div>
+<div class="line">0: Page is clean i.e., has not been written</div>
+<div class="line">1: Page is dirty i.e., has been written</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">a</span></code></p></td>
+<td><p>logic</p></td>
+<td><div class="line-block">
+<div class="line">Accessed bit indicating whether the page has been accessed</div>
+<div class="line">0: Virtual page has not been accessed since the last time A bit was cleared</div>
+<div class="line">1: Virtual page has been read, written, or fetched from since the last time the A bit was cleared</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">g</span></code></p></td>
+<td><p>logic</p></td>
+<td><div class="line-block">
+<div class="line">Global bit marking a page as part of a global address space valid for all ASIDs</div>
+<div class="line">0: Translation is valid for specific ASID</div>
+<div class="line">1: Translation is valid for all ASIDs</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">u</span></code></p></td>
+<td><p>logic</p></td>
+<td><div class="line-block">
+<div class="line">User bit indicating privilege level of the page</div>
+<div class="line">0: Page is not accessible in user mode but in supervisor mode</div>
+<div class="line">1: Page is accessible in user mode but not in supervisor mode</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p>logic</p></td>
+<td><div class="line-block">
+<div class="line">Execute bit which allows execution of code from the page</div>
+<div class="line">0: Code execution is not allowed</div>
+<div class="line">1: Code execution is permitted</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">w</span></code></p></td>
+<td><p>logic</p></td>
+<td><div class="line-block">
+<div class="line">Write bit allows the page to be written</div>
+<div class="line">0: Write operations are not allowed</div>
+<div class="line">1: Write operations are permitted</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">r</span></code></p></td>
+<td><p>logic</p></td>
+<td><div class="line-block">
+<div class="line">Read bit allows read access to the page</div>
+<div class="line">0: Read operations are not allowed</div>
+<div class="line">1: Read operations are permitted</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">v</span></code></p></td>
+<td><p>logic</p></td>
+<td><div class="line-block">
+<div class="line">Valid bit indicating the page table entry is valid</div>
+<div class="line">0: Page is invalid i.e. page is not in DRAM, translation is not valid</div>
+<div class="line">1: Page is valid i.e. page resides in the DRAM, translation is valid</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<span style="font-size:18px; font-weight:bold;">TLB Entry Fields</span><p>The number of TLB entries can be changed via a design parameter. Each TLB entry is made up of two fields: Tag and Content. The Tag field holds the virtual page number, ASID, VMID and page size along with a valid bit (VALID) indicating that the entry is valid, and a v_st_enbl field that indicates at which level the translation is valid when hypervisor mode is enabled. The virtual page number, is further split into several separate virtual page numbers according to the number of PtLevels used in each configuration. The Content field contains the physical page numbers along with a number of bits which specify various attributes of the physical page. Note that the V bit in the Content field is the V bit which is present in the page table in memory. It is copied from the page table, as is,  and the VALID bit in the Tag is set based on its value. g_content is the equivalent for the g-stage translation. The TLB entry fields are shown in this Figure. Fields colored in grey are used only when H extension is implemented.</p>
+<figure class="align-center" id="figure-5-fields-in-cva6-tlb-entry">
+<a class="reference internal image-reference" href="../_images/cva6_tlb_entry.png"><img alt="cva6_tlb_entry" src="../_images/cva6_tlb_entry.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 5:</strong> Fields in CVA6 TLB entry</span><a class="headerlink" href="#figure-5-fields-in-cva6-tlb-entry" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<span style="font-size:18px; font-weight:bold;">CVA6 TLB Management / Implementation</span><p>The CVA6 TLB implements the following three functions:</p>
+<ul class="simple">
+<li><p><strong>Translation:</strong> This function implements the address lookup and match logic.</p></li>
+<li><p><strong>Update and Flush:</strong> This function implements the update and flush logic.</p></li>
+<li><p><strong>Pseudo Least Recently Used Replacement Policy:</strong> This function implements the replacement policy for TLB entries.</p></li>
+</ul>
+<span style="font-size:18px; font-weight:bold;">Translation</span><p>This function takes in the virtual address and certain other fields, examines the TLB to determine if the virtual page number of the page being accessed is in the TLB or not. If a TLB entry is found (TLB hit), the TLB returns the corresponding physical page number (PPN) which is then used to calculate the target physical address. The following checks are done as part of this lookup function to find a match in the TLB:</p>
+<ul class="simple">
+<li><p><strong>Validity Check:</strong> For a TLB hit, the associated TLB entry must be valid .</p></li>
+<li><p><strong>ASID, VMID and Global Flag Check:</strong> The TLB entry’s ASID must match the given ASID (ASID associated with the Virtual address). If the TLB entry’s Global bit (G) is set then this check is not done. This ensures that the translation is either specific to the provided ASID, or it is globally applicable. When the hypervisor extension is enabled, either the ASID or the VMID in the TLB entry must match ASID and/or VMID in the input, depending on which level(s) of translation is enabled. For the VMID the check is always applicable, regardless of G bit in the TLB entry.</p></li>
+<li><p><strong>Level VPN match:</strong> CVA6 implements a multi-level page table. As such the virtual address is broken up into multiple parts which are the virtual page number used in the different levels. So the condition that is checked next is that the virtual page number of the virtual address matches the virtual page number of the TLB entry at each level.</p></li>
+<li><p><strong>Page match:</strong> Without Hypervisor extension, there is a match at a certain level X if the is_page component of the tag is set to 1 at level PtLevels-X. At level 0 page_match is always set to 1. When Hypervisor extension is enabled, the conditions to give a page match vary depending on the level we are at. At the highest level (PT_LEVELS -1), there is a page match at g and s stage (when enabled) if the corresponding is_page bit is set. If a stage is not enabled the is_page is considered a 1. At level 0, page_match is always 1 as in the case of no hypervisor extension. In the intermediate levels, the page_match is determined using the merged final translation size from both stages and their enable signals.
+<strong>Level match</strong> The last condition to be checked at each page level, for a TLB hit, is that there is a vpn match for the current level and the higher ones, together with a page match at the current one. E.g. If PtLevels=2, a match at level 2 will occur if there is a VPN match at level 2 and a page match at level 2. For level 1, there will be a match if there is a VPN match at levels 2 and 1, together with a page match at level 1.</p></li>
+</ul>
+<p>All the conditions listed above are checked against every TLB entry. If there is a TLB hit then the corresponding bit in the hit array is set. The following Figure Illustrates the TLB hit/miss process listed above.</p>
+<figure class="align-center" id="figure-6-block-diagram-of-cva6-tlb-hit-or-miss">
+<a class="reference internal image-reference" href="../_images/cva6_tlb_hit.png"><img alt="cva6_tlb_hit" src="../_images/cva6_tlb_hit.png" style="width: 75%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 6:</strong> Block diagram of CVA6 TLB hit or miss</span><a class="headerlink" href="#figure-6-block-diagram-of-cva6-tlb-hit-or-miss" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<span style="font-size:18px; font-weight:bold;">Flushing TLB entries</span><p>The SFENCE.VMA instruction can be used with certain specific source register specifiers (rs1 &amp; rs2) to flush a specific TLB entry, some set of TLB entries or all TLB entries. Like all instructions this action only takes place when the SFENCE.VMA instruction is committed (shown via the commit_sfence signal in the following figures.) The behavior of the instruction is as follows:</p>
+<ul class="simple">
+<li><p><strong>If rs1 is not equal to x0 and rs2 is not equal to x0:</strong> Invalidate all TLB entries which contain leaf page table entries corresponding to the virtual address in rs1 (shown below as Virtual Address to be flushed) and that match the address space identifier as specified by integer register rs2 (shown below as asid_to_be_flushed_i), except for entries containing global mappings. This is referred to as the “SFENCE.VMA vaddr asid” case.</p></li>
+</ul>
+<figure class="align-center" id="figure-7-invalidate-tlb-entry-if-asid-and-virtual-address-match">
+<a class="reference internal image-reference" href="../_images/sfence_vaddr_asid.png"><img alt="sfence_vaddr_asid" src="../_images/sfence_vaddr_asid.png" style="width: 75%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 7:</strong> Invalidate TLB entry if ASID and virtual address match</span><a class="headerlink" href="#figure-7-invalidate-tlb-entry-if-asid-and-virtual-address-match" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>If rs1 is equal to x0 and rs2 is equal to x0:</strong> Invalidate all TLB entries for all address spaces. This is referred to as the “SFENCE.VMA x0 x0” case.</p></li>
+</ul>
+<figure class="align-center" id="figure-8-invalidate-all-tlb-entries-if-both-source-register-specifiers-are-x0">
+<a class="reference internal image-reference" href="../_images/sfence_x0_x0.png"><img alt="sfence_x0_x0" src="../_images/sfence_x0_x0.png" style="width: 62%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 8:</strong> Invalidate all TLB entries if both source register specifiers are x0</span><a class="headerlink" href="#figure-8-invalidate-all-tlb-entries-if-both-source-register-specifiers-are-x0" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>If rs1 is not equal to x0 and rs2 is equal to x0:</strong> invalidate all TLB entries that contain leaf page table entries corresponding to the virtual address in rs1, for all address spaces. This is referred to as the “SFENCE.VMA vaddr x0” case.</p></li>
+</ul>
+<figure class="align-center" id="figure-9-invalidate-tlb-entry-with-matching-virtual-address-for-all-address-spaces">
+<a class="reference internal image-reference" href="../_images/sfence_vaddr_x0.png"><img alt="sfence_vaddr_x0" src="../_images/sfence_vaddr_x0.png" style="width: 75%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 9:</strong> Invalidate TLB entry with matching virtual address for all address spaces</span><a class="headerlink" href="#figure-9-invalidate-tlb-entry-with-matching-virtual-address-for-all-address-spaces" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>If rs1 is equal to x0 and rs2 is not equal to x0:</strong> Invalidate all TLB entries matching the address space identified by integer register rs2, except for entries containing global mappings. This is referred to as the “SFENCE.VMA 0 asid” case.</p></li>
+</ul>
+<figure class="align-center" id="figure-10-invalidate-tlb-entry-for-matching-asids">
+<a class="reference internal image-reference" href="../_images/sfence_x0_asid.png"><img alt="sfence_x0_asid" src="../_images/sfence_x0_asid.png" style="width: 75%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 10:</strong> Invalidate TLB entry for matching ASIDs</span><a class="headerlink" href="#figure-10-invalidate-tlb-entry-for-matching-asids" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The TLB fully implements the supervisor flush instructions, i.e., hfence, including filtering by ASID and virtual address. To support nested translation,it supports the two translation stages, including access permissions (rwx) and VMIDs. This is done analogously to the fence cases explained above.</p>
+<ul class="simple">
+<li><p><strong>HFENCE.VVMA vaddr asid case:</strong> Invalidate all TLB entries which contain leaf page table entries corresponding to the Virtual Address to be flushed and that match the address space identifiers as specified by ASID_to_be_flushed_i and lu_VMID, except for entries containing global mappings.</p></li>
+<li><p><strong>HFENCE.VVMA x0 x0 case:</strong> Invalidate all TLB entries for all address spaces if current VMID matches and ASID is 0 and vaddr to be flushed is 0.</p></li>
+<li><p><strong>HFENCE.VVMA vaddr x0 case:</strong> Invalidate all TLB entries which contain leaf page table entries corresponding to the Virtual Address to be flushed if current VMID matches and ASID to be flushed is 0.</p></li>
+<li><p><strong>HFENCE.VVMA x0 asid case:</strong> Invalidate all TLB entries matching the address space identified by ASID_to_be_flushed_i and lu_VMID when vaddr to be flushed is 0, except for entries containing global mappings.</p></li>
+<li><p><strong>HFENCE.GVMA gpaddr vmid case:</strong> Invalidate all TLB entries which contain leaf page table entries corresponding to the gpaddr to be flushed and that match the VMID.</p></li>
+<li><p><strong>HFENCE.GVMA x0 x0 case:</strong> Invalidate all TLB entries for all address spaces if VMID is 0 and gpaddr to be flushed is 0.</p></li>
+<li><p><strong>HFENCE.GVMA gpaddr x0 case:</strong> Invalidate all TLB entries which contain leaf page table entries corresponding to the gpaddr to be flushed if VMID to be flushed is 0.</p></li>
+<li><p><strong>HFENCE.GVMA x0 vmid case:</strong> Invalidate all TLB entries matching the address space identified by VMID_to_be_flushed_i when gpaddr to be flushed is 0.</p></li>
+</ul>
+<span style="font-size:18px; font-weight:bold;">Updating TLB</span><p>When a TLB valid update request is signaled by the shared TLB, and the replacement policy select the update of a specific TLB entry, the corresponding entry’s tag is updated with the new tag, and its associated content is refreshed with the information from the update request. This ensures that the TLB entry accurately reflects the new translation information.</p>
+<span style="font-size:18px; font-weight:bold;">Pseudo Least Recently Used Replacement Policy</span><p>Cache replacement algorithms are used to determine which TLB entry should be replaced, because it is not likely to be used in the near future. The Pseudo-Least-Recently-Used (PLRU) is a cache entry replacement algorithm, derived from Least-Recently-Used (LRU) cache entry replacement algorithm, used by the TLB. Instead of precisely tracking recent usage as the LRU algorithm does, PLRU employs an approximate measure to determine which entry in the cache has not been recently used and as such can be replaced.</p>
+<p>CVA6 implements the PLRU algorithm via the Tree-PLRU method which implements a binary tree. The TLB entries are the leaf nodes of the tree. Each internal node, of the tree, consists of a single bit, referred to as the state bit or plru bit, indicating which subtree contains the (pseudo) least recently used entry (the PLRU); 0 for the left hand tree and 1 for the right hand tree. Following this traversal, the leaf node reached, corresponds to the PLRU entry which can be replaced. Having accessed an entry (so as to replace it) we need to promote that entry to be the Most Recently Used (MRU) entry. This is done by updating the value of each node along the access path to point away from that entry. If the accessed entry is a right child i.e., its parent node value is 1, it is set to 0, and if the parent is the left child of its parent (the grandparent of the accessed node) then its node value is set to 1 and so on all the way up to the root node.</p>
+<p>The PLRU binary tree is implemented as an array of node values. Nodes are organized in the array based on levels, with those from lower levels appearing before higher ones. Furthermore those on the left side of a node appear before those on the right side of a node. The figure below shows a tree and the corresponding array.</p>
+<figure class="align-center" id="figure-11-plru-tree-indexing">
+<a class="reference internal image-reference" href="../_images/plru_tree_indexing.png"><img alt="plru_tree_indexing" src="../_images/plru_tree_indexing.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 11:</strong> PLRU Tree Indexing</span><a class="headerlink" href="#figure-11-plru-tree-indexing" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>For n-way associative, we require n - 1 internal nodes in the tree. With those nodes, two operations need to be performed efficiently.</p>
+<ul class="simple">
+<li><p>Promote the accessed entry to be MRU</p></li>
+<li><p>Identify which entry to replace (i.e. the PLRU entry)</p></li>
+</ul>
+<span style="font-size:18px; font-weight:bold;">Updating the PLRU-Tree</span><p>For a TLB entry which is accessed, the following steps are taken to make it the MRU:</p>
+<ol class="arabic simple">
+<li><p>Iterate through each level of the binary tree.</p></li>
+<li><p>Calculate the index of the leftmost child within the current level. Let us call that index the index base.</p></li>
+<li><p>Calculate the shift amount to identify the relevant node based on the level and TLB entry index.</p></li>
+<li><p>Calculate the new value that the node should have in order to make the accessed entry the Most Recently Used (MRU). The new value of the root node is the opposite of the TLB entry index, MSB at the root node, MSB - 1 at node at next level and so on.</p></li>
+<li><p>Assign this new value to the relevant node, ensuring that the hit entry becomes the MRU within the binary tree structure.</p></li>
+</ol>
+<p>At level 0, no bit of the TLB entry’s index determines the offset from the index base because it’s a root node. At level 1, MSB of entry’s index determines the amount of offset from index base at that level. At level 2, the first two bits of the entry’s index from MSB side determine the offset from the index base because there are 4 nodes at the level 2 and so on.</p>
+<figure class="align-center" id="figure-12-promote-entry-to-be-mru">
+<a class="reference internal image-reference" href="../_images/update_tree.png"><img alt="update_tree" src="../_images/update_tree.png" style="width: 82%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 12:</strong> Promote Entry to be MRU</span><a class="headerlink" href="#figure-12-promote-entry-to-be-mru" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>In the above figure entry at index 5, is accessed. To make it MRU entry, every node along the access path should point away from it. Entry 5 is a right child, therefore, its parent plru bit set to 0, its parent is a left child, its grand parent’s plru bit set to 1, and great grandparent’s plru bit set to 0.</p>
+<span style="font-size:18px; font-weight:bold;">Entry Selection for Replacement</span><p>Every TLB entry is checked for the replacement entry. The following steps are taken:</p>
+<ol class="arabic simple">
+<li><p>Iterate through each level of the binary tree.</p></li>
+<li><p>Calculate the index of the leftmost child within the current level. Let us call that index the index base.</p></li>
+<li><p>Calculate the shift amount to identify the relevant node based on the level and TLB entry index.</p></li>
+<li><p>If the corresponding bit of the entry’s index matches the value of the node being traversed at the current level, keep the replacement signal high for that entry; otherwise, set the replacement signal to low.</p></li>
+</ol>
+<figure class="align-center" id="figure-13-possible-path-traverse-for-entry-selection-for-replacement">
+<a class="reference internal image-reference" href="../_images/replacement_entry.png"><img alt="replacement_entry" src="../_images/replacement_entry.png" style="width: 65%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 13:</strong> Possible path traverse for entry selection for replacement</span><a class="headerlink" href="#figure-13-possible-path-traverse-for-entry-selection-for-replacement" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Figure shows every possible path that traverses to find out the PLRU entry. If the plru bit at each level matches with the corresponding bit of the entry’s index, that’s the next entry to replace. Below Table shows the entry selection for replacement.</p>
+<p style="text-align:center;"> <b>Table 9:</b> Entry Selection for Replacement </p><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Path Traverse</strong></p></td>
+<td><p><strong>PLRU Bits</strong></p></td>
+<td><p><strong>Entry to replace</strong></p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>0 -&gt; 1 -&gt; 3</p></td>
+<td><p>000</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>001</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>0 -&gt; 1 -&gt; 4</p></td>
+<td><p>010</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>011</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>0 -&gt; 2 -&gt; 5</p></td>
+<td><p>100</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>101</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>0 -&gt; 2 -&gt; 6</p></td>
+<td><p>110</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>111</p></td>
+<td><p>7</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="shared-translation-lookaside-buffer">
+<h1>Shared Translation Lookaside Buffer<a class="headerlink" href="#shared-translation-lookaside-buffer" title="Link to this heading"></a></h1>
+<p>The CVA6 shared TLB is structured as a 2-way associative cache, where the virtual address requiring translation is compared with the set indicated by the virtual page number. The shared TLB is looked up in case of an Instruction TLB (ITLB) or data TLB (DTLB) miss, signaled by these TLBs. If the entry is found in the shared TLB set, the respective TLB, whose translation is being requested, is updated. If the entry is not found in the shared TLB, then the processor has to perform a page table walk. Once the processor obtains a PPN corresponding to the VPN, the shared TLB is updated with this information. If the physical page is not found in the page table, it results in a page fault, which is handled by the operating system. The operating system will then place the corresponding physical page in memory.</p>
+<p>The use of the shared TLB is optional in CVA6, via the <code class="docutils literal notranslate"><span class="pre">UseSharedTlb</span></code> parameter. When it is not used, the requests from ITLB and DTLB go directly to the PTW, and the update from the PTW goes directly to the ITLB and DTLB respectively.</p>
+<p>The input and output signals of the shared TLB are shown in the following Figure.</p>
+<figure class="align-center" id="figure-14-inputs-and-outputs-of-cva6-shared-tlb">
+<a class="reference internal image-reference" href="../_images/shared_tlb_in_out.png"><img alt="shared_tlb_in_out" src="../_images/shared_tlb_in_out.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 14:</strong> Inputs and outputs of CVA6 shared TLB</span><a class="headerlink" href="#figure-14-inputs-and-outputs-of-cva6-shared-tlb" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<span style="font-size:18px; font-weight:bold;">Signal Description</span><p style="text-align:center;"> <b>Table 10:</b> Signal Description of CVA6 shared TLB </p><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>IO</p></th>
+<th class="head"><p>Connection</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">clk_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Subsystem</p></td>
+<td><p>logic</p></td>
+<td><p>Subsystem Clock</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rst_ni</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Subsystem</p></td>
+<td><p>logic</p></td>
+<td><p>Asynchronous reset active low</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">flush_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>SFENCE.VMA Committed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">flush_vvma_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>SFENCE.VVMA Committed</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">flush_gvma_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>SFENCE.GVMA Committed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">s_st_enbl_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates address translation request (s-stage)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">g_st_enbl_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates address translation request (g-stage) - used only in Hypervisor mode</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">v_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates the virtualization mode state - used only in Hypervisor mode</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">s_ld_st_enbl_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates address translation request (s-stage) for load stores</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">g_ld_st_enbl_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates address translation request (g-stage) for load stores - used only in Hypervisor mode</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ld_st_v_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates the virtualization mode state for load stores</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dtlb_asid_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>MMU</p></td>
+<td><p>logic [ASIDW-1:0]</p></td>
+<td><p>ASID for the lookup in case of a DTLB miss</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">itlb_asid_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>MMU</p></td>
+<td><p>logic [ASIDW-1:0]</p></td>
+<td><p>ASID for the lookup in case of an ITLB miss</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lu_vmid_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>MMU</p></td>
+<td><p>logic [VMIDW-1:0]</p></td>
+<td><p>VMID for the lookup</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">itlb_access_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Cache Subsystem</p></td>
+<td><p>logic</p></td>
+<td><p>Signal indicating a lookup access in ITLB is being requested.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">itlb_hit_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>ITLB</p></td>
+<td><p>logic</p></td>
+<td><p>Signal indicating an ITLB hit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">itlb_vaddr_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Cache Subsystem</p></td>
+<td><p>logic [VLEN-1:0]</p></td>
+<td><p>Virtual address lookup in ITLB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dtlb_access_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Load/Store Unit</p></td>
+<td><p>logic</p></td>
+<td><p>Signal indicating a lookup access in DTLB is being requested.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dtlb_hit_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>DTLB</p></td>
+<td><p>logic</p></td>
+<td><p>Signal indicating a DTLB hit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dtlb_vaddr_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Load/Store Unit</p></td>
+<td><p>logic [VLEN-1:0]</p></td>
+<td><p>Virtual address lookup in DTLB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">itlb_update_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>ITLB</p></td>
+<td><p>tlb_update_cva6_t</p></td>
+<td><p>Tag and content to update ITLB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dtlb_update_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>DTLB</p></td>
+<td><p>tlb_update_cva6_t</p></td>
+<td><p>Tag and content to update DTLB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">itlb_miss_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Performance Counter</p></td>
+<td><p>logic</p></td>
+<td><p>Signal indicating an ITLB miss</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dtlb_miss_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Performance Counter</p></td>
+<td><p>logic</p></td>
+<td><p>Signal indicating a DTLB miss</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">shared_tlb_access_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>PTW</p></td>
+<td><p>logic</p></td>
+<td><p>Signal indicating a lookup access in shared TLB is being requested</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">shared_tlb_hit_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>PTW</p></td>
+<td><p>logic</p></td>
+<td><p>Signal indicating a shared TLB hit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">shared_tlb_vaddr_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>PTW</p></td>
+<td><p>logic [VLEN-1:0]</p></td>
+<td><p>Virtual address lookup in shared TLB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">itlb_req_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>PTW</p></td>
+<td><p>logic</p></td>
+<td><p>ITLB Request Output</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">shared_tlb_update_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>PTW</p></td>
+<td><p>tlb_update_cva6_t</p></td>
+<td><p>Updated tag and content of shared TLB</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-size:18px; font-weight:bold;">Shared TLB Entry Structure</span><p>Shared TLB is 2-way associative, with a depth of 64 by default, but can be selected via a user parameter. A single entry in the set contains the valid bit, tag and the content. The Tag segment stores details such as the virtual page number, ASID, VMID and page size. The Content field contains the physical page numbers along with a number of bits which specify various attributes of the physical page.</p>
+<figure class="align-center" id="figure-15-cva6-shared-tlb-structure">
+<a class="reference internal image-reference" href="../_images/shared_tlb.png"><img alt="shared_tlb" src="../_images/shared_tlb.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 15:</strong> CVA6 Shared TLB Structure</span><a class="headerlink" href="#figure-15-cva6-shared-tlb-structure" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<span style="font-size:18px; font-weight:bold;">Shared TLB Implementation in CVA6</span><p>The implementation of a shared TLB in CVA6 is described in the following sections:</p>
+<ul class="simple">
+<li><p><strong>ITLB and DTLB Miss:</strong> Prepare a shared TLB lookup if the entry is not found in ITLB or DTLB.</p></li>
+<li><p><strong>Tag Comparison:</strong> Look up the provided virtual address in the shared TLB.</p></li>
+<li><p><strong>Update and Flush:</strong> Flush the shared TLB or update it.</p></li>
+<li><p><strong>Replacement Policies:</strong> First non-valid entry and random replacement policy.</p></li>
+</ul>
+<span style="font-size:18px; font-weight:bold;">ITLB and DTLB Miss</span><p>Consider a scenario where an entry is found in the ITLB or DTLB. In this case, there is no need to perform a lookup in the shared TLB since the entry has already been found. Next, there are two scenarios: an ITLB miss or a DTLB miss.</p>
+<p>To identify an ITLB miss, the following conditions need to be fulfilled:</p>
+<ul class="simple">
+<li><p>Address translation must be enabled.</p></li>
+<li><p>There must be an access request to the ITLB.</p></li>
+<li><p>The ITLB should indicate an ITLB miss.</p></li>
+<li><p>There should be no access request to the DTLB.</p></li>
+</ul>
+<p>During an ITLB miss, access is granted to read the tag and content of the shared TLB from their respective sram. The address for reading the tag and content of the shared TLB entry is calculated using the virtual address for which translation is not found in the ITLB. The ITLB miss is also explicitly indicated by the shared TLB. A request for shared TLB access is initiated.</p>
+<p>To identify the DTLB miss, the following conditions need to be fulfilled:</p>
+<ul class="simple">
+<li><p>Address translation for load and stores must be enabled.</p></li>
+<li><p>There must be an access request to the DTLB.</p></li>
+<li><p>The DTLB should indicate a DTLB miss.</p></li>
+</ul>
+<p>In the case of a DTLB miss, the same logic is employed as described for an ITLB miss.</p>
+<span style="font-size:18px; font-weight:bold;">Tag Comparison</span><p>Shared TLB lookup for a hit occurs under the same conditions as described for the TLB modules used as ITLB and DTLB. However, there are some distinctions. In both the ITLB and DTLB, the virtual address requiring translation is compared against all TLB entries. In contrast, the shared TLB only compares the tag and content of the set indicated by the provided virtual page number. The index of the set is extracted from the VPN of the requested virtual address. Given that the shared TLB is 2-way associative, each set contains two entries. Consequently, both of these entries are compared. Below figure illustrates how the set is opted for the lookup. In case that the shared TLB is not used, the hit and corresponding update information come directly from the PTW, bypassing the shared TLB block.</p>
+<figure class="align-center" id="figure-16-set-opted-for-lookup-in-shared-tlb">
+<a class="reference internal image-reference" href="../_images/shared_tlb_set.png"><img alt="shared_tlb_set" src="../_images/shared_tlb_set.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 16:</strong> Set opted for lookup in shared TLB</span><a class="headerlink" href="#figure-16-set-opted-for-lookup-in-shared-tlb" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<span style="font-size:18px; font-weight:bold;">Update and Flush</span><p>Differing from the ITLB and DTLB, a specific virtual address or addressing space cannot be flushed in the shared TLB. When SFENCE.VMA is committed, all entries in the shared TLB are invalidated. (Cases of SFENCE.VMA should also be added in shared TLB)</p>
+<span style="font-size:18px; font-weight:bold;">Updating Shared TLB</span><p>When the Page Table Walker signals a valid update request, the shared TLB is updated by selecting an entry through the replacement policy and marking it as valid. This also triggers the writing of the new tag and content to the respective SRAM. As stated above, when the shared TLB is not used, the update from PTW goes directly to the ITLB and DTLB depending on which initiated the request, and the SRAM is not instantiated.</p>
+<span style="font-size:18px; font-weight:bold;">Replacement Policy Implemented in CVA6 Shared TLB</span><p>In CVA6’s shared TLB, two replacement policies are employed for replacements based on a specific condition. These replacement policies select the entry within the set indicated by the virtual page number. The two policies are:</p>
+<ul class="simple">
+<li><p>First non-valid encounter replacement policy</p></li>
+<li><p>Random replacement policy</p></li>
+</ul>
+<p>First replacement policy failed if all ways are valid. Therefore, a random replacement policy is opted for.</p>
+<span style="font-size:18px; font-weight:bold;">First non-valid encounter replacement policy</span><p>The module implemented in CVA6 to find the first non-valid entry in the shared TLB is the Leading Zero Counter (LZC). It takes three parameters as input:</p>
+<ol class="arabic simple">
+<li><p><strong>WIDTH:</strong> The width of the input vector.</p></li>
+<li><p><strong>MODE:</strong> Mode selection - 0 for trailing zero, 1 for leading zero.</p></li>
+<li><p><strong>CNT WIDTH:</strong> Width of the output signal containing the zero count.</p></li>
+</ol>
+<p>The input signal is the vector to be counted, and the output represents the count of trailing/leading zeros. If all bits in the input vector are zero, it will also be indicated.</p>
+<p>When initializing the module, the width of the input vector is set to the number of shared TLB ways. The trailing zero counter mode is selected. The vector of valid bits is set as the input vector, but with negation. This is because we want the index of the first non-valid entry, and LZC returns the count of trailing zeros, which actually corresponds to the index of the first occurrence of 1 from the least significant bit (LSB). if there is at least one non-valid entry, that entry is opted for the replacement, and if not then this is signaled by LZC.</p>
+<figure class="align-center" id="figure-17-replacement-of-first-invalid-entry">
+<a class="reference internal image-reference" href="../_images/LZC.png"><img alt="LZC" src="../_images/LZC.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 17:</strong> Replacement of First invalid entry.</span><a class="headerlink" href="#figure-17-replacement-of-first-invalid-entry" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<span style="font-size:18px; font-weight:bold;">Random replacement policy</span><p>If all ways are valid, a random replacement policy is employed for the replacement process. The Linear Feedback Shift Register (LFSR) is utilized to select the replacement entry randomly. LFSR is commonly used in generating sequences of pseudo-random numbers. When the enable signal is active, the current state of the LFSR undergoes a transformation. Specifically, the state is shifted right by one bit, and the result is combined with a predetermined masking pattern. This masking pattern is derived from the predefined “Masks” array, introducing a non-linear behavior to the sequence generation of the LFSR. The masking process involves XOR operations between the shifted state bits and specific pattern bits, contributing to the complexity and unpredictability of the generated sequence.</p>
+<figure class="align-center" id="figure-18-entry-selection-for-replacement-using-lfsr">
+<a class="reference internal image-reference" href="../_images/RR.png"><img alt="RR" src="../_images/RR.png" style="width: 95%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 18:</strong> Entry selection for replacement using LFSR</span><a class="headerlink" href="#figure-18-entry-selection-for-replacement-using-lfsr" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="page-table-walker">
+<h1>Page Table Walker<a class="headerlink" href="#page-table-walker" title="Link to this heading"></a></h1>
+<p>The “CVA6 Page Table Walker (PTW)” is a hardware module designed to facilitate the translation of virtual addresses into physical addresses, a crucial task in memory access management. The Hypervisor extension specifies a new translation stage (G-stage) to translate guest-physical addresses into host-physical addresses.</p>
+<figure class="align-center" id="figure-19-input-and-outputs-of-page-table-walker">
+<a class="reference internal image-reference" href="../_images/ptw_in_out.png"><img alt="ptw_in_out" src="../_images/ptw_in_out.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 19:</strong> Input and Outputs of Page Table Walker</span><a class="headerlink" href="#figure-19-input-and-outputs-of-page-table-walker" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<span style="font-size:18px; font-weight:bold;">Operation of PTW Module</span><p>The PTW module operates through various states, each with its specific function, such as handling memory access requests, validating page table entries, and responding to errors.</p>
+<span style="font-size:18px; font-weight:bold;">Key Features and Capabilities</span><p>Key features of this PTW module include support for multiple levels of page tables (PtLevels), accommodating instruction and data page table walks. It rigorously validates and verifies page table entries (PTEs) to ensure translation accuracy and adherence to access permissions. This module seamlessly integrates with the CVA6 processor’s memory management unit (MMU), which governs memory access control. It also takes into account global mapping, access flags, and privilege levels during the translation process, ensuring that memory access adheres to the processor’s security and privilege settings.</p>
+<span style="font-size:18px; font-weight:bold;">Exception Handling</span><p>In addition to its translation capabilities, the PTW module is equipped to detect and manage errors, including page-fault exceptions and access exceptions, contributing to the robustness of the memory access system. It works harmoniously with physical memory protection (PMP) configurations, a critical aspect of modern processors’ memory security. Moreover, the module efficiently processes virtual addresses, generating corresponding physical addresses, all while maintaining speculative translation, a feature essential for preserving processor performance during memory access operations.</p>
+<span style="font-size:18px; font-weight:bold;">Signal Description</span><p style="text-align:center;"> <b>Table 12:</b> Signal Description of PTW </p><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>IO</p></th>
+<th class="head"><p>Connection</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">clk_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Subsystem</p></td>
+<td><p>logic</p></td>
+<td><p>Subsystem Clock</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rst_ni</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Subsystem</p></td>
+<td><p>logic</p></td>
+<td><p>Asynchronous reset active low</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">flush_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Controller</p></td>
+<td><p>logic</p></td>
+<td><p>Sfence Committed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ptw_active_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>MMU</p></td>
+<td><p>logic</p></td>
+<td><p>Output signal indicating whether the Page Table Walker (PTW) is currently active</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">walking_instr_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>MMU</p></td>
+<td><p>logic</p></td>
+<td><p>Indicating it’s an instruction page table walk or not</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ptw_error_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>MMU</p></td>
+<td><p>logic</p></td>
+<td><p>Output signal indicating that an error occurred during PTW operation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ptw_error_at_g_st_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>MMU</p></td>
+<td><p>logic</p></td>
+<td><p>Output signal indicating that an error occurred during PTW operation at the G stage</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ptw_err_at_g_int_st_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>MMU</p></td>
+<td><p>logic</p></td>
+<td><p>Output signal indicating that an error occurred during PTW operation at the G stage during S stage</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ptw_access_exception_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>MMU</p></td>
+<td><p>logic</p></td>
+<td><p>Output signal indicating that a PMP (Physical Memory Protection) access exception occurred during PTW operation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">enable_translation_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Enables address translation request for instruction</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable_g_translation_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Enables virtual memory translation for instrucionts</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">en_ld_st_translation_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Enables address translation request for load or store</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">en_ld_st_g_translation_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Enables virtual memory translation for load or store</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">v_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Virtualization mode state</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ld_st_v_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Virtualization mode state</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hlvx_inst_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Store / Load Unit</p></td>
+<td><p>logic</p></td>
+<td><p>Indicates that Instruction is a hypervisor load store with execute permissions</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lsu_is_store_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Store Unit</p></td>
+<td><p>logic</p></td>
+<td><p>Input signal indicating whether the translation was triggered by a store operation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">req_port_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Cache Subsystem</p></td>
+<td><p>dcache_req_o_t</p></td>
+<td><p>D Cache Data Requests</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">req_port_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Cache Subsystem / Perf Counter</p></td>
+<td><p>dcache_req_u_t</p></td>
+<td><p>D Cache Data Response</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">shared_tlb_update_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>Shared TLB</p></td>
+<td><p>tlb_update_cva6_t</p></td>
+<td><p>Updated tag and content of shared TLB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">update_vaddr_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>MMU</p></td>
+<td><p>logic[VLEN-1:0]</p></td>
+<td><p>Updated VADDR from shared TLB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">asid_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [ASIDW-1:0]</p></td>
+<td><p>ASID for the lookup</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vs_asid_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [ASIDW-1:0]</p></td>
+<td><p>ASID for the lookup for virtual supervisor when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vmid_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [VMIDW-1:0]</p></td>
+<td><p>VMID for the lookup when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">shared_tlb_access_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Shared TLB</p></td>
+<td><p>logic</p></td>
+<td><p>Access request of shared TLB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">shared_tlb_hit_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Shared TLB</p></td>
+<td><p>logic</p></td>
+<td><p>Indicate shared TLB hit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">shared_tlb_vaddr_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Shared TLB</p></td>
+<td><p>logic[VLEN-1:0]</p></td>
+<td><p>Virtual Address from shared TLB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">itlb_req_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>Shared TLB</p></td>
+<td><p>logic</p></td>
+<td><p>Indicate request to ITLB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">satp_ppn_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [PPNW-1:0]</p></td>
+<td><p>PPN of top level page table from SATP register</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vsatp_ppn_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [PPNW-1:0]</p></td>
+<td><p>PPN of top level page table from VSATP register when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hgatp_ppn_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic [PPNW-1:0]</p></td>
+<td><p>PPN of top level page table from HGATP register when Hypervisor extension is enabled</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mxr_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Make Executable Readable bit in xSTATUS CSR register</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vmxr_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic</p></td>
+<td><p>Virtual Make Executable Readable bit in xSTATUS CSR register for virtual supervisor when Hypervisor extension is enabled.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">shared_tlb_miss_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>OPEN</p></td>
+<td><p>logic</p></td>
+<td><p>Indicate a shared TLB miss</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pmpcfg_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>pmpcfg_t[15:0]</p></td>
+<td><p>PMP configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pmpaddr_i</span></code></p></td>
+<td><p>in</p></td>
+<td><p>CSR RegFile</p></td>
+<td><p>logic[15:0][PLEN-3:0]</p></td>
+<td><p>PMP Address</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bad_paddr_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>MMU</p></td>
+<td><p>logic[PLEN-1:0]</p></td>
+<td><p>Bad Physical Address in case of access exception</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bad_gpaddr_o</span></code></p></td>
+<td><p>out</p></td>
+<td><p>MMU</p></td>
+<td><p>logic[GPLEN-1:0]</p></td>
+<td><p>Bad Guest Physical Address in case of access exception when Hypervisor is enabled.</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-size:18px; font-weight:bold;">Struct Description</span><p style="text-align:center;"> <b>Table 13:</b> D Cache Response Struct </b>(dcache_req_i_t</b>) </p><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">address_index</span></code></p></td>
+<td><p>logic [DCACHE_INDEX_WIDTH-1:0]</p></td>
+<td><p>Index of the Dcache Line</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">address_tag</span></code></p></td>
+<td><p>logic [DCACHE_TAG_WIDTH-1:0]</p></td>
+<td><p>Tag of the Dcache Line</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_wdata</span></code></p></td>
+<td><p>xlen_t</p></td>
+<td><p>Data to write in the Dcache</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data_wuser</span></code></p></td>
+<td><p>logic [DCACHE_USER_WIDTH-1:0]</p></td>
+<td><p>data_wuser</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_req</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Data Request</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data_we</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Data Write enabled</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_be</span></code></p></td>
+<td><p>logic [(XLEN/8)-1:0]</p></td>
+<td><p>Data Byte enable</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data_size</span></code></p></td>
+<td><p>logic [1:0]</p></td>
+<td><p>Size of data</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_id</span></code></p></td>
+<td><p>logic [DCACHE_TID_WIDTH-1:0]</p></td>
+<td><p>Data ID</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kill_req</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Kill the D cache request</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tag_valid</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Indicate that teh tag is valid</p></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align:center;"> <b>Table 14:</b> D Cache Request Struct </b>(dcache_req_o_t</b>) </p><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_gnt</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Grant of data is given in response to the data request</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data_rvalid</span></code></p></td>
+<td><p>logic</p></td>
+<td><p>Indicate that data is valid which is sent by D cache</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_rid</span></code></p></td>
+<td><p>logic [DCACHE_TID_WIDTH-1:0]</p></td>
+<td><p>Requested data ID</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data_rdata</span></code></p></td>
+<td><p>xlen_t</p></td>
+<td><p>Data from D cache</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_ruser</span></code></p></td>
+<td><p>logic [DCACHE_USER_WIDTH-1:0]</p></td>
+<td><p>Requested data user</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-size:18px; font-weight:bold;">PTW State Machine</span><p>Page Table Walker is implemented as a finite state machine. It listens to shared TLB for incoming translation requests. If there is a shared TLB miss, it saves the virtual address and starts the page table walk. Page table walker transitions between 7 states in CVA6.</p>
+<ul class="simple">
+<li><p><strong>IDLE:</strong> The initial state where the PTW is awaiting a trigger, often a Shared TLB miss, to initiate a memory access request. In the case of the Hypervisor extension, the stage to which the translation belongs is determined by the enable_translation_XX and en_ld_st_translation_XX signals. There are 3 possible stages: (i) S-Stage - the PTW current state is translating a guest-virtual address into a guest-physical address; (ii) G-Stage Intermed - the PTW current state is translating memory access made from the VS-Stage during the walk to host-physical address; and (iii) G-Stage Final - the PTW current state is translating the final output address from VS-Stage into a host-physical address. When Hypervisor is not enabled PTW is always in S_STAGE.</p></li>
+<li><p><strong>WAIT_GRANT:</strong> Request memory access and wait for data grant</p></li>
+<li><p><strong>PTE_LOOKUP:</strong> Once granted access, the PTW examines the valid Page Table Entry (PTE), checking attributes to determine the appropriate course of action. Depending on the STAGE determined in the previous state, pptr and other attributes are updated accordingly.</p></li>
+<li><p><strong>PROPAGATE_ERROR:</strong> If the PTE is invalid, this state handles the propagation of an error, often leading to a page-fault exception due to non-compliance with access conditions.</p></li>
+<li><p><strong>PROPAGATE_ACCESS_ERROR:</strong> Propagate access fault if access is not allowed from a PMP perspective</p></li>
+<li><p><strong>WAIT_RVALID:</strong> After processing a PTE, the PTW waits for a valid data signal, indicating that relevant data is ready for further processing.</p></li>
+<li><p><strong>LATENCY:</strong> Introduces a delay to account for synchronization or timing requirements between states.</p></li>
+</ul>
+<p>The next figure shows the state diagram of the PTW FSM. The blue lines correspond to transitions that exist only when hypervisor extension is enabled.</p>
+<figure class="align-center" id="figure-20-state-machine-diagram-of-cva6-ptw">
+<a class="reference internal image-reference" href="../_images/ptw_state_diagram.png"><img alt="ptw_state_diagram" src="../_images/ptw_state_diagram.png" style="width: 95%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 20:</strong> State Machine Diagram of CVA6 PTW</span><a class="headerlink" href="#figure-20-state-machine-diagram-of-cva6-ptw" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<span style="font-size:18px; font-weight:bold;">IDLE state</span><p>In the IDLE state of the Page Table Walker (PTW) finite state machine, the system awaits a trigger to initiate the page table walk process. This trigger is often prompted by a Shared Translation Lookaside Buffer (TLB) miss, indicating that the required translation is not present in the shared TLB cache. The PTW’s behavior in this state is explained as follows:</p>
+<ol class="arabic simple">
+<li><p>The top-most page table is selected for the page table walk. In all configurations, the walk starts at level 0.</p></li>
+<li><p>In the IDLE state, translations are assumed to be invalid in all addressing spaces.</p></li>
+<li><p>The signal indicating the instruction page table walk is set to 0.</p></li>
+<li><p>A conditional check is performed: if there is a shared TLB access request and the entry is not found in the shared TLB (indicating a shared TLB miss), the following steps are executed:</p>
+<ol class="loweralpha simple">
+<li><p>The address of the desired Page Table Entry within the level 0 page table is calculated by multiplying the Physical Page Number (PPN) of the level 0 page table from the SATP register by the page size. This result is then added to the product of the Virtual Page Number, and the size of a page table entry. Depending on the translation indicated by enable_translation_XX, en_ld_st_translation_XX and v_i signals,  the corresponding register (satp_ppn_i, vsatp_ppn_i or hgatp_ppn_i) and bits of the VPN are used.</p></li>
+</ol>
+</li>
+</ol>
+<figure class="align-center" id="figure-27-address-of-desired-pte-at-next-level-of-page-table">
+<a class="reference internal image-reference" href="../_images/ptw_nlvl.png"><img alt="ptw_nlvl" src="../_images/ptw_nlvl.png" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 21:</strong> Address of desired PTE at next level of Page Table</span><a class="headerlink" href="#figure-27-address-of-desired-pte-at-next-level-of-page-table" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<blockquote id="example">
+<div><ol class="loweralpha simple" start="2">
+<li><p>The signal indicating whether it’s an instruction page table walk is updated based on the itlb_req_i signal.</p></li>
+<li><p>The ASID, VMID and virtual address are saved for the page table walk.</p></li>
+<li><p>A shared TLB miss is indicated.</p></li>
+</ol>
+</div></blockquote>
+<span style="font-size:18px; font-weight:bold;">WAIT GRANT state</span><p>In the <strong>WAIT_GRANT</strong> state of the Page Table Walker’s finite state machine, a data request is sent to retrieve memory information. It waits for a data grant signal from the Dcache controller, remaining in this state until granted. Once granted, it activates a tag valid signal, marking data validity. The state then transitions to “PTE_LOOKUP” for page table entry lookup.</p>
+<span style="font-size:18px; font-weight:bold;">PTE LOOKUP state</span><p>In the <strong>PTE_LOOKUP</strong> state of the Page Table Walker (PTW) finite state machine, the PTW performs the actual lookup and evaluation of the page table entry (PTE) based on the virtual address translation. The behavior and operations performed in this state are detailed as follows:</p>
+<ol class="arabic simple">
+<li><p>The state waits for a valid signal indicating that the data from the memory subsystem, specifically the page table entry, is available for processing.</p></li>
+<li><p>Upon receiving the valid signal, the PTW proceeds with examining the retrieved page table entry to determine its properties and validity.</p></li>
+<li><p>The state checks if the global mapping bit in the PTE is set, and if so, sets the global mapping signal to indicate that the translation applies globally across all address spaces.</p></li>
+<li><p>The state distinguishes between two cases: Invalid PTE and Valid PTE.</p>
+<ol class="loweralpha simple">
+<li><p>If the valid bit of the PTE is not set, or if the PTE has reserved RWX field encodings, it signifies an Invalid PTE. In such cases, the state transitions to the “PROPAGATE_ERROR” state, indicating a page-fault exception due to an invalid translation.</p></li>
+</ol>
+</li>
+</ol>
+<figure class="align-center" id="figure-22-invalid-pte-and-reserved-rwx-encoding-leads-to-page-fault">
+<a class="reference internal image-reference" href="../_images/ptw_pte_1.png"><img alt="ptw_pte_1" src="../_images/ptw_pte_1.png" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 22:</strong> Invalid PTE and reserved RWX encoding leads to page fault</span><a class="headerlink" href="#figure-22-invalid-pte-and-reserved-rwx-encoding-leads-to-page-fault" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<blockquote id="example1">
+<div><ol class="loweralpha simple" start="2">
+<li><p>If the PTE is valid, by default, the state advances to the “LATENCY” state, indicating a period of processing latency. Additionally, if the “read” flag (pte.r) or the “execute” flag (pte.x) is set, the PTE is considered valid.</p></li>
+</ol>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>Within the Valid PTE scenario, the ptw_stage is checked to decide the next state. When no Hypervisor Extension is used, the stage is always S_STAGE and has no impact on the progress of the table walk. However, when the Hypervisor Extension is used, if the stage is not the G_FINAL_STAGE, it has to continue advancing the different stages before proceeding with the translation (nested translation). The next diagram shows the evolution of ptw_stage through the nested translation process:</p></li>
+</ol>
+<figure class="align-center" id="figure-23-nested-translation-ptw-stage">
+<a class="reference internal image-reference" href="../_images/nested_translation.png"><img alt="ptw_stage" src="../_images/nested_translation.png" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 23:</strong> Nested translation: ptw_stage</span><a class="headerlink" href="#figure-23-nested-translation-ptw-stage" title="Link to this image"></a></p>
+<div class="legend">
+<p>In this case (valid PTE), the state machine goes back to WAIT_GRANT state. Afterwards, the state performs further checks based on whether the translation is intended for instruction fetching or data access:</p>
+<ol class="loweralpha simple">
+<li><p>For instruction page table walk, if the page is not executable (pte.x is not set) or not marked as accessible (pte.a is not set), the state transitions to the “PROPAGATE_ERROR” state. Otherwise, the translation is valid. In case that the Hypervisor Extension is enabled, a valid translation requires being in the G_FINAL_STAGE, or the G stage being disabled.</p></li>
+</ol>
+</div>
+</figcaption>
+</figure>
+<figure class="align-center" id="figure-24-for-instruction-page-table-walk">
+<a class="reference internal image-reference" href="../_images/ptw_iptw.png"><img alt="ptw_iptw" src="../_images/ptw_iptw.png" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 24:</strong> For Instruction Page Table Walk</span><a class="headerlink" href="#figure-24-for-instruction-page-table-walk" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<blockquote id="example2">
+<div><ol class="loweralpha simple" start="2">
+<li><p>For data page table walk, the state checks if the page is readable (pte.r is set) or if the page is executable only but made readable by setting the MXR bit in xSTATUS CSR register. If either condition is met, it indicates a valid translation. If not, the state transitions to the “PROPAGATE_ERROR” state. When Hypervisor Extension is enabled, a valid translation also requires that it is in the G_FINAL_STAGE or the G stage is not enabled.</p></li>
+</ol>
+</div></blockquote>
+<figure class="align-default" id="figure-25-data-access-page-table-walk">
+<a class="reference internal image-reference" href="../_images/ptw_dptw.png"><img alt="ptw_dptw" src="../_images/ptw_dptw.png" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 25:</strong> Data Access Page Table Walk</span><a class="headerlink" href="#figure-25-data-access-page-table-walk" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<blockquote id="example3">
+<div><ol class="loweralpha simple" start="3">
+<li><p>If the access is intended for storing data, additional checks are performed: If the page is not writable (pte.w is not set) or if it is not marked as dirty (pte.d is not set), the state transitions to the “PROPAGATE_ERROR” state.</p></li>
+</ol>
+</div></blockquote>
+<figure class="align-center" id="figure-26-data-access-page-table-walk-store-requested">
+<a class="reference internal image-reference" href="../_images/ptw_dptw_s.png"><img alt="ptw_dptw_s" src="../_images/ptw_dptw_s.png" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 26:</strong> Data Access Page Table Walk, Store requested</span><a class="headerlink" href="#figure-26-data-access-page-table-walk-store-requested" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>The state also checks for potential misalignment issues in the translation: If the current page table level is the first level and if the PPN in PTE is not zero, it indicates a misaligned superpage, leading to a transition to the “PROPAGATE_ERROR” state.</p></li>
+</ol>
+<figure class="align-center" id="figure-27-misaligned-superpage-check">
+<a class="reference internal image-reference" href="../_images/ptw_mis_sup.png"><img alt="ptw_mis_sup" src="../_images/ptw_mis_sup.png" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Figure 27:</strong> Misaligned Superpage Check</span><a class="headerlink" href="#figure-27-misaligned-superpage-check" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="7">
+<li><p>If the PTE is valid but the page is neither readable nor executable, the PTW recognizes the PTE as a pointer to the next level of the page table, indicating that additional translation information can be found in the referenced page table at a lower level.</p></li>
+<li><p>If the current page table level is not the last level, the PTW proceeds to switch to the next level page table, updating the next level pointer and calculating the address for the next page table entry using the Physical Page Number from the PTE and the index from virtual address. Depending on the level and ptw_stage, the pptr is updated accordingly.</p></li>
+<li><p>The state then transitions to the “WAIT_GRANT” state, indicating that the PTW is awaiting the grant signal to proceed with requesting the next level page table entry. If Hypervisor Extension is used and the page has already been accessed, is dirty or is accessible only in user mode, the state goes to PROPAGATE_ERROR.</p></li>
+<li><p>If the current level is already the last level, an error is flagged, and the state transitions to the “PROPAGATE_ERROR” state, signifying an unexpected situation where the PTW is already at the last level page table.</p></li>
+<li><p>If the translation access is found to be restricted by the Physical Memory Protection (PMP) settings (allow_access is false), the state updates the shared TLB update signal to indicate that the TLB entry should not be updated. Additionally, the saved address for the page table walk is restored to its previous value, and the state transitions to the “PROPAGATE_ACCESS_ERROR” state.</p></li>
+<li><p>Lastly, if the data request for the page table entry was granted, the state indicates to the cache subsystem that the tag associated with the data is now valid.</p></li>
+</ol>
+<figure class="align-center" id="flow-chart-of-pte-lookup-state">
+<img alt="ptw_pte_flowchart" src="../_images/ptw_pte_flowchart.png" />
+<figcaption>
+<p><span class="caption-text"><strong>Figure 28:</strong> Flow Chart of PTE LOOKUP State</span><a class="headerlink" href="#flow-chart-of-pte-lookup-state" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<span style="font-size:18px; font-weight:bold;">PROPAGATE ERROR state</span><p>This state indicates a detected error in the page table walk process, and an error signal is asserted to indicate the Page Table Walker’s error condition, triggering a transition to the “LATENCY” state for error signal propagation.</p>
+<span style="font-size:18px; font-weight:bold;">PROPAGATE ACCESS ERROR state</span><p>This state indicates a detected access error in the page table walk process, and an access error signal is asserted to indicate the Page Table Walker’s access error condition, triggering a transition to the “LATENCY” state for access error signal propagation.</p>
+<span style="font-size:18px; font-weight:bold;">WAIT RVALID state</span><p>This state waits until it gets the “read valid” signal, and when it does, it’s ready to start a new page table walk.</p>
+<span style="font-size:18px; font-weight:bold;">LATENCY state</span><p>The LATENCY state introduces a latency period to allow for necessary system actions or signals to stabilize. After the latency period, the FSM transitions back to the IDLE state, indicating that the system is prepared for a new translation request.</p>
+<span style="font-size:18px; font-weight:bold;">Flush Scenario</span><p>The first step when a flush is triggered is to check whether the Page Table Entry (PTE) lookup process is currently in progress. If the PTW (Page Table Walker) module is indeed in the middle of a PTE lookup operation, the code then proceeds to evaluate a specific aspect of this operation.</p>
+<ul>
+<li><p><strong>Check for Data Validity (rvalid):</strong> Within the PTE lookup operation, it’s important to ensure that the data being used for the translation is valid. In other words, the code checks whether the “rvalid” signal (which likely indicates the validity of the data) is not active. If the data is not yet valid, it implies that the PTW module is waiting for the data to become valid before completing the lookup. In such a case, the code takes appropriate action to wait for the data to become valid before proceeding further.</p></li>
+<li><p><strong>Check for Waiting on Grant:</strong> The second condition the code checks for during a flush scenario is whether the PTW module is currently waiting for a “grant.” This “grant” signal is typically used to indicate permission or authorization to proceed with an operation. If the PTW module is indeed in a state of waiting for this grant signal, it implies that it requires authorization before continuing its task.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Waiting for Grant:</strong> If the PTW module is in a state of waiting for the grant signal, the code ensures that it continues to wait for the grant signal to be asserted before proceeding further.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Return to Idle State if Neither Condition is Met:</strong> After evaluating the above two conditions, the code determines whether either of these conditions is true. If neither of these conditions applies, it suggests that the PTW module can return to its idle state, indicating that it can continue normal operations without any dependencies on the flush condition.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ex_stage.html" class="btn btn-neutral float-left" title="Execute Stage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="commit_stage.html" class="btn btn-neutral float-right" title="Commit Stage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

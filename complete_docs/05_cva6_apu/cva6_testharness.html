@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CVA6 Testharness &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="CVA6 APU" href="cva6_apu.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 APU</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cva6_apu.html">CVA6 APU</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CVA6 Testharness</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ariane">Ariane</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debug">Debug</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#master">Master</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#slave">Slave</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#clint">CLINT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bootrom">Bootrom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sram">SRAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpio">GPIO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uart">UART</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plic">PLIC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#timer">Timer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ethernet">Ethernet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spi">SPI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 APU</a></li>
+      <li class="breadcrumb-item active">CVA6 Testharness</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/05_cva6_apu/cva6_testharness.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cva6-testharness">
+<h1>CVA6 Testharness<a class="headerlink" href="#cva6-testharness" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">ariane_testharness</span></code> is the module where all the masters and slaves have been connected with the axi crossbar.There are two masters and ten slaves in this module.Their names and interfaces have been mentioned in the table below.</p>
+<p>| Slaves      | Interfaces  | Masters     | Interfaces  |
+| ———– | ———– | ———– | ———– |
+| DRAM        | master[0]   | ariane      | slave[0]    |
+| GPIO        | master[1]   | debug       | slave[1]    |
+| Ethernet    | master[2]   |             |             |
+| SPI         | master[3]   |             |             |
+| Timer       | master[4]   |             |             |
+| UART        | master[5]   |             |             |
+| PLIC        | master[6]   |             |             |
+| CLINT       | master[7]   |             |             |
+| ROM         | master[8]   |             |             |
+| Debug       | master[9]   |             |             |</p>
+<p>The following block diagram shows the connections of the slaves and masters in the <code class="docutils literal notranslate"><span class="pre">ariane_testharness</span></code> module.</p>
+<p><img alt="ariane_testharness" src="../_images/test_harness.png" /></p>
+<section id="ariane">
+<h2>Ariane<a class="headerlink" href="#ariane" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ariane</span></code> core is instantiated as <code class="docutils literal notranslate"><span class="pre">i_ariane</span></code> in <code class="docutils literal notranslate"><span class="pre">ariane_testharness</span></code> module. It is acting as a master in <code class="docutils literal notranslate"><span class="pre">ariane_testharness</span></code>.
+The following is the diagram of the <code class="docutils literal notranslate"><span class="pre">ariane</span></code> module along with its inputs/outputs ports.</p>
+<p><img alt="ariane" src="../_images/ariane.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">ipi</span></code>, <code class="docutils literal notranslate"><span class="pre">irq</span></code> and <code class="docutils literal notranslate"><span class="pre">time_irq</span></code> are being sent to this module from the <code class="docutils literal notranslate"><span class="pre">ariane_testharness</span></code> module.
+The  AXI request and response signals that are being passed from the <code class="docutils literal notranslate"><span class="pre">ariane_testharness</span></code> to <code class="docutils literal notranslate"><span class="pre">ariane</span></code> module are the following:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">.axi_req_o</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">(</span> <span class="pre">axi_ariane_req</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">),</span></code>
+<code class="docutils literal notranslate"><span class="pre">.axi_resp_i</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">(</span> <span class="pre">axi_ariane_resp</span>&#160;&#160;&#160;&#160; <span class="pre">)</span></code></p>
+</div></blockquote>
+<p>In the <code class="docutils literal notranslate"><span class="pre">ariane_testharness</span></code> module, <code class="docutils literal notranslate"><span class="pre">axi_ariane_req</span></code> and <code class="docutils literal notranslate"><span class="pre">axi_ariane_resp</span></code> structs are being linked with the <code class="docutils literal notranslate"><span class="pre">slave[0]</span></code> (AXI_BUS interface) in a way that the information of <code class="docutils literal notranslate"><span class="pre">axi_ariane_req</span></code> is being passed to the <code class="docutils literal notranslate"><span class="pre">slave[0]</span></code> and the information from the <code class="docutils literal notranslate"><span class="pre">slave[0]</span></code> is being passed to the <code class="docutils literal notranslate"><span class="pre">axi_ariane_resp</span></code> struct. The following compiler directives are being used for this purpose.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">AXI_ASSIGN_FROM_REQ(slave[0],</span> <span class="pre">axi_ariane_req)</span></code>
+<code class="docutils literal notranslate"><span class="pre">AXI_ASSIGN_TO_RESP(axi_ariane_resp,</span> <span class="pre">slave[0])</span></code></p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">Rvfi_o</span></code> is the output of <code class="docutils literal notranslate"><span class="pre">ariane</span></code> and it will go into the <code class="docutils literal notranslate"><span class="pre">rvfi_tracer</span></code> module.</p>
+</section>
+<section id="debug">
+<h2>Debug<a class="headerlink" href="#debug" title="Link to this heading"></a></h2>
+<section id="master">
+<h3>Master<a class="headerlink" href="#master" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">axi_adapter</span></code> is acting as a master for the debug module.
+The following is the diagram of the <code class="docutils literal notranslate"><span class="pre">axi_adapter</span></code> module along with its signals.</p>
+<p><img alt="axi_adapter" src="../_images/axi_adapter.png" /></p>
+<p>The AXI request and response that signals are being passed from the test_harness module are the following:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">.axi_req_o</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">(</span> <span class="pre">dm_axi_m_req</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">)</span></code>
+<code class="docutils literal notranslate"><span class="pre">.axi_resp_i</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">(</span> <span class="pre">dm_axi_m_resp</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">)</span></code></p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">Slave[1]</span></code> is the interface of AXI_BUS and it actually acts as a master for axi_protocol.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dm_axi_m_req</span></code> and <code class="docutils literal notranslate"><span class="pre">dm_axi_m_resp</span></code> are being linked with the slave[1] AXI_BUS interface in this way that the requests signals of the <code class="docutils literal notranslate"><span class="pre">dm_axi_m_req</span></code> are being passed to the <code class="docutils literal notranslate"><span class="pre">slave[1]</span></code> and the response signals from the  <code class="docutils literal notranslate"><span class="pre">slave[1]</span></code> are being passed to the <code class="docutils literal notranslate"><span class="pre">dm_axi_m_resp</span></code> struct.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">AXI_ASSIGN_FROM_REQ(slave[1],</span> <span class="pre">dm_axi_m_req)</span></code>
+<code class="docutils literal notranslate"><span class="pre">AXI_ASSIGN_TO_RESP(dm_axi_m_resp,</span> <span class="pre">slave[1])</span></code></p>
+</div></blockquote>
+</section>
+<section id="slave">
+<h3>Slave<a class="headerlink" href="#slave" title="Link to this heading"></a></h3>
+<p>This is the memory of debug and <code class="docutils literal notranslate"><span class="pre">axi2mem</span></code> converter is used whenever a read or write request is made to memory by the master.
+<code class="docutils literal notranslate"><span class="pre">axi2mem</span></code> module simply waits for the ar_valid or aw_valid of the master (actual slave) interface and then passes the req_o, we_o, addr_o, be_o, user_o signals and data_o to the memory and will receive the data_i and user_i from the memory.</p>
+<p><img alt="axi2mem" src="../_images/axi2mem.png" /></p>
+<p>The memory is has been instantiated in the <code class="docutils literal notranslate"><span class="pre">dm_top</span></code> module and the hierarchy is as follows:</p>
+<p><img alt="dm_top_&amp;_dm_mem" src="../_images/dm_top_slave.png" /></p>
+</section>
+</section>
+<section id="clint">
+<h2>CLINT<a class="headerlink" href="#clint" title="Link to this heading"></a></h2>
+<p>Clint is a slave in this SoC. The signals of the <code class="docutils literal notranslate"><span class="pre">clint</span></code> module are as follows:</p>
+<p><img alt="clint" src="../_images/clint.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">ipi_o</span></code> (inter-processing interrupt) and <code class="docutils literal notranslate"><span class="pre">timer_irq_o</span></code> (timer_interrupt request) are generated from the <code class="docutils literal notranslate"><span class="pre">clint</span></code> module and are the inputs of the ariane core.
+This module interacts with the axi bus interface through the following assignments:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">AXI_ASSIGN_TO_REQ(axi_clint_req,</span> <span class="pre">master[ariane_soc::CLINT])</span></code></p>
+</div></blockquote>
+<p>This compiler directive is used to transfer the request signals of the master via the interface mentioned as <code class="docutils literal notranslate"><span class="pre">master[ariane_soc::CLINT]</span></code> to the struct <code class="docutils literal notranslate"><span class="pre">axi_clint_req</span></code>.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">AXI_ASSIGN_FROM_RESP(master[ariane_soc::CLINT],</span> <span class="pre">axi_clint_resp)</span></code></p>
+</div></blockquote>
+<p>This compiler directive is used to assign the response of the slave (in this case <code class="docutils literal notranslate"><span class="pre">clint</span></code> module) from the
+<code class="docutils literal notranslate"><span class="pre">Axi_clint_resp</span></code> struct to the interface <code class="docutils literal notranslate"><span class="pre">master[ariane_soc::CLINT]</span></code>.</p>
+</section>
+<section id="bootrom">
+<h2>Bootrom<a class="headerlink" href="#bootrom" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">axi2mem</span></code> module is used to communicate with <code class="docutils literal notranslate"><span class="pre">bootrom</span></code> module. The signals of this memory have been shown in the diagram below:</p>
+<p><img alt="bootrom" src="../_images/bootrom.png" /></p>
+<p>Bootrom is pre-initialized with <code class="docutils literal notranslate"><span class="pre">ROM_SIZE</span> <span class="pre">=</span> <span class="pre">186</span></code>.</p>
+</section>
+<section id="sram">
+<h2>SRAM<a class="headerlink" href="#sram" title="Link to this heading"></a></h2>
+<p>The complete sequence through which a request to SRAM is transferred is as follows:</p>
+<p><img alt="sequence" src="../_images/dram.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">dram</span></code> and <code class="docutils literal notranslate"><span class="pre">dram_delayed</span></code> are two AXI_BUS interfaces.
+The slave modport of AXI_BUS interface for <code class="docutils literal notranslate"><span class="pre">Master[DRAM]</span></code> has been linked with <code class="docutils literal notranslate"><span class="pre">axi_riscv_atomics</span></code> module and the request of the master has been passed to <code class="docutils literal notranslate"><span class="pre">dram</span></code> interface (another instantiation of interface of AXI_BUS). All this is for the exclusive accesses and no burst is supported in this exclusive access.
+<code class="docutils literal notranslate"><span class="pre">dram</span></code> and <code class="docutils literal notranslate"><span class="pre">dram_delayed</span></code> interfaces have also been passed to <code class="docutils literal notranslate"><span class="pre">axi_delayer_intf</span></code> module as a slave modport and master modport of the AXI_BUS interface, respectively. The <code class="docutils literal notranslate"><span class="pre">axi_delayer_intf</span></code> module is used to introduce the delay.
+<code class="docutils literal notranslate"><span class="pre">dram_delayed</span></code> is also passed to the <code class="docutils literal notranslate"><span class="pre">axi2mem</span></code> module as a slave modport of AXI_BUS interface. <code class="docutils literal notranslate"><span class="pre">axi2mem</span></code> module with <code class="docutils literal notranslate"><span class="pre">dram_delayed</span></code> as an AXI_Bus interface will interact with SRAM.
+SRAM is a word addressable memory with the signals as follows:</p>
+<p><img alt="sram" src="../_images/sram.png" /></p>
+</section>
+<section id="gpio">
+<h2>GPIO<a class="headerlink" href="#gpio" title="Link to this heading"></a></h2>
+<p>GPIO is not implemented, error slave has been added in place of it.</p>
+</section>
+<section id="uart">
+<h2>UART<a class="headerlink" href="#uart" title="Link to this heading"></a></h2>
+<p>There are two signals for the <code class="docutils literal notranslate"><span class="pre">apb_uart</span></code> module in the <code class="docutils literal notranslate"><span class="pre">ariane_testharness</span></code>, namely <code class="docutils literal notranslate"><span class="pre">tx</span></code> and <code class="docutils literal notranslate"><span class="pre">rx</span></code> for transmitting and receiving the data.
+<code class="docutils literal notranslate"><span class="pre">axi2apb_64_32</span></code>, module has been used to convert the axi protocol five channel signals to a single channel apb signals. The <code class="docutils literal notranslate"><span class="pre">axi2apb_64_32</span></code> module has been used between AXI_BUS and <code class="docutils literal notranslate"><span class="pre">apb_uart</span> <span class="pre">module</span></code>.
+The signals of the <code class="docutils literal notranslate"><span class="pre">apb_uart</span></code> module have been shown in the diagram below:</p>
+<p><img alt="apb_uart" src="../_images/apb_uart.png" /></p>
+<p>Only the signals related to the test_harness have been shown in the above diagram.</p>
+</section>
+<section id="plic">
+<h2>PLIC<a class="headerlink" href="#plic" title="Link to this heading"></a></h2>
+<p>PLIC is a slave in this SoC. The hierarchy through which the request is propagated to the plic_top module is as follows:</p>
+<p><img alt="plic_hierarchy" src="../_images/plic.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">axi2apb_64_32</span></code> has been used to convert all the plic axi signals into apb signals.
+apb_to_reg is used to assign the apb signals to the <code class="docutils literal notranslate"><span class="pre">reg_bus</span></code> interface which basically communicates with the <code class="docutils literal notranslate"><span class="pre">plic_top</span></code> module. In <code class="docutils literal notranslate"><span class="pre">apb_to_reg</span></code> module, the logical <code class="docutils literal notranslate"><span class="pre">AND</span></code> of <code class="docutils literal notranslate"><span class="pre">psel</span></code> and <code class="docutils literal notranslate"><span class="pre">penable</span></code> signals of apb makes the <code class="docutils literal notranslate"><span class="pre">valid</span></code> signal of <code class="docutils literal notranslate"><span class="pre">reg_bus</span></code> interface.
+The signals of the <code class="docutils literal notranslate"><span class="pre">plic_top</span></code> have been shown below:</p>
+<p><img alt="plic_top" src="../_images/plic_top.png" /></p>
+</section>
+<section id="timer">
+<h2>Timer<a class="headerlink" href="#timer" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">axi2apb_64_32</span></code> module has been used to convert all the timer axi signals into  timer apb signals.The diagram of the apb_timer is as follows.</p>
+<p><img alt="apb_timer" src="../_images/timer.png" /></p>
+<p>The signals of apb protocol have been shown in the form of <code class="docutils literal notranslate"><span class="pre">apb_timer_req</span></code> and <code class="docutils literal notranslate"><span class="pre">apb_timer_resp</span></code> in the above diagram.</p>
+</section>
+<section id="ethernet">
+<h2>Ethernet<a class="headerlink" href="#ethernet" title="Link to this heading"></a></h2>
+<p>Ethernet is a slave in this testharness.</p>
+<p>Ethernet support has not been added in the ‘ariane_testharness’ at this time. For any read or write request from the master to this module is returned with</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">&quot;ethernet.b_resp</span> <span class="pre">=</span> <span class="pre">axi_pkg::RESP_SLVERR&quot;</span></code></p>
+</div></blockquote>
+<p>where,</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">&quot;localparam</span> <span class="pre">RESP_SLVERR</span> <span class="pre">=</span> <span class="pre">2'b10;&quot;</span> <span class="pre">in</span> <span class="pre">axi_pkg</span></code></p>
+</div></blockquote>
+<p>which shows <code class="docutils literal notranslate"><span class="pre">&quot;Slave</span> <span class="pre">error&quot;</span></code>. It is used when the access has reached the slave successfully, but the slave wishes to return an error condition to the originating master.”</p>
+</section>
+<section id="spi">
+<h2>SPI<a class="headerlink" href="#spi" title="Link to this heading"></a></h2>
+<p>SPI is a slave in this testharness.
+Support of the of SPI protocol is present in the SoC, but at this time it is turned off, as the <code class="docutils literal notranslate"><span class="pre">.spi_clk_o</span> <span class="pre">(</span> <span class="pre">)</span></code>,<code class="docutils literal notranslate"><span class="pre">.spi_mosi</span>&#160; <span class="pre">(</span> <span class="pre">)</span></code>,<code class="docutils literal notranslate"><span class="pre">.spi_miso</span>&#160; <span class="pre">(</span> <span class="pre">)</span></code> ,and <code class="docutils literal notranslate"><span class="pre">.spi_ss</span>&#160;&#160;&#160; <span class="pre">(</span> <span class="pre">)</span></code> signals of SPI have been left open in the <code class="docutils literal notranslate"><span class="pre">ariane_testharness</span></code> module. Any read or write request from the master to this module is returned with <code class="docutils literal notranslate"><span class="pre">&quot;Slave</span> <span class="pre">error&quot;</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cva6_apu.html" class="btn btn-neutral float-left" title="CVA6 APU" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

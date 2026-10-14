@@ -1,0 +1,1014 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CVA6 Requirement Specification &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CVA6 User Manual" href="../01_cva6_user/index.html" />
+    <link rel="prev" title="CVA6: An application class RISC-V CPU core" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CVA6 Requirement Specification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scope">Scope</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scope-of-the-ip">Scope of the IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initial-release">Initial Release</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#applicable-specifications">Applicable specifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference-documents">Reference documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#functional-requirements">Functional requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-requirement">General requirement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#risc-v-standard-instructions">RISC-V standard instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#privileges-and-virtual-memory">Privileges and virtual memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#csr">CSR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-counters">Performance counters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cache-requirements">Cache requirements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#l1-write-through-data-cache">L1 write-through data cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#l1-instruction-cache">L1 Instruction cache</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#fence-t-custom-instruction">FENCE.T custom instruction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ppa-targets">PPA targets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interface-requirements">Interface requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#memory-bus">Memory bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debug">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interrupts">Interrupts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coprocessor-interface">Coprocessor interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-core-interface">Multi-core interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#design-rules">Design rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#list-of-abbreviations">List of abbreviations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CVA6 Requirement Specification</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/02_cva6_requirements/cva6_requirements_specification.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cva6-requirement-specification">
+<h1>CVA6 Requirement Specification<a class="headerlink" href="#cva6-requirement-specification" title="Link to this heading"></a></h1>
+<p>Editor: <strong>Jérôme Quévremont</strong></p>
+<section id="license">
+<span id="id1"></span><h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>Copyright 2022 OpenHW Group and Thales
+Copyright 2018 ETH Zürich and University of Bologna</p>
+<p>SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1</p>
+<p>Licensed under the Solderpad Hardware License v 2.1 (the “License”);
+you may not use this file except in compliance with the License, or,
+at your option, the Apache License version 2.0. You may obtain a copy
+of the License at <a class="reference external" href="https://solderpad.org/licenses/SHL-2.1/">https://solderpad.org/licenses/SHL-2.1/</a>.
+Unless required by applicable law or agreed to in writing, any work
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.</p>
+</section>
+<section id="introduction">
+<span id="id2"></span><h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>CVA6 is a RISC-V compatible application processor core that can be
+configured as a 32- or 64-bit core (RV32 or RV64). It includes L1
+caches, optional MMU, optional PMP and optional FPU.</p>
+<p>It is an industrial evolution of ARIANE created by ETH Zürich and the
+University of Bologna. It is written in SystemVerilog and maintained at
+the OpenHW Foundation, part of Eclipse Foundation.</p>
+<p>This specification is organized as requirements that apply to the “Scope
+of the IP”.</p>
+<p>The requirement list is maintained by the project committers.</p>
+<p>The specification is complemented by a user’s guide.</p>
+<p>A list of abbreviations is available at the end of this document.</p>
+</section>
+<section id="scope">
+<span id="id3"></span><h2>Scope<a class="headerlink" href="#scope" title="Link to this heading"></a></h2>
+<section id="scope-of-the-ip">
+<span id="id4"></span><h3>Scope of the IP<a class="headerlink" href="#scope-of-the-ip" title="Link to this heading"></a></h3>
+<p>The <strong>scope of the IP</strong> is the subsystem that is specified below and
+that will undergo verification with a 100% coverage goal. In the
+verification plans, the scope of the IP can be broken down in several
+DUT (design under test).</p>
+<p>The scope of the IP is the <strong>CVA6 hardware</strong> supporting all the features
+used in products based on CVA6.</p>
+<p>CVA6 exists in two main configurations: <strong>CV64A6</strong> and <strong>CV32A6</strong>. A
+requirement referring to CVA6 applies to both configurations.</p>
+<p><img alt="cva6 scope" src="../_images/cva6_scope.png" /></p>
+<p>As displayed in the picture above, the IP comprises:</p>
+<ul class="simple">
+<li><p>The CVA6 core;</p></li>
+<li><p>L1 caches;</p></li>
+<li><p>Optional FPU;</p></li>
+<li><p>Optional MMU;</p></li>
+<li><p>Optional PMP;</p></li>
+<li><p>CSR;</p></li>
+<li><p>Performance counters;</p></li>
+<li><p>AXI interface;</p></li>
+<li><p>Interface with the P-Mesh coherence system of OpenPiton.</p></li>
+</ul>
+<p>These are not part of the IP (several solutions can be used):</p>
+<ul class="simple">
+<li><p>CLINT or PLIC Interrupt modules;</p></li>
+<li><p>Debug module (such as DTM);</p></li>
+<li><p>Support of L1 write-back cache (this might come later as an update).</p></li>
+</ul>
+<p>In addition to these main configurations, several fine grain parameters
+are available.</p>
+<p>Unless otherwise stated, an optional feature is controlled by a
+SystemVerilog parameter. If not selected, the optional feature will not
+be present in the netlist after synthesis.</p>
+<p>The reader’s attention is drawn to the difference between an optional
+feature (“…​shall support as an option…​”) and a desired goal (“…​should
+support…​”, “…​should reduce latency…​”).</p>
+<p>These are not in the scope of this specification:</p>
+<ul class="simple">
+<li><p>SW layers, such as compiler and OSes (that can however be part of the
+OpenHW Foundation CVA6 project);</p></li>
+<li><p>SW emulation of RISC-V optional extensions ( feasible but the scope
+of the IP is the core hardware);</p></li>
+<li><p>Other features included in the testbench (main memory, firmware,
+interconnect…), the verification coverage of which will not be
+measured;</p></li>
+<li><p>The vector coprocessor (CV-VEC) that is planned to interface with
+CV64A6.</p></li>
+</ul>
+</section>
+<section id="initial-release">
+<span id="verified-configurations"></span><h3>Initial Release<a class="headerlink" href="#initial-release" title="Link to this heading"></a></h3>
+<p>The CVA6 is highly configurable via SystemVerilog parameters.
+It is not practical to fully document and verify all possible combinations of parameters, so a set of “viable IP configurations” has been defined.</p>
+<p>The full list of parameters for these configuration are detailed in the users’ guide.</p>
+<p>Below are the configuration of the first releases of the CVA6.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Release ID</p></th>
+<th class="head"><p>Target</p></th>
+<th class="head"><p>ISA (main ext.)</p></th>
+<th class="head"><p>XLEN</p></th>
+<th class="head"><p>FPU</p></th>
+<th class="head"><p>CV-X-IF</p></th>
+<th class="head"><p>MMU</p></th>
+<th class="head"><p>L1 D$</p></th>
+<th class="head"><p>L1 I$</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CV32A60X</span></code></p></td>
+<td><p>ASIC</p></td>
+<td><p>IMC</p></td>
+<td><p>32</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>None</p></td>
+<td><p>None</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CV32A60AX</span></code></p></td>
+<td><p>ASIC</p></td>
+<td><p>IMC</p></td>
+<td><p>32</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Sv32</p></td>
+<td><p>16kB</p></td>
+<td><p>16 kB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CV64A60AX</span></code></p></td>
+<td><p>ASIC</p></td>
+<td><p>IMACFDB</p></td>
+<td><p>64</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Sv39</p></td>
+<td><p>32kB</p></td>
+<td><p>32 kB</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CV32A60X is the first fully verified (TRL-5) configuration of CVA6.</p>
+</div>
+</section>
+</section>
+<section id="references">
+<span id="id5"></span><h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<section id="applicable-specifications">
+<span id="id6"></span><h3>Applicable specifications<a class="headerlink" href="#applicable-specifications" title="Link to this heading"></a></h3>
+<p>To ease the reading, the reference to these specifications can be
+implicit in the requirements below. For the sake of precision, the
+requirements identify the versions of RISC-V extensions from these
+specifications.</p>
+<p>[RVunpriv] “The RISC-V Instruction Set Manual, Volume I: User-Level ISA,
+Document Version 20191213”, Editors Andrew Waterman and Krste Asanović,
+RISC-V Foundation, December 13, 2019.</p>
+<p>[RVpriv] “The RISC-V Instruction Set Manual, Volume II: Privileged
+Architecture, Document Version 20211203”, Editors Andrew Waterman, Krste
+Asanović and John Hauser, RISC-V Foundation, December 4, 2021.</p>
+<p>[RVdbg] “RISC-V External Debug Support, Document Version 0.13.2”,
+Editors Tim Newsome and Megan Wachs, RISC-V Foundation, March 22, 2019.</p>
+<p>[RVZc] “RISC-V Zc* Code Size Reduction v1.0”,
+Editor Tariq Kurd, Codasip, April, 2023.
+<a class="reference external" href="https://wiki.riscv.org/display/HOME/Recently+Ratified+Extensions">https://wiki.riscv.org/display/HOME/Recently+Ratified+Extensions</a></p>
+<p>[RVcompat] “RISC-V Architectural Compatibility Test Framework”,
+<a class="reference external" href="https://github.com/riscv-non-isa/riscv-arch-test">https://github.com/riscv-non-isa/riscv-arch-test</a>.</p>
+<p>[AXI] AXI Specification,
+<a class="reference external" href="https://developer.arm.com/documentation/ihi0022/hc">https://developer.arm.com/documentation/ihi0022/hc</a>.</p>
+<p>[CV-X-IF] “OpenHW Group Specification: Core-V eXtension interface (CV-X-IF)”, version 1.0.0,
+<a class="reference external" href="https://docs.openhwgroup.org/projects/openhw-group-core-v-xif/">https://docs.openhwgroup.org/projects/openhw-group-core-v-xif/</a>.</p>
+<p>[OpenPiton] “OpenPiton Microarchitecture Specification”, Princeton
+University,
+<a class="reference external" href="https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf">https://parallel.princeton.edu/openpiton/docs/micro_arch.pdf</a>.</p>
+</section>
+<section id="reference-documents">
+<span id="id7"></span><h3>Reference documents<a class="headerlink" href="#reference-documents" title="Link to this heading"></a></h3>
+<p>[RVcmo] “RISC-V Base Cache Management Operation ISA Extensions,
+version 1.0-fd39d01, 2022-01-12”</p>
+<p>[CLINT] Core-Local Interruptor (CLINT), “SiFive E31 Core Complex
+Manual v2p0”, chapter 6,
+<a class="reference external" href="https://static.dev.sifive.com/SiFive-E31-Manual-v2p0.pdf">https://static.dev.sifive.com/SiFive-E31-Manual-v2p0.pdf</a></p>
+</section>
+</section>
+<section id="functional-requirements">
+<span id="id8"></span><h2>Functional requirements<a class="headerlink" href="#functional-requirements" title="Link to this heading"></a></h2>
+<section id="general-requirement">
+<span id="id9"></span><h3>General requirement<a class="headerlink" href="#general-requirement" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>GEN‑10</p></td>
+<td><p>CVA6 shall be <strong>fully compliant
+with RISC-V specifications</strong>
+[RVunpriv], [RVpriv] and [RVdbg]
+by implementing all mandatory
+features for the set of
+extensions that are selected and
+by passing [RVcompat]
+compatibility tests.</p></td>
+</tr>
+</tbody>
+</table>
+<p>As the RISC-V specification leaves space for variations, this
+specification specifies some of these variations.</p>
+</section>
+<section id="risc-v-standard-instructions">
+<span id="id10"></span><h3>RISC-V standard instructions<a class="headerlink" href="#risc-v-standard-instructions" title="Link to this heading"></a></h3>
+<p>To ease tracing to verification, the extensions have been split in
+independent requirements.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>ISA‑10</p></td>
+<td><p>CV64A6 shall support <strong>RV64I</strong>
+base instruction set, version
+2.1.</p></td>
+</tr>
+<tr class="row-even"><td><p>ISA‑20</p></td>
+<td><p>CV32A6 shall support <strong>RV32I</strong>
+base instruction set, version
+2.1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ISA‑30</p></td>
+<td><p>CVA6 shall support the <strong>M</strong>
+extension (integer multiply and
+divide), version 2.0.</p></td>
+</tr>
+<tr class="row-even"><td><p>ISA‑40</p></td>
+<td><p>CVA6 shall support the <strong>A</strong>
+extension (atomic instructions),
+version 2.1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ISA‑50</p></td>
+<td><p>CV32A6 shall support as an
+<strong>option</strong> the <strong>F</strong> extension
+(single-precision
+floating-point), version 2.2.</p></td>
+</tr>
+<tr class="row-even"><td><p>ISA‑60</p></td>
+<td><p>CV64A6 shall support as an
+<strong>option</strong> the <strong>F</strong> and <strong>D</strong>
+extensions (single- and
+double-precision floating-point),
+version 2.2.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ISA‑70</p></td>
+<td><p>CV64A6 shall support as an
+<strong>option</strong> the <strong>F</strong> extension
+(single-precision without
+double-precision floating-point),
+version 2.2.</p></td>
+</tr>
+<tr class="row-even"><td><p>ISA‑80</p></td>
+<td><p>CVA6 shall support as an
+<strong>option</strong> the <strong>C</strong> extension
+(compressed instructions),
+version 2.0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ISA‑90</p></td>
+<td><p>CVA6 shall support the <strong>Zicsr</strong>
+extension (CSR instructions),
+version 2.0.</p></td>
+</tr>
+<tr class="row-even"><td><p>ISA‑100</p></td>
+<td><p>CVA6 shall support the
+<strong>Zifencei</strong> extension, version
+2.0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ISA-120</p></td>
+<td><p>CVA6 should support as an
+<strong>option</strong> the <strong>B</strong> extension
+(bit manipulation), version 1.0.
+The <strong>B</strong> extension comprises the
+<strong>Zba</strong>, <strong>Zbb</strong>, <strong>Zbc</strong>
+and <strong>Zbs</strong> extensions.</p></td>
+</tr>
+<tr class="row-even"><td><p>ISA-130</p></td>
+<td><p>CVA6 should support as an
+<strong>option</strong> the <strong>Zicond</strong>
+extension (integer conditional
+operations) version 1.0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ISA-140</p></td>
+<td><p>CVA6 should support as an
+<strong>option</strong> the <strong>Zcb</strong>
+extension version 1.0.</p></td>
+</tr>
+<tr class="row-even"><td><p>ISA-150</p></td>
+<td><p>CVA6 should support as an
+<strong>option</strong> the <strong>Zcmp</strong>
+extension version 1.0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ISA-160</p></td>
+<td><p>CVA6 should support as an
+<strong>option</strong> the <strong>Zcmt</strong>
+extension version 1.0.</p></td>
+</tr>
+<tr class="row-even"><td><p>ISA-170</p></td>
+<td><p>CVA6 should support as an
+<strong>option</strong> the <strong>Zkn</strong> extension
+(NIST algorithm suite). The
+<strong>Zkn</strong> extension comprises the
+<strong>Zbkb</strong>, <strong>Zbkc</strong>, <strong>Zbkx</strong>,
+<strong>Zkne</strong>, <strong>Zknd</strong> and <strong>Zknh</strong>
+extensions.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note to ISA-60 and ISA-70: CV64A6 cannot support the D extension without
+the F extension.</p>
+</section>
+<section id="privileges-and-virtual-memory">
+<span id="id11"></span><h3>Privileges and virtual memory<a class="headerlink" href="#privileges-and-virtual-memory" title="Link to this heading"></a></h3>
+<p>The MMU includes a TLB and a hardware PTW.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>PVL‑10</p></td>
+<td><p>CVA6 shall support <strong>machine</strong>,
+<strong>supervisor,</strong> <strong>user</strong> and
+<strong>debug</strong> privilege modes.</p></td>
+</tr>
+<tr class="row-even"><td><p>PVL‑20</p></td>
+<td><p>CV64A6 shall support as an
+<strong>option</strong> the <strong>Sv39</strong> virtual
+memory, version 1.11.</p></td>
+</tr>
+<tr class="row-odd"><td><p>PVL‑30</p></td>
+<td><p>CV32A6 shall support as an
+<strong>option</strong> the <strong>Sv32</strong> virtual
+memory version 1.11.</p></td>
+</tr>
+<tr class="row-even"><td><p>PVL‑40</p></td>
+<td><p>CVA6 instances that do not
+feature virtual memory shall
+support the <strong>Bare</strong> mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p>PVL‑50</p></td>
+<td><p>CVA6 shall feature PMP (physical
+memory protection) as an
+<strong>option</strong>.</p></td>
+</tr>
+<tr class="row-even"><td><p>PVL‑60</p></td>
+<td><p>CV64A6 shall support as an
+<strong>option</strong> the <strong>H</strong> extension
+(hypervisor) version 1.0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>PVL‑70</p></td>
+<td><p>CVA6 shall support as an
+<strong>option</strong> the <strong>Svnapot</strong>
+(NAPOT Translation Contiguity)
+extension version 1.0.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="csr">
+<span id="id12"></span><h3>CSR<a class="headerlink" href="#csr" title="Link to this heading"></a></h3>
+<p>There are no requirements related to CSR as they derive from other
+requirements, such as PVL-10, PVL-60… Details of CSRs are available
+in the user’s manual.</p>
+</section>
+<section id="performance-counters">
+<span id="id13"></span><h3>Performance counters<a class="headerlink" href="#performance-counters" title="Link to this heading"></a></h3>
+<p>Performance counters are important features for safety-critical
+applications.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>HPM‑10</p></td>
+<td><p>CVA6 shall implement the 64-bit
+<code class="docutils literal notranslate"><span class="pre">mcycle</span></code> and <code class="docutils literal notranslate"><span class="pre">minstret</span></code>
+standard performance counters
+(including their upper 32 bits
+counterparts <code class="docutils literal notranslate"><span class="pre">mcycleh</span></code> and
+<code class="docutils literal notranslate"><span class="pre">minstreth</span></code> in CV32A6) as per
+[RVpriv].</p></td>
+</tr>
+<tr class="row-even"><td><p>HPM‑20</p></td>
+<td><p>CVA6 shall implement as an
+<strong>option</strong> six generic 64-bit
+performance counters located in
+<code class="docutils literal notranslate"><span class="pre">hpmcounter3</span></code> to
+<code class="docutils literal notranslate"><span class="pre">hpmcounter8</span></code> (including their
+upper 32 bits counterparts in
+CV32A6: <code class="docutils literal notranslate"><span class="pre">hpmcounter3h</span></code> to
+<code class="docutils literal notranslate"><span class="pre">hpmcounter8h</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p>HPM‑30</p></td>
+<td><p>Each of the six generic
+performance counters shall be
+able to count events from one
+of these sources:</p>
+<ol class="arabic simple">
+<li><p>L1 I-Cache misses</p></li>
+<li><p>L1 D-Cache misses</p></li>
+<li><p>ITLB misses</p></li>
+<li><p>DTLB misses</p></li>
+<li><p>Load accesses</p></li>
+<li><p>Store accesses</p></li>
+<li><p>Exceptions</p></li>
+<li><p>Exception handler returns</p></li>
+<li><p>Branch instructions</p></li>
+<li><p>Branch mispredicts</p></li>
+<li><p>Branch exceptions</p></li>
+<li><p>Call</p></li>
+<li><p>Return</p></li>
+<li><p>MSB Full</p></li>
+<li><p>Instruction fetch Empty</p></li>
+<li><p>L1 I-Cache accesses</p></li>
+<li><p>L1 D-Cache accesses</p></li>
+<li><p>L1$ line invalidation</p></li>
+<li><p>I-TLB flush</p></li>
+<li><p>Integer instructions</p></li>
+<li><p>Floating point instructions</p></li>
+<li><p>Pipeline bubbles</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><p>HPM‑40</p></td>
+<td><p>The source of events counted by
+the six generic performance
+counters shall be selected by the
+<code class="docutils literal notranslate"><span class="pre">mhpmevent3</span></code> to <code class="docutils literal notranslate"><span class="pre">mhpmevent8</span></code>
+CSRs.</p></td>
+</tr>
+<tr class="row-odd"><td><p>HPM‑50</p></td>
+<td><p>CVA6 shall allow the supervisor
+access of performance counters
+through enabling of
+<code class="docutils literal notranslate"><span class="pre">mcounteren</span></code> CSR.</p></td>
+</tr>
+<tr class="row-even"><td><p>HPM‑60</p></td>
+<td><p>CVA6 shall allow the user access
+of performance counters through
+enabling of <code class="docutils literal notranslate"><span class="pre">scounteren</span></code> CSR.</p></td>
+</tr>
+<tr class="row-odd"><td><p>HPM‑70</p></td>
+<td><p>CVA6 shall implement the
+<code class="docutils literal notranslate"><span class="pre">mcountinhibit</span></code> counter-inhibit
+register.</p></td>
+</tr>
+<tr class="row-even"><td><p>HPM‑80</p></td>
+<td><p>CVA6 shall implement the
+read-only <code class="docutils literal notranslate"><span class="pre">cycle</span></code>, <code class="docutils literal notranslate"><span class="pre">instret</span></code>,
+<code class="docutils literal notranslate"><span class="pre">hpmcounter3</span></code> to
+<code class="docutils literal notranslate"><span class="pre">hpmcounter8</span></code> access to
+counters (and their upper 32-bit
+counterparts in CV32A6).</p></td>
+</tr>
+</tbody>
+</table>
+<p>The user’s manual details the list of counters, events and related
+controls.</p>
+</section>
+<section id="cache-requirements">
+<span id="id14"></span><h3>Cache requirements<a class="headerlink" href="#cache-requirements" title="Link to this heading"></a></h3>
+<p>Caches increase the performance of the processor with regard to memory
+accesses. Most of their added value for the IP is specified through
+performance requirements in another section. Here below are specific
+requirements for these caches.</p>
+<p>The project would like to adopt the recently ratified [RVcmo]
+specification. The analysis yet needs to be performed and will likely
+lead to an evolution of this specification.</p>
+<section id="l1-write-through-data-cache">
+<span id="id15"></span><h4>L1 write-through data cache<a class="headerlink" href="#l1-write-through-data-cache" title="Link to this heading"></a></h4>
+<p>In the requirements below, L1WTD refers to the L1 write-through data
+cache that is part of the CVA6.</p>
+<p>The first two requirements express the write-through feature. Some
+requirements are useful for security- and safety-critical applications
+where a high level of timing predictability is needed.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>L1W‑10</p></td>
+<td><p>L1WTD shall reflect all write
+accesses (stores) by the CVA6
+core to the external memory
+within an upper-bounded number of
+cycles. The upper-bound is fixed
+but not specified here.</p></td>
+</tr>
+<tr class="row-even"><td><p>L1W‑20</p></td>
+<td><p>L1WTD shall support RISC-V
+Weak Memory Ordering (RVWMO).</p></td>
+</tr>
+<tr class="row-odd"><td><p>L1W‑30</p></td>
+<td><p>L1WTD should offer the
+following size/ways
+configurations:</p>
+<ul class="simple">
+<li><p>0 kbyte (no cache),</p></li>
+<li><p>4 kbytes (4 or 8 ways),</p></li>
+<li><p>8 kbytes (4, 8 or 16 ways),</p></li>
+<li><p>16 kbytes (4, 8 or 16 ways),</p></li>
+<li><p>32 kbytes (8 or 16 ways).</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>L1W‑40</p></td>
+<td><p>L1WTD shall support datasize
+extension to store EDC, ECC or
+other information. The numbers of
+bits of the extension is defined
+by a compile-time parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p>L1W‑50</p></td>
+<td><p>To interface with the P-Mesh
+coherence system of OpenPiton,
+L1WTD shall have a line
+invalidate external command that
+invalidates the content of a line
+upon request.</p></td>
+</tr>
+<tr class="row-even"><td><p>L1W‑60</p></td>
+<td><p>Some physical memory regions
+shall be configurable as not
+L1WTD cacheable at design time.</p></td>
+</tr>
+<tr class="row-odd"><td><p>L1W‑70</p></td>
+<td><p>It shall be possible to
+invalidate L1WTD content with the
+<code class="docutils literal notranslate"><span class="pre">FENCE.T</span></code> command.</p></td>
+</tr>
+<tr class="row-even"><td><p>L1W‑80</p></td>
+<td><p>The replacement policy of L1WTD
+shall be LFSR (pseudo-random) or
+LRU (least recently used).</p></td>
+</tr>
+<tr class="row-odd"><td><p>L1W‑90</p></td>
+<td><p>L1WTD should offer a feature to
+transform cache ways into a
+scratchpad. Alternatively, this
+requirement can be realized with
+a separate scratchpad.</p></td>
+</tr>
+<tr class="row-even"><td><p>L1W‑100</p></td>
+<td><p>A custom CSR shall allow to
+disable or enable L1WTD.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Cache counters are defined in the performance counters.</p>
+<p>32 kbytes &amp; 4 ways is not feasible with the current architecture. Other
+size/ways configurations may be implemented in the design.</p>
+<p>The design will support one replacement policy allowed by L1W-80.</p>
+<p>These L1WTD requirements apply to the legacy WT cache from PULP.</p>
+<p>They also apply to the HPDCache that is superseding the legacy PULP caches.
+Note that the HPDCache has more features, such as write-back options, that
+are beyond the scope of this specification.</p>
+</section>
+<section id="l1-instruction-cache">
+<span id="id16"></span><h4>L1 Instruction cache<a class="headerlink" href="#l1-instruction-cache" title="Link to this heading"></a></h4>
+<p>In the requirements below, L1I refers to the L1 instruction cache that
+is part of the CVA6.</p>
+<p>Some requirements are useful for security- and safety-critical
+applications where a high level of timing predictability is needed.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>L1I‑10</p></td>
+<td><p>L1I should offer the following
+size/ways configurations:</p>
+<ul class="simple">
+<li><p>4 kbytes: 3, 4 or 8 ways,</p></li>
+<li><p>8 kbytes: 4, 8, or 16 ways,</p></li>
+<li><p>16 kbytes: 4, 8 or 16 ways,</p></li>
+<li><p>32 kbytes: 8 or 16 ways.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>L1I‑20</p></td>
+<td><p>L1I shall support datasize
+extension to store EDC, ECC or
+other information. The numbers of
+bits of the extension is defined
+by a compile-time parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p>L1I‑30</p></td>
+<td><p>To interface with the P-Mesh
+coherence system of OpenPiton,
+L1I shall have a line invalidate
+external command that invalidates
+the content of a line upon
+request.</p></td>
+</tr>
+<tr class="row-even"><td><p>L1I‑40</p></td>
+<td><p>It shall be possible to
+invalidate L1I content with the
+<code class="docutils literal notranslate"><span class="pre">FENCE.T</span></code> command.</p></td>
+</tr>
+<tr class="row-odd"><td><p>L1I‑50</p></td>
+<td><p>The replacement policy of L1I
+shall be LFSR (pseudo-random) or
+LRU (least recently used).</p></td>
+</tr>
+<tr class="row-even"><td><p>L1I‑60</p></td>
+<td><p>L1I should offer a feature to
+transform cache ways into a
+scratchpad. Alternatively, this
+requirement can be realized with
+a separate scratchpad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>L1I‑70</p></td>
+<td><p>A custom CSR shall allow to
+disable or enable L1I.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Cache counters are defined in the performance counters section.</p>
+<p>32 kbytes &amp; 4 ways is not feasible with the current architecture. Other
+size/ways configurations may be implemented in the design.</p>
+<p>The design will support one replacement policy allowed by L1I-50.</p>
+<p>These requirements apply to the HPICache, a modified version of HPDCache, that
+will likely supersede the legacy PULP cache.</p>
+</section>
+</section>
+<section id="fence-t-custom-instruction">
+<span id="id17"></span><h3>FENCE.T custom instruction<a class="headerlink" href="#fence-t-custom-instruction" title="Link to this heading"></a></h3>
+<p>There are discussions within RISC-V International to define a
+specification for <code class="docutils literal notranslate"><span class="pre">FENCE.T</span></code>. The specification below reflects the
+situation prior to this RISC-V specification, based on Nils Wistoff’s
+work. If a RISC-V specification is ratified, the CVA6 specification will
+likely switch to it.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>FET‑10</p></td>
+<td><p>CVA6 should support the
+<code class="docutils literal notranslate"><span class="pre">FENCE.T</span></code> instruction that
+ensures that the execution time
+of subsequent instructions is
+unrelated with predecessor
+instructions.</p></td>
+</tr>
+<tr class="row-even"><td><p>FET‑20</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FENCE.T</span></code> should be available
+in all privilege modes (machine,
+supervisor, user and hypervisor
+if present).</p></td>
+</tr>
+</tbody>
+</table>
+<p>FENCE.T goes beyond <code class="docutils literal notranslate"><span class="pre">FENCE</span></code> and <code class="docutils literal notranslate"><span class="pre">FENCE.I</span></code> as it clears L1 caches,
+TLB, branch predictors…​ It is a countermeasure for SPECTRE-like
+attacks. It is also useful in safety-critical applications to increase
+execution time predictability.</p>
+<p>It is not yet decided if the <code class="docutils literal notranslate"><span class="pre">FENCE.T</span></code> instruction arguments can be
+used to select a subset of microarchitecture features that will be
+cleared. The list of arguments, if any, will be detailed in the user’s
+guide.</p>
+</section>
+</section>
+<section id="ppa-targets">
+<span id="id18"></span><h2>PPA targets<a class="headerlink" href="#ppa-targets" title="Link to this heading"></a></h2>
+<p>These PPA targets will likely be updated when performance monitoring is
+integrated in the continuous integration flow.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>PPA‑10</p></td>
+<td><p>CVA6 should be resource-optimized
+on FPGA and ASIC targets.</p></td>
+</tr>
+<tr class="row-even"><td><p>PPA‑20</p></td>
+<td><p>CVA6 should target 3.0
+CoreMark/MHz , assuming a
+sufficiently fast memory
+hierarchy.</p></td>
+</tr>
+<tr class="row-odd"><td><p>PPA‑25</p></td>
+<td><p>CVA6 should target as an
+<strong>option</strong> 4.5
+CoreMark/MHz, assuming a
+sufficiently fast memory
+hierarchy.</p></td>
+</tr>
+<tr class="row-even"><td><p>PPA‑30</p></td>
+<td><p>CV32A6 should run at more than
+150 MHz in the cv32a6_imac_sv32
+configuration on Kintex 7 FPGA
+technology, commercial -2 speed
+grade.</p></td>
+</tr>
+<tr class="row-odd"><td><p>PPA‑40</p></td>
+<td><p>CV64A6 should run at more than
+900 MHz in the cv64a6_imacfd_sv39
+configuration on 28FDSOI
+technology in the worst case
+frequency corner with the fastest
+threshold voltage.</p></td>
+</tr>
+<tr class="row-even"><td><p>PPA‑50</p></td>
+<td><p>TBD: Placeholder for
+single-precision floating
+performance per MHz.</p></td>
+</tr>
+<tr class="row-odd"><td><p>PPA‑60</p></td>
+<td><p>TBD: Placeholder for
+double-precision floating
+performance per MHz.</p></td>
+</tr>
+</tbody>
+</table>
+<p>PPA-25 comes with the optional dual-issue feature.</p>
+</section>
+<section id="interface-requirements">
+<span id="id19"></span><h2>Interface requirements<a class="headerlink" href="#interface-requirements" title="Link to this heading"></a></h2>
+<section id="memory-bus">
+<span id="id20"></span><h3>Memory bus<a class="headerlink" href="#memory-bus" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>MEM‑10</p></td>
+<td><p>CVA6 memory interface shall
+comply with AXI5 specification
+including the Atomic_Transactions
+property support as defined in
+[AXI] section E1.1.</p></td>
+</tr>
+<tr class="row-even"><td><p>MEM‑20</p></td>
+<td><p>CVA6 AXI memory interface shall
+feature user bit extensions on
+the data bus (<code class="docutils literal notranslate"><span class="pre">WUSER</span></code> and
+<code class="docutils literal notranslate"><span class="pre">RUSER</span></code> as per [AXI]) in
+connection with the L1I and L1WTD
+datasize extensions, with a
+number of user bits greater or
+equal to 0.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The interface complies with AXI4. However, Atomic_Transactions is only
+defined in AXI5. For the sake of clarity, we do not use the AXI5-Lite
+interface.</p>
+</section>
+<section id="debug">
+<span id="id21"></span><h3>Debug<a class="headerlink" href="#debug" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>DBG‑10</p></td>
+<td><p>CVA6 shall implement both the
+Abstracted Command and Execution
+based features outlined in
+chapter 4 of [RVdbg].</p></td>
+</tr>
+</tbody>
+</table>
+<p>In addition, there can be an external debug module, not in the scope of
+the IP.</p>
+</section>
+<section id="interrupts">
+<span id="id22"></span><h3>Interrupts<a class="headerlink" href="#interrupts" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>IRQ‑10</p></td>
+<td><p>CVA6 shall implement interrupt
+handling registers as per the
+RISC-V privilege specification
+and interface with a CLINT
+implementation.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coprocessor-interface">
+<span id="id23"></span><h3>Coprocessor interface<a class="headerlink" href="#coprocessor-interface" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>XIF‑10</p></td>
+<td><p>To extend the supported
+instructions, CVA6 shall have a
+coprocessor interface that
+supports the “Issue”, “Commit”
+and “Result” interfaces of the
+[CV-X-IF] specification.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="multi-core-interface">
+<span id="id24"></span><h3>Multi-core interface<a class="headerlink" href="#multi-core-interface" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>TRI‑10</p></td>
+<td><p>CVA6 shall have the
+Transaction-Response Interface
+(TRI) needed to interface with
+the P-Mesh coherence system of
+OpenPiton, according to
+[OpenPiton].</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="design-rules">
+<span id="id25"></span><h2>Design rules<a class="headerlink" href="#design-rules" title="Link to this heading"></a></h2>
+<p>As different teams have different design rules and to ease the
+integration in FPGA and ASIC design flows:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>RUL‑10</p></td>
+<td><p>CVA6 should have a configurable
+reset signal:
+synchronous/asynchronous, active
+on high or low levels.</p></td>
+</tr>
+<tr class="row-even"><td><p>RUL‑20</p></td>
+<td><p>CVA6 shall be a super-synchronous
+design with a single clock input.</p></td>
+</tr>
+<tr class="row-odd"><td><p>RUL‑30</p></td>
+<td><p>CVA6 should not include
+multi-cycle paths.</p></td>
+</tr>
+<tr class="row-even"><td><p>RUL‑40</p></td>
+<td><p>CVA6 should not include
+technology-dependent blocks.</p></td>
+</tr>
+<tr class="row-odd"><td><p>RUL-50</p></td>
+<td><p>CVA6 should support as an
+<strong>option</strong> protection of SRAM
+against single-event upsets (SEU).</p></td>
+</tr>
+</tbody>
+</table>
+<p>If technology-dependent blocks are used, e.g. to improve PPA on certain
+targets, the equivalent technology-independent block should be
+available. Parameters can be used to select between the implementations.</p>
+<p>Also refer to <a class="reference external" href="https://github.com/openhwgroup/cva6/blob/master/CONTRIBUTING.md">https://github.com/openhwgroup/cva6/blob/master/CONTRIBUTING.md</a>
+for contribution guidelines.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>RUL-10 is not supported by CVA6 as of now.</p>
+</div>
+</section>
+<section id="list-of-abbreviations">
+<span id="id26"></span><h2>List of abbreviations<a class="headerlink" href="#list-of-abbreviations" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">ASIC: Application Specific Integrated Circuit</div>
+<div class="line">CSR: Control and Status Register</div>
+<div class="line">D$: Data cache</div>
+<div class="line">DTM: Debug Transport Module</div>
+<div class="line">DUT: Design Under Test</div>
+<div class="line">DV: Design Verification</div>
+<div class="line">ECC: Error Correction Code</div>
+<div class="line">EDC: Error Detection Code</div>
+<div class="line">FPGA: Field Programmable Gate Array</div>
+<div class="line">FPU: Floating Point Unit</div>
+<div class="line">I$: Instruction cache</div>
+<div class="line">IP: Intellectual Property block</div>
+<div class="line">ISA: Instruction Set Architecture</div>
+<div class="line">kB: kilo-bytes</div>
+<div class="line">L1: Level 1 cache</div>
+<div class="line">L1I: Level 1 Instruction cache</div>
+<div class="line">L1WTD: Level 1 Write-Through data cache</div>
+<div class="line">LFSR: Linear Feedback Shift Register</div>
+<div class="line">LRU: Least Recently Used</div>
+<div class="line">MMU: Memory Management Unit</div>
+<div class="line">NAPOT: Naturally aligned power-of-two</div>
+<div class="line">OS: Operating System</div>
+<div class="line">PF: Project Freeze</div>
+<div class="line">PPA: Power Performance Area</div>
+<div class="line">PMP: Physical Memory Protection</div>
+<div class="line">PTW: Page Table Walk</div>
+<div class="line">RW: Read Write</div>
+<div class="line">SW: Software</div>
+<div class="line">TLB: Translation Lookaside Buffer</div>
+<div class="line">WB: Write-Back</div>
+<div class="line">WT: Write-Through</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="CVA6: An application class RISC-V CPU core" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../01_cva6_user/index.html" class="btn btn-neutral float-right" title="CVA6 User Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

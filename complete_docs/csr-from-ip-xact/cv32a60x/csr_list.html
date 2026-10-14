@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSR list &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CVA6
+              <img src="../../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CSR list</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/csr-from-ip-xact/cv32a60x/csr_list.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="csr-list">
+<h1>CSR list<a class="headerlink" href="#csr-list" title="Link to this heading"></a></h1>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Display Name</p></th>
+<th class="head"><p>Address Offset</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MSTATUS</span></code></p></td>
+<td><p>Machine Status Register</p></td>
+<td><p>0x300</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MISA</span></code></p></td>
+<td><p>Machine ISA Register</p></td>
+<td><p>0x301</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MIE</span></code></p></td>
+<td><p>Machine Interrupt Enable Register</p></td>
+<td><p>0x304</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MTVEC</span></code></p></td>
+<td><p>Machine Trap Vector Register</p></td>
+<td><p>0x305</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MSTATUSH</span></code></p></td>
+<td><p>Upper 32-bits of Machine Status Register</p></td>
+<td><p>0x310</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MHPMEVENT3-31</span></code></p></td>
+<td><p>Machine HW Perf Monitoring Event Selector</p></td>
+<td><p>0x323-0x33f</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MSCRATCH</span></code></p></td>
+<td><p>Machine Scratch</p></td>
+<td><p>0x340</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MEPC</span></code></p></td>
+<td><p>Machine Exception Program Counter</p></td>
+<td><p>0x341</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MCAUSE</span></code></p></td>
+<td><p>Machine Cause</p></td>
+<td><p>0x342</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MTVAL</span></code></p></td>
+<td><p>Machine Trap Value</p></td>
+<td><p>0x343</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MIP</span></code></p></td>
+<td><p>Machine Interrupt Pending</p></td>
+<td><p>0x344</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PMPCFG0-3</span></code></p></td>
+<td><p>Physical Memory Protection Config 0</p></td>
+<td><p>0x3a0-0x3a3</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PMPADDR0-15</span></code></p></td>
+<td><p>Physical Memory Protection Address</p></td>
+<td><p>0x3b0-0x3bf</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ICACHE</span></code></p></td>
+<td><p>Instruction Cache</p></td>
+<td><p>0x7C0</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MCYCLE</span></code></p></td>
+<td><p>M-mode Cycle counter</p></td>
+<td><p>0xB00</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MINSTRET</span></code></p></td>
+<td><p>Machine Instruction Retired counter</p></td>
+<td><p>0xB02</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MCYCLEH</span></code></p></td>
+<td><p>Upper 32-bits of M-mode Cycle counter</p></td>
+<td><p>0xB80</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MINSTRETH</span></code></p></td>
+<td><p>Upper 32-bits of Machine Instruction Retired counter</p></td>
+<td><p>0xB82</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MHPMCOUNTER3-31</span></code></p></td>
+<td><p>Machine HW Performance Monitoring Counter</p></td>
+<td><p>0xb03-0xb1f</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MHPMCOUNTERH3-31</span></code></p></td>
+<td><p>Upper 32 bits of Machine HW Perf Monitoring Counter</p></td>
+<td><p>0xb83-0xb9f</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CYCLE</span></code></p></td>
+<td><p>Cycle counter</p></td>
+<td><p>0xC00</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">INSTRET</span></code></p></td>
+<td><p>Instruction Retired counter</p></td>
+<td><p>0xC02</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CYCLEH</span></code></p></td>
+<td><p>Upper 32-bits of Cycle counter</p></td>
+<td><p>0xC80</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">INSTRETH</span></code></p></td>
+<td><p>Upper 32-bits of Instruction Retired counter</p></td>
+<td><p>0xC82</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MVENDORID</span></code></p></td>
+<td><p>Machine Vendor ID</p></td>
+<td><p>0xF11</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MARCHID</span></code></p></td>
+<td><p>Machine Architecture ID</p></td>
+<td><p>0xF12</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MIMPID</span></code></p></td>
+<td><p>Machine Implementation ID</p></td>
+<td><p>0xF13</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MHARTID</span></code></p></td>
+<td><p>Machine HW Thread ID</p></td>
+<td><p>0xF14</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

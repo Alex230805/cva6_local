@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instruction Decode &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Issue Stage" href="issue_stage.html" />
+    <link rel="prev" title="Instruction Fetch Stage" href="if_stage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 Design Document (deprecated)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcgen_stage.html">PC Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="if_stage.html">Instruction Fetch Stage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Instruction Decode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#instruction-re-aligner">Instruction Re-aligner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compressed-decoder">Compressed Decoder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decoder">Decoder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="issue_stage.html">Issue Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html">Execute Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html">Memory Management Unit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#translation-lookaside-buffer">Translation Lookaside Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#shared-translation-lookaside-buffer">Shared Translation Lookaside Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#page-table-walker">Page Table Walker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commit_stage.html">Commit Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 Design Document (deprecated)</a></li>
+      <li class="breadcrumb-item active">Instruction Decode</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/03_cva6_design/id_stage.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="instruction-decode">
+<h1>Instruction Decode<a class="headerlink" href="#instruction-decode" title="Link to this heading"></a></h1>
+<p>Instruction decode is the first pipeline stage of the processor’s
+back-end. Its main purpose is to distill instructions from the data
+stream it gets from IF stage, decode them and send them to the issue
+stage.</p>
+<p>With the introduction of compressed instructions (in general variable
+length instructions) the ID stage gets a little bit more complicated: It
+has to search the incoming data stream for potential instructions,
+re-align them and (in the case of compressed instructions) decompress
+them. Furthermore, as we will know at the end of this stage whether the
+decoded instruction is branch instruction it passes this information on
+to the issue stage.</p>
+<section id="instruction-re-aligner">
+<h2>Instruction Re-aligner<a class="headerlink" href="#instruction-re-aligner" title="Link to this heading"></a></h2>
+<p><img alt="Instruction re-alignment Process" src="../_images/instr_realign.png" /></p>
+<p>As mentioned above the instruction re-aligner checks the incoming data
+stream for compressed instructions. Compressed instruction have their
+last bit unequal to 11 while normal 32-bit instructions have their last
+two bit set to 11. The main complication arises from the fact that a
+compressed instruction can make a normal instruction unaligned (e.g.:
+the instruction starts at a half word boundary). This can (in the worst
+case) mandate two memory accesses before the instruction can be fully
+decoded. We therefore need to make sure that the fetch FIFO has enough
+space to keep the second part of the instruction. Therefore the
+instruction re-aligner needs to keep track of whether the previous
+instruction was unaligned or compressed to correctly decide what to do
+with the upcoming instruction.</p>
+<p>Furthermore, the branch-prediction information is used to only output
+the correct instruction to the issue stage. As we only predict on
+word-aligned PCs the passed on branch prediction information needs to be
+investigated to rule out which instruction we are actually need, in case
+there are two instructions (compressed or unaligned) present. This means
+that we potentially have to discard one of the two instructions (the
+instruction before the branch target). For that reason the instruction
+re-aligner also needs to check whether this fetch entry contains a valid
+and taken branch. Depending on whether it is predicted on the upper 16
+bit it has to discard the lower 16 bit accordingly. This process is
+illustrate in .</p>
+</section>
+<section id="compressed-decoder">
+<h2>Compressed Decoder<a class="headerlink" href="#compressed-decoder" title="Link to this heading"></a></h2>
+<p>As mentioned earlier we also need to decompress all the compressed
+instructions. This is done by a small combinatorial circuit which takes
+a 16-bit compressed instruction and expands it to its 32-bit equivalent.
+All compressed instructions have a 32-bit equivalent.</p>
+</section>
+<section id="decoder">
+<h2>Decoder<a class="headerlink" href="#decoder" title="Link to this heading"></a></h2>
+<p>The decoder either takes the raw instruction data or the uncompressed
+equivalent of the 16-bit instruction and decodes them accordingly. It
+transforms the raw bits to the most fundamental control structure in
+Ariane, a scoreboard entry:</p>
+<ul class="simple">
+<li><p><strong>PC</strong>: PC of instruction</p></li>
+<li><p><strong>FU</strong>: functional unit to use</p></li>
+<li><p><strong>OP</strong>: operation to perform in each functional unit</p></li>
+<li><p><strong>RS1</strong>: register source address 1</p></li>
+<li><p><strong>RS2</strong>: register source address 2</p></li>
+<li><p><strong>RD</strong>: register destination address</p></li>
+<li><p><strong>Result</strong>: for unfinished instructions this field also holds the
+immediate</p></li>
+<li><p><strong>Valid</strong>: is the result valid</p></li>
+<li><p><strong>Use I Immediate</strong>: should we use the immediate as operand b?</p></li>
+<li><p><strong>Use Z Immediate</strong>: use zimm as operand a</p></li>
+<li><p><strong>Use PC</strong>: set if we need to use the PC as operand a, PC from
+exception</p></li>
+<li><p><strong>Exception</strong>: exception has occurred</p></li>
+<li><p><strong>Branch predict</strong>: branch predict scoreboard data structure</p></li>
+<li><p><strong>Is compressed</strong>: signals a compressed instructions, we need this
+information at the commit stage if we want jump accordingly e.g.:
+<code class="docutils literal notranslate"><span class="pre">+4</span></code>, <code class="docutils literal notranslate"><span class="pre">+2</span></code></p></li>
+</ul>
+<p>It gets incrementally processed further down the pipeline. The
+scoreboard entry controls operand selection, dispatch and the execution.
+Furthermore it contains an exception entry which strongly ties the
+particular instruction to its potential exception. As the first time an
+exception could have occurred was already in the IF stage the decoder
+also makes sure that this exception finds its way into the scoreboard
+entry. A potential illegal instruction exception can occur during
+decoding. If this is the case and no previous exception has happened the
+decoder will set the corresponding exceptions field along with the
+faulting bits (in <code class="docutils literal notranslate"><span class="pre">[s|m]tval</span></code>). As this is not the only point in which
+illegal instruction exception can happen and an illegal instruction
+exception always asks for the faulting address in the <code class="docutils literal notranslate"><span class="pre">[s|m]tval</span></code> field
+this field gets set here anyway. But only if instruction fetch didn’t
+throw an exception for this instruction yet.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="if_stage.html" class="btn btn-neutral float-left" title="Instruction Fetch Stage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="issue_stage.html" class="btn btn-neutral float-right" title="Issue Stage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

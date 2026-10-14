@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RVZbkb: Bitmanip instructions for Cryptography &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RVZbkc: Carry-less multiplication for Cryptography" href="RISCV_Instructions_RVZbkc.html" />
+    <link rel="prev" title="RVZbs: Single-bit instructions" href="RISCV_Instructions_RVZbs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CVA6_user_guide.html">OpenHW Group CVA6 User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html">Programmer’s View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Custom_Instructions.html">Custom RISC-V instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMA.html">PMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMP.html">PMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html">Traps, Interrupts, Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Compiler_Command_Lines.html">Compiler command lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html">CVA6 RISC-V Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html">RV32I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32M.html">RV32M</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32A.html">RV32A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html">RV32C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32ZCb.html">RV32Zcb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZcmp.html">RVZcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZba.html">RVZba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html">RVZbb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbc.html">RVZbc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbs.html">RVZbs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RVZbkb</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pack-instructions">Pack instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rv32-and-rv64-instructions">RV32 and RV64 Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rv64-specific-instructions">RV64 specific instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#zip-instructions">Zip instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rv32-specific-instructions">RV32 specific Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bits-in-byte-reverse">Bits-in-Byte-reverse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">RV32 and RV64 Instructions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkc.html">RVZbkc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkx.html">RVZbkx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZkne.html">RVZkne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknd.html">RVZknd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknh.html">RVZknh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicsr.html">RVZicsr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZifencei.html">RVZifencei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicond.html">RVZicond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X_list.html">CV32A60X CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html">CV32A60X CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX_list.html">CV32A60AX CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX.html">CV32A60AX CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU_list.html">CV64A6_MMU CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU.html">CV64A6_MMU CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CV64A6_Control_Status_Registers.html">CV64A6 CSR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Cache_Control.html">CSR cache control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Performance_Counters.html">CSR Performance Counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters_Configuration.html">Parameters and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html">AXI Bus Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html">CV-X-IF Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html">Core Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 User Manual</a></li>
+      <li class="breadcrumb-item active">RVZbkb: Bitmanip instructions for Cryptography</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_cva6_user/RISCV_Instructions_RVZbkb.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p id="cva6-riscv-instructions-rv32zbkb"><em>Applicability of this chapter to configurations:</em></p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Configuration</p></th>
+<th class="head"><p>Implementation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CV32A60AX</p></td>
+<td><p>Implemented extension</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV64A6_MMU</p></td>
+<td><p>Implemented extension</p></td>
+</tr>
+</tbody>
+</table>
+<section id="rvzbkb-bitmanip-instructions-for-cryptography">
+<h1>RVZbkb: Bitmanip instructions for Cryptography<a class="headerlink" href="#rvzbkb-bitmanip-instructions-for-cryptography" title="Link to this heading"></a></h1>
+<p>The following instructions comprise the Zbkb extension:</p>
+<section id="pack-instructions">
+<h2>Pack instructions<a class="headerlink" href="#pack-instructions" title="Link to this heading"></a></h2>
+<p>The Pack instructions can be implemented by packing the lower halves of both source operands into the destination register for pack and packw instructions and by packing the lower bytes of the source operands into the destination register for packh.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RV32</p></th>
+<th class="head"><p>RV64</p></th>
+<th class="head"><p>Mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>pack rd, rs1, rs2</p></td>
+</tr>
+<tr class="row-odd"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>packh rd, rs1, rs2</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>✔</p></td>
+<td><p>packw rd, rs1, rs2</p></td>
+</tr>
+</tbody>
+</table>
+<section id="rv32-and-rv64-instructions">
+<h3>RV32 and RV64 Instructions<a class="headerlink" href="#rv32-and-rv64-instructions" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>PACK</strong>: Pack low halves of registers</p>
+<blockquote>
+<div><p><strong>Format</strong>: pack rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction packs the lower halves of rs1 and rs2 into rd, with rs1 in the lower half and rs2 in the upper half.</p>
+<p><strong>Pseudocode</strong>: X(rd) = X(rs2)[XLEN/2-1..0] &#64; X(rs1)[XLEN/2-1..0];</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>PACKH</strong>: Pack low bytes of registers</p>
+<blockquote>
+<div><p><strong>Format</strong>: packh rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction packs the least-significant bytes of rs1 and rs2 into the 16 least-significant bits of rd, zero extending the rest of rd.</p>
+<p><strong>Pseudocode</strong>: X(rd) = EXTZ(X(rs2)[7..0] &#64; X(rs1)[7..0]);</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="rv64-specific-instructions">
+<h3>RV64 specific instructions<a class="headerlink" href="#rv64-specific-instructions" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>PACKW</strong>: Pack low 16-bits of registers</p>
+<blockquote>
+<div><p><strong>Format</strong>: packw rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction packs the low 16 bits of rs1 and rs2 into the 32 least-significant bits of rd, sign extending the 32-bit result to the rest of rd.</p>
+<p><strong>Pseudocode</strong>: X(rd) = EXTS(X(rs2)[15..0] &#64; X(rs1)[15..0]);</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="zip-instructions">
+<h2>Zip instructions<a class="headerlink" href="#zip-instructions" title="Link to this heading"></a></h2>
+<p>These instructions are used to extract bits from the source registers and interleave them into the destination register.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RV32</p></th>
+<th class="head"><p>RV64</p></th>
+<th class="head"><p>Mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>✔</p></td>
+<td></td>
+<td><p>zip rd, rs</p></td>
+</tr>
+<tr class="row-odd"><td><p>✔</p></td>
+<td></td>
+<td><p>unzip rd, rs</p></td>
+</tr>
+</tbody>
+</table>
+<section id="rv32-specific-instructions">
+<h3>RV32 specific Instructions<a class="headerlink" href="#rv32-specific-instructions" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>ZIP</strong>: Zip</p>
+<blockquote>
+<div><p><strong>Format</strong>: zip rd, rs</p>
+<p><strong>Description</strong>: This instruction places bits in the low half of the source register into the even bit positions of the destination, and bits in the high half of the source register into the odd bit positions of the destination. It is the inverse of the unzip instruction.</p>
+<dl>
+<dt><strong>Pseudocode</strong>: foreach (i from 0 to 15) {</dt><dd><blockquote>
+<div><p>X(rd)[i &lt;&lt; 1] = X(rs1)[i]
+X(rd)[i+1 &lt;&lt; 1] = X(rs1)[i+16]</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>UNZIP</strong>: Unzip</p>
+<blockquote>
+<div><p><strong>Format</strong>: unzip rd, rs</p>
+<p><strong>Description</strong>: This instruction places the even bits of the source register into the low half of the destination, and the odd bits of the source into the high bits of the destination. It is the inverse of the zip instruction.</p>
+<dl>
+<dt><strong>Pseudocode</strong>: foreach (i from 0 to 15) {</dt><dd><blockquote>
+<div><p>X(rd)[i] = X(rs1)[i &lt;&lt; 1]
+X(rd)[i+16] = X(rs1)[i+1 &lt;&lt; 1]</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="bits-in-byte-reverse">
+<h2>Bits-in-Byte-reverse<a class="headerlink" href="#bits-in-byte-reverse" title="Link to this heading"></a></h2>
+<p>brev8 reverses the bits in each byte of the source register.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RV32</p></th>
+<th class="head"><p>RV64</p></th>
+<th class="head"><p>Mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>brev8 rd, rs</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id1">
+<h3>RV32 and RV64 Instructions<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>BREV8</strong>: Reverse bits in bytes</p>
+<blockquote>
+<div><p><strong>Format</strong>:  brev8 rd, rs</p>
+<p><strong>Description</strong>: This instruction reverses the order of the bits in every byte of a register.</p>
+<dl>
+<dt><strong>Pseudocode</strong>: foreach (i from 0 to xlen by 8) {</dt><dd><blockquote>
+<div><dl class="simple">
+<dt>foreach (j from 0 to 7) {</dt><dd><p>X(rd)[(i&lt;&lt;3)+j] = X(rs)[(i&lt;&lt;3)+(7-j)];</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="RISCV_Instructions_RVZbs.html" class="btn btn-neutral float-left" title="RVZbs: Single-bit instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="RISCV_Instructions_RVZbkc.html" class="btn btn-neutral float-right" title="RVZbkc: Carry-less multiplication for Cryptography" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

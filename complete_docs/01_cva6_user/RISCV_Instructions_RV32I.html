@@ -1,0 +1,585 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RV32I Base Integer Instruction Set &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RV32M Multiplication and Division Instructions" href="RISCV_Instructions_RV32M.html" />
+    <link rel="prev" title="CVA6 RISC-V Instructions" href="RISCV_Instructions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CVA6_user_guide.html">OpenHW Group CVA6 User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html">Programmer’s View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Custom_Instructions.html">Custom RISC-V instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMA.html">PMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMP.html">PMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html">Traps, Interrupts, Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Compiler_Command_Lines.html">Compiler command lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html">CVA6 RISC-V Instructions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RV32I</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#integer-register-immediate-instructions">Integer Register-Immediate Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integer-register-register-instructions">Integer Register-Register Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-transfer-instructions">Control Transfer Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-and-store-instructions">Load and Store Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-ordering">Memory Ordering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-call-and-breakpoints">Environment Call and Breakpoints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32M.html">RV32M</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32A.html">RV32A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html">RV32C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32ZCb.html">RV32Zcb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZcmp.html">RVZcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZba.html">RVZba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html">RVZbb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbc.html">RVZbc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbs.html">RVZbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html">RVZbkb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkc.html">RVZbkc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkx.html">RVZbkx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZkne.html">RVZkne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknd.html">RVZknd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknh.html">RVZknh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicsr.html">RVZicsr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZifencei.html">RVZifencei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicond.html">RVZicond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X_list.html">CV32A60X CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html">CV32A60X CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX_list.html">CV32A60AX CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX.html">CV32A60AX CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU_list.html">CV64A6_MMU CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU.html">CV64A6_MMU CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CV64A6_Control_Status_Registers.html">CV64A6 CSR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Cache_Control.html">CSR cache control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Performance_Counters.html">CSR Performance Counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters_Configuration.html">Parameters and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html">AXI Bus Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html">CV-X-IF Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html">Core Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 User Manual</a></li>
+      <li class="breadcrumb-item active">RV32I Base Integer Instruction Set</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_cva6_user/RISCV_Instructions_RV32I.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p id="cva6-riscv-instructions-rv32i"><em>Applicability of this chapter to configurations:</em></p>
+<p>This chapter is applicable to all CV32A6 configurations.</p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Configuration</p></th>
+<th class="head"><p>Implementation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CV32A60AX</p></td>
+<td><p>Implemented extension</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV32A60X</p></td>
+<td><p>Implemented extension</p></td>
+</tr>
+<tr class="row-even"><td><p>CV64A6_MMU</p></td>
+<td><p>Implemented extension</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: CV64A6 implements RV64I that includes additional instructions.</p>
+<section id="rv32i-base-integer-instruction-set">
+<h1>RV32I Base Integer Instruction Set<a class="headerlink" href="#rv32i-base-integer-instruction-set" title="Link to this heading"></a></h1>
+<p>This section describes the RV32I base integer instruction set.</p>
+<section id="integer-register-immediate-instructions">
+<h2>Integer Register-Immediate Instructions<a class="headerlink" href="#integer-register-immediate-instructions" title="Link to this heading"></a></h2>
+<ul>
+<li><p><strong>ADDI</strong>: Add Immediate</p>
+<blockquote>
+<div><p><strong>Format</strong>: addi rd, rs1, imm[11:0]</p>
+<p><strong>Description</strong>: add sign-extended 12-bit immediate to register rs1, and store the result in register rd.</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] + sext(imm[11:0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>ANDI</strong>: AND Immediate</p>
+<blockquote>
+<div><p><strong>Format</strong>: andi rd, rs1, imm[11:0]</p>
+<p><strong>Description</strong>: perform bitwise AND on register rs1 and the sign-extended 12-bit immediate and place the result in rd.</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] &amp; sext(imm[11:0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>ORI</strong>: OR Immediate</p>
+<blockquote>
+<div><p><strong>Format</strong>: ori rd, rs1, imm[11:0]</p>
+<p><strong>Description</strong>: perform bitwise OR on register rs1 and the sign-extended 12-bit immediate and place the result in rd.</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] | sext(imm[11:0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>XORI</strong>: XOR Immediate</p>
+<blockquote>
+<div><p><strong>Format</strong>: xori rd, rs1, imm[11:0]</p>
+<p><strong>Description</strong>: perform bitwise XOR on register rs1 and the sign-extended 12-bit immediate and place the result in rd.</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] ^ sext(imm[11:0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SLTI</strong>: Set Less Then Immediate</p>
+<blockquote>
+<div><p><strong>Format</strong>: slti rd, rs1, imm[11:0]</p>
+<p><strong>Description</strong>: set register rd to 1 if register rs1 is less than the sign extended immediate when both are treated as signed numbers, else 0 is written to rd.</p>
+<p><strong>Pseudocode</strong>: if (x[rs1] &lt; sext(imm[11:0]) x[rd] = 1 else x[rd] = 0</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SLTIU</strong>: Set Less Then Immediate Unsigned</p>
+<blockquote>
+<div><p><strong>Format</strong>: sltiu rd, rs1, imm[11:0]</p>
+<p><strong>Description</strong>: set register rd to 1 if register rs1 is less than the sign extended immediate when both are treated as unsigned numbers, else 0 is written to rd.</p>
+<p><strong>Pseudocode</strong>: if (x[rs1] &lt;u sext(imm[11:0]) x[rd] = 1 else x[rd] = 0</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SLLI</strong>: Shift Left Logic Immediate</p>
+<blockquote>
+<div><p><strong>Format</strong>: slli rd, rs1, imm[4:0]</p>
+<p><strong>Description</strong>: logical left shift (zeros are shifted into the lower bits).</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] &lt;&lt; imm[4:0]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SRLI</strong>: Shift Right Logic Immediate</p>
+<blockquote>
+<div><p><strong>Format</strong>: srli rd, rs1, imm[4:0]</p>
+<p><strong>Description</strong>: logical right shift (zeros are shifted into the upper bits).</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] &gt;&gt; imm[4:0]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SRAI</strong>: Shift Right Arithmetic Immediate</p>
+<blockquote>
+<div><p><strong>Format</strong>: srai rd, rs1, imm[4:0]</p>
+<p><strong>Description</strong>: arithmetic right shift (the original sign bit is copied into the vacated upper bits).</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] &gt;&gt;s imm[4:0]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>LUI</strong>: Load Upper Immediate</p>
+<blockquote>
+<div><p><strong>Format</strong>: lui rd, imm[19:0]</p>
+<p><strong>Description</strong>: place the immediate value in the top 20 bits of the destination register rd, filling in the lowest 12 bits with zeros.</p>
+<p><strong>Pseudocode</strong>: x[rd] = sext(imm[31:12] &lt;&lt; 12)</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>AUIPC</strong>: Add Upper Immediate to PC</p>
+<blockquote>
+<div><p><strong>Format</strong>: auipc rd, imm[19:0]</p>
+<p><strong>Description</strong>: form a 32-bit offset from the 20-bit immediate, filling in the lowest 12 bits with zeros, adds this offset to the pc, then place the result in register rd.</p>
+<p><strong>Pseudocode</strong>: x[rd] = pc + sext(immediate[31:12] &lt;&lt; 12)</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="integer-register-register-instructions">
+<h2>Integer Register-Register Instructions<a class="headerlink" href="#integer-register-register-instructions" title="Link to this heading"></a></h2>
+<ul>
+<li><p><strong>ADD</strong>: Addition</p>
+<blockquote>
+<div><p><strong>Format</strong>: add rd, rs1, rs2</p>
+<p><strong>Description</strong>: add rs2 to register rs1, and store the result in register rd.</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] + x[rs2]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SUB</strong>: Subtraction</p>
+<blockquote>
+<div><p><strong>Format</strong>: sub rd, rs1, rs2</p>
+<p><strong>Description</strong>: subtract rs2 from register rs1, and store the result in register rd.</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] - x[rs2]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>AND</strong>: AND logical operator</p>
+<blockquote>
+<div><p><strong>Format</strong>: and rd, rs1, rs2</p>
+<p><strong>Description</strong>: perform bitwise AND on register rs1 and rs2 and place the result in rd.</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] &amp; x[rs2]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>OR</strong>: OR logical operator</p>
+<blockquote>
+<div><p><strong>Format</strong>: or rd, rs1, rs2</p>
+<p><strong>Description</strong>: perform bitwise OR on register rs1 and rs2 and place the result in rd.</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] | x[rs2]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>XOR</strong>: XOR logical operator</p>
+<blockquote>
+<div><p><strong>Format</strong>: xor rd, rs1, rs2</p>
+<p><strong>Description</strong>: perform bitwise XOR on register rs1 and rs2 and place the result in rd.</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] ^ x[rs2]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SLT</strong>: Set Less Then</p>
+<blockquote>
+<div><p><strong>Format</strong>: slt rd, rs1, rs2</p>
+<p><strong>Description</strong>: set register rd to 1 if register rs1 is less than rs2 when both are treated as signed numbers, else 0 is written to rd.</p>
+<p><strong>Pseudocode</strong>: if (x[rs1] &lt; x[rs2]) x[rd] = 1 else x[rd] = 0</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SLTU</strong>: Set Less Then Unsigned</p>
+<blockquote>
+<div><p><strong>Format</strong>: sltu rd, rs1, rs2</p>
+<p><strong>Description</strong>: set register rd to 1 if register rs1 is less than rs2 when both are treated as unsigned numbers, else 0 is written to rd.</p>
+<p><strong>Pseudocode</strong>: if (x[rs1] &lt;u x[rs2]) x[rd] = 1 else x[rd] = 0</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SLL</strong>: Shift Left Logic</p>
+<blockquote>
+<div><p><strong>Format</strong>: sll rd, rs1, rs2</p>
+<p><strong>Description</strong>: logical left shift (zeros are shifted into the lower bits).</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] &lt;&lt; x[rs2]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SRL</strong>: Shift Right Logic</p>
+<blockquote>
+<div><p><strong>Format</strong>: srl rd, rs1, rs2</p>
+<p><strong>Description</strong>: logical right shift (zeros are shifted into the upper bits).</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] &gt;&gt; x[rs2]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SRA</strong>: Shift Right Arithmetic</p>
+<blockquote>
+<div><p><strong>Format</strong>: sra rd, rs1, rs2</p>
+<p><strong>Description</strong>: arithmetic right shift (the original sign bit is copied into the vacated upper bits).</p>
+<p><strong>Pseudocode</strong>: x[rd] = x[rs1] &gt;&gt;s x[rs2]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="control-transfer-instructions">
+<h2>Control Transfer Instructions<a class="headerlink" href="#control-transfer-instructions" title="Link to this heading"></a></h2>
+<p><strong>Unconditional Jumps</strong></p>
+<ul>
+<li><p><strong>JAL</strong>: Jump and Link</p>
+<blockquote>
+<div><p><strong>Format</strong>: jal rd, imm[20:1]</p>
+<p><strong>Description</strong>: offset is sign-extended and added to the pc to form the jump target address (pc is calculated using signed arithmetic), then setting the least-significant bit of the result to zero, and store the address of instruction following the jump (pc+4) into register rd.</p>
+<p><strong>Pseudocode</strong>: x[rd] = pc+4; pc += sext(imm[20:1])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: jumps to an unaligned address (4-byte or 2-byte boundary) will usually raise an exception.</p>
+</div></blockquote>
+</li>
+<li><p><strong>JALR</strong>: Jump and Link Register</p>
+<blockquote>
+<div><p><strong>Format</strong>: jalr rd, rs1, imm[11:0]</p>
+<p><strong>Description</strong>: target address is obtained by adding the 12-bit signed immediate to the register rs1 (pc is calculated using signed arithmetic), then setting the least-significant bit of the result to zero, and store the address of instruction following the jump (pc+4) into register rd.</p>
+<p><strong>Pseudocode</strong>: t = pc+4; pc = (x[rs1]+sext(imm[11:0]))&amp;∼1 ; x[rd] = t</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: jumps to an unaligned address (4-byte or 2-byte boundary) will usually raise an exception.</p>
+</div></blockquote>
+</li>
+</ul>
+<p><strong>Conditional Branches</strong></p>
+<ul>
+<li><p><strong>BEQ</strong>: Branch Equal</p>
+<blockquote>
+<div><p><strong>Format</strong>: beq rs1, rs2, imm[12:1]</p>
+<p><strong>Description</strong>: takes the branch (pc is calculated using signed arithmetic) if registers rs1 and rs2 are equal.</p>
+<p><strong>Pseudocode</strong>: if (x[rs1] == x[rs2]) pc += sext({imm[12:1], 1’b0}) else pc += 4</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: no instruction fetch misaligned exception is generated for a conditional branch that is not taken. An Instruction address misaligned exception is raised if the target address is not aligned on 4-byte or 2-byte boundary, because the core supports compressed instructions.</p>
+</div></blockquote>
+</li>
+<li><p><strong>BNE</strong>: Branch Not Equal</p>
+<blockquote>
+<div><p><strong>Format</strong>: bne rs1, rs2, imm[12:1]</p>
+<p><strong>Description</strong>: takes the branch (pc is calculated using signed arithmetic) if registers rs1 and rs2 are not equal.</p>
+<p><strong>Pseudocode</strong>: if (x[rs1] != x[rs2]) pc += sext({imm[12:1], 1’b0}) else pc += 4</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: no instruction fetch misaligned exception is generated for a conditional branch that is not taken. An Instruction address misaligned exception is raised if the target address is not aligned on 4-byte or 2-byte boundary, because the core supports compressed instructions.</p>
+</div></blockquote>
+</li>
+<li><p><strong>BLT</strong>: Branch Less Than</p>
+<blockquote>
+<div><p><strong>Format</strong>: blt rs1, rs2, imm[12:1]</p>
+<p><strong>Description</strong>: takes the branch (pc is calculated using signed arithmetic) if registers rs1 less than rs2 (using signed comparison).</p>
+<p><strong>Pseudocode</strong>: if (x[rs1] &lt; x[rs2]) pc += sext({imm[12:1], 1’b0}) else pc += 4</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: no instruction fetch misaligned exception is generated for a conditional branch that is not taken. An Instruction address misaligned exception is raised if the target address is not aligned on 4-byte or 2-byte boundary, because the core supports compressed instructions.</p>
+</div></blockquote>
+</li>
+<li><p><strong>BLTU</strong>: Branch Less Than Unsigned</p>
+<blockquote>
+<div><p><strong>Format</strong>: bltu rs1, rs2, imm[12:1]</p>
+<p><strong>Description</strong>: takes the branch (pc is calculated using signed arithmetic) if registers rs1 less than rs2 (using unsigned comparison).</p>
+<p><strong>Pseudocode</strong>: if (x[rs1] &lt;u x[rs2]) pc += sext({imm[12:1], 1’b0}) else pc += 4</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: no instruction fetch misaligned exception is generated for a conditional branch that is not taken. An Instruction address misaligned exception is raised if the target address is not aligned on 4-byte or 2-byte boundary, because the core supports compressed instructions.</p>
+</div></blockquote>
+</li>
+<li><p><strong>BGE</strong>: Branch Greater or Equal</p>
+<blockquote>
+<div><p><strong>Format</strong>: bge rs1, rs2, imm[12:1]</p>
+<p><strong>Description</strong>: takes the branch (pc is calculated using signed arithmetic) if registers rs1 is greater than or equal rs2 (using signed comparison).</p>
+<p><strong>Pseudocode</strong>: if (x[rs1] &gt;= x[rs2]) pc += sext({imm[12:1], 1’b0}) else pc += 4</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: no instruction fetch misaligned exception is generated for a conditional branch that is not taken. An Instruction address misaligned exception is raised if the target address is not aligned on 4-byte or 2-byte boundary, because the core supports compressed instructions.</p>
+</div></blockquote>
+</li>
+<li><p><strong>BGEU</strong>: Branch Greater or Equal Unsigned</p>
+<blockquote>
+<div><p><strong>Format</strong>: bgeu rs1, rs2, imm[12:1]</p>
+<p><strong>Description</strong>: takes the branch (pc is calculated using signed arithmetic) if registers rs1 is greater than or equal rs2 (using unsigned comparison).</p>
+<p><strong>Pseudocode</strong>: if (x[rs1] &gt;=u x[rs2]) pc += sext({imm[12:1], 1’b0}) else pc += 4</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: no instruction fetch misaligned exception is generated for a conditional branch that is not taken. An Instruction address misaligned exception is raised if the target address is not aligned on 4-byte or 2-byte boundary, because the core supports compressed instructions.</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="load-and-store-instructions">
+<h2>Load and Store Instructions<a class="headerlink" href="#load-and-store-instructions" title="Link to this heading"></a></h2>
+<ul>
+<li><p><strong>LB</strong>: Load Byte</p>
+<blockquote>
+<div><p><strong>Format</strong>: lb rd, imm(rs1)</p>
+<p><strong>Description</strong>: loads a 8-bit value from memory, then sign-extends to 32-bit before storing in rd (rd is calculated using signed arithmetic), the effective address is obtained by adding register rs1 to the sign-extended 12-bit offset.</p>
+<p><strong>Pseudocode</strong>: x[rd] = sext(M[x[rs1] + sext(imm[11:0])][7:0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: loads with a destination of x0 must still raise any exceptions and action any other side effects even though the load value is discarded.</p>
+</div></blockquote>
+</li>
+<li><p><strong>LH</strong>: Load Halfword</p>
+<blockquote>
+<div><p><strong>Format</strong>: lh rd, imm(rs1)</p>
+<p><strong>Description</strong>: loads a 16-bit value from memory, then sign-extends to 32-bit before storing in rd (rd is calculated using signed arithmetic), the effective address is obtained by adding register rs1 to the sign-extended 12-bit offset.</p>
+<p><strong>Pseudocode</strong>: x[rd] = sext(M[x[rs1] + sext(imm[11:0])][15:0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: loads with a destination of x0 must still raise any exceptions and action any other side effects even though the load value is discarded, also an exception is raised if the memory address isn’t aligned (2-byte boundary).</p>
+</div></blockquote>
+</li>
+<li><p><strong>LW</strong>: Load Word</p>
+<blockquote>
+<div><p><strong>Format</strong>: lw rd, imm(rs1)</p>
+<p><strong>Description</strong>: loads a 32-bit value from memory, then storing in rd (rd is calculated using signed arithmetic). The effective address is obtained by adding register rs1 to the sign-extended 12-bit offset.</p>
+<p><strong>Pseudocode</strong>: x[rd] = sext(M[x[rs1] + sext(imm[11:0])][31:0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: loads with a destination of x0 must still raise any exceptions and action any other side effects even though the load value is discarded, also an exception is raised if the memory address isn’t aligned (4-byte boundary).</p>
+</div></blockquote>
+</li>
+<li><p><strong>LBU</strong>: Load Byte Unsigned</p>
+<blockquote>
+<div><p><strong>Format</strong>: lbu rd, imm(rs1)</p>
+<p><strong>Description</strong>: loads a 8-bit value from memory, then zero-extends to 32-bit before storing in rd (rd is calculated using unsigned arithmetic), the effective address is obtained by adding register rs1 to the sign-extended 12-bit offset.</p>
+<p><strong>Pseudocode</strong>: x[rd] = zext(M[x[rs1] + sext(imm[11:0])][7:0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: loads with a destination of x0 must still raise any exceptions and action any other side effects even though the load value is discarded.</p>
+</div></blockquote>
+</li>
+<li><p><strong>LHU</strong>: Load Halfword Unsigned</p>
+<blockquote>
+<div><p><strong>Format</strong>: lhu rd, imm(rs1)</p>
+<p><strong>Description</strong>: loads a 16-bit value from memory, then zero-extends to 32-bit before storing in rd (rd is calculated using unsigned arithmetic), the effective address is obtained by adding register rs1 to the sign-extended 12-bit offset.</p>
+<p><strong>Pseudocode</strong>: x[rd] = zext(M[x[rs1] + sext(imm[11:0])][15:0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: loads with a destination of x0 must still raise any exceptions and action any other side effects even though the load value is discarded, also an exception is raised if the memory address isn’t aligned (2-byte boundary).</p>
+</div></blockquote>
+</li>
+<li><p><strong>SB</strong>: Store Byte</p>
+<blockquote>
+<div><p><strong>Format</strong>: sb rs2, imm(rs1)</p>
+<p><strong>Description</strong>: stores a 8-bit value from the low bits of register rs2 to memory, the effective address is obtained by adding register rs1 to the sign-extended 12-bit offset.</p>
+<p><strong>Pseudocode</strong>: M[x[rs1] + sext(imm[11:0])][7:0] = x[rs2][7:0]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SH</strong>: Store Halfword</p>
+<blockquote>
+<div><p><strong>Format</strong>: sh rs2, imm(rs1)</p>
+<p><strong>Description</strong>: stores a 16-bit value from the low bits of register rs2 to memory, the effective address is obtained by adding register rs1 to the sign-extended 12-bit offset.</p>
+<p><strong>Pseudocode</strong>: M[x[rs1] + sext(imm[11:0])][15:0] = x[rs2][15:0]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: an exception is raised if the memory address isn’t aligned (2-byte boundary).</p>
+</div></blockquote>
+</li>
+<li><p><strong>SW</strong>: Store Word</p>
+<blockquote>
+<div><p><strong>Format</strong>: sw rs2, imm(rs1)</p>
+<p><strong>Description</strong>: stores a 32-bit value from register rs2 to memory, the effective address is obtained by adding register rs1 to the sign-extended 12-bit offset.</p>
+<p><strong>Pseudocode</strong>: M[x[rs1] + sext(imm[11:0])][31:0] = x[rs2][31:0]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: an exception is raised if the memory address isn’t aligned (4-byte boundary).</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="memory-ordering">
+<h2>Memory Ordering<a class="headerlink" href="#memory-ordering" title="Link to this heading"></a></h2>
+<ul>
+<li><p><strong>FENCE</strong>: Fence Instruction</p>
+<blockquote>
+<div><p><strong>Format</strong>: fence pre, succ</p>
+<p><strong>Description</strong>: order device I/O and memory accesses as viewed by other RISC-V harts and external devices or coprocessors. Any combination of device input (I), device output (O), memory reads (R), and memory writes (W) may be ordered with respect to any combination of the same. Informally, no other RISC-V hart or external device can observe any operation in the successor set following a FENCE before any operation in the predecessor set preceding the FENCE, as the core support 1 hart, the fence instruction has no effect so we can considerate it as a nop instruction.</p>
+<p><strong>Pseudocode</strong>: No operation (nop)</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="environment-call-and-breakpoints">
+<h2>Environment Call and Breakpoints<a class="headerlink" href="#environment-call-and-breakpoints" title="Link to this heading"></a></h2>
+<ul>
+<li><p><strong>ECALL</strong>: Environment Call</p>
+<blockquote>
+<div><p><strong>Format</strong>: ecall</p>
+<p><strong>Description</strong>: make a request to the supporting execution environment, which is usually an operating system. The ABI for the system will define how parameters for the environment request are passed, but usually these will be in defined locations in the integer register file.</p>
+<p><strong>Pseudocode</strong>: RaiseException(EnvironmentCall)</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: Raise an Environment Call exception.</p>
+</div></blockquote>
+</li>
+<li><p><strong>EBREAK</strong>:Environment Break</p>
+<blockquote>
+<div><p><strong>Format</strong>: ebreak</p>
+<p><strong>Description</strong>: cause control to be transferred back to a debugging environment.</p>
+<p><strong>Pseudocode</strong>: RaiseException(Breakpoint)</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: Raise a Breakpoint exception.</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="RISCV_Instructions.html" class="btn btn-neutral float-left" title="CVA6 RISC-V Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="RISCV_Instructions_RV32M.html" class="btn btn-neutral float-right" title="RV32M Multiplication and Division Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

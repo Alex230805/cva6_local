@@ -1,0 +1,551 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_cva6_user/user_cfg_doc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span id="cva6-user-cfg-doc"></span><table class="docutils align-default" id="id1">
+<caption><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">cva6_user_cfg_t</span></code> parameters</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">XLEN</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>General Purpose Register Size (in bits)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VLEN</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Virtual address Size (in bits)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RVA</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Atomic RISC-V extension</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RVB</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Bit manipulation RISC-V extension</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ZKN</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Scalar Cryptography RISC-V extension</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RVV</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Vector RISC-V extension</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RVC</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Compress RISC-V extension</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RVH</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Hypervisor RISC-V extension</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RVZCB</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Zcb RISC-V extension</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RVZCMP</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Zcmp RISC-V extension</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RVZCMT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Zcmt RISC-V extension</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RVZiCond</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Zicond RISC-V extension</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RVZiCbom</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Zicbom RISC-V extension (cache management / CBO)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RVZicntr</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Zicntr RISC-V extension</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RVZihpm</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Zihpm RISC-V extension</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RVF</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Floating Point</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RVD</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Floating Point</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">XF16</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Non standard 16bits Floating Point extension</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">XF16ALT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Non standard 16bits Floating Point Alt extension</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">XF8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Non standard 8bits Floating Point extension</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">XFVec</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Non standard Vector Floating Point extension</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PerfCounterEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Perf counters</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MmuPresent</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>MMU</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RVS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Supervisor mode</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RVU</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>User mode</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SoftwareInterruptEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Software interrupts are enabled</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DebugEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Debug support</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DmBaseAddress</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[63:0]</span></code></p></td>
+<td><p>Base address of the debug module</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HaltAddress</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[63:0]</span></code></p></td>
+<td><p>Address to jump when halt request</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ExceptionAddress</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[63:0]</span></code></p></td>
+<td><p>Address to jump when exception</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Sdtrig</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Trigger Module Sdtrig Extension</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigMcontrol6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigMcontrol6ExecAddr</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigMcontrol6ExecData</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigMcontrol6Store</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigMcontrol6LoadAddr</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigMcontrol6LoadData</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigIcount</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigEtrigger</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigItrigger</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigNrTriggers</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigTriggerChaining</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigSupportedActions</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[1:0]</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigSupportedMatch</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[9:0]</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SdtrigSupportTextra</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TvalEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Tval Support Enable</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DirectVecOnly</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>MTVEC CSR supports only direct mode</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NrPMPEntries</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>PMP entries number</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PMPCfgRstVal</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[63:0][63:0]</span></code></p></td>
+<td><p>PMP CSR configuration reset values</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PMPAddrRstVal</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[63:0][63:0]</span></code></p></td>
+<td><p>PMP CSR address reset values</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PMPEntryReadOnly</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span> <span class="pre">[63:0]</span></code></p></td>
+<td><p>PMP CSR read-only bits</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PMPNapotEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>PMP NA4 and NAPOT mode enable</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NrNonIdempotentRules</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>PMA non idempotent rules number</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NonIdempotentAddrBase</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[NrMaxRules-1:0][63:0]</span></code></p></td>
+<td><p>PMA NonIdempotent region base address</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NonIdempotentLength</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[NrMaxRules-1:0][63:0]</span></code></p></td>
+<td><p>PMA NonIdempotent region length</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NrExecuteRegionRules</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>PMA regions with execute rules number</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ExecuteRegionAddrBase</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[NrMaxRules-1:0][63:0]</span></code></p></td>
+<td><p>PMA Execute region base address</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ExecuteRegionLength</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[NrMaxRules-1:0][63:0]</span></code></p></td>
+<td><p>PMA Execute region address base</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NrCachedRegionRules</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>PMA regions with cache rules number</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CachedRegionAddrBase</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[NrMaxRules-1:0][63:0]</span></code></p></td>
+<td><p>PMA cache region base address</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CachedRegionLength</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logic</span> <span class="pre">[NrMaxRules-1:0][63:0]</span></code></p></td>
+<td><p>PMA cache region rules</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CvxifEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>CV-X-IF coprocessor interface enable</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CoproType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">copro_type_t</span></code></p></td>
+<td><p>Coprocessor type</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NOCType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">noc_type_e</span></code></p></td>
+<td><p>NOC bus type</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AxiAddrWidth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>AXI address width</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AxiDataWidth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>AXI data width</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AxiIdWidth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>AXI ID width</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AxiUserWidth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>AXI User width</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AxiBurstWriteEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>AXI burst in write</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MemTidWidth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>TODO</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IcacheByteSize</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Instruction cache size (in bytes)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IcacheSetAssoc</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Instruction cache associativity (number of ways)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IcacheLineWidth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Instruction cache line width</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DCacheType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cache_type_t</span></code></p></td>
+<td><p>Cache Type</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DcacheIdWidth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Data cache ID</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DcacheByteSize</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Data cache size (in bytes)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DcacheSetAssoc</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Data cache associativity (number of ways)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DcacheLineWidth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Data cache line width</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DcacheFlushOnFence</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>explicit CBO operations for better overall performance</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DcacheFlushOnFenceI</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DcacheInvalidateOnFlush</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>TO_BE_COMPLETED</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DcacheEccEnable</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Is Error Detection and Correction enabled in the L1D ?</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DcacheEccScrubberEnable</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Is Error Detection and Correction scrubber integrated in the L1D ?</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DataUserEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>User field on data bus enable</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">WtDcacheWbufDepth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Write-through data cache write buffer depth</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FetchUserEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>User field on fetch bus enable</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FetchUserWidth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Width of fetch user field</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FpgaEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Is FPGA optimization of CV32A6 for Xilinx and Altera</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FpgaAlteraEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Is FPGA optimization for Altera FPGA</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TechnoCut</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Is Techno Cut instantiated</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SuperscalarEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Enable superscalar* with 2 issue ports and 2 commit ports.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ALUBypass</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Enable ALU-ALU bypass (superscalar mode only)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NrCommitPorts</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Number of commit ports. Forced to 2 if SuperscalarEn.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NrLoadPipeRegs</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Load cycle latency number</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NrStorePipeRegs</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Store cycle latency number</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NrScoreboardEntries</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Scoreboard length</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NrLoadBufEntries</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Load buffer entry buffer</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MaxOutstandingStores</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Maximum number of outstanding stores</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RASDepth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Return address stack depth</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BTBEntries</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Branch target buffer entries</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BPType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bp_type_t</span></code></p></td>
+<td><p>Branch predictor type</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BHTEntries</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Branch history entries</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BHTHist</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>Branch history bits</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">InstrTlbEntries</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>MMU instruction TLB entries</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DataTlbEntries</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>MMU data TLB entries</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UseSharedTlb</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>MMU option to use shared TLB</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SharedTlbDepth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">unsigned</span></code></p></td>
+<td><p>MMU depth of shared TLB</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SvnapotEn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></td>
+<td><p>Option to enable Svnapot extension</p></td>
+</tr>
+</tbody>
+</table>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

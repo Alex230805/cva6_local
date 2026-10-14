@@ -1,0 +1,1075 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AXI &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CV-X-IF Interface and Coprocessor" href="CVX_Interface_Coprocessor.html" />
+    <link rel="prev" title="Interfaces" href="Interfaces.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CVA6_user_guide.html">OpenHW Group CVA6 User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html">Programmer’s View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Custom_Instructions.html">Custom RISC-V instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMA.html">PMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMP.html">PMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html">Traps, Interrupts, Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Compiler_Command_Lines.html">Compiler command lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html">CVA6 RISC-V Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html">RV32I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32M.html">RV32M</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32A.html">RV32A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html">RV32C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32ZCb.html">RV32Zcb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZcmp.html">RVZcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZba.html">RVZba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html">RVZbb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbc.html">RVZbc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbs.html">RVZbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html">RVZbkb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkc.html">RVZbkc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkx.html">RVZbkx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZkne.html">RVZkne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknd.html">RVZknd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknh.html">RVZknh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicsr.html">RVZicsr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZifencei.html">RVZifencei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicond.html">RVZicond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X_list.html">CV32A60X CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html">CV32A60X CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX_list.html">CV32A60AX CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX.html">CV32A60AX CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU_list.html">CV64A6_MMU CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU.html">CV64A6_MMU CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CV64A6_Control_Status_Registers.html">CV64A6 CSR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Cache_Control.html">CSR cache control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Performance_Counters.html">CSR Performance Counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters_Configuration.html">Parameters and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AXI Bus Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#about-the-axi4-protocol">About the AXI4 protocol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#axi4-and-cva6">AXI4 and CVA6</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#signal-description-section-a2">Signal Description (Section A2)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#global-signals-section-a2-1">Global signals (Section A2.1)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#write-address-channel-signals-section-a2-2">Write address channel signals (Section A2.2)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#write-data-channel-signals-section-a2-3">Write data channel signals (Section A2.3)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#write-response-channel-signals-section-a2-4">Write Response Channel signals (Section A2.4)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#read-address-channel-signals-section-a2-5">Read address channel signals (Section A2.5)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#read-data-channel-signals-section-a2-6">Read data channel signals (Section A2.6)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#single-interface-requirements-transaction-structure-section-a3-4">Single Interface Requirements: Transaction structure (Section A3.4)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#address-structure-section-a3-4-1">Address structure (Section A3.4.1)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-read-and-write-structure-section-a3-4-4">Data read and write structure: (Section A3.4.4)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#read-and-write-response-structure-section-a3-4-5">Read and write response structure (Section A3.4.5)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transaction-attributes-memory-types-section-a4">Transaction Attributes: Memory types (Section A4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transaction-identifiers-section-a5">Transaction Identifiers (Section A5)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#axi-ordering-model-section-a6">AXI Ordering Model (Section A6)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#axi-ordering-model-overview-section-a6-1">AXI ordering model overview (Section A6.1)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory-locations-and-peripheral-regions-section-a6-2">Memory locations and Peripheral regions (Section A6.2)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transactions-and-ordering-section-a6-3">Transactions and ordering (Section A6.3)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ordered-write-observation-section-a6-8">Ordered write observation (Section A6.8)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#atomic-transactions-section-e1-1">Atomic transactions (Section E1.1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cva6-constraints">CVA6 Constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html">CV-X-IF Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html">Core Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 User Manual</a></li>
+      <li class="breadcrumb-item active">AXI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_cva6_user/AXI_Interface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="axi">
+<span id="cva6-axi"></span><h1>AXI<a class="headerlink" href="#axi" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>In this chapter, we describe in detail the restriction that apply to the supported features.</p>
+<p>In order to understand how the AXI memory interface behaves in CVA6, it is necessary to read the AXI and ACE Protocol Specification (<a class="reference external" href="https://developer.arm.com/documentation/ihi0022/hc">https://developer.arm.com/documentation/ihi0022/hc</a>) and this chapter.</p>
+<p><em>Applicability of this chapter to configurations:</em></p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Configuration</p></th>
+<th class="head"><p>Implementation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CV32A60AX</p></td>
+<td><p>AXI included</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV32A60X</p></td>
+<td><p>AXI included</p></td>
+</tr>
+</tbody>
+</table>
+<section id="about-the-axi4-protocol">
+<h3>About the AXI4 protocol<a class="headerlink" href="#about-the-axi4-protocol" title="Link to this heading"></a></h3>
+<p>The AXI protocol supports high-performance, high-frequency system designs for communication between Manager and Subordinate components.</p>
+<p>The AXI protocol features are:</p>
+<ul class="simple">
+<li><p>It is suitable for high-bandwidth and low-latency designs.</p></li>
+<li><p>High-frequency operation is provided, without using complex bridges.</p></li>
+<li><p>The protocol meets the interface requirements of a wide range of components.</p></li>
+<li><p>It is suitable for memory controllers with high initial access latency.</p></li>
+<li><p>Flexibility in the implementation of interconnect architectures is provided.</p></li>
+<li><p>It is backward-compatible with AHB and APB interfaces.</p></li>
+</ul>
+<p>The key features of the AXI protocol are:</p>
+<ul class="simple">
+<li><p>Separate address/control and data phases.</p></li>
+<li><p>Support for unaligned data transfers, using byte strobes.</p></li>
+<li><p>Uses burst-based transactions with only the start address issued.</p></li>
+<li><p>Separate read and write data channels, that can provide low-cost Direct Memory Access (DMA).</p></li>
+<li><p>Support for issuing multiple outstanding addresses.</p></li>
+<li><p>Support for out-of-order transaction completion.</p></li>
+<li><p>Permits easy addition of register stages to provide timing closure.</p></li>
+</ul>
+<p>The present specification is based on: <a class="reference external" href="https://developer.arm.com/documentation/ihi0022/hc">https://developer.arm.com/documentation/ihi0022/hc</a></p>
+</section>
+<section id="axi4-and-cva6">
+<h3>AXI4 and CVA6<a class="headerlink" href="#axi4-and-cva6" title="Link to this heading"></a></h3>
+<p>The AXI bus protocol is used with the CVA6 processor as a memory interface. Since the processor is the one that initiates the connection with the memory, it will have a manager interface to send requests to the subordinate, which will be the memory.</p>
+<p>Features supported by CVA6 are the ones in the AXI4 specification and the Atomic Operation feature from AXI5. With restriction that apply to some features.</p>
+<p>This doesn’t mean that all the full set of signals available on an AXI interface are supported by the CVA6. Nevertheless, all required AXI signals are implemented.</p>
+<p>Supported AXI4 features are defined in AXI Protocol Specification sections: A3, A4, A5, A6 and A7.</p>
+<p>Supported AXI5 feature are defined in AXI Protocol Specification section: E1.1.</p>
+</section>
+</section>
+<section id="signal-description-section-a2">
+<h2>Signal Description (Section A2)<a class="headerlink" href="#signal-description-section-a2" title="Link to this heading"></a></h2>
+<p>This section introduces the AXI memory interface signals of CVA6. Most of the signals are supported by CVA6, the tables summarizing the signals identify the exceptions.</p>
+<p>In the following tables, the <em>Src</em> column tells whether the signal is driven by Manager ou Subordinate.</p>
+<p>The AXI required and optional signals, and the default signals values that apply when an optional signal is not implemented are defined in AXI Protocol Specification section A9.3.</p>
+<section id="global-signals-section-a2-1">
+<h3>Global signals (Section A2.1)<a class="headerlink" href="#global-signals-section-a2-1" title="Link to this heading"></a></h3>
+<p>Table 2.1 shows the global AXI memory interface signals.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 64.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Signal</strong></p></th>
+<th class="head"><p><strong>Src</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>ACLK</strong></p></td>
+<td><p>Clock source</p></td>
+<td><div class="line-block">
+<div class="line">Global clock signal. Synchronous signals are sampled on the</div>
+<div class="line">rising edge of the global clock.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>ARESETn</strong></p></td>
+<td><p>Reset source</p></td>
+<td><div class="line-block">
+<div class="line">Global reset signal. This signal is active-LOW.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="write-address-channel-signals-section-a2-2">
+<h3>Write address channel signals (Section A2.2)<a class="headerlink" href="#write-address-channel-signals-section-a2-2" title="Link to this heading"></a></h3>
+<p>Table 2.2 shows the AXI memory interface write address channel signals. Unless the description indicates otherwise, a signal can take any parameter if is supported.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 47.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Signal</strong></p></th>
+<th class="head"><p><strong>Src</strong></p></th>
+<th class="head"><p><strong>Support</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>AWID</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Identification tag for a write transaction.</div>
+<div class="line">CVA6 gives the id depending on the type of transaction.</div>
+<div class="line">See <a class="reference internal" href="#transaction-identifiers-label"><span class="std std-ref">Transaction Identifiers (Section A5)</span></a>.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>AWADDR</strong></p></td>
+<td><p>M</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">The address of the first transfer in a write transaction.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>AWLEN</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Length, the exact number of data transfers in a write</div>
+<div class="line">transaction. This information determines the number of</div>
+<div class="line">data transfers associated with the address.</div>
+<div class="line">All write transactions performed by CVA6 are of length 1.</div>
+<div class="line">(AWLEN = 0b00000000)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>AWSIZE</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Size, the number of bytes in each data transfer in a write</div>
+<div class="line">transaction</div>
+<div class="line">See <a class="reference internal" href="#address-structure-label"><span class="std std-ref">Address structure (Section A3.4.1)</span></a>.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>AWBURST</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Burst type, indicates how address changes between each</div>
+<div class="line">transfer in a write transaction.</div>
+<div class="line">All write transactions performed by CVA6 are of burst type</div>
+<div class="line">INCR. (AWBURST = 0b01)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>AWLOCK</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Provides information about the atomic characteristics of a</div>
+<div class="line">write transaction.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>AWCACHE</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Indicates how a write transaction is required to progress</div>
+<div class="line">through a system.</div>
+<div class="line">The subordinate is always of type Normal Non-cacheable Non-bufferable.</div>
+<div class="line">(AWCACHE = 0b0010)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>AWPROT</strong></p></td>
+<td><p>M</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Protection attributes of a write transaction:</div>
+<div class="line">privilege, security level, and access type.</div>
+<div class="line">The value of AWPROT is always 0b000.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>AWQOS</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">No</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Quality of Service identifier for a write transaction.</div>
+<div class="line">AWQOS = 0b0000</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>AWREGION</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">No</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Region indicator for a write transaction.</div>
+<div class="line">AWREGION = 0b0000</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>AWUSER</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">No</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">User-defined extension for the write address channel.</div>
+<div class="line">AWUSER = 0b00</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>AWATOP</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">AWATOP indicates the Properties of the Atomic Operation</div>
+<div class="line">used for a write transaction.</div>
+<div class="line">See <a class="reference internal" href="#atomic-transactions-label"><span class="std std-ref">Atomic transactions (Section E1.1)</span></a>.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>AWVALID</strong></p></td>
+<td><p>M</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Indicates that the write address channel signals are valid.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>AWREADY</strong></p></td>
+<td><p>S</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Indicates that a transfer on the write address channel</div>
+<div class="line">can be accepted.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="write-data-channel-signals-section-a2-3">
+<h3>Write data channel signals (Section A2.3)<a class="headerlink" href="#write-data-channel-signals-section-a2-3" title="Link to this heading"></a></h3>
+<p>Table 2.3 shows the AXI write data channel signals. Unless the description indicates otherwise, a signal can take any parameter if is supported.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 47.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Signal</strong></p></th>
+<th class="head"><p><strong>Src</strong></p></th>
+<th class="head"><p><strong>Support</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>WDATA</strong></p></td>
+<td><p>M</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Write data.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>WSTRB</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Write strobes, indicate which byte lanes hold valid data</div>
+<div class="line">See <a class="reference internal" href="#data-read-and-write-structure-label"><span class="std std-ref">Data read and write structure: (Section A3.4.4)</span></a>.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>WLAST</strong></p></td>
+<td><p>M</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Indicates whether this is the last data transfer in a write</div>
+<div class="line">transaction.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>WUSER</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">User-defined extension for the write data channel.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>WVALID</strong></p></td>
+<td><p>M</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Indicates that the write data channel signals are valid.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>WREADY</strong></p></td>
+<td><p>S</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Indicates that a transfer on the write data channel can be</div>
+<div class="line">accepted.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="write-response-channel-signals-section-a2-4">
+<h3>Write Response Channel signals (Section A2.4)<a class="headerlink" href="#write-response-channel-signals-section-a2-4" title="Link to this heading"></a></h3>
+<p>Table 2.4 shows the AXI write response channel signals. Unless the description indicates otherwise, a signal can take any parameter if is supported.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 47.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Signal</strong></p></th>
+<th class="head"><p><strong>Src</strong></p></th>
+<th class="head"><p><strong>Support</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>BID</strong></p></td>
+<td><p>S</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Identification tag for a write response.</div>
+<div class="line">CVA6 gives the id depending on the type of transaction.</div>
+<div class="line">See <a class="reference internal" href="#transaction-identifiers-label"><span class="std std-ref">Transaction Identifiers (Section A5)</span></a>.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>BRESP</strong></p></td>
+<td><p>S</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Write response, indicates the status of a write transaction.</div>
+<div class="line">See <a class="reference internal" href="#read-and-write-response-structure-label"><span class="std std-ref">Read and write response structure (Section A3.4.5)</span></a>.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>BUSER</strong></p></td>
+<td><p>S</p></td>
+<td><div class="line-block">
+<div class="line">No</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">User-defined extension for the write response channel.</div>
+<div class="line">Not supported.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>BVALID</strong></p></td>
+<td><p>S</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Indicates that the write response channel signals are valid.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>BREADY</strong></p></td>
+<td><p>M</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Indicates that a transfer on the write response channel can be</div>
+<div class="line">accepted.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="read-address-channel-signals-section-a2-5">
+<h3>Read address channel signals (Section A2.5)<a class="headerlink" href="#read-address-channel-signals-section-a2-5" title="Link to this heading"></a></h3>
+<p>Table 2.5 shows the AXI read address channel signals. Unless the description indicates otherwise, a signal can take any parameter if is supported.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 47.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Signal</strong></p></th>
+<th class="head"><p><strong>Src</strong></p></th>
+<th class="head"><p><strong>Support</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>ARID</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Identification tag for a read transaction.</div>
+<div class="line">CVA6 gives the id depending on the type of transaction.</div>
+<div class="line">See <a class="reference internal" href="#transaction-identifiers-label"><span class="std std-ref">Transaction Identifiers (Section A5)</span></a>.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>ARADDR</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">The address of the first transfer in a read transaction.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>ARLEN</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Length, the exact number of data transfers in a read</div>
+<div class="line">transaction. This information determines the number of data</div>
+<div class="line">transfers associated with the address.</div>
+<div class="line">All read transactions performed by CVA6 have a length equal to 0,</div>
+<div class="line">ICACHE_LINE_WIDTH/64 or DCACHE_LINE_WIDTH/64.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>ARSIZE</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Size, the number of bytes in each data transfer in a read</div>
+<div class="line">transaction</div>
+<div class="line">See <a class="reference internal" href="#address-structure-label"><span class="std std-ref">Address structure (Section A3.4.1)</span></a>.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>ARBURST</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Burst type, indicates how address changes between each</div>
+<div class="line">transfer in a read transaction.</div>
+<div class="line">All Read transactions performed by CVA6 are of burst type INCR.</div>
+<div class="line">(ARBURST = 0b01)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>ARLOCK</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Provides information about the atomic characteristics of</div>
+<div class="line">a read transaction.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>ARCACHE</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Indicates how a read transaction is required to progress</div>
+<div class="line">through a system.</div>
+<div class="line">The memory is always of type Normal Non-cacheable Non-bufferable.</div>
+<div class="line">(ARCACHE = 0b0010)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>ARPROT</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Protection attributes of a read transaction:</div>
+<div class="line">privilege, security level, and access type.</div>
+<div class="line">The value of ARPROT is always 0b000.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>ARQOS</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">No</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Quality of Service identifier for a read transaction.</div>
+<div class="line">ARQOS= 0b00</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>ARREGION</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">No</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Region indicator for a read transaction.</div>
+<div class="line">ARREGION= 0b00</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>ARUSER</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">No</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">User-defined extension for the read address channel.</div>
+<div class="line">ARUSER= 0b00</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>ARVALID</strong></p></td>
+<td><p>M</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Indicates that the read address channel signals are valid.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>ARREADY</strong></p></td>
+<td><p>S</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Indicates that a transfer on the read address channel can be</div>
+<div class="line">accepted.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="read-data-channel-signals-section-a2-6">
+<h3>Read data channel signals (Section A2.6)<a class="headerlink" href="#read-data-channel-signals-section-a2-6" title="Link to this heading"></a></h3>
+<p>Table 2.6 shows the AXI read data channel signals. Unless the description indicates otherwise, a signal can take any parameter if is supported.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 47.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Signal</strong></p></th>
+<th class="head"><p><strong>Src</strong></p></th>
+<th class="head"><p><strong>Support</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>RID</strong></p></td>
+<td><p>S</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">The ID tag of the read data transfer.</div>
+<div class="line">CVA6 gives the id depending on the type of transaction.</div>
+<div class="line">See <a class="reference internal" href="#transaction-identifiers-label"><span class="std std-ref">Transaction Identifiers (Section A5)</span></a>.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>RDATA</strong></p></td>
+<td><p>S</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Read data.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>RLAST</strong></p></td>
+<td><p>S</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Indicates whether this is the last data transfer in a read</div>
+<div class="line">transaction.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>RUSER</strong></p></td>
+<td><p>S</p></td>
+<td><div class="line-block">
+<div class="line">Yes</div>
+<div class="line">(optional)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">User-defined extension for the read data channel.</div>
+<div class="line">Not supported.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>RVALID</strong></p></td>
+<td><p>S</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Indicates that the read data channel signals are valid.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>RREADY</strong></p></td>
+<td><p>M</p></td>
+<td><p>Yes</p></td>
+<td><div class="line-block">
+<div class="line">Indicates that a transfer on the read data channel can be accepted.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="single-interface-requirements-transaction-structure-section-a3-4">
+<h2>Single Interface Requirements: Transaction structure (Section A3.4)<a class="headerlink" href="#single-interface-requirements-transaction-structure-section-a3-4" title="Link to this heading"></a></h2>
+<p>This section describes the structure of transactions. The following sections define the address, data, and response
+structures</p>
+<section id="address-structure-section-a3-4-1">
+<span id="address-structure-label"></span><h3>Address structure (Section A3.4.1)<a class="headerlink" href="#address-structure-section-a3-4-1" title="Link to this heading"></a></h3>
+<p>The AXI protocol is burst-based. The Manager begins each burst by driving control information and the address of the first byte in the transaction to the Subordinate. As the burst progresses, the Subordinate must calculate the addresses of subsequent transfers in the burst.</p>
+<p><strong>Burst length</strong></p>
+<p>The burst length is specified by:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ARLEN[7:0]</span></code>, for read transfers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AWLEN[7:0]</span></code>, for write transfers</p></li>
+</ul>
+<p>The burst length for AXI4 is defined as: <code class="docutils literal notranslate"><span class="pre">Burst_Length</span> <span class="pre">=</span> <span class="pre">AxLEN[3:0]</span> <span class="pre">+</span> <span class="pre">1</span></code>.</p>
+<p>CVA6 has some limitation governing the use of bursts:</p>
+<ul class="simple">
+<li><p><em>All read transactions performed by CVA6 are of burst length equal to 0, ICACHE_LINE_WIDTH/64 or DCACHE_LINE_WIDTH/64.</em></p></li>
+<li><p><em>All write transactions performed by CVA6 are of burst length equal to 1.</em></p></li>
+</ul>
+<p><strong>Burst size</strong></p>
+<p>The maximum number of bytes to transfer in each data transfer, or beat, in a burst, is specified by:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ARSIZE[2:0]</span></code>, for read transfers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AWSIZE[2:0]</span></code>, for write transfers</p></li>
+</ul>
+<p><em>The maximum value can be taking by AxSIZE is log2(AXI DATA WIDTH/8) (8 bytes by transfer).</em>
+<em>If(RV32) AWSIZE &lt; 3 (The maximum store size is 4 bytes)</em></p>
+<p><strong>Burst type</strong></p>
+<p>The AXI protocol defines three burst types:</p>
+<ul class="simple">
+<li><p><strong>FIXED</strong></p></li>
+<li><p><strong>INCR</strong></p></li>
+<li><p><strong>WRAP</strong></p></li>
+</ul>
+<p>The burst type is specified by:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ARBURST[1:0]</span></code>, for read transfers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AWBURST[1:0]</span></code>, for write transfers</p></li>
+</ul>
+<p><em>All transactions performed by CVA6 are of burst type INCR. (AxBURST = 0b01)</em></p>
+</section>
+<section id="data-read-and-write-structure-section-a3-4-4">
+<span id="data-read-and-write-structure-label"></span><h3>Data read and write structure: (Section A3.4.4)<a class="headerlink" href="#data-read-and-write-structure-section-a3-4-4" title="Link to this heading"></a></h3>
+<p><strong>Write strobes</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">WSTRB[n:0]</span></code> signals when HIGH, specify the byte lanes of the data bus that contain valid information. There is one write strobe
+for each 8 bits of the write data bus, therefore <code class="docutils literal notranslate"><span class="pre">WSTRB[n]</span></code> corresponds to <code class="docutils literal notranslate"><span class="pre">WDATA[(8n)+7:</span> <span class="pre">(8n)]</span></code>.</p>
+<p><em>Write Strobe width is equal to (AXI_DATA_WIDTH/8)  (n = (AXI_DATA_WIDTH/8)-1).</em></p>
+<p><em>The size of transactions performed by cva6 is equal to the number of data byte lanes containing valid information.</em>
+<em>This means 1, 2, 4, … or (AXI_DATA_WIDTH/8) byte lanes containing valid information.</em>
+<em>CVA6 doesn’t perform unaligned memory access, therefore the WSTRB take only combination of aligned access</em>
+<em>If(RV32) WSTRB &lt; 255 (Since AWSIZE lower than 3, so the data bus cannot have more than 4 valid byte lanes)</em></p>
+<p><strong>Unaligned transfers</strong></p>
+<p>For any burst that is made up of data transfers wider than 1 byte, the first bytes accessed might be unaligned with the natural
+address boundary. For example, a 32-bit data packet that starts at a byte address of 0x1002 is not aligned to the natural 32-bit
+transfer size.</p>
+<p><em>CVA6 does not perform Unaligned transfers.</em></p>
+</section>
+<section id="read-and-write-response-structure-section-a3-4-5">
+<span id="read-and-write-response-structure-label"></span><h3>Read and write response structure (Section A3.4.5)<a class="headerlink" href="#read-and-write-response-structure-section-a3-4-5" title="Link to this heading"></a></h3>
+<p>The AXI protocol provides response signaling for both read and write transactions:</p>
+<ul class="simple">
+<li><p>For read transactions, the response information from the Subordinate is signaled on the read data channel.</p></li>
+<li><p>For write transactions, the response information is signaled on the write response channel.</p></li>
+</ul>
+<p>CVA6 does not consider the responses sent by the memory except in the exclusive Access ( <code class="docutils literal notranslate"><span class="pre">XRESP[1:0]</span></code> = 0b01 ).</p>
+</section>
+</section>
+<section id="transaction-attributes-memory-types-section-a4">
+<h2>Transaction Attributes: Memory types (Section A4)<a class="headerlink" href="#transaction-attributes-memory-types-section-a4" title="Link to this heading"></a></h2>
+<p>This section describes the attributes that determine how a transaction should be treated by the AXI subordinate that is connected to the CVA6.</p>
+<p><code class="docutils literal notranslate"><span class="pre">AxCACHE</span></code> always takeq 0b0010. The subordinate should be a Normal Non-cacheable Non-bufferable.</p>
+<p>The required behavior for Normal Non-cacheable Non-bufferable memory is:</p>
+<ul class="simple">
+<li><p>The write response must be obtained from the final destination.</p></li>
+<li><p>Read data must be obtained from the final destination.</p></li>
+<li><p>Transactions are modifiable.</p></li>
+<li><p>Writes can be merged.</p></li>
+</ul>
+</section>
+<section id="transaction-identifiers-section-a5">
+<span id="transaction-identifiers-label"></span><h2>Transaction Identifiers (Section A5)<a class="headerlink" href="#transaction-identifiers-section-a5" title="Link to this heading"></a></h2>
+<p>The AXI protocol includes AXI ID transaction identifiers. A Manager can use these to identify separate transactions that must be returned in order.</p>
+<p>The CVA6 identify each type of transaction with a specific ID:</p>
+<ul class="simple">
+<li><p>For read transaction, id can be 0 or 1. (0 for instruction fetch and 1 for data)</p></li>
+<li><p>For write transaction, id = 1.</p></li>
+<li><p>For Atomic operation, id = 3. This ID must be sent in the write channels and also in the read channel if the transaction performed requires response data.</p></li>
+<li><p>For Exclusive transaction, id = 3.</p></li>
+</ul>
+</section>
+<section id="axi-ordering-model-section-a6">
+<h2>AXI Ordering Model (Section A6)<a class="headerlink" href="#axi-ordering-model-section-a6" title="Link to this heading"></a></h2>
+<section id="axi-ordering-model-overview-section-a6-1">
+<h3>AXI ordering model overview (Section A6.1)<a class="headerlink" href="#axi-ordering-model-overview-section-a6-1" title="Link to this heading"></a></h3>
+<p>The AXI ordering model is based on the use of the transaction identifier, which is signaled on <code class="docutils literal notranslate"><span class="pre">ARID</span></code> or <code class="docutils literal notranslate"><span class="pre">AWID</span></code>.</p>
+<p>Transaction requests on the same channel, with the same ID and destination are guaranteed to remain in order.</p>
+<p>Transaction responses with the same ID are returned in the same order as the requests were issued.</p>
+<p>Write transaction requests, with the same destination are guaranteed to remain in order. Because all write transaction performed by CVA6 have the same ID.</p>
+<p>CVA6 can perform multiple outstanding write address transactions.</p>
+<p>CVA6 cannot perform a Read transaction and a Write one at the same time. Therefore there no ordering problems between Read and write transactions.</p>
+<p>The ordering model does not give any ordering guarantees between:</p>
+<ul class="simple">
+<li><p>Transactions from different Managers</p></li>
+<li><p>Read Transactions with different IDs</p></li>
+<li><p>Transactions to different Memory locations</p></li>
+</ul>
+<p>If the CVA6 requires ordering between transactions that have no ordering guarantee, the Manager must wait to receive a response to the first transaction before issuing the second transaction.</p>
+</section>
+<section id="memory-locations-and-peripheral-regions-section-a6-2">
+<h3>Memory locations and Peripheral regions (Section A6.2)<a class="headerlink" href="#memory-locations-and-peripheral-regions-section-a6-2" title="Link to this heading"></a></h3>
+<p>The address maps in some bus specifications can differentiate Memory locations and Peripheral regions. But the AXI is associated to the memory interface of CVA6.</p>
+<p>A Memory location has all of the following properties:</p>
+<ul class="simple">
+<li><p>A read of a byte from a Memory location returns the last value that was written to that byte location.</p></li>
+<li><p>A write to a byte of a Memory location updates the value at that location to a new value that is obtained by a subsequent read of that location.</p></li>
+<li><p>Reading or writing to a Memory location has no side-effects on any other Memory location.</p></li>
+<li><p>Observation guarantees for Memory are given for each location.</p></li>
+<li><p>The size of a Memory location is equal to the single-copy atomicity size for that component.</p></li>
+</ul>
+</section>
+<section id="transactions-and-ordering-section-a6-3">
+<h3>Transactions and ordering (Section A6.3)<a class="headerlink" href="#transactions-and-ordering-section-a6-3" title="Link to this heading"></a></h3>
+<p>A transaction is a read or a write to one or more address locations. The locations are determined by AxADDR and any relevant qualifiers such as the Non-secure bit in <code class="docutils literal notranslate"><span class="pre">AxPROT</span></code>.</p>
+<ul class="simple">
+<li><p>Ordering guarantees are given only between accesses to the same Memory location or Peripheral region.</p></li>
+<li><p>A transaction to a Peripheral region must be entirely contained within that region.</p></li>
+<li><p>A transaction that spans multiple Memory locations has multiple ordering guarantees.</p></li>
+</ul>
+<p>Transaction performed by CVA6 is of type Normal, because <code class="docutils literal notranslate"><span class="pre">AxCACHE[1]</span></code> is asserted.</p>
+<p>Normal transactions are used to access Memory locations and are not expected to be used to access Peripheral regions.</p>
+<p>A Normal access to a Peripheral region must complete in a protocol-compliant manner, but the result is IMPLEMENTATION DEFINED.</p>
+<p>A write transaction performed by CVA6 is Non-bufferable (It is not possible to send an early response before the transaction reach the final destination), because <code class="docutils literal notranslate"><span class="pre">AxCACHE[0]</span></code> is deasserted.</p>
+</section>
+<section id="ordered-write-observation-section-a6-8">
+<h3>Ordered write observation (Section A6.8)<a class="headerlink" href="#ordered-write-observation-section-a6-8" title="Link to this heading"></a></h3>
+<p>To improve compatibility with interface protocols that support a different ordering model, a Subordinate interface can give stronger ordering guarantees for write transactions. A stronger ordering guarantee is known as Ordered Write Observation.</p>
+<p><em>The CVA6 AXI interface exhibits Ordered Write Observation, so the Ordered_Write_Observation property is True.</em></p>
+<p>An interface that exhibits Ordered Write Observation gives guarantees for write transactions that are not dependent on the destination or address:</p>
+<ul class="simple">
+<li><p>A write W1 is guaranteed to be observed by a write W2, where W2 is issued after W1, from the same Manager, with the same ID.</p></li>
+</ul>
+</section>
+</section>
+<section id="atomic-transactions-section-e1-1">
+<span id="atomic-transactions-label"></span><h2>Atomic transactions (Section E1.1)<a class="headerlink" href="#atomic-transactions-section-e1-1" title="Link to this heading"></a></h2>
+<p>AXI 5 introduces Atomic transactions, which perform more than just a single access and have an operation that is associated with the transaction. Atomic transactions enable sending the operation to the data, permitting the operation to be performed closer to where the data is located. Atomic transactions are suited to situations where the data is located a significant distance from the agent that must perform the operation.</p>
+<p><em>If(RVA) AWATOP = 0 (If AMO instructions are not supported, CVA6 cannot perform Atomic transaction)</em></p>
+<p><em>CVA6 supports just the AtomicLoad and AtomicSwap transaction. So ``AWATOP[5:4]`` can be 00, 10 or 11.</em></p>
+<p><em>CVA6 performs only little-endian operation. So ``AWATOP[3]`` = 0.</em></p>
+<p><em>For AtomicLoad, CVA6 supports all arithmetic operations encoded on the lower-order ``AWATOP[2:0]`` signals.</em></p>
+</section>
+<section id="cva6-constraints">
+<h2>CVA6 Constraints<a class="headerlink" href="#cva6-constraints" title="Link to this heading"></a></h2>
+<p>This section describes cross-cases between several features that are not supported by CVA6.</p>
+<ul class="simple">
+<li><p>ARID = 0 &amp;&amp; ARSIZE = log(AXI_DATA_WIDTH/8), CVA6 always requests max number of words in case of read transaction with ID 0 (instruction fetch)</p></li>
+<li><p>if(RV32) ARSIZE != 3 &amp;&amp; ARLEN = 0 &amp;&amp; ARID = 1, the maximum load instruction size is 4 bytes</p></li>
+<li><p>if(!RVA) AxLOCK = 0, if AMO instructions are not supported, CVA6 cannot perform exclusive transaction</p></li>
+<li><p>if(RVA) AxLOCK = 1 =&gt; AxSIZE &gt; 1, CVA6 doesn’t perform exclusive transaction with size lower than 4 bytes</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Interfaces.html" class="btn btn-neutral float-left" title="Interfaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CVX_Interface_Coprocessor.html" class="btn btn-neutral float-right" title="CV-X-IF Interface and Coprocessor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

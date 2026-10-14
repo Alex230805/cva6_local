@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CVA6 Design Document (deprecated) &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction" href="intro.html" />
+    <link rel="prev" title="Core Integration" href="../01_cva6_user/Core_Integration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CVA6 Design Document (deprecated)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcgen_stage.html">PC Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="if_stage.html">Instruction Fetch Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="id_stage.html">Instruction Decode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issue_stage.html">Issue Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html">Execute Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html">Memory Management Unit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#translation-lookaside-buffer">Translation Lookaside Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#shared-translation-lookaside-buffer">Shared Translation Lookaside Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#page-table-walker">Page Table Walker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commit_stage.html">Commit Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CVA6 Design Document (deprecated)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/03_cva6_design/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cva6-design-document-deprecated">
+<h1>CVA6 Design Document (deprecated)<a class="headerlink" href="#cva6-design-document-deprecated" title="Link to this heading"></a></h1>
+<p>Editor: <strong>Florian Zaruba</strong>
+<a class="reference external" href="mailto:florian&#37;&#52;&#48;openhwgroup&#46;org?subject=CVA6%20Design%20Document">florian<span>&#64;</span>openhwgroup<span>&#46;</span>org</a></p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#scope-and-purpose">Scope and Purpose</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcgen_stage.html">PC Generation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pcgen_stage.html#branch-prediction">Branch Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="if_stage.html">Instruction Fetch Stage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="if_stage.html#fetch-fifo">Fetch FIFO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="id_stage.html">Instruction Decode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="id_stage.html#instruction-re-aligner">Instruction Re-aligner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="id_stage.html#compressed-decoder">Compressed Decoder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="id_stage.html#decoder">Decoder</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="issue_stage.html">Issue Stage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="issue_stage.html#issue">Issue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issue_stage.html#read-operands">Read Operands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issue_stage.html#scoreboard">Scoreboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ex_stage.html">Execute Stage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html#alu">ALU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html#branch-unit">Branch Unit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html#load-store-unit-lsu">Load Store Unit (LSU)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html#pma-pmp-checks">PMA/PMP Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html#mmu-implementation-details">MMU Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html#multiplier">Multiplier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html#csr-buffer">CSR Buffer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MMU.html">Memory Management Unit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MMU.html#translation-lookaside-buffer">Translation Lookaside Buffer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MMU.html#shared-translation-lookaside-buffer">Shared Translation Lookaside Buffer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MMU.html#page-table-walker">Page Table Walker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commit_stage.html">Commit Stage</a></li>
+</ul>
+</div>
+<section id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="../py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="../search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
+<p>The documentation is re-generated on pushes to master.
+When contributing to the project please consider the [contribution guide](<a class="reference external" href="https://github.com/openhwgroup/cva6/blob/master/CONTRIBUTING.md">https://github.com/openhwgroup/cva6/blob/master/CONTRIBUTING.md</a>).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../01_cva6_user/Core_Integration.html" class="btn btn-neutral float-left" title="Core Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intro.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

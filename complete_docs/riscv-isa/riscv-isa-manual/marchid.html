@@ -1,0 +1,170 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open-Source RISC-V Architecture IDs &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CVA6
+              <img src="../../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Open-Source RISC-V Architecture IDs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/riscv-isa/riscv-isa-manual/marchid.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="open-source-risc-v-architecture-ids">
+<h1>Open-Source RISC-V Architecture IDs<a class="headerlink" href="#open-source-risc-v-architecture-ids" title="Link to this heading"></a></h1>
+<p>Every RISC-V hart provides an marchid CSR that encodes its base
+microarchitecture.  Any hart may report an architecture ID of 0, indicating
+unspecified origin.  Commercial implementations (those with nonzero mvendorid)
+may encode any value in marchid with the most-significant bit set, with the
+low-order bits formatted in a vendor-specific manner.  Open-source
+implementations (which may or may not have a nonzero mvendorid) have the
+most-significant bit clear, with a globally unique pattern in the low-order
+bits.</p>
+<p>This document contains the canonical list of open-source RISC-V implementations
+and their architecture IDs.  Open-source project maintainers may make pull
+requests against this repository to request the allocation of an architecture
+ID.</p>
+<hr class="docutils" />
+<p>Project Name  | Maintainers                     | Point of Contact                                            | Architecture ID   | Project URL<br />————- | ——————————- | ———————————————————– | —————– | —————————————————
+Rocket        | SiFive, UC Berkeley             | <a class="reference external" href="mailto:andrew&#37;&#52;&#48;sifive&#46;com">Andrew Waterman</a>, SiFive         | 1                 | https://github.com/chipsalliance/rocket-chip
+BOOM          | UC Berkeley                     | <a class="reference external" href="mailto:celio&#37;&#52;&#48;berkeley&#46;edu">Christopher Celio</a>              | 2                 | https://github.com/riscv-boom/riscv-boom
+CVA6          | OpenHW Group                    | <a class="reference external" href="mailto:florian&#37;&#52;&#48;openhwgroup&#46;org">Florian Zaruba</a>, OpenHW Group | 3                 | https://github.com/openhwgroup/cva6<br />CV32E40P      | OpenHW Group                    | <a class="reference external" href="mailto:davide&#37;&#52;&#48;openhwgroup&#46;org">Davide Schiavone</a>, OpenHW Group | 4                 | https://github.com/openhwgroup/cv32e40p
+Spike         | SiFive, UC Berkeley             | <a class="reference external" href="mailto:andrew&#37;&#52;&#48;sifive&#46;com">Andrew Waterman</a>, SiFive         | 5                 | https://github.com/riscv/riscv-isa-sim<br />E-Class       | IIT Madras                      | <a class="reference external" href="mailto:neelgala&#37;&#52;&#48;gmail&#46;com">Neel Gala</a>                      | 6                 | https://gitlab.com/shaktiproject/cores/e-class
+ORCA          | VectorBlox                      | <a class="reference external" href="mailto:joel&#37;&#52;&#48;vectorblox&#46;com">Joel Vandergriendt</a>            | 7                 | https://github.com/vectorblox/orca
+SCR1          | Syntacore                       | <a class="reference external" href="mailto:dmitri&#46;pavlov&#37;&#52;&#48;syntacore&#46;com">Dmitri Pavlov</a>, Syntacore| 8               | https://github.com/syntacore/scr1
+YARVI         | Tommy Thorn’s Priceless Services| <a class="reference external" href="mailto:tommy-github2&#37;&#52;&#48;thorn&#46;ws">Tommy Thorn</a>                | 9                 | https://github.com/tommythorn/yarvi
+RVBS          | Alexandre Joannou, University of Cambridge| <a class="reference external" href="mailto:aj443&#37;&#52;&#48;cl&#46;cam&#46;ac&#46;uk">Alexandre Joannou</a>    | 10                | https://github.com/CTSRD-CHERI/RVBS
+SweRV EH1     | Western Digital Corporation     | <a class="reference external" href="mailto:Thomas&#46;Wicki&#37;&#52;&#48;wdc&#46;com">Thomas Wicki</a>                 | 11                | https://github.com/chipsalliance/Cores-SweRV
+MSCC          | Rongcui Dong                    | <a class="reference external" href="mailto:rongcuid&#37;&#52;&#48;outlook&#46;com">Rongcui Dong</a>                | 12 | https://github.com/rongcuid/MSCC
+BlackParrot   | The World                       | <a class="reference external" href="mailto:prof&#46;taylor&#37;&#52;&#48;gmail&#46;com">Michael B<span>&#46;</span> Taylor</a>, U. Washington | 13 |  https://github.com/black-parrot
+BaseJump Manycore   | U. Washington             | <a class="reference external" href="mailto:prof&#46;taylor&#37;&#52;&#48;gmail&#46;com">Michael B<span>&#46;</span> Taylor</a>, U. Washington | 14 |  https://github.com/bespoke-silicon-group/bsg_manycore
+C-Class       | IIT Madras                      | <a class="reference external" href="mailto:neelgala&#37;&#52;&#48;gmail&#46;com">Neel Gala</a>                      | 15                 | https://gitlab.com/shaktiproject/cores/c-class
+SweRV EL2     | Western Digital Corporation     | <a class="reference external" href="mailto:Thomas&#46;Wicki&#37;&#52;&#48;wdc&#46;com">Thomas Wicki</a>                 | 16                | https://github.com/chipsalliance/Cores-SweRV-EL2
+SweRV EH2     | Western Digital Corporation     | <a class="reference external" href="mailto:Thomas&#46;Wicki&#37;&#52;&#48;wdc&#46;com">Thomas Wicki</a>                 | 17                | https://github.com/chipsalliance/Cores-SweRV-EH2
+SERV          | Olof Kindgren Enterprises       | <a class="reference external" href="mailto:olof&#46;kindgren&#37;&#52;&#48;gmail&#46;com">Olof Kindgren</a>             | 18                | https://github.com/olofk/serv
+NEORV32       | Stephan Nolting                 | <a class="reference external" href="mailto:stnolting&#37;&#52;&#48;gmail&#46;com">Stephan Nolting</a>               | 19                | https://github.com/stnolting/neorv32
+CV32E40X      | OpenHW Group                    | <a class="reference external" href="mailto:arjan&#46;bink&#37;&#52;&#48;silabs&#46;com">Arjan Bink</a>, Silicon Laboratories | 20           | https://github.com/openhwgroup/cv32e40x
+CV32E40S      | OpenHW Group                    | <a class="reference external" href="mailto:arjan&#46;bink&#37;&#52;&#48;silabs&#46;com">Arjan Bink</a>, Silicon Laboratories | 21           | https://github.com/openhwgroup/cv32e40s
+Ibex          | lowRISC                         | <a class="reference external" href="mailto:hardware&#37;&#52;&#48;lowrisc&#46;org">lowRISC Hardware Team</a>        | 22                | https://github.com/lowRISC/ibex
+RudolV        | Jörg Mische                     | <a class="reference external" href="mailto:bobbl&#37;&#52;&#48;gmx&#46;de">Jörg Mische</a>                          | 23                | https://github.com/bobbl/rudolv
+Steel Core    | Rafael Calcada                  | <a class="reference external" href="mailto:rafaelcalcada&#37;&#52;&#48;gmail&#46;com">Rafael Calcada</a>            | 24                | https://github.com/rafaelcalcada/steel-core
+XiangShan     | ICT, CAS                        | <a class="reference external" href="mailto:xiangshan-all&#37;&#52;&#48;ict&#46;ac&#46;cn">XiangShan Team</a>            | 25                | https://github.com/OpenXiangShan/XiangShan
+Hummingbirdv2 E203  | Nuclei System Technology  | <a class="reference external" href="mailto:canhu&#37;&#52;&#48;nucleisys&#46;com">Can Hu</a>, Nuclei System Technology  | 26            | https://github.com/riscv-mcu/e203_hbirdv2
+Hazard3       | Luke Wren                       | <a class="reference external" href="mailto:wren6991&#37;&#52;&#48;gmail&#46;com">Luke Wren</a>                       | 27                | https://github.com/wren6991/hazard3
+CV32E41P      | OpenHW Group                    | <a class="reference external" href="mailto:mark&#46;hill&#37;&#52;&#48;huawei&#46;com">Mark Hill</a>, OpenHW Group        | 28            | https://github.com/openhwgroup/cv32e41p
+Rift          | Jianhu Lab, WUT                 | <a class="reference external" href="mailto:295054118&#37;&#52;&#48;whut&#46;edu&#46;cn">Ruige Lee</a>                     | 29            | <a class="reference external" href="https://github.com/whutddk/RiftCore">RiftCore</a>, <a class="reference external" href="https://github.com/whutddk/Rift2Core">Rift2Core</a>
+RISu064       | Wenting Zhang                   | <a class="reference external" href="mailto:zephray&#37;&#52;&#48;outlook&#46;com">Wenting Zhang</a>                 | 30                | https://github.com/zephray/RISu064
+AIRISC        | Fraunhofer IMS                  | <a class="reference external" href="mailto:airisc&#37;&#52;&#48;ims&#46;fraunhofer&#46;de">AIRISC Support</a>           | 31               | https://github.com/Fraunhofer-IMS/airisc_core_complex
+Proteus       | imec-DistriNet, KU Leuven       | <a class="reference external" href="mailto:marton&#46;bognar&#37;&#52;&#48;kuleuven&#46;be">Marton Bognar</a>           | 32               | https://github.com/proteus-core/proteus
+VexRiscv      | SpinalHDL                       | <a class="reference external" href="mailto:charles&#46;papon&#46;90&#37;&#52;&#48;gmail&#46;com">Charles Papon</a>          | 33               | https://github.com/SpinalHDL/VexRiscv
+Shuttle       | UC Berkeley                     | <a class="reference external" href="mailto:jerryz123&#37;&#52;&#48;berkeley&#46;edu">Jerry Zhao</a>                 | 34               | https://github.com/ucb-bar/shuttle
+CV32E2        | OpenHW Group                    | <a class="reference external" href="mailto:davide&#37;&#52;&#48;openhwgroup&#46;org">Davide Schiavone</a>, OpenHW Group | 35                 | https://github.com/openhwgroup/cve2
+Wally        | OpenHW Group                       | <a class="reference external" href="mailto:james&#46;stine&#37;&#52;&#48;okstate&#46;edu">James Stine</a>, OpenHW Group | 36             | https://github.com/openhwgroup/cvw
+Boa32         | Julian Scheffers                | <a class="reference external" href="mailto:julian&#37;&#52;&#48;scheffers&#46;net">Julian Scheffers</a>             | 37               | https://github.com/robotman2412/boa-risc-v
+WIV64         | Jesús Sanz del Rey              | <a class="reference external" href="mailto:jesussanz2003&#37;&#52;&#48;gmail&#46;com">Jesús Sanz del Rey</a>        | 38               | https://github.com/StartForKiller/WivCPU
+RV6           | Nikola Lukić                    | <a class="reference external" href="mailto:lukicn&#37;&#52;&#48;protonmail&#46;com">Nikola Lukić</a>                | 39               | https://github.com/kiclu/rv6
+ApogeoRV      | Gabriele Tripi                  | <a class="reference external" href="mailto:tripi&#46;gabriele2002&#37;&#52;&#48;gmail&#46;com">Gabriele Tripi</a>       | 40               | https://github.com/GabbedT/ApogeoRV
+MicroRV32      | AGRA, Group of Computer Architecture, University of Bremen | <a class="reference external" href="mailto:riscv&#37;&#52;&#48;informatik&#46;uni-bremen&#46;de">RISC-V <span>&#64;</span> AGRA</a>       | 41               | https://github.com/agra-uni-bremen/microrv32
+QEMU          | qemu.org                        | <a class="reference external" href="mailto:qemu-riscv&#37;&#52;&#48;nongnu&#46;org">QEMU Mailing List</a>           | 42               | https://qemu.org
+KianV         | Hirosh Dabui                    | <a class="reference external" href="mailto:hirosh&#37;&#52;&#48;dabui&#46;de">Hirosh Dabui</a>                      | 43               | https://github.com/splinedrive/kianRiscV
+Coreblocks    | Kuźnia Rdzeni, University of Wrocław | <a class="reference external" href="mailto:coreblocks&#37;&#52;&#48;cs&#46;uni&#46;wroc&#46;pl">Coreblocks Team</a>    | 44               | https://github.com/kuznia-rdzeni/coreblocks
+rrv32         | Solra Bizna                     | <a class="reference external" href="mailto:solra&#37;&#52;&#48;bizna&#46;name">Solra Bizna</a>                      | 45               | https://github.com/SolraBizna/rrv32
+VexiiRiscv    | SpinalHDL                       | <a class="reference external" href="mailto:charles&#46;papon&#46;90&#37;&#52;&#48;gmail&#46;com">Charles Papon</a>          | 46               | https://github.com/SpinalHDL/VexiiRiscv
+Wildcat       | Technical University of Denmark | <a class="reference external" href="mailto:masca&#37;&#52;&#48;dtu&#46;dk">Martin Schoeberl</a>                     | 47               | https://github.com/schoeberl/wildcat</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,735 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CVA6 User Manual &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="OpenHW Group CVA6 User Manual" href="CVA6_user_guide.html" />
+    <link rel="prev" title="CVA6 Requirement Specification" href="../02_cva6_requirements/cva6_requirements_specification.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CVA6 User Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CVA6_user_guide.html">OpenHW Group CVA6 User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html">Programmer’s View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Custom_Instructions.html">Custom RISC-V instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMA.html">PMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMP.html">PMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html">Traps, Interrupts, Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Compiler_Command_Lines.html">Compiler command lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html">CVA6 RISC-V Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html">RV32I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32M.html">RV32M</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32A.html">RV32A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html">RV32C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32ZCb.html">RV32Zcb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZcmp.html">RVZcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZba.html">RVZba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html">RVZbb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbc.html">RVZbc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbs.html">RVZbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html">RVZbkb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkc.html">RVZbkc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkx.html">RVZbkx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZkne.html">RVZkne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknd.html">RVZknd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknh.html">RVZknh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicsr.html">RVZicsr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZifencei.html">RVZifencei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicond.html">RVZicond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X_list.html">CV32A60X CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html">CV32A60X CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX_list.html">CV32A60AX CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX.html">CV32A60AX CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU_list.html">CV64A6_MMU CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU.html">CV64A6_MMU CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CV64A6_Control_Status_Registers.html">CV64A6 CSR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Cache_Control.html">CSR cache control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Performance_Counters.html">CSR Performance Counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters_Configuration.html">Parameters and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html">AXI Bus Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html">CV-X-IF Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html">Core Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CVA6 User Manual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_cva6_user/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cva6-user-manual">
+<h1>CVA6 User Manual<a class="headerlink" href="#cva6-user-manual" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CVA6_user_guide.html">OpenHW Group CVA6 User Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CVA6_user_guide.html#changelog">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html#work-in-progress">Work In Progress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html#target-audience">Target Audience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html#cva6-overview">CVA6 Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html#configurations">Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html#scope-of-the-ip">Scope of the IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html#specifications-and-references">Specifications and References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Programmer_View.html">Programmer’s View</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html#risc-v-extensions">RISC-V Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html#risc-v-privileges">RISC-V Privileges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html#risc-v-virtual-memory">RISC-V Virtual Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html#memory-alignment">Memory Alignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html#harts">Harts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Custom_Instructions.html">Custom RISC-V instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PMA.html">PMA</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PMA.html#unsupported-pmas">Unsupported PMAs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PMP.html">PMP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Traps_Interrupts_Exceptions.html">Traps, Interrupts, Exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html#raising-traps">Raising Traps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html#trap-return">Trap return</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html#interrupts">Interrupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html#wait-for-interrupt">Wait for Interrupt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Compiler_Command_Lines.html">Compiler command lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions.html">CVA6 RISC-V Instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html#general-purpose-registers">General purpose registers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html#risc-v-extensions">RISC-V Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html#conventions-and-terminology">Conventions and Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html#illegal-instructions">Illegal Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RV32I.html">RV32I</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html#integer-register-immediate-instructions">Integer Register-Immediate Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html#integer-register-register-instructions">Integer Register-Register Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html#control-transfer-instructions">Control Transfer Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html#load-and-store-instructions">Load and Store Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html#memory-ordering">Memory Ordering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html#environment-call-and-breakpoints">Environment Call and Breakpoints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RV32M.html">RV32M</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32M.html#multiplication-operations">Multiplication Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32M.html#division-operations">Division Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RV32A.html">RV32A</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32A.html#load-reserved-store-conditional-instructions">Load-Reserved/Store-Conditional Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32A.html#atomic-memory-operations">Atomic Memory Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RV32C.html">RV32C</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html#integer-computational-instructions">Integer Computational Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html#control-transfer-instructions">Control Transfer Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html#load-and-store-instructions">Load and Store Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RV32ZCb.html">RV32Zcb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZcmp.html">RVZcmp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZba.html">RVZba</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZba.html#rv32-and-rv64-instructions">RV32 and RV64 Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZba.html#rv64-specific-instructions">RV64 specific instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZbb.html">RVZbb</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html#logical-with-negate">Logical with negate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html#count-leading-trailing-zero-bits">Count leading/trailing zero bits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html#count-population">Count population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html#integer-minimum-maximum">Integer minimum/maximum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html#sign-and-zero-extension">Sign and zero-extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html#bitwise-rotation">Bitwise Rotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html#or-combine">OR Combine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html#byte-reverse">Byte-reverse</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZbc.html">RVZbc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbc.html#rv32-and-rv64-instructions">RV32 and RV64 Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZbs.html">RVZbs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbs.html#rv32-and-rv64-instructions">RV32 and RV64 Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html">RVZbkb</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html#pack-instructions">Pack instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html#zip-instructions">Zip instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html#bits-in-byte-reverse">Bits-in-Byte-reverse</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZbkc.html">RVZbkc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkc.html#rv32-and-rv64-instructions">RV32 and RV64 Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZbkx.html">RVZbkx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkx.html#xperm-instructions">Xperm instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZkne.html">RVZkne</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZkne.html#encryption-instructions">Encryption instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZkne.html#key-schedule-instructions">Key Schedule instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZknd.html">RVZknd</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknd.html#decryption-instructions">Decryption instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknd.html#key-schedule-instructions">Key Schedule instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZknh.html">RVZknh</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknh.html#hash-function-instructions">Hash Function instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZicsr.html">RVZicsr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZifencei.html">RVZifencei</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RISCV_Instructions_RVZicond.html">RVZicond</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CSR_CV32A60X_list.html">CV32A60X CSR List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CSR_CV32A60X.html">CV32A60X CSR Details</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#unimplemented-csr-accessing-generates-an-illegal-instruction-exception">Unimplemented CSR accessing generates an illegal instruction exception.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#read-only-csr-write-access-generates-an-illegal-instruction-exception">Read-Only CSR write access generates an illegal instruction exception.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mstatus-machine-status-register">MSTATUS:Machine Status Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h300">AddressOffset: ‘h300</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#description">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#misa-machine-isa-register">MISA:Machine ISA Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h301">AddressOffset: ‘h301</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id31">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mie-machine-interrupt-enable-register">MIE:Machine Interrupt Enable Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h304">AddressOffset: ‘h304</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id38">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mtvec-machine-trap-vector-register">MTVEC:Machine Trap Vector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h305">AddressOffset: ‘h305</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id53">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mstatush-upper-32-bits-of-machine-status-register">MSTATUSH:Upper 32-bits of Machine Status Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h310">AddressOffset: ‘h310</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id58">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent3-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT3:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h323">AddressOffset: ‘h323</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id63">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent4-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT4:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h324">AddressOffset: ‘h324</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id64">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent5-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT5:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h325">AddressOffset: ‘h325</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id65">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent6-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT6:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h326">AddressOffset: ‘h326</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id66">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent7-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT7:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h327">AddressOffset: ‘h327</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id67">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent8-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT8:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h328">AddressOffset: ‘h328</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id68">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent9-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT9:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h329">AddressOffset: ‘h329</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id69">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent10-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT10:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h32a">AddressOffset: ‘h32a</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id70">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent11-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT11:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h32b">AddressOffset: ‘h32b</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id71">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent12-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT12:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h32c">AddressOffset: ‘h32c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id72">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent13-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT13:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h32d">AddressOffset: ‘h32d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id73">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent14-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT14:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h32e">AddressOffset: ‘h32e</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id74">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent15-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT15:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h32f">AddressOffset: ‘h32f</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id75">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent16-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT16:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h330">AddressOffset: ‘h330</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id76">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent17-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT17:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h331">AddressOffset: ‘h331</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id77">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent18-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT18:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h332">AddressOffset: ‘h332</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id78">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent19-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT19:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h333">AddressOffset: ‘h333</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id79">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent20-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT20:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h334">AddressOffset: ‘h334</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id80">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent21-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT21:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h335">AddressOffset: ‘h335</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id81">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent22-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT22:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h336">AddressOffset: ‘h336</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id82">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent23-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT23:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h337">AddressOffset: ‘h337</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id83">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent24-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT24:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h338">AddressOffset: ‘h338</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id84">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent25-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT25:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h339">AddressOffset: ‘h339</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id85">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent26-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT26:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h33a">AddressOffset: ‘h33a</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id86">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent27-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT27:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h33b">AddressOffset: ‘h33b</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id87">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent28-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT28:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h33c">AddressOffset: ‘h33c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id88">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent29-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT29:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h33d">AddressOffset: ‘h33d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id89">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent30-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT30:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h33e">AddressOffset: ‘h33e</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id90">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmevent31-machine-hardware-performance-monitoring-event-selector-register">MHPMEVENT31:Machine Hardware Performance-Monitoring Event Selector Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h33f">AddressOffset: ‘h33f</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id91">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mscratch-machine-scratch-register">MSCRATCH:Machine Scratch Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h340">AddressOffset: ‘h340</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id92">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mepc-machine-exception-program-counter-register">MEPC:Machine Exception Program Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h341">AddressOffset: ‘h341</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id93">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mcause-machine-cause-register">MCAUSE:Machine Cause Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h342">AddressOffset: ‘h342</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id94">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mtval-machine-trap-value-register">MTVAL:Machine Trap Value Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h343">AddressOffset: ‘h343</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id95">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mip-machine-interrupt-pending-register">MIP:Machine Interrupt Pending Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h344">AddressOffset: ‘h344</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id96">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpcfg0-physical-memory-protection-config-0-register">PMPCFG0:Physical Memory Protection Config 0 Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3a0">AddressOffset: ‘h3a0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id111">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpcfg1-physical-memory-protection-config-1-register">PMPCFG1:Physical Memory Protection Config 1 Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3a1">AddressOffset: ‘h3a1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id112">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpcfg2-physical-memory-protection-config-2-register">PMPCFG2:Physical Memory Protection Config 2 Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3a2">AddressOffset: ‘h3a2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id113">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpcfg3-physical-memory-protection-config-3-register">PMPCFG3:Physical Memory Protection Config 3 Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3a3">AddressOffset: ‘h3a3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id114">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr0-physical-memory-protection-address-register">PMPADDR0:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3b0">AddressOffset: ‘h3b0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id115">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr1-physical-memory-protection-address-register">PMPADDR1:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3b1">AddressOffset: ‘h3b1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id116">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr2-physical-memory-protection-address-register">PMPADDR2:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3b2">AddressOffset: ‘h3b2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id117">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr3-physical-memory-protection-address-register">PMPADDR3:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3b3">AddressOffset: ‘h3b3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id118">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr4-physical-memory-protection-address-register">PMPADDR4:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3b4">AddressOffset: ‘h3b4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id119">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr5-physical-memory-protection-address-register">PMPADDR5:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3b5">AddressOffset: ‘h3b5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id120">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr6-physical-memory-protection-address-register">PMPADDR6:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3b6">AddressOffset: ‘h3b6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id121">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr7-physical-memory-protection-address-register">PMPADDR7:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3b7">AddressOffset: ‘h3b7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id122">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr8-physical-memory-protection-address-register">PMPADDR8:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3b8">AddressOffset: ‘h3b8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id123">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr9-physical-memory-protection-address-register">PMPADDR9:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3b9">AddressOffset: ‘h3b9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id124">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr10-physical-memory-protection-address-register">PMPADDR10:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3ba">AddressOffset: ‘h3ba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id125">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr11-physical-memory-protection-address-register">PMPADDR11:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3bb">AddressOffset: ‘h3bb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id126">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr12-physical-memory-protection-address-register">PMPADDR12:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3bc">AddressOffset: ‘h3bc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id127">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr13-physical-memory-protection-address-register">PMPADDR13:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3bd">AddressOffset: ‘h3bd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id128">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr14-physical-memory-protection-address-register">PMPADDR14:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3be">AddressOffset: ‘h3be</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id129">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#pmpaddr15-physical-memory-protection-address-register">PMPADDR15:Physical Memory Protection Address Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h3bf">AddressOffset: ‘h3bf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id130">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#icache-instruction-cache-register">ICACHE:Instruction Cache Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-h7c0">AddressOffset: ‘h7C0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id131">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mcycle-m-mode-cycle-counter-register">MCYCLE:M-mode Cycle counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb00">AddressOffset: ‘hB00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id132">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#minstret-machine-instruction-retired-counter-register">MINSTRET:Machine Instruction Retired counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb02">AddressOffset: ‘hB02</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id133">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mcycleh-upper-32-bits-of-m-mode-cycle-counter-register">MCYCLEH:Upper 32-bits of M-mode Cycle counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb80">AddressOffset: ‘hB80</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id134">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#minstreth-upper-32-bits-of-machine-instruction-retired-counter-register">MINSTRETH:Upper 32-bits of Machine Instruction Retired counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb82">AddressOffset: ‘hB82</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id135">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter3-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER3:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb03">AddressOffset: ‘hb03</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id136">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter4-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER4:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb04">AddressOffset: ‘hb04</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id137">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter5-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER5:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb05">AddressOffset: ‘hb05</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id138">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter6-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER6:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb06">AddressOffset: ‘hb06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id139">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter7-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER7:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb07">AddressOffset: ‘hb07</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id140">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter8-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER8:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb08">AddressOffset: ‘hb08</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id141">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter9-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER9:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb09">AddressOffset: ‘hb09</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id142">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter10-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER10:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb0a">AddressOffset: ‘hb0a</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id143">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter11-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER11:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb0b">AddressOffset: ‘hb0b</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id144">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter12-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER12:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb0c">AddressOffset: ‘hb0c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id145">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter13-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER13:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb0d">AddressOffset: ‘hb0d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id146">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter14-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER14:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb0e">AddressOffset: ‘hb0e</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id147">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter15-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER15:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb0f">AddressOffset: ‘hb0f</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id148">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter16-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER16:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb10">AddressOffset: ‘hb10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id149">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter17-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER17:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb11">AddressOffset: ‘hb11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id150">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter18-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER18:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb12">AddressOffset: ‘hb12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id151">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter19-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER19:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb13">AddressOffset: ‘hb13</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id152">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter20-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER20:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb14">AddressOffset: ‘hb14</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id153">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter21-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER21:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb15">AddressOffset: ‘hb15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id154">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter22-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER22:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb16">AddressOffset: ‘hb16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id155">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter23-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER23:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb17">AddressOffset: ‘hb17</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id156">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter24-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER24:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb18">AddressOffset: ‘hb18</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id157">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter25-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER25:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb19">AddressOffset: ‘hb19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id158">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter26-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER26:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb1a">AddressOffset: ‘hb1a</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id159">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter27-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER27:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb1b">AddressOffset: ‘hb1b</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id160">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter28-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER28:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb1c">AddressOffset: ‘hb1c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id161">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter29-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER29:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb1d">AddressOffset: ‘hb1d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id162">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter30-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER30:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb1e">AddressOffset: ‘hb1e</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id163">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounter31-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTER31:Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb1f">AddressOffset: ‘hb1f</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id164">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh3-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH3:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb83">AddressOffset: ‘hb83</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id165">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh4-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH4:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb84">AddressOffset: ‘hb84</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id166">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh5-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH5:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb85">AddressOffset: ‘hb85</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id167">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh6-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH6:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb86">AddressOffset: ‘hb86</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id168">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh7-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH7:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb87">AddressOffset: ‘hb87</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id169">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh8-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH8:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb88">AddressOffset: ‘hb88</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id170">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh9-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH9:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb89">AddressOffset: ‘hb89</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id171">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh10-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH10:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb8a">AddressOffset: ‘hb8a</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id172">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh11-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH11:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb8b">AddressOffset: ‘hb8b</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id173">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh12-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH12:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb8c">AddressOffset: ‘hb8c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id174">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh13-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH13:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb8d">AddressOffset: ‘hb8d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id175">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh14-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH14:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb8e">AddressOffset: ‘hb8e</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id176">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh15-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH15:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb8f">AddressOffset: ‘hb8f</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id177">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh16-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH16:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb90">AddressOffset: ‘hb90</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id178">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh17-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH17:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb91">AddressOffset: ‘hb91</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id179">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh18-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH18:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb92">AddressOffset: ‘hb92</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id180">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh19-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH19:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb93">AddressOffset: ‘hb93</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id181">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh20-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH20:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb94">AddressOffset: ‘hb94</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id182">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh21-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH21:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb95">AddressOffset: ‘hb95</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id183">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh22-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH22:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb96">AddressOffset: ‘hb96</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id184">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh23-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH23:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb97">AddressOffset: ‘hb97</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id185">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh24-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH24:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb98">AddressOffset: ‘hb98</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id186">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh25-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH25:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb99">AddressOffset: ‘hb99</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id187">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh26-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH26:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb9a">AddressOffset: ‘hb9a</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id188">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh27-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH27:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb9b">AddressOffset: ‘hb9b</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id189">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh28-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH28:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb9c">AddressOffset: ‘hb9c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id190">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh29-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH29:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb9d">AddressOffset: ‘hb9d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id191">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh30-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH30:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb9e">AddressOffset: ‘hb9e</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id192">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhpmcounterh31-upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">MHPMCOUNTERH31:Upper 32 bits of Machine Hardware Performance Monitoring Counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hb9f">AddressOffset: ‘hb9f</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id193">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#cycle-cycle-counter-register">CYCLE:Cycle counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hc00">AddressOffset: ‘hC00</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id194">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#instret-instruction-retired-counter-register">INSTRET:Instruction Retired counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hc02">AddressOffset: ‘hC02</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id195">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#cycleh-upper-32-bits-of-cycle-counter-register">CYCLEH:Upper 32-bits of Cycle counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hc80">AddressOffset: ‘hC80</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id196">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#instreth-upper-32-bits-of-instruction-retired-counter-register">INSTRETH:Upper 32-bits of Instruction Retired counter Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hc82">AddressOffset: ‘hC82</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id197">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mvendorid-machine-vendor-id-register">MVENDORID:Machine Vendor ID Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hf11">AddressOffset: ‘hF11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id198">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#marchid-machine-architecture-id-register">MARCHID:Machine Architecture ID Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hf12">AddressOffset: ‘hF12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id199">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mimpid-machine-implementation-id-register">MIMPID:Machine Implementation ID Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hf13">AddressOffset: ‘hF13</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id200">Description:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#mhartid-machine-hardware-thread-id-register">MHARTID:Machine Hardware Thread ID Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#addressoffset-hf14">AddressOffset: ‘hF14</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html#id201">Description:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CSR_CV32A60AX_list.html">CV32A60AX CSR List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CSR_CV32A60AX.html">CV32A60AX CSR Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CSR_CV64A6_MMU_list.html">CV64A6_MMU CSR List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CSR_CV64A6_MMU.html">CV64A6_MMU CSR Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CV64A6_Control_Status_Registers.html">CV64A6 CSR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CSR_Cache_Control.html">CSR cache control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CSR_Performance_Counters.html">CSR Performance Counters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Performance_Counters.html#event-selector">Event Selector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Performance_Counters.html#controlling-the-counters-from-software">Controlling the counters from software</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Parameters_Configuration.html">Parameters and Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Parameters_Configuration.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters_Configuration.html#configurations">Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Interfaces.html">Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html#axi-interface">AXI Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html#debug-interface">Debug Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html#interrupt-interface">Interrupt Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html#tri-interface">TRI Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="AXI_Interface.html">AXI Bus Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html#signal-description-section-a2">Signal Description (Section A2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html#single-interface-requirements-transaction-structure-section-a3-4">Single Interface Requirements: Transaction structure (Section A3.4)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html#transaction-attributes-memory-types-section-a4">Transaction Attributes: Memory types (Section A4)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html#transaction-identifiers-section-a5">Transaction Identifiers (Section A5)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html#axi-ordering-model-section-a6">AXI Ordering Model (Section A6)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html#atomic-transactions-section-e1-1">Atomic transactions (Section E1.1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html#cva6-constraints">CVA6 Constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CVX_Interface_Coprocessor.html">CV-X-IF Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html#cv-x-if-interface-specification">CV-X-IF interface specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html#coprocessor-recommendations-for-use-with-cva6-s-cv-x-if">Coprocessor recommendations for use with CVA6’s CV-X-IF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html#how-to-use-cva6-without-cv-x-if-interface">How to use CVA6 without CV-X-IF interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html#how-to-design-a-coprocessor-for-the-cv-x-if-interface">How to design a coprocessor for the CV-X-IF interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html#how-to-program-a-cv-x-if-coprocessor">How to program a CV-X-IF coprocessor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Core_Integration.html">Core Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html#rtl-integration">RTL Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html#asic-specific-guidelines">ASIC Specific Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html#fpga-specific-guidelines">FPGA specific guidelines</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../02_cva6_requirements/cva6_requirements_specification.html" class="btn btn-neutral float-left" title="CVA6 Requirement Specification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CVA6_user_guide.html" class="btn btn-neutral float-right" title="OpenHW Group CVA6 User Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

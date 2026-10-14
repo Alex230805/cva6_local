@@ -1,0 +1,706 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV-X-IF Interface and Coprocessor &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Core Integration" href="Core_Integration.html" />
+    <link rel="prev" title="AXI" href="AXI_Interface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CVA6_user_guide.html">OpenHW Group CVA6 User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html">Programmer’s View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Custom_Instructions.html">Custom RISC-V instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMA.html">PMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMP.html">PMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html">Traps, Interrupts, Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Compiler_Command_Lines.html">Compiler command lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html">CVA6 RISC-V Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html">RV32I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32M.html">RV32M</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32A.html">RV32A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html">RV32C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32ZCb.html">RV32Zcb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZcmp.html">RVZcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZba.html">RVZba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html">RVZbb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbc.html">RVZbc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbs.html">RVZbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html">RVZbkb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkc.html">RVZbkc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkx.html">RVZbkx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZkne.html">RVZkne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknd.html">RVZknd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknh.html">RVZknh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicsr.html">RVZicsr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZifencei.html">RVZifencei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicond.html">RVZicond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X_list.html">CV32A60X CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html">CV32A60X CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX_list.html">CV32A60AX CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX.html">CV32A60AX CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU_list.html">CV64A6_MMU CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU.html">CV64A6_MMU CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CV64A6_Control_Status_Registers.html">CV64A6 CSR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Cache_Control.html">CSR cache control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Performance_Counters.html">CSR Performance Counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters_Configuration.html">Parameters and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html">AXI Bus Interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CV-X-IF Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cv-x-if-interface-specification">CV-X-IF interface specification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#supported-parameters">Supported Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cv-x-if-enabling">CV-X-IF Enabling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#illegal-instruction-decoding">Illegal instruction decoding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rs3-support">RS3 support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#description-of-interface-connections-between-cva6-and-coprocessor">Description of interface connections between CVA6 and Coprocessor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#coprocessor-recommendations-for-use-with-cva6-s-cv-x-if">Coprocessor recommendations for use with CVA6’s CV-X-IF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use-cva6-without-cv-x-if-interface">How to use CVA6 without CV-X-IF interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-design-a-coprocessor-for-the-cv-x-if-interface">How to design a coprocessor for the CV-X-IF interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-program-a-cv-x-if-coprocessor">How to program a CV-X-IF coprocessor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html">Core Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 User Manual</a></li>
+      <li class="breadcrumb-item active">CV-X-IF Interface and Coprocessor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_cva6_user/CVX_Interface_Coprocessor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cv-x-if-interface-and-coprocessor">
+<span id="cva6-cvx-interface-coprocessor"></span><h1>CV-X-IF Interface and Coprocessor<a class="headerlink" href="#cv-x-if-interface-and-coprocessor" title="Link to this heading"></a></h1>
+<p>The CV-X-IF interface of CVA6 allows to extend its supported instruction set
+with external coprocessors.</p>
+<p><em>Applicability of this chapter to configurations:</em></p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Configuration</p></th>
+<th class="head"><p>Implementation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CV32A60AX</p></td>
+<td><p>CV-X-IF included</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV32A60X</p></td>
+<td><p>CV-X-IF included</p></td>
+</tr>
+<tr class="row-even"><td><p>CV64A6_MMU</p></td>
+<td><p>CV-X-IF included</p></td>
+</tr>
+</tbody>
+</table>
+<section id="cv-x-if-interface-specification">
+<h2>CV-X-IF interface specification<a class="headerlink" href="#cv-x-if-interface-specification" title="Link to this heading"></a></h2>
+<section id="description">
+<h3>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h3>
+<p>This design specification presents global functionalities of
+Core-V-eXtension-Interface (XIF, CVXIF, CV-X-IF, X-interface) in the CVA6 core.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The CORE-V X-Interface is a RISC-V eXtension interface that provides a
+generalized framework suitable to implement custom coprocessors and ISA
+extensions for existing RISC-V processors.
+
+--core-v-xif Readme, https://github.com/openhwgroup/core-v-xif
+</pre></div>
+</div>
+<p>The specification of the CV-X-IF bus protocol can be found at [CV-X-IF].</p>
+<p>CV-X-IF aims to:</p>
+<ul class="simple">
+<li><p>Create interfaces to connect a coprocessor to the CVA6 to execute instructions.</p></li>
+<li><p>Offload CVA6 illegal instructions to the coprocessor to be executed.</p></li>
+<li><p>Get the results of offloaded instructions from the coprocessor so they are written back into the CVA6 register file.</p></li>
+<li><p>Add standard RISC-V instructions unsupported by CVA6 or custom instructions and implement them in a coprocessor.</p></li>
+<li><p>Kill offloaded instructions to allow speculative execution in the coprocessor. (Unsupported in CVA6 yet)</p></li>
+<li><p>Connect the coprocessor to memory via the CVA6 Load and Store Unit. (Unsupported in CVA6 yet)</p></li>
+</ul>
+<p>The coprocessor operates like another functional unit so it is connected to
+the CVA6 in the execute stage.</p>
+<p>Only the 3 mandatory interfaces from the CV-X-IF specification (issue, commit and result
+) have been implemented.
+Compressed interface, Memory Interface and Memory result interface are not yet
+implemented in the CVA6.</p>
+</section>
+<section id="supported-parameters">
+<h3>Supported Parameters<a class="headerlink" href="#supported-parameters" title="Link to this heading"></a></h3>
+<p>The following table presents CVXIF parameters supported by CVA6.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>X_NUM_RS</strong></p></td>
+<td><p>int: 2 or 3 (configurable)</p></td>
+<td><div class="line-block">
+<div class="line">Number of register file read ports that can</div>
+<div class="line">be used by the eXtension interface</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>X_ID_WIDTH</strong></p></td>
+<td><p>int: 3</p></td>
+<td><div class="line-block">
+<div class="line">Identification width for the eXtension</div>
+<div class="line">interface</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>X_MEM_WIDTH</strong></p></td>
+<td><p>n/a (feature not supported)</p></td>
+<td><div class="line-block">
+<div class="line">Memory access width for loads/stores via the</div>
+<div class="line">eXtension interface</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>X_RFR_WIDTH</strong></p></td>
+<td><p>int: <code class="docutils literal notranslate"><span class="pre">XLEN</span></code> (32 or 64)</p></td>
+<td><div class="line-block">
+<div class="line">Register file read access width for the</div>
+<div class="line">eXtension interface</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>X_RFW_WIDTH</strong></p></td>
+<td><p>int: <code class="docutils literal notranslate"><span class="pre">XLEN</span></code> (32 or 64)</p></td>
+<td><div class="line-block">
+<div class="line">Register file write access width for the</div>
+<div class="line">eXtension interface</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>X_MISA</strong></p></td>
+<td><p>logic[31:0]: 0x0000_0000</p></td>
+<td><div class="line-block">
+<div class="line">MISA extensions implemented on the eXtension</div>
+<div class="line">interface</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cv-x-if-enabling">
+<h3>CV-X-IF Enabling<a class="headerlink" href="#cv-x-if-enabling" title="Link to this heading"></a></h3>
+<p>CV-X-IF can be enabled or disabled via the <code class="docutils literal notranslate"><span class="pre">CVA6ConfigCvxifEn</span></code> parameter in the SystemVerilog source code.</p>
+</section>
+<section id="illegal-instruction-decoding">
+<h3>Illegal instruction decoding<a class="headerlink" href="#illegal-instruction-decoding" title="Link to this heading"></a></h3>
+<p>The CVA6 decoder module detects illegal instructions for the CVA6, prepares exception field
+with relevant information (exception code “ILLEGAL INSTRUCTION”, instruction value).</p>
+<p>The exception valid flag is raised in CVA6 decoder when CV-X-IF is disabled. Otherwise
+it is not raised at this stage because the decision belongs to the coprocessor
+after the offload process.</p>
+</section>
+<section id="rs3-support">
+<h3>RS3 support<a class="headerlink" href="#rs3-support" title="Link to this heading"></a></h3>
+<p>The number of source registers used by the CV-X-IF coprocessor is configurable with 2 or
+3 source registers.</p>
+<p>If CV-X-IF is enabled and configured with 3 source registers,
+a third read port is added to the CVA6 general purpose register file.</p>
+</section>
+<section id="description-of-interface-connections-between-cva6-and-coprocessor">
+<h3>Description of interface connections between CVA6 and Coprocessor<a class="headerlink" href="#description-of-interface-connections-between-cva6-and-coprocessor" title="Link to this heading"></a></h3>
+<p>In CVA6 execute stage, there is a new functional unit dedicated to drive the CV-X-IF interfaces.
+Here is <em>how</em> and <em>to what</em> CV-X-IF interfaces are connected to the CVA6.</p>
+<ul>
+<li><dl>
+<dt>Issue interface</dt><dd><ul>
+<li><dl>
+<dt>Request</dt><dd><ul>
+<li><div class="line-block">
+<div class="line">Operands are connected to <code class="docutils literal notranslate"><span class="pre">issue_req.rs</span></code> signals</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Scoreboard transaction id is connected to <code class="docutils literal notranslate"><span class="pre">issue_req.id</span></code> signal.</div>
+<div class="line">Therefore scoreboard ids and offloaded instruction ids are linked</div>
+<div class="line">together (equal in this implementation). It allows the CVA6 to do out</div>
+<div class="line">of order execution with the coprocessor in the same way as other</div>
+<div class="line">functional units.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Undecoded instruction is connected to <code class="docutils literal notranslate"><span class="pre">issue_req.instruction</span></code></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Valid signal for CVXIF functional unit is connected to</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">issue_req.valid</span></code></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">All <code class="docutils literal notranslate"><span class="pre">issue_req.rs_valid</span></code> signals are set to 1. The validity of source</div>
+<div class="line">registers is assured by the validity of valid signal sent from issue stage.</div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Response</dt><dd><ul>
+<li><div class="line-block">
+<div class="line">If <code class="docutils literal notranslate"><span class="pre">issue_resp.accept</span></code> is set during a transaction (i.e. issue valid</div>
+<div class="line">and ready are set), the offloaded instruction is accepted by the coprocessor</div>
+<div class="line">and a result transaction will happen.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">If <code class="docutils literal notranslate"><span class="pre">issue_resp.accept</span></code> is not set during a transaction, the offloaded</div>
+<div class="line">instruction is illegal and an illegal instruction exception will be</div>
+<div class="line">raised as soon as no result transaction are written on the writeback bus.</div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Commit interface</dt><dd><ul>
+<li><div class="line-block">
+<div class="line">Valid signal of commit interface is connected to the valid signal of</div>
+<div class="line">issue interface.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Id signal of commit interface is connected to issue interface id signal</div>
+<div class="line">(i.e. scoreboard id).</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Killing of offload instruction is never set. (Unsupported feature)</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Therefore all accepted offloaded instructions are commited to their</div>
+<div class="line">execution and no killing of instruction is possible in this implementation.</div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Result interface</dt><dd><ul>
+<li><dl>
+<dt>Request</dt><dd><ul>
+<li><div class="line-block">
+<div class="line">Ready signal of result interface is always set as CVA6 is always ready</div>
+<div class="line">to take a result from coprocessor for an accepted offloaded instruction.</div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Response</dt><dd><ul>
+<li><div class="line-block">
+<div class="line">Result response is directly connected to writeback bus of the CV-X-IF</div>
+<div class="line">functional unit.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Valid signal of result interface is connected to valid signal of</div>
+<div class="line">writeback bus.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Id signal of result interface is connected to scoreboard id of</div>
+<div class="line">writeback bus.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Write enable signal of result interface is connected to a dedicated CV-X-IF WE</div>
+<div class="line">signal in CVA6 which signals scoreboard if a writeback should happen</div>
+<div class="line">or not to the CVA6 register file.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">exccode</span></code> and <code class="docutils literal notranslate"><span class="pre">exc</span></code> signal of result interface are connected to exception</div>
+<div class="line">signals of writeback bus. Exception from coprocessor does not write</div>
+<div class="line">the <code class="docutils literal notranslate"><span class="pre">tval</span></code> field in exception signal of writeback bus.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">Three registers are added to hold illegal instruction information in</div>
+<div class="line">case a result transaction and a non-accepted issue transaction happen</div>
+<div class="line">in the same cycle. Result transactions will be written to the writeback</div>
+<div class="line">bus in this case having priority over the non-accepted instruction due</div>
+<div class="line">to being linked to an older offloaded instruction. Once the writeback</div>
+<div class="line">bus is free, an illegal instruction exception will be raised thanks to</div>
+<div class="line">information held in these three registers.</div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="coprocessor-recommendations-for-use-with-cva6-s-cv-x-if">
+<h2>Coprocessor recommendations for use with CVA6’s CV-X-IF<a class="headerlink" href="#coprocessor-recommendations-for-use-with-cva6-s-cv-x-if" title="Link to this heading"></a></h2>
+<p>CVA6 supports all coprocessors supporting the CV-X-IF specification with the exception of :</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Coprocessor requiring the Memory interface and Memory result interface (not implemented in CVA6 yet).</dt><dd><ul>
+<li><p>All memory transaction should happen via the Issue interface, i.e. Load into CVA6 register file
+then initialize an issue transaction.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Coprocessor requiring the Compressed interface (not implemented in CVA6 yet).</dt><dd><ul>
+<li><p>RISC-V Compressed extension (RVC) is already implemented in CVA6. User Space for custom compressed instruction
+is not big enough to have RVC and a custom compressed extension.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Stateful coprocessors.</dt><dd><ul>
+<li><p>CVA6 will commit on the Commit interface all its issue transactions. Speculation
+information is only kept in the CVA6 and speculation process is only done in CVA6.
+The coprocessor shall be stateless otherwise it will not be able to revert its state if CVA6 kills an
+in-flight instruction (in case of mispredict or flush).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="how-to-use-cva6-without-cv-x-if-interface">
+<h2>How to use CVA6 without CV-X-IF interface<a class="headerlink" href="#how-to-use-cva6-without-cv-x-if-interface" title="Link to this heading"></a></h2>
+<p>Select a configuration with <code class="docutils literal notranslate"><span class="pre">CVA6ConfigCvxifEn</span></code> parameter disabled or change it for your configuration.</p>
+<p>Never let the CV-X-IF interface unconnected with the <code class="docutils literal notranslate"><span class="pre">CVA6ConfigCvxifEn</span></code> parameter enabled.</p>
+</section>
+<section id="how-to-design-a-coprocessor-for-the-cv-x-if-interface">
+<h2>How to design a coprocessor for the CV-X-IF interface<a class="headerlink" href="#how-to-design-a-coprocessor-for-the-cv-x-if-interface" title="Link to this heading"></a></h2>
+<p>We can add a custom coprocessor that implements custom instructions by modifying the example coprocessor in this repository.
+This section is structured as a tutorial to implement two instructions that manipulate binary-coded decimal numbers.
+That is, numbers where each 4-bit nibble represents a single base-10 digit with the value 0-9.
+For example, 123 in decimal = 0x7B in hexadecimal = 0x123 in binary-coded decimal.</p>
+<ol class="arabic">
+<li><p>Specify your new instructions</p>
+<blockquote>
+<div><p>The example coprocessor defines instructions for both the custom 0 and custom 1 major opcodes.  Using a standard R-type format, each of these allows 1024 distinct instructions to be defined using the 7-bit funct7 field and the 3-bit funct3 field.</p>
+<a class="reference internal image-reference" href="../_images/rtype_format.png"><img alt="Rtype RISC-V instruction format" src="../_images/rtype_format.png" width="400" />
+</a>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">opcode</span><span class="o">=</span><span class="n">custom1</span><span class="p">,</span> <span class="n">funct7</span><span class="o">=</span><span class="mh">0x00</span><span class="p">,</span> <span class="n">funct3</span><span class="o">=</span><span class="mh">0x00</span><span class="p">:</span> <span class="n">BCDfromBin</span>
+<span class="n">rf</span><span class="p">[</span><span class="n">rd</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">BCD</span><span class="p">(</span><span class="n">rf</span><span class="p">[</span><span class="n">rs1</span><span class="p">])</span>
+<span class="n">Register</span> <span class="n">rd</span> <span class="ow">is</span> <span class="n">written</span> <span class="k">with</span> <span class="n">the</span> <span class="n">binary</span><span class="o">-</span><span class="n">coded</span> <span class="n">decimal</span> <span class="n">equivalent</span> <span class="n">of</span> <span class="n">the</span> <span class="n">binary</span> <span class="n">integer</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">rs1</span><span class="o">.</span>
+<span class="n">Note</span><span class="p">:</span> <span class="n">rs2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">used</span><span class="o">.</span>
+
+<span class="n">opcode</span><span class="o">=</span><span class="n">custom1</span><span class="p">,</span> <span class="n">funct7</span><span class="o">=</span><span class="mh">0x00</span><span class="p">,</span> <span class="n">funct3</span><span class="o">=</span><span class="mh">0x01</span><span class="p">:</span> <span class="n">BCDADD</span>
+<span class="n">rf</span><span class="p">[</span><span class="n">rd</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">ADD</span><span class="o">.</span><span class="n">BCD</span><span class="p">(</span><span class="n">rf</span><span class="p">[</span><span class="n">rs1</span><span class="p">],</span> <span class="n">rf</span><span class="p">[</span><span class="n">rs2</span><span class="p">])</span>
+<span class="n">Register</span> <span class="n">rd</span> <span class="ow">is</span> <span class="n">written</span> <span class="k">with</span> <span class="n">a</span> <span class="n">binary</span><span class="o">-</span><span class="n">coded</span> <span class="n">decimal</span> <span class="p">(</span><span class="n">BCD</span><span class="p">)</span> <span class="nb">sum</span> <span class="n">of</span> <span class="n">BCD</span> <span class="n">integers</span> <span class="ow">in</span> <span class="n">registers</span> <span class="n">rs1</span> <span class="ow">and</span> <span class="n">rs2</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Note: The existing CVA6 example supports only register-to-register instructions with up to three
+source registers and a single destination register. New memory operations will need substantial modifications
+to the coprocessor and CVA6 system-on-chip.</p>
+</div></blockquote>
+</li>
+<li><p>Branch CVA6 repo</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="n">new_coprocessor</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">new_coprocessor</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Specialise the decoder function in core/cvxif_example/include/cvxif_instr_pkg.sv</p>
+<blockquote>
+<div><p>Example new lines in cvxif_instr_pkg:</p>
+<p>At the top, specify opcodes for our new instructions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">enum</span> <span class="n">logic</span> <span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="p">{</span>
+    <span class="n">ILLEGAL</span> <span class="o">=</span> <span class="mi">4</span><span class="s1">'b0000, // This one is mandatory, as we need a fall-through case that = 0.</span>
+    <span class="n">BCDfromBIN</span> <span class="o">=</span> <span class="mi">4</span><span class="s1">'b0001,</span>
+    <span class="n">BCDADD</span> <span class="o">=</span> <span class="mi">4</span><span class="s1">'b0010</span>
+<span class="p">}</span> <span class="n">opcode_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now define decode behavior for our two new instructions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="mi">2</span> <span class="n">new</span> <span class="n">RISCV</span> <span class="n">instructions</span> <span class="k">for</span> <span class="n">our</span> <span class="n">Coprocessor</span>
+<span class="n">parameter</span> <span class="nb">int</span> <span class="n">unsigned</span> <span class="n">NbInstr</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">parameter</span> <span class="n">copro_issue_resp_t</span> <span class="n">CoproInstr</span><span class="p">[</span><span class="n">NbInstr</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'{</span>
+    <span class="s1">'{</span>
+        <span class="o">//</span> <span class="n">Custom</span> <span class="n">BCDfromBIN</span> <span class="p">:</span> <span class="n">BCDfromBIN</span> <span class="n">rd</span><span class="p">,</span> <span class="n">rs1</span>
+        <span class="n">instr</span><span class="p">:</span><span class="mi">32</span><span class="s1">'b0000000_00000_00000_000_00000_0101011, // custom1 opcode</span>
+        <span class="n">mask</span><span class="p">:</span> <span class="mi">32</span><span class="s1">'b1111111_00000_00000_111_00000_1111111,</span>
+        <span class="n">resp</span> <span class="p">:</span> <span class="s1">'{accept : 1'</span><span class="n">b1</span><span class="p">,</span> <span class="n">writeback</span> <span class="p">:</span> <span class="mi">1</span><span class="s1">'b1,     // This instruction will write a register</span>
+                 <span class="n">register_read</span> <span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="s1">'b0, 1'</span><span class="n">b0</span><span class="p">,</span> <span class="mi">1</span><span class="s1">'b1}}, // Use rs1 for input</span>
+        <span class="n">opcode</span> <span class="p">:</span> <span class="n">BCDfromBIN</span>
+    <span class="p">},</span>
+    <span class="s1">'{</span>
+        <span class="o">//</span> <span class="n">Custom</span> <span class="n">BCDADD</span> <span class="p">:</span> <span class="n">BCDADD</span> <span class="n">rd</span><span class="p">,</span> <span class="n">rs1</span><span class="p">,</span> <span class="n">rs2</span>
+        <span class="n">instr</span><span class="p">:</span><span class="mi">32</span><span class="s1">'b0000000_00000_00000_001_00000_0101011, // custom1 opcode</span>
+        <span class="n">mask</span><span class="p">:</span> <span class="mi">32</span><span class="s1">'b1111111_00000_00000_111_00000_1111111,</span>
+        <span class="n">resp</span> <span class="p">:</span> <span class="s1">'{accept : 1'</span><span class="n">b1</span><span class="p">,</span> <span class="n">writeback</span> <span class="p">:</span> <span class="mi">1</span><span class="s1">'b1,     // This instruction will write a register</span>
+                 <span class="n">register_read</span> <span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="s1">'b0, 1'</span><span class="n">b1</span><span class="p">,</span> <span class="mi">1</span><span class="s1">'b1}}, // Use rs1 and rs2 for input</span>
+        <span class="n">opcode</span> <span class="p">:</span> <span class="n">BCDADD</span>
+     <span class="p">}</span>
+ <span class="p">};</span>
+</pre></div>
+</div>
+<p>We should also introduce a null compressed instruction, as we have not specified one.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// No compressed instructions for our Coprocessor, but must have a NULL entry.
+parameter int unsigned NbCompInstr = 1;
+parameter copro_compressed_resp_t CoproCompInstr[NbCompInstr] = '{
+    // NULL Pattern
+    '{
+        instr : 16'b0000_0000_0000_0000,
+        mask : 16'b0000_0000_0000_0000,
+        resp : '{accept : 1'b0, // Do not accept!
+                 instr : 32'b0000_0000_0000_0000_0000_0000_0000_0000}
+     }
+};
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="4">
+<li><p>Write execution logic in core/cvxif_example/cppro_alu.sv</p>
+<blockquote>
+<div><p>Example new lines in cppro_alu.sv:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">localparam</span> <span class="n">W</span> <span class="o">=</span> <span class="n">X_RFR_WIDTH</span><span class="p">;</span>
+<span class="n">function</span> <span class="n">automatic</span> <span class="n">logic</span> <span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">BCDfromBin</span> <span class="p">(</span><span class="n">logic</span> <span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="nb">bin</span><span class="p">);</span>
+  <span class="o">//</span> <span class="n">Code</span> <span class="n">adapted</span> <span class="kn">from</span><span class="w"> </span><span class="nn">https</span><span class="p">:</span><span class="o">//</span><span class="n">en</span><span class="o">.</span><span class="n">wikipedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">wiki</span><span class="o">/</span><span class="n">Double_dabble</span>
+  <span class="n">logic</span> <span class="p">[</span><span class="n">W</span><span class="o">+</span><span class="p">(</span><span class="n">W</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">bcd</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="o">//</span> <span class="n">initialize</span> <span class="k">with</span> <span class="n">zeros</span>
+  <span class="n">bcd</span><span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">;</span>    <span class="o">//</span> <span class="n">initialize</span> <span class="k">with</span> <span class="nb">input</span> <span class="n">vector</span>
+  <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">W</span><span class="o">-</span><span class="mi">4</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>     <span class="o">//</span> <span class="n">iterate</span> <span class="n">on</span> <span class="n">structure</span> <span class="n">depth</span>
+    <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>   <span class="o">//</span> <span class="n">iterate</span> <span class="n">on</span> <span class="n">structure</span> <span class="n">width</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">bcd</span><span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span> <span class="o">-</span><span class="p">:</span> <span class="mi">4</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span>        <span class="o">//</span> <span class="k">if</span> <span class="o">&gt;</span> <span class="mi">4</span>
+        <span class="n">bcd</span><span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span> <span class="o">-</span><span class="p">:</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">bcd</span><span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span> <span class="o">-</span><span class="p">:</span> <span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span><span class="s1">'d3; // add 3</span>
+  <span class="k">return</span> <span class="n">bcd</span><span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">endfunction</span>
+<span class="n">function</span> <span class="n">automatic</span> <span class="n">logic</span> <span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">BCDADD</span> <span class="p">(</span><span class="n">logic</span> <span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">x</span><span class="p">,</span> <span class="n">logic</span> <span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">y</span><span class="p">);</span>
+  <span class="n">logic</span> <span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="nb">sum</span><span class="p">;</span>   <span class="o">//</span> <span class="n">full</span> <span class="nb">sum</span> <span class="n">result</span>
+  <span class="n">logic</span> <span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">//</span> <span class="n">temporary</span> <span class="n">digit</span> <span class="n">result</span> <span class="p">(</span><span class="n">could</span> <span class="n">be</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">9</span><span class="o">+</span><span class="mi">9</span><span class="o">+</span><span class="mi">8</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+  <span class="n">logic</span> <span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>   <span class="o">//</span> <span class="n">carry</span> <span class="n">bits</span>
+  <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">W</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span> <span class="n">begin</span> <span class="o">//</span> <span class="n">For</span> <span class="n">each</span> <span class="n">nibble</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="s1">'b0,x[i-:4]} + {1'</span><span class="n">b0</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="p">:</span><span class="mi">4</span><span class="p">]}</span> <span class="o">+</span> <span class="p">{</span><span class="mi">1</span><span class="s1">'b0,c}; // Add the next nibble with room for overflow</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="n">begin</span> <span class="o">//</span> <span class="n">Add</span> <span class="n">one</span> <span class="n">to</span> <span class="n">carry</span> <span class="k">for</span> <span class="n">each</span> <span class="s2">"10"</span> <span class="ow">in</span> <span class="n">temp</span><span class="o">.</span>
+        <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">-</span> <span class="mi">10</span><span class="p">;</span>   <span class="o">//</span> <span class="n">Leave</span> <span class="n">tmp</span> <span class="n">less</span> <span class="n">than</span> <span class="mf">10.</span>
+      <span class="n">end</span>
+      <span class="nb">sum</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="p">;</span>
+    <span class="n">end</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">;</span>
+  <span class="n">endfunction</span>
+</pre></div>
+</div>
+<p>In final always_comb block of cppro_alu.sv, modify the case statement:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="p">(</span><span class="n">opcode_i</span><span class="p">)</span>
+  <span class="n">cvxif_instr_pkg</span><span class="p">::</span><span class="n">BCDfromBIN</span><span class="p">:</span> <span class="n">begin</span>
+    <span class="n">result_n</span> <span class="o">=</span> <span class="n">BCDfromBin</span><span class="p">(</span><span class="n">registers_i</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="n">hartid_n</span> <span class="o">=</span> <span class="n">hartid_i</span><span class="p">;</span>
+    <span class="n">id_n</span>     <span class="o">=</span> <span class="n">id_i</span><span class="p">;</span>
+    <span class="n">valid_n</span>  <span class="o">=</span> <span class="mi">1</span><span class="s1">'b1;</span>
+    <span class="n">rd_n</span>     <span class="o">=</span> <span class="n">rd_i</span><span class="p">;</span>
+    <span class="n">we_n</span>     <span class="o">=</span> <span class="mi">1</span><span class="s1">'b1;</span>
+  <span class="n">end</span>
+  <span class="n">cvxif_instr_pkg</span><span class="p">::</span><span class="n">BCDADD</span><span class="p">:</span> <span class="n">begin</span>
+    <span class="n">result_n</span> <span class="o">=</span> <span class="n">BCDADD</span><span class="p">(</span><span class="n">registers_i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">registers_i</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="n">hartid_n</span> <span class="o">=</span> <span class="n">hartid_i</span><span class="p">;</span>
+    <span class="n">id_n</span>     <span class="o">=</span> <span class="n">id_i</span><span class="p">;</span>
+    <span class="n">valid_n</span>  <span class="o">=</span> <span class="mi">1</span><span class="s1">'b1;</span>
+    <span class="n">rd_n</span>     <span class="o">=</span> <span class="n">rd_i</span><span class="p">;</span>
+    <span class="n">we_n</span>     <span class="o">=</span> <span class="mi">1</span><span class="s1">'b1;</span>
+  <span class="n">end</span>
+  <span class="n">default</span><span class="p">:</span> <span class="n">begin</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Note: To support new memory operations, the memory interface would be needed
+in this coprocessor to load and store from the main pipeline.  Alternatively,
+one could add a dedicated memory interface to the coprocessor, though care would
+need to be taken for memory coherence and consistency with the data cache.</p>
+</div></blockquote>
+</li>
+<li><p>Write a simple test</p>
+<blockquote>
+<div><p>For example, add the following to verif/tests/custom/cv_xif/cvxif_macros.h:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define CUS_BCDfromBin(rs1,rd)   .word 0b####000000000000##rs1##000##rd##0101011</span>
+<span class="c1">#define CUS_BCDADD(rs1,rs2,rd) .word 0b####0000000##rs2####rs1##001##rd##0101011</span>
+</pre></div>
+</div>
+<p>Copy similar test:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">verif</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">custom</span><span class="o">/</span><span class="n">cv_xif</span><span class="o">/</span><span class="n">cvxif_add_nop</span><span class="o">.</span><span class="n">S</span> <span class="n">verif</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">custom</span><span class="o">/</span><span class="n">cv_xif</span><span class="o">/</span><span class="n">cvxif_bcd</span><span class="o">.</span><span class="n">S</span>
+</pre></div>
+</div>
+<p>Change the body of the test:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">core</span> <span class="n">of</span> <span class="n">the</span> <span class="n">test</span>
+
+<span class="o">//</span> <span class="n">Load</span> <span class="n">constant</span> <span class="n">values</span> <span class="n">into</span> <span class="n">a0</span> <span class="ow">and</span> <span class="n">a1</span>
+<span class="n">LOAD_RS</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="mi">12345678</span><span class="p">);</span>
+<span class="n">LOAD_RS</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="mi">23456789</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Transform</span> <span class="n">a0</span> <span class="ow">and</span> <span class="n">a1</span> <span class="n">into</span> <span class="n">BCD</span> <span class="n">form</span>
+<span class="n">CUS_BCDfromBin</span><span class="p">(</span><span class="mi">01010</span><span class="p">,</span><span class="mi">01010</span><span class="p">);</span> <span class="o">//</span> <span class="n">a0</span> <span class="o">=</span> <span class="mi">5</span><span class="s1">'b01010</span>
+<span class="n">CUS_BCDfromBin</span><span class="p">(</span><span class="mi">01011</span><span class="p">,</span><span class="mi">01011</span><span class="p">);</span> <span class="o">//</span> <span class="n">a1</span> <span class="o">=</span> <span class="mi">5</span><span class="s1">'b01011</span>
+
+<span class="o">//</span> <span class="n">Perform</span> <span class="n">BCD</span> <span class="n">add</span> <span class="n">on</span> <span class="n">the</span> <span class="n">operands</span> <span class="n">into</span> <span class="n">a2</span> <span class="ow">and</span> <span class="n">a3</span>
+<span class="n">CUS_BCDADD</span><span class="p">(</span><span class="mi">01010</span><span class="p">,</span><span class="mi">01011</span><span class="p">,</span><span class="mi">01100</span><span class="p">);</span>
+<span class="n">CUS_BCDADD</span><span class="p">(</span><span class="mi">01011</span><span class="p">,</span><span class="mi">01010</span><span class="p">,</span><span class="mi">01101</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="p">(</span><span class="n">example</span> <span class="n">of</span><span class="p">)</span> <span class="n">final</span> <span class="bp">self</span><span class="o">-</span><span class="n">check</span> <span class="n">test</span>
+<span class="n">xor</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">,</span> <span class="n">a2</span><span class="p">;</span>
+<span class="n">beqz</span> <span class="n">a2</span><span class="p">,</span> <span class="k">pass</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Now build a simulation and run it</p>
+<blockquote>
+<div><p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~/cva6/verif/sim
+export DV_SIMULATORS=veri-testharness
+TRACE_FAST=1 python3 cva6.py --target cv64a6_imafdc_sv39 \
+  --iss=$DV_SIMULATORS --iss_yaml=cva6.yaml \
+  --asm_tests ../tests/custom/cv_xif/cvxif_bcd.S \
+  --linker=../tests/custom/common/test.ld \
+  --gcc_opts="-static -mcmodel=medany \
+    -fvisibility=hidden -nostdlib \
+    -nostartfiles -g ../tests/custom/common/syscalls.c \
+    ../tests/custom/common/crt.S -lgcc \
+    -I../tests/custom/env -I../tests/custom/common"
+</pre></div>
+</div>
+<p>Check verilog build errors in verif/sim/out_*/veri-testharness_sim/cvxif_bcd.cv64a6_imafdc_sv39.log.iss.</p>
+<p>Check instruction trace of the execution in verif/sim/out_*/veri-testharness_sim/cvxif_bcd.cv64a6_imafdc_sv39.log.</p>
+<p>View the simulated waveform output using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gtkwave</span> <span class="n">verif</span><span class="o">/</span><span class="n">sim</span><span class="o">/</span><span class="n">out_</span><span class="o">*/</span><span class="n">veri</span><span class="o">-</span><span class="n">testharness_sim</span><span class="o">/</span><span class="n">cvxif_bcd</span><span class="o">.</span><span class="n">cv64a6_imafdc_sv39</span><span class="o">.</span><span class="n">vcd</span>
+</pre></div>
+</div>
+<p>The signals in TOP.ariane_testharness.i_ariane.cvxif_req/resp should be useful.</p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="how-to-program-a-cv-x-if-coprocessor">
+<h2>How to program a CV-X-IF coprocessor<a class="headerlink" href="#how-to-program-a-cv-x-if-coprocessor" title="Link to this heading"></a></h2>
+<p><em>The team is looking for a contributor to write this section.</em></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="AXI_Interface.html" class="btn btn-neutral float-left" title="AXI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Core_Integration.html" class="btn btn-neutral float-right" title="Core Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

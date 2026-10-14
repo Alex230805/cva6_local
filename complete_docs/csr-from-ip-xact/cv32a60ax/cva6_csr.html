@@ -1,0 +1,4053 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REGISTERS CSR CV32A6 &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CVA6
+              <img src="../../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">REGISTERS CSR CV32A6</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/csr-from-ip-xact/cv32a60ax/cva6_csr.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="registers-csr-cv32a6">
+<h1>REGISTERS CSR CV32A6<a class="headerlink" href="#registers-csr-cv32a6" title="Link to this heading"></a></h1>
+<section id="floating-point-accrued-exceptions-register">
+<h2>Floating-Point Accrued Exceptions Register<a class="headerlink" href="#floating-point-accrued-exceptions-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h1">
+<h2>AddressOffset: ‘h1<a class="headerlink" href="#addressoffset-h1" title="Link to this heading"></a></h2>
+</section>
+<section id="description">
+<h2>Description:<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>The fields within the <code class="docutils literal notranslate"><span class="pre">fcsr</span></code> can also be accessed individually through different CSR addresses, and separate assembler pseudoinstructions are defined for these accesses. The FRRM instruction reads the Rounding Mode field <code class="docutils literal notranslate"><span class="pre">frm</span></code> and copies it into the least-significant three bits of integer register <em>rd</em>, with zero in all other bits. FSRM swaps the value in frm by copying the original value into integer register <em>rd</em>, and then writing a new value obtained from the three least-significant bits of integer register <em>rs1</em> into <code class="docutils literal notranslate"><span class="pre">frm</span></code>. FRFLAGS and FSFLAGS are defined analogously for the Accrued Exception Flags field <code class="docutils literal notranslate"><span class="pre">fflags</span></code>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>NV</p></td>
+<td><p>Invalid operation</p></td>
+<td><p>read-write</p></td>
+<td><p>The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software. The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>DZ</p></td>
+<td><p>Divide by zero</p></td>
+<td><p>read-write</p></td>
+<td><p>The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software. The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>OF</p></td>
+<td><p>Overflow</p></td>
+<td><p>read-write</p></td>
+<td><p>The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software. The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>UF</p></td>
+<td><p>Underflow</p></td>
+<td><p>read-write</p></td>
+<td><p>The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software. The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>NX</p></td>
+<td><p>Inexact</p></td>
+<td><p>read-write</p></td>
+<td><p>The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software. The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="floating-point-dynamic-rounding-mode-register">
+<h2>Floating-Point Dynamic Rounding Mode Register<a class="headerlink" href="#floating-point-dynamic-rounding-mode-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h2">
+<h2>AddressOffset: ‘h2<a class="headerlink" href="#addressoffset-h2" title="Link to this heading"></a></h2>
+</section>
+<section id="id1">
+<h2>Description:<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>The fields within the <code class="docutils literal notranslate"><span class="pre">fcsr</span></code> can also be accessed individually through different CSR addresses, and separate assembler pseudoinstructions are defined for these accesses. The FRRM instruction reads the Rounding Mode field <code class="docutils literal notranslate"><span class="pre">frm</span></code> and copies it into the least-significant three bits of integer register <em>rd</em>, with zero in all other bits. FSRM swaps the value in frm by copying the original value into integer register <em>rd</em>, and then writing a new value obtained from the three least-significant bits of integer register <em>rs1</em> into <code class="docutils literal notranslate"><span class="pre">frm</span></code>. FRFLAGS and FSFLAGS are defined analogously for the Accrued Exception Flags field <code class="docutils literal notranslate"><span class="pre">fflags</span></code>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2:0</p></td>
+<td><p>FRM</p></td>
+<td><p>Floating-point rounding mode</p></td>
+<td><p>read-write</p></td>
+<td><p>The fields within the <code class="docutils literal notranslate"><span class="pre">fcsr</span></code> can also be accessed individually through different CSR addresses, and separate assembler pseudoinstructions are defined for these accesses. The FRRM instruction reads the Rounding Mode field <code class="docutils literal notranslate"><span class="pre">frm</span></code> and copies it into the least-significant three bits of integer register <em>rd</em>, with zero in all other bits. FSRM swaps the value in frm by copying the original value into integer register <em>rd</em>, and then writing a new value obtained from the three least-significant bits of integer register <em>rs1</em> into <code class="docutils literal notranslate"><span class="pre">frm</span></code>. FRFLAGS and FSFLAGS are defined analogously for the Accrued Exception Flags field <code class="docutils literal notranslate"><span class="pre">fflags</span></code>.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “RNE” :0)( “RTZ” :1)( “RDN” :2)( “RUP” :3)( “RMM” :4)( “INVALID_5” :5)( “INVALID_6” :6)( “DYN” :7).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="floating-point-control-and-status-register-register">
+<h2>Floating-Point Control and Status Register Register<a class="headerlink" href="#floating-point-control-and-status-register-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h3">
+<h2>AddressOffset: ‘h3<a class="headerlink" href="#addressoffset-h3" title="Link to this heading"></a></h2>
+</section>
+<section id="id2">
+<h2>Description:<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>The floating-point control and status register, <code class="docutils literal notranslate"><span class="pre">fcsr</span></code>, is a RISC-V control and status register (CSR). It is a read/write register that selects the dynamic rounding mode for floating-point arithmetic operations and holds the accrued exception flags.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">fcsr</span></code> register can be read and written with the FRCSR and FSCSR instructions, which are assembler pseudoinstructions built on the underlying CSR access instructions. FRCSR reads <code class="docutils literal notranslate"><span class="pre">fcsr</span></code> by copying it into integer register <em>rd</em>. FSCSR swaps the value in <code class="docutils literal notranslate"><span class="pre">fcsr</span></code> by copying the original value into integer register <em>rd</em>, and then writing a new value obtained from integer register <em>rs1</em> into <code class="docutils literal notranslate"><span class="pre">fcsr</span></code>.</p>
+<p>The fields within the <code class="docutils literal notranslate"><span class="pre">fcsr</span></code> can also be accessed individually through different CSR addresses, and separate assembler pseudoinstructions are defined for these accesses. The FRRM instruction reads the Rounding Mode field <code class="docutils literal notranslate"><span class="pre">frm</span></code> and copies it into the least-significant three bits of integer register <em>rd</em>, with zero in all other bits. FSRM swaps the value in frm by copying the original value into integer register <em>rd</em>, and then writing a new value obtained from the three least-significant bits of integer register <em>rs1</em> into <code class="docutils literal notranslate"><span class="pre">frm</span></code>. FRFLAGS and FSFLAGS are defined analogously for the Accrued Exception Flags field <code class="docutils literal notranslate"><span class="pre">fflags</span></code>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>7:5</p></td>
+<td><p>FRM</p></td>
+<td><p>Floating-point rounding mode</p></td>
+<td><p>read-write</p></td>
+<td><p>Floating-point operations use either a static rounding mode encoded in the instruction, or a dynamic rounding mode held in <code class="docutils literal notranslate"><span class="pre">frm</span></code>. Rounding modes are encoded as shown in the enumerated value. A value of 111 in the instruction’s <em>rm</em> field selects the dynamic rounding mode held in <code class="docutils literal notranslate"><span class="pre">frm</span></code>. If <code class="docutils literal notranslate"><span class="pre">frm</span></code> is set to an invalid value (101–111), any subsequent attempt to execute a floating-point operation with a dynamic rounding mode will raise an illegal instruction exception. Some instructions, including widening conversions, have the <em>rm</em> field but are nevertheless unaffected by the rounding mode; software should set their <em>rm</em> field to RNE (000).  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “RNE” :0)( “RTZ” :1)( “RDN” :2)( “RUP” :3)( “RMM” :4)( “INVALID_5” :5)( “INVALID_6” :6)( “DYN” :7).</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>NV</p></td>
+<td><p>Invalid operation</p></td>
+<td><p>read-write</p></td>
+<td><p>The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software. The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>DZ</p></td>
+<td><p>Divide by zero</p></td>
+<td><p>read-write</p></td>
+<td><p>The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software. The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>OF</p></td>
+<td><p>Overflow</p></td>
+<td><p>read-write</p></td>
+<td><p>The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software. The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>UF</p></td>
+<td><p>Underflow</p></td>
+<td><p>read-write</p></td>
+<td><p>The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software. The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>NX</p></td>
+<td><p>Inexact</p></td>
+<td><p>read-write</p></td>
+<td><p>The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software. The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supervisor-status-register">
+<h2>Supervisor Status Register<a class="headerlink" href="#supervisor-status-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h100">
+<h2>AddressOffset: ‘h100<a class="headerlink" href="#addressoffset-h100" title="Link to this heading"></a></h2>
+</section>
+<section id="id3">
+<h2>Description:<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">sstatus</span></code> register keeps track of the processor’s current operating state.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">sstatus</span></code> register is a subset of the <code class="docutils literal notranslate"><span class="pre">mstatus</span></code> register.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31</p></td>
+<td><p>SD</p></td>
+<td><p>State dirty</p></td>
+<td><p>read-only</p></td>
+<td><p>The SD bit is a read-only bit that summarizes whether either the FS, VS, or XS fields signal the presence of some dirty state that will require saving extended user context to memory. If FS, XS, and VS are all read-only zero, then SD is also always zero.</p></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td><p>MXR</p></td>
+<td><p>Make executable readable</p></td>
+<td><p>read-write</p></td>
+<td><p>The MXR bit modifies the privilege with which loads access virtual memory. When MXR=0, only loads from pages marked readable will succeed. When MXR=1, loads from pages marked either readable or executable (R=1 or X=1) will succeed. MXR has no effect when page-based virtual memory is not in effect.</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>SUM</p></td>
+<td><p>Supervisor user memory</p></td>
+<td><p>read-write</p></td>
+<td><p>The SUM (permit Supervisor User Memory access) bit modifies the privilege with which S-mode loads and stores access virtual memory. When SUM=0, S-mode memory accesses to pages that are accessible by U-mode will fault. When SUM=1, these accesses are permitted. SUM has no effect when page-based virtual memory is not in effect. Note that, while SUM is ordinarily ignored when not executing in S-mode, it <em>is</em> in effect when MPRV=1 and MPP=S. SUM is read-only 0 if S-mode is not supported or if <code class="docutils literal notranslate"><span class="pre">satp</span></code>.MODE is read-only 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>16:15</p></td>
+<td><p>XS</p></td>
+<td><p>Extension state</p></td>
+<td><p>read-only</p></td>
+<td><p>The XS field is used to reduce the cost of context save and restore by setting and tracking the current state of the user-mode extensions. The XS field encodes the status of the additional user-mode extensions and associated state.  This field can be checked by a context switch routine to quickly determine whether a state save or restore is required. If a save or restore is required, additional instructions and CSRs are typically required to effect and optimize the process.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “Off” :0)( “Initial” :1)( “Clean” :2)( “Dirty” :3).</p></td>
+</tr>
+<tr class="row-even"><td><p>14:13</p></td>
+<td><p>FS</p></td>
+<td><p>Floating-point unit state</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>The FS field is used to reduce the cost of context save and restore by setting and tracking the current state of the floating-point unit. The FS field encodes the status of the floating-point unit state, including the floating-point registers <code class="docutils literal notranslate"><span class="pre">f0–f31</span></code> and the CSRs <code class="docutils literal notranslate"><span class="pre">fcsr</span></code>, <code class="docutils literal notranslate"><span class="pre">frm</span></code>, and <code class="docutils literal notranslate"><span class="pre">fflags</span></code>.  This field can be checked by a context switch routine to quickly determine whether a state save or restore is required. If a save or restore is required, additional instructions and CSRs are typically required to effect and optimize the process.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “Off” :0)( “Initial” :1)( “Clean” :2)( “Dirty” :3).</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>SPP</p></td>
+<td><p>Supervisor mode prior privilege</p></td>
+<td><p>read-write</p></td>
+<td><p>SPP bit indicates the privilege level at which a hart was executing before entering supervisor mode. When a trap is taken, SPP is set to 0 if the trap originated from user mode, or 1 otherwise. When an SRET instruction is executed to return from the trap handler, the privilege level is set to user mode if the SPP bit is 0, or supervisor mode if the SPP bit is 1; SPP is then set to 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>SPIE</p></td>
+<td><p>Supervisor mode prior interrupt enable</p></td>
+<td><p>read-write</p></td>
+<td><p>The SPIE bit indicates whether supervisor interrupts were enabled prior to trapping into supervisor mode. When a trap is taken into supervisor mode, SPIE is set to SIE, and SIE is set to 0. When an SRET instruction is executed, SIE is set to SPIE, then SPIE is set to 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>UPIE</p></td>
+<td></td>
+<td><p>read-write</p></td>
+<td><p>When a URET instruction is executed, UIE is set to UPIE, and UPIE is set to 1.</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>SIE</p></td>
+<td><p>Supervisor mode interrupt enable</p></td>
+<td><p>read-write</p></td>
+<td><p>The SIE bit enables or disables all interrupts in supervisor mode. When SIE is clear, interrupts are not taken while in supervisor mode. When the hart is running in user-mode, the value in SIE is ignored, and supervisor-level interrupts are enabled. The supervisor can disable individual interrupt sources using the <code class="docutils literal notranslate"><span class="pre">sie</span></code> CSR.</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>UIE</p></td>
+<td></td>
+<td><p>read-write</p></td>
+<td><p>The UIE bit enables or disables user-mode interrupts.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supervisor-interrupt-enable-register">
+<h2>Supervisor Interrupt Enable Register<a class="headerlink" href="#supervisor-interrupt-enable-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h104">
+<h2>AddressOffset: ‘h104<a class="headerlink" href="#addressoffset-h104" title="Link to this heading"></a></h2>
+</section>
+<section id="id4">
+<h2>Description:<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">sie</span></code> is the register containing supervisor interrupt enable bits.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>14:10</p></td>
+<td><p>Reserved_10</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>SEIE</p></td>
+<td><p>Supervisor-level external interrupt enable</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>SEIE is the interrupt-enable bit for supervisor-level external interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>UEIE</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>User-level external interrupts are disabled when the UEIE bit in the sie register is clear.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>7:6</p></td>
+<td><p>Reserved_6</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>STIE</p></td>
+<td><p>Supervisor-level timer interrupt enable</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>STIE is the interrupt-enable bit for supervisor-level timer interrupts.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>UTIE</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>User-level timer interrupts are disabled when the UTIE bit in the sie register is clear.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>3:2</p></td>
+<td><p>Reserved_2</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>SSIE</p></td>
+<td><p>Supervisor-level software interrupt enable</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>SSIE is the interrupt-enable bit for supervisor-level software interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>USIE</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>User-level software interrupts are disabled when the USIE bit in the sie register is clear.``Legal Values:`` 0.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supervisor-trap-vector-base-address-register">
+<h2>Supervisor Trap Vector Base Address Register<a class="headerlink" href="#supervisor-trap-vector-base-address-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h105">
+<h2>AddressOffset: ‘h105<a class="headerlink" href="#addressoffset-h105" title="Link to this heading"></a></h2>
+</section>
+<section id="id5">
+<h2>Description:<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">stvec</span></code> register holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:2</p></td>
+<td><p>BASE</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>The BASE field in stvec is a WARL field that can hold any valid virtual or physical address, subject to the following alignment constraints: when MODE=Direct the address must be 4-byte aligned, and when MODE=Vectored the address must be 256-byte aligned.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1:0</p></td>
+<td><p>MODE</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>When MODE=Direct, all traps into supervisor mode cause the <code class="docutils literal notranslate"><span class="pre">pc</span></code> to be set to the address in the BASE field. When MODE=Vectored, all synchronous exceptions into supervisor mode cause the <code class="docutils literal notranslate"><span class="pre">pc</span></code> to be set to the address in the BASE field, whereas interrupts cause the <code class="docutils literal notranslate"><span class="pre">pc</span></code> to be set to the address in the BASE field plus four times the interrupt cause number.``Legal Values :`` 0,1.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “Direct” :0)( “Vectored” :1)( “Reserved_2” :2)( “Reserved_3” :3).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supervisor-counter-enable-register">
+<h2>Supervisor Counter Enable Register<a class="headerlink" href="#supervisor-counter-enable-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h106">
+<h2>AddressOffset: ‘h106<a class="headerlink" href="#addressoffset-h106" title="Link to this heading"></a></h2>
+</section>
+<section id="id6">
+<h2>Description:<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>The counter-enable register <code class="docutils literal notranslate"><span class="pre">scounteren</span></code> controls the availability of the hardware performance monitoring counters to U-mode.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:3</p></td>
+<td><p>HPMn</p></td>
+<td><p>Hpmcountern</p></td>
+<td><p>read-write</p></td>
+<td><p>When HPMn is clear, attempts to read the <code class="docutils literal notranslate"><span class="pre">hpmcountern</span></code> register while executing in U-mode will cause an illegal instruction exception. When this bit is set, access to the corresponding register is permitted.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>IR</p></td>
+<td><p>Instret</p></td>
+<td><p>read-write</p></td>
+<td><p>When IR is clear, attempts to read the <code class="docutils literal notranslate"><span class="pre">instret</span></code> register while executing in U-mode will cause an illegal instruction exception. When this bit is set, access to the corresponding register is permitted.</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>TM</p></td>
+<td><p>Time</p></td>
+<td><p>read-write</p></td>
+<td><p>When TM is clear, attempts to read the <code class="docutils literal notranslate"><span class="pre">time</span></code> register while executing in U-mode will cause an illegal instruction exception. When this bit is set, access to the corresponding register is permitted.</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>CY</p></td>
+<td><p>Cycle</p></td>
+<td><p>read-write</p></td>
+<td><p>When CY is clear, attempts to read the <code class="docutils literal notranslate"><span class="pre">cycle</span></code> register while executing in U-mode will cause an illegal instruction exception. When this bit is set, access to the corresponding register is permitted.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supervisor-scratch-register">
+<h2>Supervisor Scratch Register<a class="headerlink" href="#supervisor-scratch-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h140">
+<h2>AddressOffset: ‘h140<a class="headerlink" href="#addressoffset-h140" title="Link to this heading"></a></h2>
+</section>
+<section id="id7">
+<h2>Description:<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">sscratch</span></code> register is dedicated for use by the supervisor.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>SSCRATCH</p></td>
+<td><p>Supervisor scratch</p></td>
+<td><p>read-write</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">sscratch</span></code> register is dedicated for use by the supervisor.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supervisor-exception-program-counter-register">
+<h2>Supervisor Exception Program Counter Register<a class="headerlink" href="#supervisor-exception-program-counter-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h141">
+<h2>AddressOffset: ‘h141<a class="headerlink" href="#addressoffset-h141" title="Link to this heading"></a></h2>
+</section>
+<section id="id8">
+<h2>Description:<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>When a trap is taken into S-mode, <code class="docutils literal notranslate"><span class="pre">sepc</span></code> is written with the virtual address of the instruction that was interrupted or that encountered the exception. Otherwise, <code class="docutils literal notranslate"><span class="pre">sepc</span></code> is never written by the implementation, though it may be explicitly written by software.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>SEPC</p></td>
+<td><p>Supervisor exception program counter</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>When a trap is taken into S-mode, <code class="docutils literal notranslate"><span class="pre">sepc</span></code> is written with the virtual address of the instruction that was interrupted or that encountered the exception. Otherwise, <code class="docutils literal notranslate"><span class="pre">sepc</span></code> is never written by the implementation, though it may be explicitly written by software.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supervisor-cause-register">
+<h2>Supervisor Cause Register<a class="headerlink" href="#supervisor-cause-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h142">
+<h2>AddressOffset: ‘h142<a class="headerlink" href="#addressoffset-h142" title="Link to this heading"></a></h2>
+</section>
+<section id="id9">
+<h2>Description:<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<p>When a trap is taken into S-mode, <code class="docutils literal notranslate"><span class="pre">scause</span></code> is written with a code indicating the event that caused the trap. Otherwise, <code class="docutils literal notranslate"><span class="pre">scause</span></code> is never written by the implementation, though it may be explicitly written by software.
+Supervisor cause register (<code class="docutils literal notranslate"><span class="pre">scause</span></code>) values after trap are shown in the following table.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Interrupt</strong></p></th>
+<th class="head"><p><strong>Exception Code</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>Supervisor software interrupt</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>2-4</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>5</p></td>
+<td><p>Supervisor timer interrupt</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>6-8</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>9</p></td>
+<td><p>Supervisor external interrupt</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>10-15</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>&gt;=16</p></td>
+<td><p><em>Designated for platform use</em></p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>Instruction address misaligned</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>Instruction access fault</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>2</p></td>
+<td><p>Illegal instruction</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>Breakpoint</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>4</p></td>
+<td><p>Load address misaligned</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>Load access fault</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>6</p></td>
+<td><p>Store/AMO address misaligned</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>7</p></td>
+<td><p>Store/AMO access fault</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>8</p></td>
+<td><p>Environment call from U-mode</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>9</p></td>
+<td><p>Environment call from S-mode</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>10-11</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>12</p></td>
+<td><p>Instruction page fault</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>13</p></td>
+<td><p>Load page fault</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>14</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>15</p></td>
+<td><p>Store/AMO page fault</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>16-23</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>24-31</p></td>
+<td><p><em>Designated for custom use</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>32-47</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>48-63</p></td>
+<td><p><em>Designated for custom use</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>&gt;=64</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31</p></td>
+<td><p>Interrupt</p></td>
+<td></td>
+<td><p>read-write</p></td>
+<td><p>The Interrupt bit in the <code class="docutils literal notranslate"><span class="pre">scause</span></code> register is set if the trap was caused by an interrupt.</p></td>
+</tr>
+<tr class="row-odd"><td><p>30:0</p></td>
+<td><p>Exception_Code</p></td>
+<td><p>Exception code</p></td>
+<td><p>read-write,WLRL</p></td>
+<td><p>The Exception Code field contains a code identifying the last exception or interrupt.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supervisor-trap-value-register">
+<h2>Supervisor Trap Value Register<a class="headerlink" href="#supervisor-trap-value-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h143">
+<h2>AddressOffset: ‘h143<a class="headerlink" href="#addressoffset-h143" title="Link to this heading"></a></h2>
+</section>
+<section id="id10">
+<h2>Description:<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<p>When a trap is taken into S-mode, <code class="docutils literal notranslate"><span class="pre">stval</span></code> is written with exception-specific information to assist software in handling the trap. Otherwise, <code class="docutils literal notranslate"><span class="pre">stval</span></code> is never written by the implementation, though it may be explicitly written by software. The hardware platform will specify which exceptions must set <code class="docutils literal notranslate"><span class="pre">stval</span></code> informatively and which may unconditionally set it to zero.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>STVAL</p></td>
+<td><p>Supervisor trap value</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>When a trap is taken into S-mode, <code class="docutils literal notranslate"><span class="pre">stval</span></code> is written with exception-specific information to assist software in handling the trap. Otherwise, <code class="docutils literal notranslate"><span class="pre">stval</span></code> is never written by the implementation, though it may be explicitly written by software. The hardware platform will specify which exceptions must set <code class="docutils literal notranslate"><span class="pre">stval</span></code> informatively and which may unconditionally set it to zero.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supervisor-interrupt-pending-register">
+<h2>Supervisor Interrupt Pending Register<a class="headerlink" href="#supervisor-interrupt-pending-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h144">
+<h2>AddressOffset: ‘h144<a class="headerlink" href="#addressoffset-h144" title="Link to this heading"></a></h2>
+</section>
+<section id="id11">
+<h2>Description:<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">sip</span></code> register contains information on pending interrupts.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>14:10</p></td>
+<td><p>Reserved_10</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>SEIP</p></td>
+<td><p>Supervisor-level external interrupt pending</p></td>
+<td><p>read-only,WARL</p></td>
+<td><p>SEIP is the interrupt-pending bit for supervisor-level external interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>UEIP</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>UEIP may be written by S-mode software to indicate to U-mode that an external interrupt is pending.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>7:6</p></td>
+<td><p>Reserved_6</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>STIP</p></td>
+<td><p>Supervisor-level timer interrupt pending</p></td>
+<td><p>read-only,WARL</p></td>
+<td><p>SEIP is the interrupt-pending bit for supervisor-level timer interrupts.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>UTIP</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>A user-level timer interrupt is pending if the UTIP bit in the sip register is set.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>3:2</p></td>
+<td><p>Reserved_2</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>SSIP</p></td>
+<td><p>Supervisor-level software interrupt pending</p></td>
+<td><p>read-only,WARL</p></td>
+<td><p>SSIP is the interrupt-pending bit for supervisor-level software interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>USIP</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>A user-level software interrupt is triggered on the current hart by writing 1 to its user software interrupt-pending (USIP) bit.``Legal Values:`` 0.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supervisor-address-translation-and-protection-register">
+<h2>Supervisor Address Translation and Protection Register<a class="headerlink" href="#supervisor-address-translation-and-protection-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h180">
+<h2>AddressOffset: ‘h180<a class="headerlink" href="#addressoffset-h180" title="Link to this heading"></a></h2>
+</section>
+<section id="id12">
+<h2>Description:<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">satp</span></code> register controls supervisor-mode address translation and protection.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">satp</span></code> register is considered active when the effective privilege mode is S-mode or U-mode. Executions of the address-translation algorithm may only begin using a given value of <code class="docutils literal notranslate"><span class="pre">satp</span></code> when <code class="docutils literal notranslate"><span class="pre">satp</span></code> is active.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Writing <code class="docutils literal notranslate"><span class="pre">satp</span></code> does not imply any ordering constraints between page-table updates and subsequent address translations, nor does it imply any invalidation of address-translation caches. If the new address space’s page tables have been modified, or if an ASID is reused, it may be necessary to execute an SFENCE.VMA instruction after, or in some cases before, writing <code class="docutils literal notranslate"><span class="pre">satp</span></code>.</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31</p></td>
+<td><p>MODE</p></td>
+<td><p>Mode</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>This bitfield selects the current address-translation scheme.  When MODE=Bare, supervisor virtual addresses are equal to supervisor physical addresses, and there is no additional memory protection beyond the physical memory protection scheme.  To select MODE=Bare, software must write zero to the remaining fields of <code class="docutils literal notranslate"><span class="pre">satp</span></code> (bits 30–0). Attempting to select MODE=Bare with a nonzero pattern in the remaining fields has an <code class="docutils literal notranslate"><span class="pre">unspecified</span></code> effect on the value that the remaining fields assume and an <code class="docutils literal notranslate"><span class="pre">unspecified</span></code> effect on address translation and protection behavior.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “Bare” :0)( “Sv32” :1)’n’</p></td>
+</tr>
+<tr class="row-odd"><td><p>30:22</p></td>
+<td><p>ASID</p></td>
+<td><p>Address space identifier</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>This bitfield facilitates address-translation fences on a per-address-space basis.</p></td>
+</tr>
+<tr class="row-even"><td><p>21:0</p></td>
+<td><p>PPN</p></td>
+<td><p>Physical page number</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>This bitfield holds the root page table, i.e., its supervisor physical address divided by 4 KiB.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-status-register">
+<h2>Machine Status Register<a class="headerlink" href="#machine-status-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h300">
+<h2>AddressOffset: ‘h300<a class="headerlink" href="#addressoffset-h300" title="Link to this heading"></a></h2>
+</section>
+<section id="id13">
+<h2>Description:<a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">mstatus</span></code> register keeps track of and controls the hart’s current operating state.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31</p></td>
+<td><p>SD</p></td>
+<td><p>State dirty</p></td>
+<td><p>read-only</p></td>
+<td><p>The SD bit is a read-only bit that summarizes whether either the FS, VS, or XS fields signal the presence of some dirty state that will require saving extended user context to memory. If FS, XS, and VS are all read-only zero, then SD is also always zero.</p></td>
+</tr>
+<tr class="row-odd"><td><p>30:23</p></td>
+<td><p>WPRI3</p></td>
+<td><p>Reserved writes preserve values, reads ignore value</p></td>
+<td><p>read-write,WPRI</p></td>
+<td><p>Reserved Writes Preserve Values, Reads Ignore Value</p></td>
+</tr>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>TSR</p></td>
+<td><p>Trap sret</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>The TSR bit supports intercepting the supervisor exception return instruction, SRET. When TSR=1, attempts to execute SRET while executing in S-mode will raise an illegal instruction exception. When TSR=0, this operation is permitted in S-mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>TW</p></td>
+<td><p>Timeout wait</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>The TW bit supports intercepting the WFI instruction. When TW=0, the WFI instruction may execute in lower privilege modes when not prevented for some other reason. When TW=1, then if WFI is executed in any less-privileged mode, and it does not complete within an implementation-specific, bounded time limit, the WFI instruction causes an illegal instruction exception. The time limit may always be 0, in which case WFI always causes an illegal instruction exception in less-privileged modes when TW=1.</p></td>
+</tr>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>TVM</p></td>
+<td><p>Trap virtual memory</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>The TVM bit supports intercepting supervisor virtual-memory management operations. When TVM=1, attempts to read or write the <code class="docutils literal notranslate"><span class="pre">satp</span></code> CSR or execute an SFENCE.VMA or SINVAL.VMA instruction while executing in S-mode will raise an illegal instruction exception. When TVM=0, these operations are permitted in S-mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td><p>MXR</p></td>
+<td><p>Make executable readable</p></td>
+<td><p>read-write</p></td>
+<td><p>The MXR bit modifies the privilege with which loads access virtual memory. When MXR=0, only loads from pages marked readable will succeed. When MXR=1, loads from pages marked either readable or executable (R=1 or X=1) will succeed. MXR has no effect when page-based virtual memory is not in effect.</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>SUM</p></td>
+<td><p>Supervisor user memory</p></td>
+<td><p>read-write</p></td>
+<td><p>The SUM (permit Supervisor User Memory access) bit modifies the privilege with which S-mode loads and stores access virtual memory. When SUM=0, S-mode memory accesses to pages that are accessible by U-mode will fault. When SUM=1, these accesses are permitted. SUM has no effect when page-based virtual memory is not in effect. Note that, while SUM is ordinarily ignored when not executing in S-mode, it is in effect when MPRV=1 and MPP=S.</p></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>MPRV</p></td>
+<td><p>Modify privilege</p></td>
+<td><p>read-write</p></td>
+<td><p>The MPRV (Modify PRiVilege) bit modifies the effective privilege mode, i.e., the privilege level at which loads and stores execute. When MPRV=0, loads and stores behave as normal, using the translation and protection mechanisms of the current privilege mode. When MPRV=1, load and store memory addresses are translated and protected, and endianness is applied, as though the current privilege mode were set to MPP. Instruction address-translation and protection are unaffected by the setting of MPRV.</p></td>
+</tr>
+<tr class="row-even"><td><p>16:15</p></td>
+<td><p>XS</p></td>
+<td><p>Extension state</p></td>
+<td><p>read-only</p></td>
+<td><p>The XS field is used to reduce the cost of context save and restore by setting and tracking the current state of the user-mode extensions. The XS field encodes the status of the additional user-mode extensions and associated state.  This field can be checked by a context switch routine to quickly determine whether a state save or restore is required. If a save or restore is required, additional instructions and CSRs are typically required to effect and optimize the process.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “Off” :0)( “Initial” :1)( “Clean” :2)( “Dirty” :3)’n’</p></td>
+</tr>
+<tr class="row-odd"><td><p>14:13</p></td>
+<td><p>FS</p></td>
+<td><p>Floating-point unit state</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>The FS field is used to reduce the cost of context save and restore by setting and tracking the current state of the floating-point unit. The FS field encodes the status of the floating-point unit state, including the floating-point registers <code class="docutils literal notranslate"><span class="pre">f0–f31</span></code> and the CSRs <code class="docutils literal notranslate"><span class="pre">fcsr</span></code>, <code class="docutils literal notranslate"><span class="pre">frm</span></code>, and <code class="docutils literal notranslate"><span class="pre">fflags</span></code>.  This field can be checked by a context switch routine to quickly determine whether a state save or restore is required. If a save or restore is required, additional instructions and CSRs are typically required to effect and optimize the process.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “Off” :0)( “Initial” :1)( “Clean” :2)( “Dirty” :3)’n’</p></td>
+</tr>
+<tr class="row-even"><td><p>12:11</p></td>
+<td><p>MPP</p></td>
+<td><p>Machine mode prior privilege</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the previous privilege mode for machine mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p>10:9</p></td>
+<td><p>VS</p></td>
+<td><p>Vector extension state</p></td>
+<td><p>read-only,WARL</p></td>
+<td><p>V extension is not supported VS=0.</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>SPP</p></td>
+<td><p>Supervisor mode prior privilege</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the previous privilege mode for supervisor mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>MPIE</p></td>
+<td><p>Machine mode prior interrupt enable</p></td>
+<td><p>read-write</p></td>
+<td><p>Indicates whether machine interrupts were enabled prior to trapping into machine mode.</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>UBE</p></td>
+<td><p>User breakpoint enable</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>UBE controls whether explicit load and store memory accesses made from U-mode are little-endian (UBE=0) or big-endian (UBE=1).</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>SPIE</p></td>
+<td><p>Supervisor mode prior interrupt enable</p></td>
+<td><p>read-write</p></td>
+<td><p>Indicates whether supervisor interrupts were enabled prior to trapping into supervisor mode.</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>WPRI2</p></td>
+<td><p>Reserved writes preserve values, reads ignore value</p></td>
+<td><p>read-write,WPRI</p></td>
+<td><p>Reserved Writes Preserve Values, Reads Ignore Value</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>MIE</p></td>
+<td><p>Machine mode interrupt enable</p></td>
+<td><p>read-write</p></td>
+<td><p>Global interrupt-enable bit for Machine mode.</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>WPRI1</p></td>
+<td><p>Reserved writes preserve values, reads ignore value</p></td>
+<td><p>read-write,WPRI</p></td>
+<td><p>Reserved Writes Preserve Values, Reads Ignore Value</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>SIE</p></td>
+<td><p>Supervisor mode interrupt enable</p></td>
+<td><p>read-write</p></td>
+<td><p>Global interrupt-enable bit for Supervisor mode.</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>WPRI0</p></td>
+<td><p>Reserved writes preserve values, reads ignore value</p></td>
+<td><p>read-write,WPRI</p></td>
+<td><p>Reserved Writes Preserve Values, Reads Ignore Value</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-isa-register">
+<h2>Machine ISA Register<a class="headerlink" href="#machine-isa-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h301">
+<h2>AddressOffset: ‘h301<a class="headerlink" href="#addressoffset-h301" title="Link to this heading"></a></h2>
+</section>
+<section id="id14">
+<h2>Description:<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<p>The misa CSR is reporting the ISA supported by the hart.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:30</p></td>
+<td><p>MXL</p></td>
+<td><p>Machine xlen</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>The MXL field encodes the native base integer ISA width.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “XLEN_32” :1)( “XLEN_64” :2)( “XLEN_128” :3)’n’</p></td>
+</tr>
+<tr class="row-odd"><td><p>25:0</p></td>
+<td><p>Extensions</p></td>
+<td><p>Extensions</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>The Extensions field encodes the presence of the standard extensions, with a single bit per letter of the alphabet.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “A” :1)( “B” :2)( “C” :4)( “D” :8)( “E” :16)( “F” :32)( “G” :64)( “H” :128)( “I” :256)( “J” :512)( “K” :1024)( “L” :2048)( “M” :4096)( “N” :8192)( “O” :16384)( “P” :32768)( “Q” :65536)( “R” :131072)( “S” :262144)( “T” :524288)( “U” :1048576)( “V” :2097152)( “W” :4194304)( “X” :8388608)( “Y” :16777216)( “Z” :33554432)’n’</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-exception-delegation-register">
+<h2>Machine Exception Delegation Register<a class="headerlink" href="#machine-exception-delegation-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h302">
+<h2>AddressOffset: ‘h302<a class="headerlink" href="#addressoffset-h302" title="Link to this heading"></a></h2>
+</section>
+<section id="id15">
+<h2>Description:<a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
+<p>Provides individual read/write bits to indicate that certain exceptions should be processed directly by a lower privilege level.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>Synchronous_Exceptions</p></td>
+<td><p>Synchronous exceptions</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Provides individual read/write bits to indicate that certain exceptions should be processed directly by a lower privilege level.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-interrupt-delegation-register">
+<h2>Machine Interrupt Delegation Register<a class="headerlink" href="#machine-interrupt-delegation-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h303">
+<h2>AddressOffset: ‘h303<a class="headerlink" href="#addressoffset-h303" title="Link to this heading"></a></h2>
+</section>
+<section id="id16">
+<h2>Description:<a class="headerlink" href="#id16" title="Link to this heading"></a></h2>
+<p>Provides individual read/write bits to indicate that certain interrupts should be processed directly by a lower privilege level.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>Interrupts</p></td>
+<td><p>Interrupts</p></td>
+<td><p>read-write</p></td>
+<td><p>Provides individual read/write bits to indicate that certain interrupts should be processed directly by a lower privilege level.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-interrupt-enable-register">
+<h2>Machine Interrupt Enable Register<a class="headerlink" href="#machine-interrupt-enable-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h304">
+<h2>AddressOffset: ‘h304<a class="headerlink" href="#addressoffset-h304" title="Link to this heading"></a></h2>
+</section>
+<section id="id17">
+<h2>Description:<a class="headerlink" href="#id17" title="Link to this heading"></a></h2>
+<p>This register contains machine interrupt enable bits.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>15:12</p></td>
+<td><p>Reserved_12</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>MEIE</p></td>
+<td><p>M-mode external interrupt enable</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Enables machine mode external interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>Reserved_10</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>SEIE</p></td>
+<td><p>S-mode external interrupt enable</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Enables supervisor mode external interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>UEIE</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>enables U-mode external interrupts.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>MTIE</p></td>
+<td><p>M-mode timer interrupt enable</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Enables machine mode timer interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Reserved_6</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>STIE</p></td>
+<td><p>S-mode timer interrupt enable</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Enables supervisor mode timer interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>UTIE</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>timer interrupt-enable bit for U-mode.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>MSIE</p></td>
+<td><p>M-mode software interrupt enable</p></td>
+<td><p>read-write</p></td>
+<td><p>Enables machine mode software interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Reserved_2</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>SSIE</p></td>
+<td><p>S-mode software interrupt enable</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Enables supervisor mode software interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>USIE</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>enable U-mode software interrupts.``Legal Values:`` 0.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-trap-vector-register">
+<h2>Machine Trap Vector Register<a class="headerlink" href="#machine-trap-vector-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h305">
+<h2>AddressOffset: ‘h305<a class="headerlink" href="#addressoffset-h305" title="Link to this heading"></a></h2>
+</section>
+<section id="id18">
+<h2>Description:<a class="headerlink" href="#id18" title="Link to this heading"></a></h2>
+<p>This register holds trap vector configuration, consisting of a vector base address and a vector mode.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:2</p></td>
+<td><p>BASE</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>The BASE field in mtvec is a WARL field that can hold any valid virtual or physical address, subject to the following alignment constraints: when MODE=Direct the address must be 4-byte aligned, and when MODE=Vectored the address must be 256-byte aligned.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1:0</p></td>
+<td><p>MODE</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Imposes additional alignment constraints on the value in the BASE field.``Legal Values :`` 0,1.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “Direct” :0)( “Vectored” :1)( “Reserved_2” :2)( “Reserved_3” :3)’n’</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-counter-enable-register">
+<h2>Machine Counter Enable Register<a class="headerlink" href="#machine-counter-enable-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h306">
+<h2>AddressOffset: ‘h306<a class="headerlink" href="#addressoffset-h306" title="Link to this heading"></a></h2>
+</section>
+<section id="id19">
+<h2>Description:<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
+<p>This register controls the availability of the hardware performance-monitoring counters to the next-lowest privileged mode.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:3</p></td>
+<td><p>HPMn</p></td>
+<td><p>Hpmcountern</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>When HPMn is clear, attempts to read the <code class="docutils literal notranslate"><span class="pre">hpmcountern</span></code> register while executing in S-mode or U-mode will cause an illegal instruction exception. When this bit is set, access to the corresponding register is permitted in the next implemented privilege mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>IR</p></td>
+<td><p>Instret</p></td>
+<td><p>read-write</p></td>
+<td><p>When IR is clear, attempts to read the <code class="docutils literal notranslate"><span class="pre">instret</span></code> register while executing in S-mode or U-mode will cause an illegal instruction exception. When this bit is set, access to the corresponding register is permitted in the next implemented privilege mode.</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>TM</p></td>
+<td><p>Time</p></td>
+<td><p>read-write</p></td>
+<td><p>When TM is clear, attempts to read the <code class="docutils literal notranslate"><span class="pre">time</span></code> register while executing in S-mode or U-mode will cause an illegal instruction exception. When this bit is set, access to the corresponding register is permitted in the next implemented privilege mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>CY</p></td>
+<td><p>Cycle</p></td>
+<td><p>read-write</p></td>
+<td><p>When CY is clear, attempts to read the <code class="docutils literal notranslate"><span class="pre">cycle</span></code> register while executing in S-mode or U-mode will cause an illegal instruction exception. When this bit is set, access to the corresponding register is permitted in the next implemented privilege mode.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="hardware-performance-monitoring-event-selector-register">
+<h2>Hardware Performance-Monitoring Event Selector Register<a class="headerlink" href="#hardware-performance-monitoring-event-selector-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h323">
+<h2>AddressOffset: ‘h323<a class="headerlink" href="#addressoffset-h323" title="Link to this heading"></a></h2>
+</section>
+<section id="id20">
+<h2>Description:<a class="headerlink" href="#id20" title="Link to this heading"></a></h2>
+<p>This register controls which event causes the corresponding counter to increment.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4:0</p></td>
+<td><p>mhpmevent</p></td>
+<td></td>
+<td><p>read-write,WARL</p></td>
+<td><p>This register controls which event causes the corresponding counter to increment.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-scratch-register">
+<h2>Machine Scratch Register<a class="headerlink" href="#machine-scratch-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h340">
+<h2>AddressOffset: ‘h340<a class="headerlink" href="#addressoffset-h340" title="Link to this heading"></a></h2>
+</section>
+<section id="id21">
+<h2>Description:<a class="headerlink" href="#id21" title="Link to this heading"></a></h2>
+<p>This register is used to hold a value dedicated to Machine mode. Attempts to access without Machine mode level raise illegal instruction exception.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>mscratch</p></td>
+<td><p>Machine scratch</p></td>
+<td><p>read-write</p></td>
+<td><p>This register is used to hold a value dedicated to Machine mode. Attempts to access without Machine mode level raise illegal instruction exception.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-exception-program-counter-register">
+<h2>Machine Exception Program Counter Register<a class="headerlink" href="#machine-exception-program-counter-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h341">
+<h2>AddressOffset: ‘h341<a class="headerlink" href="#addressoffset-h341" title="Link to this heading"></a></h2>
+</section>
+<section id="id22">
+<h2>Description:<a class="headerlink" href="#id22" title="Link to this heading"></a></h2>
+<p>This register must be able to hold all valid virtual addresses.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>mepc</p></td>
+<td><p>Machine exception program counter</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>This register must be able to hold all valid virtual addresses.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-cause-register">
+<h2>Machine Cause Register<a class="headerlink" href="#machine-cause-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h342">
+<h2>AddressOffset: ‘h342<a class="headerlink" href="#addressoffset-h342" title="Link to this heading"></a></h2>
+</section>
+<section id="id23">
+<h2>Description:<a class="headerlink" href="#id23" title="Link to this heading"></a></h2>
+<p>When a trap is taken into M-mode, mcause is written with a code indicating the event that caused the trap.
+Machine cause register (<code class="docutils literal notranslate"><span class="pre">mcause</span></code>) values after trap are shown in the following table.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Interrupt</strong></p></th>
+<th class="head"><p><strong>Exception Code</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>Supervisor software interrupt</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>2-4</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>5</p></td>
+<td><p>Supervisor timer interrupt</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>6-8</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>9</p></td>
+<td><p>Supervisor external interrupt</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>10-15</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>&gt;=16</p></td>
+<td><p><em>Designated for platform use</em></p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>Instruction address misaligned</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>Instruction access fault</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>2</p></td>
+<td><p>Illegal instruction</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>Breakpoint</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>4</p></td>
+<td><p>Load address misaligned</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>Load access fault</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>6</p></td>
+<td><p>Store/AMO address misaligned</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>7</p></td>
+<td><p>Store/AMO access fault</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>8</p></td>
+<td><p>Environment call from U-mode</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>9</p></td>
+<td><p>Environment call from S-mode</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>10-11</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>12</p></td>
+<td><p>Instruction page fault</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>13</p></td>
+<td><p>Load page fault</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>14</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>15</p></td>
+<td><p>Store/AMO page fault</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>16-23</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>24-31</p></td>
+<td><p><em>Designated for custom use</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>32-47</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>48-63</p></td>
+<td><p><em>Designated for custom use</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>&gt;=64</p></td>
+<td><p><em>Reserved</em></p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31</p></td>
+<td><p>Interrupt</p></td>
+<td><p>Interrupt</p></td>
+<td><p>read-write</p></td>
+<td><p>This bit is set if the trap was caused by an interrupt.</p></td>
+</tr>
+<tr class="row-odd"><td><p>30:0</p></td>
+<td><p>exception_code</p></td>
+<td><p>Exception code</p></td>
+<td><p>read-write,WLRL</p></td>
+<td><p>This field contains a code identifying the last exception or interrupt.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-trap-value-register">
+<h2>Machine Trap Value Register<a class="headerlink" href="#machine-trap-value-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h343">
+<h2>AddressOffset: ‘h343<a class="headerlink" href="#addressoffset-h343" title="Link to this heading"></a></h2>
+</section>
+<section id="id24">
+<h2>Description:<a class="headerlink" href="#id24" title="Link to this heading"></a></h2>
+<p>When a trap is taken into M-mode, mtval is either set to zero or written with exception-specific information to assist software in handling the trap.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>mtval</p></td>
+<td><p>Machine trap value</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>When a trap is taken into M-mode, mtval is either set to zero or written with exception-specific information to assist software in handling the trap.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-interrupt-pending-register">
+<h2>Machine Interrupt Pending Register<a class="headerlink" href="#machine-interrupt-pending-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h344">
+<h2>AddressOffset: ‘h344<a class="headerlink" href="#addressoffset-h344" title="Link to this heading"></a></h2>
+</section>
+<section id="id25">
+<h2>Description:<a class="headerlink" href="#id25" title="Link to this heading"></a></h2>
+<p>This register contains machine interrupt pending bits.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>15:12</p></td>
+<td><p>Reserved_12</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>MEIP</p></td>
+<td><p>M-mode external interrupt pending</p></td>
+<td><p>read-only</p></td>
+<td><p>The interrupt-pending bit for machine-level external interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>Reserved_10</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>SEIP</p></td>
+<td><p>S-mode external interrupt pending</p></td>
+<td><p>read-write</p></td>
+<td><p>The interrupt-pending bit for supervisor-level external interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>UEIP</p></td>
+<td></td>
+<td><p>read-write</p></td>
+<td><p>enables external interrupts.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>MTIP</p></td>
+<td><p>M-mode timer interrupt pending</p></td>
+<td><p>read-only</p></td>
+<td><p>The interrupt-pending bit for machine-level timer interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Reserved_6</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>STIP</p></td>
+<td><p>S-mode timer interrupt pending</p></td>
+<td><p>read-write</p></td>
+<td><p>The interrupt-pending bit for supervisor-level timer interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>UTIP</p></td>
+<td></td>
+<td><p>read-write</p></td>
+<td><p>Correspond to timer interrupt-pending bits for user interrupt.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>MSIP</p></td>
+<td><p>M-mode software interrupt pending</p></td>
+<td><p>read-only</p></td>
+<td><p>The interrupt-pending bit for machine-level software interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Reserved_2</p></td>
+<td><p>Reserved</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Reserved.``Legal Values:`` 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>SSIP</p></td>
+<td><p>S-mode software interrupt pending</p></td>
+<td><p>read-write</p></td>
+<td><p>The interrupt-pending bit for supervisor-level software interrupts.</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>USIP</p></td>
+<td></td>
+<td><p>read-write</p></td>
+<td><p>A hart to directly write its own USIP bits when running in the appropriate mode.``Legal Values:`` 0.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="physical-memory-protection-config-0-register">
+<h2>Physical Memory Protection Config 0 Register<a class="headerlink" href="#physical-memory-protection-config-0-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h3a0">
+<h2>AddressOffset: ‘h3A0<a class="headerlink" href="#addressoffset-h3a0" title="Link to this heading"></a></h2>
+</section>
+<section id="id26">
+<h2>Description:<a class="headerlink" href="#id26" title="Link to this heading"></a></h2>
+<p>Holds configuration 0-3.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:24</p></td>
+<td><p>pmp3cfg</p></td>
+<td><p>Physical memory protection 3 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p>23:16</p></td>
+<td><p>pmp2cfg</p></td>
+<td><p>Physical memory protection 2 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p>15:8</p></td>
+<td><p>pmp1cfg</p></td>
+<td><p>Physical memory protection 1 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p>7:0</p></td>
+<td><p>pmp0cfg</p></td>
+<td><p>Physical memory protection 0 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="physical-memory-protection-config-1-register">
+<h2>Physical Memory Protection Config 1 Register<a class="headerlink" href="#physical-memory-protection-config-1-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h3a1">
+<h2>AddressOffset: ‘h3A1<a class="headerlink" href="#addressoffset-h3a1" title="Link to this heading"></a></h2>
+</section>
+<section id="id27">
+<h2>Description:<a class="headerlink" href="#id27" title="Link to this heading"></a></h2>
+<p>Holds configuration 4-7.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:24</p></td>
+<td><p>pmp7cfg</p></td>
+<td><p>Physical memory protection 7 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p>23:16</p></td>
+<td><p>pmp6cfg</p></td>
+<td><p>Physical memory protection 6 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p>15:8</p></td>
+<td><p>pmp5cfg</p></td>
+<td><p>Physical memory protection 5 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p>7:0</p></td>
+<td><p>pmp4cfg</p></td>
+<td><p>Physical memory protection 4 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="physical-memory-protection-config-2-register">
+<h2>Physical Memory Protection Config 2 Register<a class="headerlink" href="#physical-memory-protection-config-2-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h3a2">
+<h2>AddressOffset: ‘h3A2<a class="headerlink" href="#addressoffset-h3a2" title="Link to this heading"></a></h2>
+</section>
+<section id="id28">
+<h2>Description:<a class="headerlink" href="#id28" title="Link to this heading"></a></h2>
+<p>Holds configuration 8-11.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:24</p></td>
+<td><p>pmp11cfg</p></td>
+<td><p>Physical memory protection 11 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p>23:16</p></td>
+<td><p>pmp10cfg</p></td>
+<td><p>Physical memory protection 10 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p>15:8</p></td>
+<td><p>pmp9cfg</p></td>
+<td><p>Physical memory protection 9 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p>7:0</p></td>
+<td><p>pmp8cfg</p></td>
+<td><p>Physical memory protection 8 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="physical-memory-protection-config-3-register">
+<h2>Physical Memory Protection Config 3 Register<a class="headerlink" href="#physical-memory-protection-config-3-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h3a3">
+<h2>AddressOffset: ‘h3A3<a class="headerlink" href="#addressoffset-h3a3" title="Link to this heading"></a></h2>
+</section>
+<section id="id29">
+<h2>Description:<a class="headerlink" href="#id29" title="Link to this heading"></a></h2>
+<p>Holds configuration 12-15.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:24</p></td>
+<td><p>pmp15cfg</p></td>
+<td><p>Physical memory protection 15 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p>23:16</p></td>
+<td><p>pmp14cfg</p></td>
+<td><p>Physical memory protection 14 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p>15:8</p></td>
+<td><p>pmp13cfg</p></td>
+<td><p>Physical memory protection 13 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p>7:0</p></td>
+<td><p>pmp12cfg</p></td>
+<td><p>Physical memory protection 12 config</p></td>
+<td><p>read-write</p></td>
+<td><p>Holds the configuration.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="physical-memory-protection-address-register">
+<h2>Physical Memory Protection Address Register<a class="headerlink" href="#physical-memory-protection-address-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h3b0">
+<h2>AddressOffset: ‘h3B0<a class="headerlink" href="#addressoffset-h3b0" title="Link to this heading"></a></h2>
+</section>
+<section id="id30">
+<h2>Description:<a class="headerlink" href="#id30" title="Link to this heading"></a></h2>
+<p>Address register for Physical Memory Protection.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>address</p></td>
+<td><p>Address</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Address register for Physical Memory Protection.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="instruction-cache-register">
+<h2>Instruction Cache Register<a class="headerlink" href="#instruction-cache-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h7c0">
+<h2>AddressOffset: ‘h7C0<a class="headerlink" href="#addressoffset-h7c0" title="Link to this heading"></a></h2>
+</section>
+<section id="id31">
+<h2>Description:<a class="headerlink" href="#id31" title="Link to this heading"></a></h2>
+<p>Custom Register to enable/disable for Icache [bit 0]</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>icache</p></td>
+<td><p>Instruction cache</p></td>
+<td><p>read-write</p></td>
+<td><p>Custom Register to enable/disable for Icache [bit 0]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-cache-register">
+<h2>Data Cache Register<a class="headerlink" href="#data-cache-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h7c1">
+<h2>AddressOffset: ‘h7C1<a class="headerlink" href="#addressoffset-h7c1" title="Link to this heading"></a></h2>
+</section>
+<section id="id32">
+<h2>Description:<a class="headerlink" href="#id32" title="Link to this heading"></a></h2>
+<p>Custom Register to enable/disable for Dcache [bit 0]</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>dcache</p></td>
+<td><p>Data cache</p></td>
+<td><p>read-write</p></td>
+<td><p>Custom Register to enable/disable for Dcache [bit 0]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trigger-select-register">
+<h2>Trigger Select Register<a class="headerlink" href="#trigger-select-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h7a0">
+<h2>AddressOffset: ‘h7A0<a class="headerlink" href="#addressoffset-h7a0" title="Link to this heading"></a></h2>
+</section>
+<section id="id33">
+<h2>Description:<a class="headerlink" href="#id33" title="Link to this heading"></a></h2>
+<p>This register determines which trigger is accessible through the other trigger registers.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>index</p></td>
+<td><p>Index</p></td>
+<td><p>read-write</p></td>
+<td><p>This register determines which trigger is accessible through the other trigger registers.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trigger-data-1-register">
+<h2>Trigger Data 1 Register<a class="headerlink" href="#trigger-data-1-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h7a1">
+<h2>AddressOffset: ‘h7A1<a class="headerlink" href="#addressoffset-h7a1" title="Link to this heading"></a></h2>
+</section>
+<section id="id34">
+<h2>Description:<a class="headerlink" href="#id34" title="Link to this heading"></a></h2>
+<p>Trigger-specific data.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:28</p></td>
+<td><p>type</p></td>
+<td><p>Type</p></td>
+<td><p>read-write</p></td>
+<td><p>Type of trigger.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “no_trigger” :0)( “legacy_address_match_trigger” :1)( “address_data_match_trigger” :2)( “instruction_count_trigger” :3)( “interrupt_trigger” :4)( “exception_trigger” :5)( “Reserved_6” :6)( “Reserved_7” :7)( “Reserved_8” :8)( “Reserved_9” :9)( “Reserved_10” :10)( “Reserved_11” :11)( “Reserved_12” :12)( “Reserved_13” :13)( “Reserved_14” :14)( “trigger_exists” :15)’n’</p></td>
+</tr>
+<tr class="row-odd"><td><p>27</p></td>
+<td><p>dmode</p></td>
+<td><p>Debug mode</p></td>
+<td><p>read-write</p></td>
+<td><p>This bit is only writable from Debug Mode.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “D_and_M_mode” :0)( “M_mode_only” :1)’n’</p></td>
+</tr>
+<tr class="row-even"><td><p>26:0</p></td>
+<td><p>data</p></td>
+<td><p>Data</p></td>
+<td><p>read-write</p></td>
+<td><p>Trigger-specific data.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trigger-data-2-register">
+<h2>Trigger Data 2 Register<a class="headerlink" href="#trigger-data-2-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h7a2">
+<h2>AddressOffset: ‘h7A2<a class="headerlink" href="#addressoffset-h7a2" title="Link to this heading"></a></h2>
+</section>
+<section id="id35">
+<h2>Description:<a class="headerlink" href="#id35" title="Link to this heading"></a></h2>
+<p>Trigger-specific data.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>data</p></td>
+<td><p>Data</p></td>
+<td><p>read-write</p></td>
+<td><p>Trigger-specific data.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trigger-data-3-register">
+<h2>Trigger Data 3 Register<a class="headerlink" href="#trigger-data-3-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h7a3">
+<h2>AddressOffset: ‘h7A3<a class="headerlink" href="#addressoffset-h7a3" title="Link to this heading"></a></h2>
+</section>
+<section id="id36">
+<h2>Description:<a class="headerlink" href="#id36" title="Link to this heading"></a></h2>
+<p>Trigger-specific data.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>data</p></td>
+<td><p>Data</p></td>
+<td><p>read-write</p></td>
+<td><p>Trigger-specific data.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trigger-info-register">
+<h2>Trigger Info Register<a class="headerlink" href="#trigger-info-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h7a4">
+<h2>AddressOffset: ‘h7A4<a class="headerlink" href="#addressoffset-h7a4" title="Link to this heading"></a></h2>
+</section>
+<section id="id37">
+<h2>Description:<a class="headerlink" href="#id37" title="Link to this heading"></a></h2>
+<p>Shows trigger information.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>15:0</p></td>
+<td><p>info</p></td>
+<td><p>Info</p></td>
+<td><p>read-only</p></td>
+<td><p>Shows trigger information.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="debug-control-and-status-register">
+<h2>Debug Control and Status Register<a class="headerlink" href="#debug-control-and-status-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h7b0">
+<h2>AddressOffset: ‘h7B0<a class="headerlink" href="#addressoffset-h7b0" title="Link to this heading"></a></h2>
+</section>
+<section id="id38">
+<h2>Description:<a class="headerlink" href="#id38" title="Link to this heading"></a></h2>
+<p>Debug control and status register.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:28</p></td>
+<td><p>xdebugver</p></td>
+<td><p>Debug version</p></td>
+<td><p>read-only</p></td>
+<td><p>Shows the version of the debug support.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “no_ext_debug” :0)( “ext_debug_spec” :4)( “ext_debug_no_spec” :15)’n’</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>ebreakm</p></td>
+<td><p>Environment breakpoint m-mode</p></td>
+<td><p>read-write</p></td>
+<td><p>Shows the behavior of the <code class="docutils literal notranslate"><span class="pre">ebreak</span></code> instruction in machine mode.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “break_as_spec” :0)( “break_to_debug” :1)’n’</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>ebreaks</p></td>
+<td><p>Environment breakpoint s-mode</p></td>
+<td><p>read-write</p></td>
+<td><p>Shows the behvior of the <code class="docutils literal notranslate"><span class="pre">ebreak</span></code> instruction in supervisor mode.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “break_as_spec” :0)( “break_to_debug” :1)’n’</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>ebreaku</p></td>
+<td><p>Environment breakpoint u-mode</p></td>
+<td><p>read-write</p></td>
+<td><p>Shows the behvior of the <code class="docutils literal notranslate"><span class="pre">ebreak</span></code> instruction in user mode.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “break_as_spec” :0)( “break_to_debug” :1)’n’</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>stepie</p></td>
+<td><p>Stepping interrupt enable</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Enables/disables interrupts for single stepping.  The debugger must not change the value of this bit while the hart is running.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “disabled” :0)( “enabled” :1)’n’</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>stopcount</p></td>
+<td><p>Stop counters</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Starts/stops incrementing counters in debug mode.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “increment_counters” :0)( “dont_increment_counters” :1)’n’</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>stoptime</p></td>
+<td><p>Stop timers</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Starts/stops incrementing timers in debug mode.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “increment_timers” :0)( “dont_increment_timers” :1)’n’</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:6</p></td>
+<td><p>cause</p></td>
+<td><p>Cause</p></td>
+<td><p>read-write</p></td>
+<td><p>Explains why Debug Mode was entered.  When there are multiple reasons to enter Debug Mode in a single cycle, hardware sets <code class="docutils literal notranslate"><span class="pre">cause</span></code> to the cause with the highest priority.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “ebreak_instruction” :1)( “trigger_module” :2)( “debugger_request” :3)( “single_step” :4)( “reset_halt” :5)’n’</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>mprven</p></td>
+<td><p>Modify privilege enable</p></td>
+<td><p>read-write,WARL</p></td>
+<td><p>Enables/disables the modify privilege setting in debug mode.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “disable_mprv” :0)( “enable_mprv” :1)’n’</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>nmip</p></td>
+<td><p>Non-maskable interrupt pending</p></td>
+<td><p>read-only</p></td>
+<td><p>When set, there is a Non-Maskable-Interrupt (NMI) pending for the hart.</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>step</p></td>
+<td><p>Step</p></td>
+<td><p>read-write</p></td>
+<td><p>When set and not in Debug Mode, the hart will only execute a single instruction and then enter Debug Mode. If the instruction does not complete due to an exception, the hart will immediately enter Debug Mode before executing the trap handler, with appropriate exception registers set. The debugger must not change the value of this bit while the hart is running.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1:0</p></td>
+<td><p>prv</p></td>
+<td><p>Privilege level</p></td>
+<td><p>read-write</p></td>
+<td><p>Contains the privilege level the hart was operating in when Debug Mode was entered. A debugger can change this value to change the hart’s privilege level when exiting Debug Mode.  <code class="docutils literal notranslate"><span class="pre">Enumerated</span> <span class="pre">Values</span></code> ( “User” :0)( “Supervisor” :1)( “Machine” :3)’n’</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="debug-pc-register">
+<h2>Debug PC Register<a class="headerlink" href="#debug-pc-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h7b1">
+<h2>AddressOffset: ‘h7B1<a class="headerlink" href="#addressoffset-h7b1" title="Link to this heading"></a></h2>
+</section>
+<section id="id39">
+<h2>Description:<a class="headerlink" href="#id39" title="Link to this heading"></a></h2>
+<p>Upon entry to debug mode, <code class="docutils literal notranslate"><span class="pre">dpc</span></code> is updated with the virtual address of the next instruction to be executed.</p>
+<p>When resuming, the hart’s PC is updated to the virtual address stored in <code class="docutils literal notranslate"><span class="pre">dpc</span></code>. A debugger may write <code class="docutils literal notranslate"><span class="pre">dpc</span></code> to change where the hart resumes.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>dpc</p></td>
+<td></td>
+<td><p>read-write</p></td>
+<td><p>Upon entry to debug mode, <code class="docutils literal notranslate"><span class="pre">dpc</span></code> is updated with the virtual address of the next instruction to be executed.  When resuming, the hart’s PC is updated to the virtual address stored in <code class="docutils literal notranslate"><span class="pre">dpc</span></code>. A debugger may write <code class="docutils literal notranslate"><span class="pre">dpc</span></code> to change where the hart resumes.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="debug-scratch-register-register">
+<h2>Debug Scratch Register Register<a class="headerlink" href="#debug-scratch-register-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h7b2">
+<h2>AddressOffset: ‘h7B2<a class="headerlink" href="#addressoffset-h7b2" title="Link to this heading"></a></h2>
+</section>
+<section id="id40">
+<h2>Description:<a class="headerlink" href="#id40" title="Link to this heading"></a></h2>
+<p>Optional scratch register. A debugger must not write to this register unless <code class="docutils literal notranslate"><span class="pre">hartinfo</span></code> explicitly mentions it.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>dscratch</p></td>
+<td></td>
+<td><p>read-write</p></td>
+<td><p>Optional scratch register. A debugger must not write to this register unless <code class="docutils literal notranslate"><span class="pre">hartinfo</span></code> explicitly mentions it.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="register">
+<h2>Register<a class="headerlink" href="#register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-h800">
+<h2>AddressOffset: ‘h800<a class="headerlink" href="#addressoffset-h800" title="Link to this heading"></a></h2>
+</section>
+<section id="id41">
+<h2>Description:<a class="headerlink" href="#id41" title="Link to this heading"></a></h2>
+<p>Floating Point Custom CSR</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>6:0</p></td>
+<td><p>ftran</p></td>
+<td></td>
+<td><p>read-write</p></td>
+<td><p>Floating Point Custom CSR</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="m-mode-cycle-counter-register">
+<h2>M-mode Cycle counter Register<a class="headerlink" href="#m-mode-cycle-counter-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb00">
+<h2>AddressOffset: ‘hB00<a class="headerlink" href="#addressoffset-hb00" title="Link to this heading"></a></h2>
+</section>
+<section id="id42">
+<h2>Description:<a class="headerlink" href="#id42" title="Link to this heading"></a></h2>
+<p>Counts the number of clock cycles executed by the processor core on which the hart is running.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Counts the number of clock cycles executed by the processor core on which the hart is running.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-instruction-retired-counter-register">
+<h2>Machine Instruction Retired counter Register<a class="headerlink" href="#machine-instruction-retired-counter-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb02">
+<h2>AddressOffset: ‘hB02<a class="headerlink" href="#addressoffset-hb02" title="Link to this heading"></a></h2>
+</section>
+<section id="id43">
+<h2>Description:<a class="headerlink" href="#id43" title="Link to this heading"></a></h2>
+<p>Counts the number of instructions the hart has retired.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Counts the number of instructions the hart has retired.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="l1-inst-cache-miss-register">
+<h2>L1 Inst Cache Miss Register<a class="headerlink" href="#l1-inst-cache-miss-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb03">
+<h2>AddressOffset: ‘hB03<a class="headerlink" href="#addressoffset-hb03" title="Link to this heading"></a></h2>
+</section>
+<section id="id44">
+<h2>Description:<a class="headerlink" href="#id44" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="l1-data-cache-miss-register">
+<h2>L1 Data Cache Miss Register<a class="headerlink" href="#l1-data-cache-miss-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb04">
+<h2>AddressOffset: ‘hB04<a class="headerlink" href="#addressoffset-hb04" title="Link to this heading"></a></h2>
+</section>
+<section id="id45">
+<h2>Description:<a class="headerlink" href="#id45" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="itlb-miss-register">
+<h2>ITLB Miss Register<a class="headerlink" href="#itlb-miss-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb05">
+<h2>AddressOffset: ‘hB05<a class="headerlink" href="#addressoffset-hb05" title="Link to this heading"></a></h2>
+</section>
+<section id="id46">
+<h2>Description:<a class="headerlink" href="#id46" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dtlb-miss-register">
+<h2>DTLB Miss Register<a class="headerlink" href="#dtlb-miss-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb06">
+<h2>AddressOffset: ‘hB06<a class="headerlink" href="#addressoffset-hb06" title="Link to this heading"></a></h2>
+</section>
+<section id="id47">
+<h2>Description:<a class="headerlink" href="#id47" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="loads-register">
+<h2>Loads Register<a class="headerlink" href="#loads-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb07">
+<h2>AddressOffset: ‘hB07<a class="headerlink" href="#addressoffset-hb07" title="Link to this heading"></a></h2>
+</section>
+<section id="id48">
+<h2>Description:<a class="headerlink" href="#id48" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stores-register">
+<h2>Stores Register<a class="headerlink" href="#stores-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb08">
+<h2>AddressOffset: ‘hB08<a class="headerlink" href="#addressoffset-hb08" title="Link to this heading"></a></h2>
+</section>
+<section id="id49">
+<h2>Description:<a class="headerlink" href="#id49" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="taken-exceptions-register">
+<h2>Taken Exceptions Register<a class="headerlink" href="#taken-exceptions-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb09">
+<h2>AddressOffset: ‘hB09<a class="headerlink" href="#addressoffset-hb09" title="Link to this heading"></a></h2>
+</section>
+<section id="id50">
+<h2>Description:<a class="headerlink" href="#id50" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exception-return-register">
+<h2>Exception Return Register<a class="headerlink" href="#exception-return-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb0a">
+<h2>AddressOffset: ‘hB0A<a class="headerlink" href="#addressoffset-hb0a" title="Link to this heading"></a></h2>
+</section>
+<section id="id51">
+<h2>Description:<a class="headerlink" href="#id51" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="software-change-of-pc-register">
+<h2>Software Change of PC Register<a class="headerlink" href="#software-change-of-pc-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb0b">
+<h2>AddressOffset: ‘hB0B<a class="headerlink" href="#addressoffset-hb0b" title="Link to this heading"></a></h2>
+</section>
+<section id="id52">
+<h2>Description:<a class="headerlink" href="#id52" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="procedure-call-register">
+<h2>Procedure Call Register<a class="headerlink" href="#procedure-call-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb0c">
+<h2>AddressOffset: ‘hB0C<a class="headerlink" href="#addressoffset-hb0c" title="Link to this heading"></a></h2>
+</section>
+<section id="id53">
+<h2>Description:<a class="headerlink" href="#id53" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="procedure-return-register">
+<h2>Procedure Return Register<a class="headerlink" href="#procedure-return-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb0d">
+<h2>AddressOffset: ‘hB0D<a class="headerlink" href="#addressoffset-hb0d" title="Link to this heading"></a></h2>
+</section>
+<section id="id54">
+<h2>Description:<a class="headerlink" href="#id54" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="branch-mis-predicted-register">
+<h2>Branch mis-predicted Register<a class="headerlink" href="#branch-mis-predicted-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb0e">
+<h2>AddressOffset: ‘hB0E<a class="headerlink" href="#addressoffset-hb0e" title="Link to this heading"></a></h2>
+</section>
+<section id="id55">
+<h2>Description:<a class="headerlink" href="#id55" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="scoreboard-full-register">
+<h2>Scoreboard Full Register<a class="headerlink" href="#scoreboard-full-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb0f">
+<h2>AddressOffset: ‘hB0F<a class="headerlink" href="#addressoffset-hb0f" title="Link to this heading"></a></h2>
+</section>
+<section id="id56">
+<h2>Description:<a class="headerlink" href="#id56" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="instruction-fetch-queue-empty-register">
+<h2>Instruction Fetch Queue Empty Register<a class="headerlink" href="#instruction-fetch-queue-empty-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb10">
+<h2>AddressOffset: ‘hB10<a class="headerlink" href="#addressoffset-hb10" title="Link to this heading"></a></h2>
+</section>
+<section id="id57">
+<h2>Description:<a class="headerlink" href="#id57" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="upper-32-bits-of-m-mode-cycle-counter-register">
+<h2>Upper 32-bits of M-mode Cycle counter Register<a class="headerlink" href="#upper-32-bits-of-m-mode-cycle-counter-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb80">
+<h2>AddressOffset: ‘hB80<a class="headerlink" href="#addressoffset-hb80" title="Link to this heading"></a></h2>
+</section>
+<section id="id58">
+<h2>Description:<a class="headerlink" href="#id58" title="Link to this heading"></a></h2>
+<p>Counts the number of clock cycles executed by the processor core on which the hart is running.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Counts the number of clock cycles executed by the processor core on which the hart is running.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="upper-32-bits-of-machine-instruction-retired-counter-register">
+<h2>Upper 32-bits of Machine Instruction Retired counter Register<a class="headerlink" href="#upper-32-bits-of-machine-instruction-retired-counter-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb82">
+<h2>AddressOffset: ‘hB82<a class="headerlink" href="#addressoffset-hb82" title="Link to this heading"></a></h2>
+</section>
+<section id="id59">
+<h2>Description:<a class="headerlink" href="#id59" title="Link to this heading"></a></h2>
+<p>Counts the number of instructions the hart has retired.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Counts the number of instructions the hart has retired.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="upper-32-bits-of-machine-hardware-performance-monitoring-counter-register">
+<h2>Upper 32-bits of Machine Hardware Performance Monitoring Counter Register<a class="headerlink" href="#upper-32-bits-of-machine-hardware-performance-monitoring-counter-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hb83">
+<h2>AddressOffset: ‘hB83<a class="headerlink" href="#addressoffset-hb83" title="Link to this heading"></a></h2>
+</section>
+<section id="id60">
+<h2>Description:<a class="headerlink" href="#id60" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-write</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cycle-counter-register">
+<h2>Cycle counter Register<a class="headerlink" href="#cycle-counter-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc00">
+<h2>AddressOffset: ‘hC00<a class="headerlink" href="#addressoffset-hc00" title="Link to this heading"></a></h2>
+</section>
+<section id="id61">
+<h2>Description:<a class="headerlink" href="#id61" title="Link to this heading"></a></h2>
+<p>Cycle counter for RDCYCLE instruction.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Cycle counter for RDCYCLE instruction.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="timer-register">
+<h2>Timer Register<a class="headerlink" href="#timer-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc01">
+<h2>AddressOffset: ‘hC01<a class="headerlink" href="#addressoffset-hc01" title="Link to this heading"></a></h2>
+</section>
+<section id="id62">
+<h2>Description:<a class="headerlink" href="#id62" title="Link to this heading"></a></h2>
+<p>Timer for RDTIME instruction.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Timer for RDTIME instruction.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="instruction-retired-counter-register">
+<h2>Instruction Retired counter Register<a class="headerlink" href="#instruction-retired-counter-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc02">
+<h2>AddressOffset: ‘hC02<a class="headerlink" href="#addressoffset-hc02" title="Link to this heading"></a></h2>
+</section>
+<section id="id63">
+<h2>Description:<a class="headerlink" href="#id63" title="Link to this heading"></a></h2>
+<p>Instructions-retired counter for RDINSTRET instruction</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Instructions-retired counter for RDINSTRET instruction</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id64">
+<h2>L1 Inst Cache Miss Register<a class="headerlink" href="#id64" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc03">
+<h2>AddressOffset: ‘hC03<a class="headerlink" href="#addressoffset-hc03" title="Link to this heading"></a></h2>
+</section>
+<section id="id65">
+<h2>Description:<a class="headerlink" href="#id65" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id66">
+<h2>L1 Data Cache Miss Register<a class="headerlink" href="#id66" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc04">
+<h2>AddressOffset: ‘hC04<a class="headerlink" href="#addressoffset-hc04" title="Link to this heading"></a></h2>
+</section>
+<section id="id67">
+<h2>Description:<a class="headerlink" href="#id67" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id68">
+<h2>ITLB Miss Register<a class="headerlink" href="#id68" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc05">
+<h2>AddressOffset: ‘hC05<a class="headerlink" href="#addressoffset-hc05" title="Link to this heading"></a></h2>
+</section>
+<section id="id69">
+<h2>Description:<a class="headerlink" href="#id69" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id70">
+<h2>DTLB Miss Register<a class="headerlink" href="#id70" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc06">
+<h2>AddressOffset: ‘hC06<a class="headerlink" href="#addressoffset-hc06" title="Link to this heading"></a></h2>
+</section>
+<section id="id71">
+<h2>Description:<a class="headerlink" href="#id71" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id72">
+<h2>Loads Register<a class="headerlink" href="#id72" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc07">
+<h2>AddressOffset: ‘hC07<a class="headerlink" href="#addressoffset-hc07" title="Link to this heading"></a></h2>
+</section>
+<section id="id73">
+<h2>Description:<a class="headerlink" href="#id73" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id74">
+<h2>Stores Register<a class="headerlink" href="#id74" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc08">
+<h2>AddressOffset: ‘hC08<a class="headerlink" href="#addressoffset-hc08" title="Link to this heading"></a></h2>
+</section>
+<section id="id75">
+<h2>Description:<a class="headerlink" href="#id75" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id76">
+<h2>Taken Exceptions Register<a class="headerlink" href="#id76" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc09">
+<h2>AddressOffset: ‘hC09<a class="headerlink" href="#addressoffset-hc09" title="Link to this heading"></a></h2>
+</section>
+<section id="id77">
+<h2>Description:<a class="headerlink" href="#id77" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id78">
+<h2>Exception Return Register<a class="headerlink" href="#id78" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc0a">
+<h2>AddressOffset: ‘hC0A<a class="headerlink" href="#addressoffset-hc0a" title="Link to this heading"></a></h2>
+</section>
+<section id="id79">
+<h2>Description:<a class="headerlink" href="#id79" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id80">
+<h2>Software Change of PC Register<a class="headerlink" href="#id80" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc0b">
+<h2>AddressOffset: ‘hC0B<a class="headerlink" href="#addressoffset-hc0b" title="Link to this heading"></a></h2>
+</section>
+<section id="id81">
+<h2>Description:<a class="headerlink" href="#id81" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id82">
+<h2>Procedure Call Register<a class="headerlink" href="#id82" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc0c">
+<h2>AddressOffset: ‘hC0C<a class="headerlink" href="#addressoffset-hc0c" title="Link to this heading"></a></h2>
+</section>
+<section id="id83">
+<h2>Description:<a class="headerlink" href="#id83" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id84">
+<h2>Procedure Return Register<a class="headerlink" href="#id84" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc0d">
+<h2>AddressOffset: ‘hC0D<a class="headerlink" href="#addressoffset-hc0d" title="Link to this heading"></a></h2>
+</section>
+<section id="id85">
+<h2>Description:<a class="headerlink" href="#id85" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id86">
+<h2>Branch mis-predicted Register<a class="headerlink" href="#id86" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc0e">
+<h2>AddressOffset: ‘hC0E<a class="headerlink" href="#addressoffset-hc0e" title="Link to this heading"></a></h2>
+</section>
+<section id="id87">
+<h2>Description:<a class="headerlink" href="#id87" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id88">
+<h2>Scoreboard Full Register<a class="headerlink" href="#id88" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc0f">
+<h2>AddressOffset: ‘hC0F<a class="headerlink" href="#addressoffset-hc0f" title="Link to this heading"></a></h2>
+</section>
+<section id="id89">
+<h2>Description:<a class="headerlink" href="#id89" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id90">
+<h2>Instruction Fetch Queue Empty Register<a class="headerlink" href="#id90" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc10">
+<h2>AddressOffset: ‘hC10<a class="headerlink" href="#addressoffset-hc10" title="Link to this heading"></a></h2>
+</section>
+<section id="id91">
+<h2>Description:<a class="headerlink" href="#id91" title="Link to this heading"></a></h2>
+<p>Hardware performance event counter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Hardware performance event counter.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="upper-32-bits-of-cycle-counter-register">
+<h2>Upper 32-bits of Cycle counter Register<a class="headerlink" href="#upper-32-bits-of-cycle-counter-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc80">
+<h2>AddressOffset: ‘hC80<a class="headerlink" href="#addressoffset-hc80" title="Link to this heading"></a></h2>
+</section>
+<section id="id92">
+<h2>Description:<a class="headerlink" href="#id92" title="Link to this heading"></a></h2>
+<p>Cycle counter for RDCYCLE instruction.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Cycle counter for RDCYCLE instruction.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="upper-32-bit-of-timer-register">
+<h2>Upper 32-bit of Timer Register<a class="headerlink" href="#upper-32-bit-of-timer-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc81">
+<h2>AddressOffset: ‘hC81<a class="headerlink" href="#addressoffset-hc81" title="Link to this heading"></a></h2>
+</section>
+<section id="id93">
+<h2>Description:<a class="headerlink" href="#id93" title="Link to this heading"></a></h2>
+<p>Timer for RDTIME instruction.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Timer for RDTIME instruction.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="upper-32-bits-of-instruction-retired-counter-register">
+<h2>Upper 32-bits of Instruction Retired counter Register<a class="headerlink" href="#upper-32-bits-of-instruction-retired-counter-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hc82">
+<h2>AddressOffset: ‘hC82<a class="headerlink" href="#addressoffset-hc82" title="Link to this heading"></a></h2>
+</section>
+<section id="id94">
+<h2>Description:<a class="headerlink" href="#id94" title="Link to this heading"></a></h2>
+<p>Instructions-retired counter for RDINSTRET instruction</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>count</p></td>
+<td><p>Count</p></td>
+<td><p>read-only</p></td>
+<td><p>Instructions-retired counter for RDINSTRET instruction</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-vendor-id-register">
+<h2>Machine Vendor ID Register<a class="headerlink" href="#machine-vendor-id-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hf11">
+<h2>AddressOffset: ‘hF11<a class="headerlink" href="#addressoffset-hf11" title="Link to this heading"></a></h2>
+</section>
+<section id="id95">
+<h2>Description:<a class="headerlink" href="#id95" title="Link to this heading"></a></h2>
+<p>This register provides the JEDEC manufacturer ID of the provider of the core.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:7</p></td>
+<td><p>bank</p></td>
+<td><p>Bank</p></td>
+<td><p>read-only</p></td>
+<td><p>Contain encoding for number of one-byte continuation codes discarding the parity bit.</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:0</p></td>
+<td><p>offset</p></td>
+<td><p>Offset</p></td>
+<td><p>read-only</p></td>
+<td><p>Contain encoding for the final byte discarding the parity bit.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-architecture-id-register">
+<h2>Machine Architecture ID Register<a class="headerlink" href="#machine-architecture-id-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hf12">
+<h2>AddressOffset: ‘hF12<a class="headerlink" href="#addressoffset-hf12" title="Link to this heading"></a></h2>
+</section>
+<section id="id96">
+<h2>Description:<a class="headerlink" href="#id96" title="Link to this heading"></a></h2>
+<p>This register encodes the base microarchitecture of the hart.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>architecture_id</p></td>
+<td><p>Architecture id</p></td>
+<td><p>read-only</p></td>
+<td><p>This register encodes the base microarchitecture of the hart.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-implementation-id-register">
+<h2>Machine Implementation ID Register<a class="headerlink" href="#machine-implementation-id-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hf13">
+<h2>AddressOffset: ‘hF13<a class="headerlink" href="#addressoffset-hf13" title="Link to this heading"></a></h2>
+</section>
+<section id="id97">
+<h2>Description:<a class="headerlink" href="#id97" title="Link to this heading"></a></h2>
+<p>Provides a unique encoding of the version of the processor implementation.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>implementation</p></td>
+<td><p>Implementation</p></td>
+<td><p>read-only</p></td>
+<td><p>Provides a unique encoding of the version of the processor implementation.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="machine-hardware-thread-id-register">
+<h2>Machine Hardware Thread ID Register<a class="headerlink" href="#machine-hardware-thread-id-register" title="Link to this heading"></a></h2>
+</section>
+<section id="addressoffset-hf14">
+<h2>AddressOffset: ‘hF14<a class="headerlink" href="#addressoffset-hf14" title="Link to this heading"></a></h2>
+</section>
+<section id="id98">
+<h2>Description:<a class="headerlink" href="#id98" title="Link to this heading"></a></h2>
+<p>This register contains the integer ID of the hardware thread running the code.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 18.2%" />
+<col style="width: 13.6%" />
+<col style="width: 13.6%" />
+<col style="width: 36.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>BIT</strong></p></th>
+<th class="head"><p><strong>NAME</strong></p></th>
+<th class="head"><p><strong>displayName</strong></p></th>
+<th class="head"><p><strong>RIGHT</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>31:0</p></td>
+<td><p>hart_id</p></td>
+<td><p>Hart id</p></td>
+<td><p>read-only</p></td>
+<td><p>This register contains the integer ID of the hardware thread running the code.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

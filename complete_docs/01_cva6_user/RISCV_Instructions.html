@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CVA6 RISC-V Instructions &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RV32I Base Integer Instruction Set" href="RISCV_Instructions_RV32I.html" />
+    <link rel="prev" title="Compiler command lines" href="Compiler_Command_Lines.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CVA6_user_guide.html">OpenHW Group CVA6 User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html">Programmer’s View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Custom_Instructions.html">Custom RISC-V instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMA.html">PMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMP.html">PMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html">Traps, Interrupts, Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Compiler_Command_Lines.html">Compiler command lines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CVA6 RISC-V Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-purpose-registers">General purpose registers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#risc-v-extensions">RISC-V Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conventions-and-terminology">Conventions and Terminology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#illegal-instructions">Illegal Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html">RV32I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32M.html">RV32M</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32A.html">RV32A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html">RV32C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32ZCb.html">RV32Zcb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZcmp.html">RVZcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZba.html">RVZba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbb.html">RVZbb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbc.html">RVZbc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbs.html">RVZbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html">RVZbkb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkc.html">RVZbkc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkx.html">RVZbkx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZkne.html">RVZkne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknd.html">RVZknd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknh.html">RVZknh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicsr.html">RVZicsr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZifencei.html">RVZifencei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicond.html">RVZicond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X_list.html">CV32A60X CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html">CV32A60X CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX_list.html">CV32A60AX CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX.html">CV32A60AX CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU_list.html">CV64A6_MMU CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU.html">CV64A6_MMU CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CV64A6_Control_Status_Registers.html">CV64A6 CSR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Cache_Control.html">CSR cache control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Performance_Counters.html">CSR Performance Counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters_Configuration.html">Parameters and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html">AXI Bus Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html">CV-X-IF Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html">Core Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 User Manual</a></li>
+      <li class="breadcrumb-item active">CVA6 RISC-V Instructions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_cva6_user/RISCV_Instructions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p id="cva6-riscv-instructions"><em>This chapter is applicable to all configurations.</em></p>
+<section id="cva6-risc-v-instructions">
+<h1>CVA6 RISC-V Instructions<a class="headerlink" href="#cva6-risc-v-instructions" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>In the next pages, the ISA (Instruction Set Architecture) for various CVA6 configurations is presented, illustrating different supported instructions, the Base Integer Instruction set RV32I or RV64I, and also other instructions in some extensions supported by the core as:</p>
+<ul class="simple">
+<li><p>RV32M        – Standard Extension for Integer Multiplication and Division Instructions</p></li>
+<li><p>RV32A        – Standard Extension for Atomic Instructions</p></li>
+<li><p>RV32C        – Standard Extension for Compressed Instructions</p></li>
+<li><p>RVZba        - Standard Extension for Bit Manipulation: Address generation instructions (RV32 and RV64)</p></li>
+<li><p>RVZbb        - Standard Extension for Bit Manipulation: Basic bit manipulation (RV32 and RV64)</p></li>
+<li><p>RVZbc        - Standard Extension for Bit Manipulation: Carry-less multiplication (RV32 and RV64)</p></li>
+<li><p>RVZbs        - Standard Extension for Bit Manipulation: Single-bit instructions (RV32 and RV64)</p></li>
+<li><p>RV32Zcb      – Standard Extension for Code Size Reduction</p></li>
+<li><p>RVZcmp       – Standard Extension for Code Size Reduction (RV32 and RV64)</p></li>
+<li><p>RVZicsr      – Standard Extension for CSR Instructions</p></li>
+<li><p>RVZifencei   – Standard Extension for Instruction-Fetch Fence</p></li>
+<li><p>RVZicond     – Standard Extension for Integer Conditional Operations</p></li>
+</ul>
+<p>The base RISC-V ISA (RV32I or RV64I) has fixed-length 32-bit instructions or 16-bit instructions, so that must be naturally aligned on 2-byte boundary.
+If 16-bit instructions are not implemented (RVC, RVZcb, RVZcmp), then instructions must be naturally aligned on 4-byte boundary.</p>
+<p>All CVA6 configurations support:</p>
+<ul class="simple">
+<li><p>Only 1 hart,</p></li>
+<li><p>No misaligned memory accesses.</p></li>
+</ul>
+</section>
+<section id="general-purpose-registers">
+<h2>General purpose registers<a class="headerlink" href="#general-purpose-registers" title="Link to this heading"></a></h2>
+<p>As shown in the Table 1.1, there are 31 general-purpose registers x1–x31, which hold integer values. Register x0 is hardwired to the constant 0. There is no hardwired subroutine return address link register, but the standard software calling convention uses register x1 to hold the return address on a call.</p>
+<p>In CV32A6 configurations, the x registers are 32-bit wide. There is one additional register also 32 bits wide: the program counter PC that holds the address of the current instruction.</p>
+<p>In CV64A6 configurations, the x registers and the PC are 64-bit wide.</p>
+<p>Table 1.1 shows the general-purpose registers :</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.2%" />
+<col style="width: 22.2%" />
+<col style="width: 16.7%" />
+<col style="width: 16.7%" />
+<col style="width: 22.2%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>5-bit Encoding (rx)</strong></p></th>
+<th class="head"><p><strong>3-bit Compressed Encoding (rx’)</strong></p></th>
+<th class="head"><p><strong>Register (ISA name)</strong></p></th>
+<th class="head"><p><strong>Register (ABI name)</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td></td>
+<td><p>x0</p></td>
+<td><p>zero</p></td>
+<td><p>Hardwired zero</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td></td>
+<td><p>x1</p></td>
+<td><p>ra</p></td>
+<td><p>Return address (link register)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td></td>
+<td><p>x2</p></td>
+<td><p>sp</p></td>
+<td><p>Stack pointer</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td></td>
+<td><p>x3</p></td>
+<td><p>gp</p></td>
+<td><p>Global pointer</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td></td>
+<td><p>x4</p></td>
+<td><p>tp</p></td>
+<td><p>Thread pointer</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td></td>
+<td><p>x5</p></td>
+<td><p>t0</p></td>
+<td><p>Temporaries/alternate link register</p></td>
+</tr>
+<tr class="row-even"><td><p>6 - 7</p></td>
+<td></td>
+<td><p>x6 - x7</p></td>
+<td><p>t1 - t2</p></td>
+<td><p>Temporaries</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>0</p></td>
+<td><p>x8</p></td>
+<td><p>s0/fp</p></td>
+<td><p>Saved register/frame pointer</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>1</p></td>
+<td><p>x9</p></td>
+<td><p>s1</p></td>
+<td><p>Saved registers</p></td>
+</tr>
+<tr class="row-odd"><td><p>10 - 11</p></td>
+<td><p>2 - 3</p></td>
+<td><p>x10 - x11</p></td>
+<td><p>a0 - a1</p></td>
+<td><p>Function arguments/return value</p></td>
+</tr>
+<tr class="row-even"><td><p>12 - 15</p></td>
+<td><p>4 - 7</p></td>
+<td><p>x12 - x15</p></td>
+<td><p>a2 - a5</p></td>
+<td><p>Function arguments</p></td>
+</tr>
+<tr class="row-odd"><td><p>16 - 17</p></td>
+<td></td>
+<td><p>x16 - x17</p></td>
+<td><p>a6 - a7</p></td>
+<td><p>Function arguments</p></td>
+</tr>
+<tr class="row-even"><td><p>18 - 27</p></td>
+<td></td>
+<td><p>x18 - x27</p></td>
+<td><p>s2 - s11</p></td>
+<td><p>Saved registers</p></td>
+</tr>
+<tr class="row-odd"><td><p>28 - 31</p></td>
+<td></td>
+<td><p>x28 - x31</p></td>
+<td><p>t3 - t6</p></td>
+<td><p>Temporaries</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="risc-v-extensions">
+<h2>RISC-V Extensions<a class="headerlink" href="#risc-v-extensions" title="Link to this heading"></a></h2>
+<p>The following pages detail the instructions of the RISC-V extensions that are included in each CVA6 configuration.</p>
+<p>Some extensions that are supported by CVA6, but not yet included in any verified CVA6 configuration, might not yet have a such a detailed description. Contributors are welcome to complete these extensions.</p>
+</section>
+<section id="conventions-and-terminology">
+<h2>Conventions and Terminology<a class="headerlink" href="#conventions-and-terminology" title="Link to this heading"></a></h2>
+<p>The notations below are used in the description of instructions.</p>
+<ul class="simple">
+<li><p><strong>sext(val)</strong>: Sign Extension is the operation of increasing the number of bits of a binary number while preserving the number’s sign (positive(0)/negative(1)) and value. this is done by appending digits to the most significant side of the number.</p></li>
+<li><p><strong>zext(val)</strong>: Zero Extension is the operation of increasing the number of bits of a binary number with zeros. this is done by appending digits to the most significant side of the number.</p></li>
+<li><p><strong>&lt;u</strong>: Comparison operation (less than) of 2 unsigned values.</p></li>
+<li><p><strong>&gt;&gt;s</strong>: Right shift of 2 signed values.</p></li>
+<li><p><strong>&gt;&gt;u</strong>: Right shift of 2 unsigned values.</p></li>
+<li><p><strong>M[address]</strong>: Value exists in the address of the memory.</p></li>
+<li><p><strong>/s</strong>: Division of 2 signed values.</p></li>
+<li><p><strong>/u</strong>: Division of 2 unsigned values.</p></li>
+<li><p><strong>%s</strong>: Remainder of the Division of 2 signed values.</p></li>
+<li><p><strong>%u</strong>: Remainder of the Division of 2 unsigned values.</p></li>
+<li><p><strong>AMO32</strong>: Atomic Memory Operation (word).</p></li>
+<li><p><strong>rx’</strong>: rd’, rs1’ or rs2’, stand for the 3-bit Compressed Encoding registers.</p></li>
+</ul>
+</section>
+<section id="illegal-instructions">
+<h2>Illegal Instructions<a class="headerlink" href="#illegal-instructions" title="Link to this heading"></a></h2>
+<p>This section describe all kind of Illegal Instructions. In this case the Core generate an illegal instruction exception.</p>
+<ul class="simple">
+<li><p><strong>ILLEGAL OPCODE</strong>: any instruction (compressed or not compressed) with a non supported opcode is an illegal instruction</p></li>
+<li><p><strong>ILLEGAL FUNCT2</strong>: any instruction (R4type) with a non supported FUNCT2 is an illegal instruction</p></li>
+<li><p><strong>ILLEGAL FUNCT3</strong>: any instruction (Rtype, R4type, Itype, Stype or Atype) with a non supported FUNCT3 is an illegal instruction</p></li>
+<li><p><strong>ILLEGAL FUNCT5</strong>: any instruction (Atype) with a non supported FUNCT5 is an illegal instruction</p></li>
+<li><p><strong>ILLEGAL FUNCT7</strong>: any instruction (Rtype) with a non supported FUNCT7 is an illegal instruction</p></li>
+<li><p><strong>ILLEGAL CSR</strong>: any CSR instruction attempts to access a non-existent is an illegal instruction</p></li>
+<li><p><strong>ILLEGAL PRIVILEGE LEVEL</strong>: any CSR instruction attempts to access a CSR without appropriate privilege level is an illegal instruction</p></li>
+<li><p><strong>ILLEGAL ACCESS TYPE CSR</strong>: any CSR instruction attempts to write a read-only CSR a non-existent is an illegal instruction</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Compiler_Command_Lines.html" class="btn btn-neutral float-left" title="Compiler command lines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="RISCV_Instructions_RV32I.html" class="btn btn-neutral float-right" title="RV32I Base Integer Instruction Set" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

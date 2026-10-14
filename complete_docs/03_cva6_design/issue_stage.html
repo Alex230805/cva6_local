@@ -1,0 +1,220 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Issue Stage &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Execute Stage" href="ex_stage.html" />
+    <link rel="prev" title="Instruction Decode" href="id_stage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_cva6_user/index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 Design Document (deprecated)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcgen_stage.html">PC Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="if_stage.html">Instruction Fetch Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="id_stage.html">Instruction Decode</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Issue Stage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#issue">Issue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#read-operands">Read Operands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scoreboard">Scoreboard</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ex_stage.html">Execute Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html">Memory Management Unit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#translation-lookaside-buffer">Translation Lookaside Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#shared-translation-lookaside-buffer">Shared Translation Lookaside Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MMU.html#page-table-walker">Page Table Walker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commit_stage.html">Commit Stage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 Design Document (deprecated)</a></li>
+      <li class="breadcrumb-item active">Issue Stage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/03_cva6_design/issue_stage.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="issue-stage">
+<h1>Issue Stage<a class="headerlink" href="#issue-stage" title="Link to this heading"></a></h1>
+<p>The issue stage’s purpose is to receive the decoded instructions and
+issue them to the various functional units. Furthermore the issue stage
+keeps track of all issued instructions, the functional unit status and
+receives the write-back data from the execute stage. Furthermore it
+contains the CPU’s register file. By using a data-structure called
+scoreboard (see ) it knows exactly which instructions are issued, which
+functional unit they are in and which register they will write-back to.
+As previously mentioned you can roughly divide the execution in four
+parts <strong>1. issue</strong>, <strong>2. read operands</strong>, <strong>3. execute</strong> and <strong>4.
+write-back</strong>. The issue stage handles step one, two and four.</p>
+<p><img alt="Ariane Scoreboard" src="../_images/scoreboard.png" /></p>
+<section id="issue">
+<h2>Issue<a class="headerlink" href="#issue" title="Link to this heading"></a></h2>
+<p>When the issue stage gets a new decoded instruction it checks whether
+the required functional unit is free or will be free in the next cycle.
+Then it checks if its source operands are available and if no other,
+currently issued, instruction will write the same destination register.
+Furthermore it keeps track that no unresolved branch gets issued. The
+latter is mainly needed to simplify hardware design. By only allowing
+one branch we can easily back-track if we later find-out that we’ve
+mis-predicted on it.</p>
+<p>By ensuring that the scoreboard only allows one instruction to write a
+certain destination register it easies the design of the forwarding path
+significantly. The scoreboard has a combinatorial circuit which outputs
+the status of all 32 destination register together with what functional
+unit will produce the outcome. This signal is called <code class="docutils literal notranslate"><span class="pre">rd_clobber</span></code>.</p>
+<p>The issue stage communicates with the various functional units
+independently. This in particular means that it has to monitor their
+ready and valid signals, receive and store their write-back data
+unconditionally. It will always have enough space as it allocates a slot
+in the scoreboard for every issued instruction. This solves the
+potential structural hazards of smaller microprocessors. This modular
+design will also allow to explore more advanced issuing technique like
+out-of-order issue ().</p>
+<p>The issuing of instructions happen in-order, that means order of program
+flow is naturally maintained. What can happen out-of-order is the
+write-back of each functional unit. Think for example, that the issue
+stage issues a load which takes $n$ clock cycles to produce a
+valid result. In the next cycle the issue stage issues an ALU
+instruction like an addition. The addition will just take one clock
+cycle to return and therefore return before the load’s result
+is ready. Because of this we need to assign IDs to the various issue
+stages. The ID resembles the (unique) position in which the scoreboard
+will store the result of this instruction. The ID (called transaction
+ID) has enough bits to uniquely represent each slot in the scoreboard
+and needs to be passed along with the other data to the corresponding
+functional unit.</p>
+<p>This scheme allows the functional units to operate in complete
+independence of the issue logic. They can return different transactions
+in different order. The scoreboard will know where to put them as long
+as the corresponding ID is signaled alongside the result. This scheme
+even allows the functional unit to buffer results and process them
+entirely out-of-order if it makes sense to them. This is a further
+example of how to efficiently decouple the different modules of a
+processor.</p>
+</section>
+<section id="read-operands">
+<h2>Read Operands<a class="headerlink" href="#read-operands" title="Link to this heading"></a></h2>
+<p>Read operands is physically happens in the same cycle as the issuing of
+instructions but can be conceptually thought of as another stage. As the
+scoreboard knows which registers are getting written it can handle the
+forwarding of those operands if necessary. The design goal was to
+execute two ALU instructions back to back (e.g.: with no bubble in
+between). The operands come from either the register file (if no other
+instruction currently in the scoreboard will write that register) or be
+forwarded by the scoreboard (by looking at the <code class="docutils literal notranslate"><span class="pre">rd_clobber</span></code> signal).</p>
+<p>The operand selection logic is a classical priority selection giving
+precedence to results form the scoreboard over the register file as the
+functional unit will always produce the more up to date result. To
+obtain the right register value we need to poll the scoreboard for both
+source operands.</p>
+</section>
+<section id="scoreboard">
+<h2>Scoreboard<a class="headerlink" href="#scoreboard" title="Link to this heading"></a></h2>
+<p>The scoreboard is implemented as a FIFO with one read and one write port
+with valid and acknowledge signals. In addition to that it provides the
+aforementioned signals which tell the rest of the CPU which registers
+are going to be clobbered by a previously scheduled instruction.
+Instruction decode directly writes to the scoreboard if it is not
+already full. The commit stage looks for already finished instructions
+and updates the architectural state. Which either means going for an
+exception, updating the register or CSR file.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="id_stage.html" class="btn btn-neutral float-left" title="Instruction Decode" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ex_stage.html" class="btn btn-neutral float-right" title="Execute Stage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

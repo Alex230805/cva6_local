@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RVZbb: Basic bit-manipulation &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RVZbc: Carry-less multiplication" href="RISCV_Instructions_RVZbc.html" />
+    <link rel="prev" title="RVZba: Address generation instructions" href="RISCV_Instructions_RVZba.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CVA6 User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CVA6_user_guide.html">OpenHW Group CVA6 User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Programmer_View.html">Programmer’s View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Custom_Instructions.html">Custom RISC-V instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMA.html">PMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PMP.html">PMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Traps_Interrupts_Exceptions.html">Traps, Interrupts, Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Compiler_Command_Lines.html">Compiler command lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions.html">CVA6 RISC-V Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32I.html">RV32I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32M.html">RV32M</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32A.html">RV32A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32C.html">RV32C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RV32ZCb.html">RV32Zcb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZcmp.html">RVZcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZba.html">RVZba</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RVZbb</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#logical-with-negate">Logical with negate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rv32-and-rv64-instructions">RV32 and RV64 Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#count-leading-trailing-zero-bits">Count leading/trailing zero bits</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">RV32 and RV64 Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rv64-specific-instructions">RV64 specific instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#count-population">Count population</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">RV32 and RV64 Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">RV64 specific instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#integer-minimum-maximum">Integer minimum/maximum</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">RV32 and RV64 Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sign-and-zero-extension">Sign and zero-extension</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">RV32 and RV64 Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bitwise-rotation">Bitwise Rotation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">RV32 and RV64 Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">RV64 specific instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#or-combine">OR Combine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">RV32 and RV64 Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#byte-reverse">Byte-reverse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">RV32 and RV64 Instructions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbc.html">RVZbc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbs.html">RVZbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkb.html">RVZbkb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkc.html">RVZbkc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZbkx.html">RVZbkx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZkne.html">RVZkne</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknd.html">RVZknd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZknh.html">RVZknh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicsr.html">RVZicsr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZifencei.html">RVZifencei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RISCV_Instructions_RVZicond.html">RVZicond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X_list.html">CV32A60X CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60X.html">CV32A60X CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX_list.html">CV32A60AX CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV32A60AX.html">CV32A60AX CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU_list.html">CV64A6_MMU CSR List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_CV64A6_MMU.html">CV64A6_MMU CSR Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CV64A6_Control_Status_Registers.html">CV64A6 CSR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Cache_Control.html">CSR cache control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CSR_Performance_Counters.html">CSR Performance Counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters_Configuration.html">Parameters and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AXI_Interface.html">AXI Bus Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVX_Interface_Coprocessor.html">CV-X-IF Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core_Integration.html">Core Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CVA6 User Manual</a></li>
+      <li class="breadcrumb-item active">RVZbb: Basic bit-manipulation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_cva6_user/RISCV_Instructions_RVZbb.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p id="cva6-riscv-instructions-rv32zbb"><em>Applicability of this chapter to configurations:</em></p>
+<table class="docutils align-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>Configuration</p></th>
+<th class="head"><p>Implementation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CV32A60AX</p></td>
+<td><p>Implemented extension</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV32A60X</p></td>
+<td><p>Implemented extension</p></td>
+</tr>
+<tr class="row-even"><td><p>CV64A6_MMU</p></td>
+<td><p>Implemented extension</p></td>
+</tr>
+</tbody>
+</table>
+<section id="rvzbb-basic-bit-manipulation">
+<h1>RVZbb: Basic bit-manipulation<a class="headerlink" href="#rvzbb-basic-bit-manipulation" title="Link to this heading"></a></h1>
+<p>The following instructions comprise the Zbb extension:</p>
+<section id="logical-with-negate">
+<h2>Logical with negate<a class="headerlink" href="#logical-with-negate" title="Link to this heading"></a></h2>
+<p>The Logical with Negate instructions can be implemented by inverting the rs2 inputs to the base-required AND, OR, and XOR logic instructions.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RV32</p></th>
+<th class="head"><p>RV64</p></th>
+<th class="head"><p>Mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>andn rd, rs1, rs2</p></td>
+</tr>
+<tr class="row-odd"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>orn rd, rs1, rs2</p></td>
+</tr>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>xnor rd, rs1, rs2</p></td>
+</tr>
+</tbody>
+</table>
+<section id="rv32-and-rv64-instructions">
+<h3>RV32 and RV64 Instructions<a class="headerlink" href="#rv32-and-rv64-instructions" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>ANDN</strong>: AND with inverted operand</p>
+<blockquote>
+<div><p><strong>Format</strong>: andn rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction performs the bitwise logical AND operation between rs1 and the bitwise inversion of rs2.</p>
+<p><strong>Pseudocode</strong>: X(rd) = X(rs1) &amp; ~X(rs2)</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>ORN</strong>: OR with inverted operand</p>
+<blockquote>
+<div><p><strong>Format</strong>: orn rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction performs the bitwise logical AND operation between rs1 and the bitwise inversion of rs2.</p>
+<p><strong>Pseudocode</strong>: X(rd) = X(rs1) | ~X(rs2)</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>XNOR</strong>: Exclusive NOR</p>
+<blockquote>
+<div><p><strong>Format</strong>: xnor rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction performs the bit-wise exclusive-NOR operation on rs1 and rs2.</p>
+<p><strong>Pseudocode</strong>: X(rd) = ~(X(rs1) ^ X(rs2))</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="count-leading-trailing-zero-bits">
+<h2>Count leading/trailing zero bits<a class="headerlink" href="#count-leading-trailing-zero-bits" title="Link to this heading"></a></h2>
+<p>These instructions are used to count the leading/trailing zero bits.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RV32</p></th>
+<th class="head"><p>RV64</p></th>
+<th class="head"><p>Mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>clz rd, rs</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>✔</p></td>
+<td><p>clzw rd, rs</p></td>
+</tr>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>ctz rd, rs</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>✔</p></td>
+<td><p>ctzw rd, rs</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id1">
+<h3>RV32 and RV64 Instructions<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>CLZ</strong>: Count leading zero bits</p>
+<blockquote>
+<div><p><strong>Format</strong>: clz rd, rs</p>
+<p><strong>Description</strong>: This instruction counts the number of 0’s before the first 1, starting at the most-significant bit (i.e., XLEN-1) and progressing to bit 0. Accordingly, if the input is 0, the output is XLEN, and if the most-significant bit of the input is a 1, the output is 0</p>
+<p><strong>Pseudocode</strong>: if [x[i]] == 1 then return(i) else return -1</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>CTZ</strong>: Count trailing zeros</p>
+<blockquote>
+<div><p><strong>Format</strong>: ctz rd, rs</p>
+<p><strong>Description</strong>: This instruction counts the number of 0’s before the first 1, starting at the least-significant bit (i.e., 0) and progressing to the most-significant bit (i.e., XLEN-1). Accordingly, if the input is 0, the output is XLEN, and if the least-significant bit of the input is a 1, the output is 0.</p>
+<p><strong>Pseudocode</strong>: if [x[i]] == 1 then return(i) else return xlen;</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="rv64-specific-instructions">
+<h3>RV64 specific instructions<a class="headerlink" href="#rv64-specific-instructions" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>CLZW</strong>: Count leading zero bits in word</p>
+<blockquote>
+<div><p><strong>Format</strong>: clzw rd, rs</p>
+<p><strong>Description</strong>: This instruction counts the number of 0’s before the first 1 starting at bit 31 and progressing to bit 0. Accordingly, if the least-significant word is 0, the output is 32, and if the most-significant bit of the word (i.e., bit 31) is a 1, the output is 0.</p>
+<p><strong>Pseudocode</strong>: if [x[i]] == 1 then return(i) else return -1</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>CTZW</strong>: Count trailing zero bits in word</p>
+<blockquote>
+<div><p><strong>Format</strong>: ctzw rd, rs</p>
+<p><strong>Description</strong>: This instruction counts the number of 0’s before the first 1, starting at the least-significant bit (i.e., 0) and progressing to the most-significant bit of the least-significant word (i.e., 31). Accordingly, if the least-significant word is 0, the output is 32, and if the least-significant bit of the input is a 1, the output is 0.</p>
+<p><strong>Pseudocode</strong>: if [x[i]] == 1 then return(i) else return 32;</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="count-population">
+<h2>Count population<a class="headerlink" href="#count-population" title="Link to this heading"></a></h2>
+<p>These instructions count the number of set bits (1-bits). This is also commonly referred to as population count.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RV32</p></th>
+<th class="head"><p>RV64</p></th>
+<th class="head"><p>Mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>cpop rd, rs</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>✔</p></td>
+<td><p>cpopw rd, rs</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id2">
+<h3>RV32 and RV64 Instructions<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>CPOP</strong>: Count set bits</p>
+<blockquote>
+<div><p><strong>Format</strong>: cpop rd, rs</p>
+<p><strong>Description</strong>: This instructions counts the number of 1’s (i.e., set bits) in the source register.</p>
+<p><strong>Pseudocode</strong>: if rs[i] == 1 then bitcount = bitcount + 1 else ()</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h3>RV64 specific instructions<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>CPOPW</strong>: Count set bits in word</p>
+<blockquote>
+<div><p><strong>Format</strong>: cpopw rd, rs</p>
+<p><strong>Description</strong>: This instructions counts the number of 1’s (i.e., set bits) in the least-significant word of the source register.</p>
+<p><strong>Pseudocode</strong>: if rs[i] == 0b1 then bitcount = bitcount + 1 else ()</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="integer-minimum-maximum">
+<h2>Integer minimum/maximum<a class="headerlink" href="#integer-minimum-maximum" title="Link to this heading"></a></h2>
+<p>The integer minimum/maximum instructions are arithmetic R-type instructions that return the smaller/larger of two operands.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RV32</p></th>
+<th class="head"><p>RV64</p></th>
+<th class="head"><p>Mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>max rd, rs1, rs2</p></td>
+</tr>
+<tr class="row-odd"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>maxu rd, rs1, rs2</p></td>
+</tr>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>min rd, rs1, rs2</p></td>
+</tr>
+<tr class="row-odd"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>minu rd, rs1, rs2</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id4">
+<h3>RV32 and RV64 Instructions<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>MAX</strong>: Maximum</p>
+<blockquote>
+<div><p><strong>Format</strong>: max rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction returns the larger of two signed integers.</p>
+<p><strong>Pseudocode</strong>: if rs1_val &lt;_s rs2_val then rs2_val else rs1_val</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>MAXU</strong>: Unsigned maximum</p>
+<blockquote>
+<div><p><strong>Format</strong>: maxu rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction returns the larger of two unsigned integers.</p>
+<p><strong>Pseudocode</strong>: if rs1_val &lt;_u rs2_val then rs2_val else rs1_val</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>MIN</strong>: Minimum</p>
+<blockquote>
+<div><p><strong>Format</strong>: min rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction returns the smaller of two signed integers.</p>
+<p><strong>Pseudocode</strong>: if rs1_val &lt;_s rs2_val then rs1_val else rs2_val</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>MINU</strong>: Unsigned minimum</p>
+<blockquote>
+<div><p><strong>Format</strong>: minu rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction returns the smaller of two unsigned integers.</p>
+<p><strong>Pseudocode</strong>: if rs1_val &lt;_u rs2_val then rs1_val else rs2_val</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="sign-and-zero-extension">
+<h2>Sign and zero-extension<a class="headerlink" href="#sign-and-zero-extension" title="Link to this heading"></a></h2>
+<p>These instructions perform the sign-extension or zero-extension of the least significant 8 bits, 16 bits or 32 bits of the source register.</p>
+<p>These instructions replace the generalized idioms slli rD,rS,(XLEN-&lt;size&gt;) + srli (for zero-extension) or slli + srai (for sign-extension) for the sign-extension of 8-bit and 16-bit quantities, and for the zero-extension of 16-bit and 32-bit quantities.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RV32</p></th>
+<th class="head"><p>RV64</p></th>
+<th class="head"><p>Mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>sext.b rd, rs</p></td>
+</tr>
+<tr class="row-odd"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>sext.h rd, rs</p></td>
+</tr>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>zext.h rd, rs</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id5">
+<h3>RV32 and RV64 Instructions<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>SEXT.B</strong>: Sign-extend byte</p>
+<blockquote>
+<div><p><strong>Format</strong>: sext.b rd, rs</p>
+<p><strong>Description</strong>: This instruction sign-extends the least-significant byte in the source to XLEN by copying the most-significant bit in the byte (i.e., bit 7) to all of the more-significant bits.</p>
+<p><strong>Pseudocode</strong>: X(rd) = EXTS(X(rs)[7..0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>SEXT.H</strong>: Sign-extend halfword</p>
+<blockquote>
+<div><p><strong>Format</strong>: sext.h rd, rs</p>
+<p><strong>Description</strong>: This instruction sign-extends the least-significant halfword in rs to XLEN by copying the most-significant bit in the halfword (i.e., bit 15) to all of the more-significant bits.</p>
+<p><strong>Pseudocode</strong>: X(rd) = EXTS(X(rs)[15..0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>ZEXT.H</strong>: Zero-extend halfword</p>
+<blockquote>
+<div><p><strong>Format</strong>: zext.h rd, rs</p>
+<p><strong>Description</strong>: This instruction zero-extends the least-significant halfword of the source to XLEN by inserting 0’s into all of the bits more significant than 15.</p>
+<p><strong>Pseudocode</strong>: X(rd) = EXTZ(X(rs)[15..0])</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="bitwise-rotation">
+<h2>Bitwise Rotation<a class="headerlink" href="#bitwise-rotation" title="Link to this heading"></a></h2>
+<p>Bitwise rotation instructions are similar to the shift-logical operations from the base spec. However, where the shift-logical instructions shift in zeros, the rotate instructions shift in the bits that were shifted out of the other side of the value. Such operations are also referred to as ‘circular shifts’.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RV32</p></th>
+<th class="head"><p>RV64</p></th>
+<th class="head"><p>Mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>rol rd, rs1, rs2</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>✔</p></td>
+<td><p>rolw rd, rs1, rs2</p></td>
+</tr>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>ror rd, rs1, rs2</p></td>
+</tr>
+<tr class="row-odd"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>rori rd, rs1, shamt</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>✔</p></td>
+<td><p>roriw rd, rs1, shamt</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>✔</p></td>
+<td><p>rorw rd, rs1, rs2</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id6">
+<h3>RV32 and RV64 Instructions<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>ROL</strong>: Rotate Left (Register)</p>
+<blockquote>
+<div><p><strong>Format</strong>: rol rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction performs a rotate left of rs1 by the amount in least-significant log2(XLEN) bits of rs2.</p>
+<p><strong>Pseudocode</strong>: (X(rs1) &lt;&lt; log2(XLEN)) | (X(rs1) &gt;&gt; (xlen - log2(XLEN)))</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>ROR</strong>: Rotate Right</p>
+<blockquote>
+<div><p><strong>Format</strong>: ror rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction performs a rotate right of rs1 by the amount in least-significant log2(XLEN) bits of rs2.</p>
+<p><strong>Pseudocode</strong>: (X(rs1) &gt;&gt; log2(XLEN)) | (X(rs1) &lt;&lt; (xlen - log2(XLEN)))</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>RORI</strong>: Rotate Right (Immediate)</p>
+<blockquote>
+<div><p><strong>Format</strong>: rori rd, rs1, shamt</p>
+<p><strong>Description</strong>: This instruction performs a rotate right of rs1 by the amount in the least-significant log2(XLEN) bits of shamt. For RV32, the encodings corresponding to shamt[5]=1 are reserved.</p>
+<p><strong>Pseudocode</strong>: (X(rs1) &gt;&gt; log2(XLEN)) | (X(rs1) &lt;&lt; (xlen - log2(XLEN)));</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="id7">
+<h3>RV64 specific instructions<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>ROLW</strong>: Rotate Left Word (Register)</p>
+<blockquote>
+<div><p><strong>Format</strong>: rolw rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction performs a rotate left on the least-significant word of rs1 by the amount in least-significant 5 bits of rs2. The resulting word value is sign-extended by copying bit 31 to all of the more-significant bits.</p>
+<p><strong>Pseudocode</strong>: EXTS((rs1 &lt;&lt; X(rs2)[4..0];) | (rs1 &gt;&gt; (32 - X(rs2)[4..0];)))</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>RORIW</strong>: Rotate Right Word by Immediate</p>
+<blockquote>
+<div><p><strong>Format</strong>: roriw rd, rs1, shamt</p>
+<p><strong>Description</strong>: This instruction performs a rotate right on the least-significant word of rs1 by the amount in the least-significant log2(XLEN) bits of shamt. The resulting word value is sign-extended by copying bit 31 to all of the more-significant bits.</p>
+<p><strong>Pseudocode</strong>: (rs1_data &gt;&gt; shamt[4..0]) | (rs1_data &lt;&lt; (32 - shamt[4..0]))</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+<li><p><strong>RORW</strong>: Rotate Right Word (Register)</p>
+<blockquote>
+<div><p><strong>Format</strong>: rorw rd, rs1, rs2</p>
+<p><strong>Description</strong>: This instruction performs a rotate right on the least-significant word of rs1 by the amount in least-significant 5 bits of rs2. The resultant word is sign-extended by copying bit 31 to all of the more-significant bits.</p>
+<p><strong>Pseudocode</strong>: (rs1 &gt;&gt; X(rs2)[4..0]) | (rs1 &lt;&lt; (32 - X(rs2)[4..0]))</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="or-combine">
+<h2>OR Combine<a class="headerlink" href="#or-combine" title="Link to this heading"></a></h2>
+<p>orc.b sets the bits of each byte in the result rd to all zeros if no bit within the respective byte of rs is set, or to all ones if any bit within the respective byte of rs is set.</p>
+<p>One use-case is string-processing functions, such as strlen and strcpy, which can use orc.b to test for the terminating zero byte by counting the set bits in leading non-zero bytes in a word.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RV32</p></th>
+<th class="head"><p>RV64</p></th>
+<th class="head"><p>Mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>orc.b rd, rs</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id8">
+<h3>RV32 and RV64 Instructions<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>ORC.B</strong>: Bitwise OR-Combine, byte granule</p>
+<blockquote>
+<div><p><strong>Format</strong>: orc.b rd, rs</p>
+<p><strong>Description</strong>: Combines the bits within each byte using bitwise logical OR. This sets the bits of each byte in the result rd to all zeros if no bit within the respective byte of rs is set, or to all ones if any bit within the respective byte of rs is set.</p>
+<p><strong>Pseudocode</strong>: if { input[(i + 7)..i] == 0 then 0b00000000 else 0b11111111</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="byte-reverse">
+<h2>Byte-reverse<a class="headerlink" href="#byte-reverse" title="Link to this heading"></a></h2>
+<p>rev8 reverses the byte-ordering of rs.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RV32</p></th>
+<th class="head"><p>RV64</p></th>
+<th class="head"><p>Mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>rev8 rd, rs</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id9">
+<h3>RV32 and RV64 Instructions<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>REV8</strong>: Byte-reverse register</p>
+<blockquote>
+<div><p><strong>Format</strong>:  rev8 rd, rs</p>
+<p><strong>Description</strong>: This instruction reverses the order of the bytes in rs.</p>
+<p><strong>Pseudocode</strong>: output[i..(i + 7)] = input[(j - 7)..j]</p>
+<p><strong>Invalid values</strong>: NONE</p>
+<p><strong>Exception raised</strong>: NONE</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="RISCV_Instructions_RVZba.html" class="btn btn-neutral float-left" title="RVZba: Address generation instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="RISCV_Instructions_RVZbc.html" class="btn btn-neutral float-right" title="RVZbc: Carry-less multiplication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

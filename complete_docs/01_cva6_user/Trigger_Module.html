@@ -1,0 +1,488 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trigger Module (Sdtrig Extension) &mdash; CVA6  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=0fc419ee" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=894a7121" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #DDDDDD" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CVA6
+              <img src="../_static/openhw-landscape.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../02_cva6_requirements/cva6_requirements_specification.html">CVA6 Requirement Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">CVA6 User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_cva6_design/index.html">CVA6 Design Document (deprecated)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_cv32a65x/index.html">CV32A65X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_cv32a60x/index.html">CV32A60X documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_cv64a6_mmu/index.html">CV64A6_MMU documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_cva6_apu/index.html">CVA6 APU</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #DDDDDD" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CVA6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Trigger Module (Sdtrig Extension)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01_cva6_user/Trigger_Module.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="trigger-module-sdtrig-extension">
+<h1>Trigger Module (Sdtrig Extension)<a class="headerlink" href="#trigger-module-sdtrig-extension" title="Link to this heading"></a></h1>
+<p>The module provides powerful hardware breakpoints and watchpoints in the core.
+Upon trigger match, the core supports two actions i.e. breakpoint excpetion generation and entry into debug mode.
+The number of triggers is parameterized and the module itself is configurable under the SDTRIG bit.</p>
+<section id="configuration-csrs">
+<h2>Configuration CSRs<a class="headerlink" href="#configuration-csrs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tselect</span></code>  : The currently selected trigger.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tinfo</span></code>    : Shows the currently supported triggers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tdata1</span></code>   : Specifies trigger data like trigger type, configuration, privilege mode, status.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tdata2</span></code>   : The value to be matched.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tdata3</span></code>   : Specifies context data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scontext</span></code> : Specifies supervisor mode context data.</p></li>
+</ul>
+</section>
+<section id="modified-csrs-breakpoint-action">
+<h2>Modified CSRs (Breakpoint action)<a class="headerlink" href="#modified-csrs-breakpoint-action" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mstatus</span></code>: several fields are updated like previous privilege mode (<code class="docutils literal notranslate"><span class="pre">MPP</span></code>), previous interrupt enabled (<code class="docutils literal notranslate"><span class="pre">MPIE</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mepc</span></code>   : updated with the address of the instruction raising the exception.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mcause</span></code> : updated with a breakpoint code (0x00000003) indicating the event causing the trap.</p></li>
+</ul>
+</section>
+<section id="modified-csrs-debug-action">
+<h2>Modified CSRs (Debug action)<a class="headerlink" href="#modified-csrs-debug-action" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dpc</span></code>    : updated with the address of the instruction causing the debug request.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcsr</span></code>   : some fields are updated like debug entry cause (<code class="docutils literal notranslate"><span class="pre">CAUSE</span></code>)</p></li>
+</ul>
+<p>Priorities</p>
+<p>All triggers are subject to priority handling. The priority is such : <code class="docutils literal notranslate"><span class="pre">Mcontrol6</span> <span class="pre">load</span> <span class="pre">data</span> <span class="pre">timing:AFTER</span></code> &lt;=&gt; <code class="docutils literal notranslate"><span class="pre">Icount</span></code> &lt;=&gt; <code class="docutils literal notranslate"><span class="pre">Etrigger</span></code> &lt;=&gt; <code class="docutils literal notranslate"><span class="pre">Itrigger</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Mcontrol6</span> <span class="pre">execute</span> <span class="pre">address</span> <span class="pre">timing:BEFORE</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Mcontrol6</span> <span class="pre">execute</span> <span class="pre">data</span> <span class="pre">timing:BEFORE</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Mcontrol6</span> <span class="pre">load</span> <span class="pre">address</span> <span class="pre">timing:BEFORE</span></code> &lt;=&gt; <code class="docutils literal notranslate"><span class="pre">Mcontrol6</span> <span class="pre">store</span> <span class="pre">address/data</span> <span class="pre">timing:BEFORE</span></code>.</p>
+<p>Priorities are handled as such : if multiple triggers request fire at the same time, only the highest priority ones are taken. If multiple triggers request fire in the same priority, all actions within this priority are taken at the same time.</p>
+<p>This order and behaviour fits the RISC-V debug specification chapter 5 (Sdtrig), paragraph 5.3 (Priority).</p>
+<p>Precision</p>
+<p>All triggers are precise which means <code class="docutils literal notranslate"><span class="pre">mepc</span></code> will always correspond to the matching instruction, except <code class="docutils literal notranslate"><span class="pre">mcontrol6</span> <span class="pre">load</span> <span class="pre">data</span></code> trigger type, which updates <code class="docutils literal notranslate"><span class="pre">mepc</span></code> with the immediately-next instruction for physics related reasons(impossible to match on a load result if result is not obtained yet, which implies the execution of the whole instruction hence breaking on the next instruction to commit the result of the load instead of losing the data).</p>
+<section id="icount">
+<h3>Icount<a class="headerlink" href="#icount" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">icount</span></code> trigger is used to delay a breakpoint or debug entry by a programmable number of instructions. It acts like a countdown timer based on instruction commits and gives deterministic trigger behavior useful for testing or stepping into debug mode after a specific number of instructions.</p>
+</section>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SDTRIG</span></code> and <code class="docutils literal notranslate"><span class="pre">Icount</span></code> configuration bits must be enabled.</p></li>
+<li><p>Trigger type must be <code class="docutils literal notranslate"><span class="pre">4'd3</span></code> in <code class="docutils literal notranslate"><span class="pre">tdata1</span></code>.</p></li>
+</ul>
+</section>
+<section id="trigger-match-logic">
+<h2>Trigger Match Logic<a class="headerlink" href="#trigger-match-logic" title="Link to this heading"></a></h2>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">count</span></code> field in <code class="docutils literal notranslate"><span class="pre">tdata1</span></code> is initialized with the number of instructions to wait.</p></li>
+<li><p>The counter decrements on every instruction commit.</p></li>
+<li><p>Countdown continues only outside trap handlers to avoid miscounts during exceptions.</p></li>
+<li><p>Matching occurs when:
+- <code class="docutils literal notranslate"><span class="pre">count</span> <span class="pre">==</span> <span class="pre">0</span></code>
+- Current privilege level matches the trigger config (<code class="docutils literal notranslate"><span class="pre">m/s/u</span></code>)</p></li>
+<li><p>On match:
+- <code class="docutils literal notranslate"><span class="pre">pending</span></code> is set
+- The specified <code class="docutils literal notranslate"><span class="pre">action</span></code> is triggered:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> → raise a breakpoint exception</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> → enter debug mode</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Once in debug mode:
+- <code class="docutils literal notranslate"><span class="pre">pending</span></code> is cleared
+- <code class="docutils literal notranslate"><span class="pre">hit</span></code> is set and remains latched</p></li>
+</ul>
+</section>
+<section id="key-fields-in-tdata1">
+<h2>Key Fields (in <code class="docutils literal notranslate"><span class="pre">tdata1</span></code>)<a class="headerlink" href="#key-fields-in-tdata1" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: Current countdown value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">action</span></code>: Determines what to do on match:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: Raise a breakpoint exception</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: Enter debug mode</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">s</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>: Privilege mode flags — trigger only fires in selected modes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pending</span></code>: Indicates the trigger condition has been met and is awaiting action.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hit</span></code>: Latched once the action (break/debug) occurs.</p></li>
+</ul>
+</section>
+<section id="action-taken-on-match">
+<h2>Action Taken on Match<a class="headerlink" href="#action-taken-on-match" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Breakpoint (<code class="docutils literal notranslate"><span class="pre">fire_req_Icount.action</span> <span class="pre">==</span> <span class="pre">0</span></code>):
+- Sets <code class="docutils literal notranslate"><span class="pre">fire_req_Icount.valid</span> <span class="pre">=</span> <span class="pre">1</span></code>, which results in a trap request that, if taken, results in:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Trap entry</p></li>
+<li><p>Updates to <code class="docutils literal notranslate"><span class="pre">mstatus</span></code>, <code class="docutils literal notranslate"><span class="pre">mepc</span></code>, <code class="docutils literal notranslate"><span class="pre">mcause</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Debug Entry (<code class="docutils literal notranslate"><span class="pre">fire_req_Icount.action</span> <span class="pre">==</span> <span class="pre">1</span></code>):
+- Sets <code class="docutils literal notranslate"><span class="pre">debug_from_trigger_d</span> <span class="pre">=</span> <span class="pre">1</span></code>, resulting in:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Trap into debug mode</p></li>
+<li><p>Updates <code class="docutils literal notranslate"><span class="pre">dpc</span></code>, <code class="docutils literal notranslate"><span class="pre">dcsr</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="pseudocode">
+<h2>Pseudocode<a class="headerlink" href="#pseudocode" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>If icount trigger is enabled and type is 0x3:
+    On instruction execute:
+        If in trap handler:
+            Hold countdown
+        Else if not in trap and count &gt; 0:
+            Decrement count
+        If count == 0 and privilege matches and not pending:
+            Set pending
+            If action == 0: raise breakpoint
+            If action == 1: enter debug mode
+    If breakpoint or debug action occurred:
+        Set hit
+        Clear pending (for debug)
+</pre></div>
+</div>
+<section id="mcontrol6">
+<h3>Mcontrol6<a class="headerlink" href="#mcontrol6" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">mcontrol6</span></code> trigger detects specific memory accesses (load/store), instruction fetches or execution of specific instructions. It matches on instruction address, instruction, load/store data and load/store addresses. It is the most general and powerful of the trigger types allowing address/data breakpoints, watchpoints, and instruction level filters.</p>
+</section>
+</section>
+<section id="id1">
+<h2>Prerequisites<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SDTRIG</span></code> and <code class="docutils literal notranslate"><span class="pre">Mcontrol6</span></code> configuration bits must be enabled.</p></li>
+<li><p>Trigger type must be <code class="docutils literal notranslate"><span class="pre">4'd6</span></code> in <code class="docutils literal notranslate"><span class="pre">tdata1</span></code>.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>Trigger Match Logic<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>A match occurs if:</p>
+<ol class="arabic">
+<li><p>Privilege Mode Match:
+- One of the flags <code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">s</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code> in <code class="docutils literal notranslate"><span class="pre">tdata1</span></code> must match current mode.</p></li>
+<li><p>Condition Match:
+- Based on operation type and mode:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Instruction Execute:
+- Match against PC (<cite>fetch_sdtrig_pc_i</cite>) or instruction (<cite>fetch_sdtrig_instr_i</cite>).</p></li>
+<li><p>Store Operation:
+- Match against store data (<cite>sdtrig_lsu_inputs_data_i</cite>) or address (<cite>sdtrig_lsu_inputs_vaddr_i</cite>).</p></li>
+<li><p>Load Operation:
+- Match against load result (<cite>sdtrig_load_data_i</cite>) or load address (<cite>sdtrig_lsu_inputs_vaddr_i</cite>).</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Selection Mode:
+- If <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">==</span> <span class="pre">1</span></code> → compare data/instruction value.
+- If <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">==</span> <span class="pre">0</span></code> → compare address.</p></li>
+<li><p>Match Type (<cite>match</cite> field):
+- <code class="docutils literal notranslate"><span class="pre">0</span></code> → exact match (<code class="docutils literal notranslate"><span class="pre">==</span></code>)
+- <code class="docutils literal notranslate"><span class="pre">1</span></code> → NAPOT (Naturally Aligned Power-of-Two) range match
+- <code class="docutils literal notranslate"><span class="pre">8</span></code> → not equal (<code class="docutils literal notranslate"><span class="pre">!=</span></code>)</p></li>
+<li><p>Action (only one supported here):
+- <code class="docutils literal notranslate"><span class="pre">0</span></code> → breakpoint exception generation
+- <code class="docutils literal notranslate"><span class="pre">1</span></code> → enter debug mode</p></li>
+<li><p>Trigger chains</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">Mcontrol6</span></code> type trigger supports trigger chaining. A trigger chain is necessarily a located on a contiguous sequence of <code class="docutils literal notranslate"><span class="pre">tselect</span></code> indexes (e.g. first trigger on index 2, last trigger on index 4, index 3 is part of the chain too). First chain’ trigger has <code class="docutils literal notranslate"><span class="pre">chain</span> <span class="pre">==</span> <span class="pre">1</span></code>, last has <code class="docutils literal notranslate"><span class="pre">chain</span> <span class="pre">==</span> <span class="pre">0</span></code>.</p>
+<p>Every trigger must match and the only action taken is last trigger’s action.</p>
+<p>Since priorities are taken into account, multiple trigger timings exist within <code class="docutils literal notranslate"><span class="pre">mcontrol6</span></code> type trigger and the CVA6 is a pipeline, it is necessary for the trigger chain to fire that the earliest events in terms of pipeline stages must be located on the lowest indexes, e.g. for a trigger chain on a load data instruction the order must be : execute address (pc check) &gt; load address &gt; load data because these events happen in that order in the pipeline.</p>
+<p>On match:
+- The configured <code class="docutils literal notranslate"><span class="pre">action</span></code> is executed.
+- In debug mode, internal state is reset:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hit0</span></code> is cleared</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hit1</span></code> is latched</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="key-fields">
+<h2>Key Fields<a class="headerlink" href="#key-fields" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tdata1</span></code>:
+- <code class="docutils literal notranslate"><span class="pre">execute</span></code> / <code class="docutils literal notranslate"><span class="pre">load</span></code> / <code class="docutils literal notranslate"><span class="pre">store</span></code>: Operation type
+- <code class="docutils literal notranslate"><span class="pre">select</span></code>: Controls address vs. value comparison
+- <code class="docutils literal notranslate"><span class="pre">match</span></code>: Match type (exact, NAPOT, not-equal)
+- <code class="docutils literal notranslate"><span class="pre">action</span></code>: Trigger response (<cite>1</cite> → debug)
+- <code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">s</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>: Privilege filters
+- <code class="docutils literal notranslate"><span class="pre">hit0</span></code>, <code class="docutils literal notranslate"><span class="pre">hit1</span></code>: Used to track match state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tdata2</span></code>: Match value — can be an address, instruction or data value</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>Pseudocode<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>If mcontrol6 is enabled and type is 0x6:
+    If privilege level matches tdata1:
+        Determine comparison target:
+            If execute:
+                If select == 0 → compare PC
+                If select == 1 → compare instruction
+            If store:
+                If select == 0 → compare store address
+                If select == 1 → compare store data
+            If load:
+                If select == 0 → compare load address
+                If select == 1 → compare load result
+        Use match field (==, NAPOT, !=) to evaluate
+        If match:
+            If action == 0 → generate breakpoint exception
+            If action == 1 → enter debug mode
+    In debug mode:
+        Clear hit0, set hit1, reset trigger state
+</pre></div>
+</div>
+<section id="etrigger">
+<h3>Etrigger<a class="headerlink" href="#etrigger" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">etrigger</span></code> trigger monitors <strong>exception causes</strong> and fires a trigger action when a matching exception occurs depending on privilege mode. It is highly useful for detecting specific trap causes such as illegal instructions, page faults, breakpoints etc.</p>
+</section>
+</section>
+<section id="id4">
+<h2>Prerequisites<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SDTRIG</span></code> and <code class="docutils literal notranslate"><span class="pre">Etrigger</span></code> configuration bits must be enabled.</p></li>
+<li><p>Trigger type must be <code class="docutils literal notranslate"><span class="pre">4'd5</span></code> in <code class="docutils literal notranslate"><span class="pre">tdata1</span></code>.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>Trigger Match Logic<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<ul>
+<li><p>The trigger matches and activates when both conditions are met:</p>
+<ul class="simple">
+<li><p>The trigger checks if the current exception cause (<cite>ex_i.cause</cite>) is set in the exception mask stored in <code class="docutils literal notranslate"><span class="pre">tdata2</span></code>.</p></li>
+<li><p>The current privilege mode (<cite>m</cite>, <cite>s</cite>, <cite>u</cite>) matches what is enabled in <code class="docutils literal notranslate"><span class="pre">tdata1</span></code>.</p></li>
+</ul>
+</li>
+<li><p>On a match:
+- The normal exception is suppressed.
+- The <code class="docutils literal notranslate"><span class="pre">hit</span></code> bit in <code class="docutils literal notranslate"><span class="pre">tdata1</span></code> is latched.
+- The specified <code class="docutils literal notranslate"><span class="pre">action</span></code> is triggered:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> → raise a breakpoint exception</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> → enter debug mode</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>While in debug mode, <code class="docutils literal notranslate"><span class="pre">hit</span></code> and internal state are cleared.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>Key Fields<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">tdata1</span></code>:
+- <code class="docutils literal notranslate"><span class="pre">action</span></code>: Determines the response:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: Raise a breakpoint exception</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: Enter debug mode</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">s</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>: Privilege level flags.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hit</span></code>: Latched on trigger match.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tdata2</span></code>: Bitmask for exception causes where each bit corresponds to a cause number. For example:
+- Bit 2 → Illegal instruction
+- Bit 3 → Breakpoint
+- Bit 11 → Environment call from M-mode</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>Action Taken on Match<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Breakpoint (<code class="docutils literal notranslate"><span class="pre">action</span> <span class="pre">==</span> <span class="pre">0</span></code>):
+- Raises exception
+- Updates <code class="docutils literal notranslate"><span class="pre">mstatus</span></code>, <code class="docutils literal notranslate"><span class="pre">mepc</span></code>, <code class="docutils literal notranslate"><span class="pre">mcause</span></code></p></li>
+<li><p>Debug Entry (<code class="docutils literal notranslate"><span class="pre">action</span> <span class="pre">==</span> <span class="pre">1</span></code>):
+- Requests debug mode entry
+- Updates <code class="docutils literal notranslate"><span class="pre">dpc</span></code>, <code class="docutils literal notranslate"><span class="pre">dcsr</span></code></p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>Pseudocode<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>If etrigger is enabled and type is 0x5:
+    If current priv level matches trigger (m/s/u):
+        If tdata2[exception_cause] is set:
+            Mark hit
+            If action == 0: raise breakpoint
+            If action == 1: enter debug mode
+    In debug mode:
+        Clear hit and trigger state
+</pre></div>
+</div>
+<section id="itrigger">
+<h3>Itrigger<a class="headerlink" href="#itrigger" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">itrigger</span></code> trigger monitors <strong>interrupt causes</strong> and fires a trigger action when a matching interrupt occurs at the configured privilege level. This allows catching specific hardware or software interrupt events and take debugging or trapping action immediately.</p>
+</section>
+</section>
+<section id="id9">
+<h2>Prerequisites<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SDTRIG</span></code> and <code class="docutils literal notranslate"><span class="pre">Itrigger</span></code> configuration bits must be enabled.</p></li>
+<li><p>Trigger type must be <code class="docutils literal notranslate"><span class="pre">4'd4</span></code> in <code class="docutils literal notranslate"><span class="pre">tdata1</span></code>.</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>Trigger Match Logic<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<ul>
+<li><p>The trigger matches when both of the following are true:</p>
+<ul class="simple">
+<li><p>The current exception (<cite>ex_i.cause</cite>) is a valid interrupt (i.e., MSB of the cause is set).</p></li>
+<li><p>The lower 5 bits of <cite>ex_i.cause</cite> index into a set bit in the interrupt mask (<cite>tdata2</cite>).</p></li>
+<li><p>Privilege mode matches enabled flags in <code class="docutils literal notranslate"><span class="pre">tdata1</span></code> (<code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">s</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>).</p></li>
+</ul>
+</li>
+<li><p>On a match:
+- The normal exception is suppressed.
+- The <code class="docutils literal notranslate"><span class="pre">hit</span></code> bit is latched.
+- The configured <code class="docutils literal notranslate"><span class="pre">action</span></code> is taken:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> → raise a breakpoint exception</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> → enter debug mode</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>When in debug mode:
+- The <code class="docutils literal notranslate"><span class="pre">hit</span></code> bit and trigger state are cleared</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2>Key Fields<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">tdata1</span></code>:
+- <code class="docutils literal notranslate"><span class="pre">action</span></code>: Determines what to do when the interrupt matches:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: Breakpoint</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: Debug mode</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">s</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>: Privilege level match</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hit</span></code>: Set on match</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tdata2</span></code>: Interrupt cause bitmask</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2>Action Taken on Match<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Breakpoint (<code class="docutils literal notranslate"><span class="pre">action</span> <span class="pre">==</span> <span class="pre">0</span></code>):
+- Raises exception
+- Updates <code class="docutils literal notranslate"><span class="pre">mstatus</span></code>, <code class="docutils literal notranslate"><span class="pre">mepc</span></code>, <code class="docutils literal notranslate"><span class="pre">mcause</span></code></p></li>
+<li><p>Debug Entry (<code class="docutils literal notranslate"><span class="pre">action</span> <span class="pre">==</span> <span class="pre">1</span></code>):
+- Requests debug mode entry
+- Updates <code class="docutils literal notranslate"><span class="pre">dpc</span></code>, <code class="docutils literal notranslate"><span class="pre">dcsr</span></code></p></li>
+</ul>
+</section>
+<section id="id13">
+<h2>Pseudocode<a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>If itrigger is enabled and type is 0x4:
+    If ex_i.cause[XLEN-1] == 1 (interrupt):
+        If tdata2[ex_i.cause[4:0]] is set:
+            If current priv level matches tdata1 (m/s/u):
+                Mark hit
+                If action == 0: raise breakpoint
+                If action == 1: enter debug mode
+    In debug mode:
+        Clear hit and internal match state
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2020, ETH Zurich and University of Bologna, 2020-present OpenHW Group.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
