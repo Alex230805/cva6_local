@@ -1,0 +1,112 @@
+[
+  {
+    "id": 38592507458,
+    "source": "github-actions",
+    "simulator": "verilator",
+    "run_number": 3,
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/Alex230805/cva6_local/actions/runs/38592507458",
+    "head_branch": "dependabot/submodules/verif/sim/dv-0d71c2b",
+    "head_sha": "188b880d",
+    "event": "pull_request",
+    "created_at": "2026-10-14T15:48:02Z",
+    "updated_at": "2026-10-14T16:17:01Z",
+    "run_started_at": "2026-10-14T15:48:02Z",
+    "duration_seconds": 1739,
+    "total_jobs": 3,
+    "passed_jobs": 3,
+    "failed_jobs": 0,
+    "skipped_jobs": 0,
+    "jobs": [
+      {
+        "name": "RV64 Tier1 cv64a6_imafdc_sv39_hpdcache_wb / cv64a6_imafdc_tests",
+        "conclusion": "success",
+        "started_at": "2026-10-14T16:10:47Z",
+        "completed_at": "2026-10-14T16:17:01Z",
+        "duration_seconds": 374,
+        "html_url": "https://github.com/Alex230805/cva6_local/actions/runs/38592507458/job/115962192769",
+        "arch": "rv64",
+        "config": "cv64a6_imafdc_sv39_hpdcache_wb",
+        "testcase": "cv64a6_imafdc_tests"
+      },
+      {
+        "name": "RV32 Tier1 cv32a65x / smoke-tests-cv32a65x",
+        "conclusion": "success",
+        "started_at": "2026-10-14T16:10:48Z",
+        "completed_at": "2026-10-14T16:13:21Z",
+        "duration_seconds": 153,
+        "html_url": "https://github.com/Alex230805/cva6_local/actions/runs/38592507458/job/115962192804",
+        "arch": "rv32",
+        "config": "cv32a65x",
+        "testcase": "smoke-tests-cv32a65x"
+      },
+      {
+        "name": "RV32 Tier1 cv32a60x / cv32a6_tests",
+        "conclusion": "success",
+        "started_at": "2026-10-14T16:10:48Z",
+        "completed_at": "2026-10-14T16:15:42Z",
+        "duration_seconds": 294,
+        "html_url": "https://github.com/Alex230805/cva6_local/actions/runs/38592507458/job/115962192850",
+        "arch": "rv32",
+        "config": "cv32a60x",
+        "testcase": "cv32a6_tests"
+      }
+    ]
+  },
+  {
+    "id": 38592413397,
+    "source": "github-actions",
+    "simulator": "verilator",
+    "run_number": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "html_url": "https://github.com/Alex230805/cva6_local/actions/runs/38592413397",
+    "head_branch": "dependabot/submodules/verif/core-v-verif-083728b",
+    "head_sha": "0f01b476",
+    "event": "pull_request",
+    "created_at": "2026-10-14T15:47:23Z",
+    "updated_at": "2026-10-14T16:16:50Z",
+    "run_started_at": "2026-10-14T15:47:23Z",
+    "duration_seconds": 1767,
+    "total_jobs": 3,
+    "passed_jobs": 2,
+    "failed_jobs": 1,
+    "skipped_jobs": 0,
+    "jobs": [
+      {
+        "name": "RV32 Tier1 cv32a60x / cv32a6_tests",
+        "conclusion": "success",
+        "started_at": "2026-10-14T16:11:41Z",
+        "completed_at": "2026-10-14T16:16:49Z",
+        "duration_seconds": 308,
+        "html_url": "https://github.com/Alex230805/cva6_local/actions/runs/38592413397/job/115962636823",
+        "arch": "rv32",
+        "config": "cv32a60x",
+        "testcase": "cv32a6_tests"
+      },
+      {
+        "name": "RV32 Tier1 cv32a65x / smoke-tests-cv32a65x",
+        "conclusion": "success",
+        "started_at": "2026-10-14T16:11:41Z",
+        "completed_at": "2026-10-14T16:14:28Z",
+        "duration_seconds": 167,
+        "html_url": "https://github.com/Alex230805/cva6_local/actions/runs/38592413397/job/115962637063",
+        "arch": "rv32",
+        "config": "cv32a65x",
+        "testcase": "smoke-tests-cv32a65x"
+      },
+      {
+        "name": "RV64 Tier1 cv64a6_imafdc_sv39_hpdcache_wb / cv64a6_imafdc_tests",
+        "conclusion": "failure",
+        "started_at": "2026-10-14T16:12:40Z",
+        "completed_at": "2026-10-14T16:14:31Z",
+        "duration_seconds": 111,
+        "html_url": "https://github.com/Alex230805/cva6_local/actions/runs/38592413397/job/115962637124",
+        "arch": "rv64",
+        "config": "cv64a6_imafdc_sv39_hpdcache_wb",
+        "testcase": "cv64a6_imafdc_tests"
+      }
+    ]
+  }
+]
