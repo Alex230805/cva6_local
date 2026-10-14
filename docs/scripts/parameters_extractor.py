@@ -46,7 +46,10 @@ def parameters_extractor(target):
 
     config = get_config(f"../core/include/{target}_config_pkg.sv")
     for name, parameter in parameters.items():
-        parameter.value = config[name]
+        if name in config:
+            parameter.value = config[name]
+        else:
+            continue
 
     return parameters
 

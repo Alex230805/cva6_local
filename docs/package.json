@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "bytefield-svg": "^1.11.0",
+    "wavedrom-cli": "^3.2.0"
+  }
+}
