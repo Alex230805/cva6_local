@@ -77,7 +77,7 @@ run_cva6_simulation() {
     if [[ "$DV_SIMULATORS" == *"veri-testharness-pk"* ]]; then
       local pk_log_file="./verif/sim/pk-install-${DV_TARGET}.log"
       echo "[ riscv-pk ] Installing RISC-V proxy kernel for ${DV_TARGET}..."
-      source ./verif/regress/install-pk.sh ${PK_ARCH} ${PK_MABI} > ${pk_log_file} 2>&1
+      source ./verif/regress/install-pk.sh ${PK_ARCH} ${PK_MABI}
       echo "[ riscv-pk ] Installation logs available at: $(pwd)/${pk_log_file}"
       echo "[ riscv-pk ] PK_INSTALL_DIR is ${PK_INSTALL_DIR}"
     fi

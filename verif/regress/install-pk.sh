@@ -91,8 +91,14 @@ if [ ! -f "$PK_INSTALL_DIR/riscv-none-elf/bin/pk" ]; then
     # Proceed with the build
     mkdir -p build
     pushd build
+	export CC=riscv-cva6-elf-gcc
+	export READELF=riscv-cva6-elf-readelf
+	export OBJCOPY=riscv-cva6-elf-objcopy
+	export AR=riscv-cva6-elf-ar
+	export RANLIB=riscv-cva6-elf-ranlib
+
     ../configure --prefix="$PK_INSTALL_DIR" --host=riscv-none-elf --with-arch="$PK_ARCH"
-    make -j${NUM_JOBS}
+    make -B -j${NUM_JOBS}
     make install
     popd # build
     popd # $PK_BUILD_DIR
