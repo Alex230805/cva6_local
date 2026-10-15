@@ -28,6 +28,12 @@ To begin with, a compete environment must first:
 
 Under some circumstances, the build process might fail for spike, specifically on C type *ssize_t*. To solve this replace the affected file with *ptrdiff_t* located inside *<stddef.h>*<br>
 
+### About Spike ISS Simulator
+
+For more informations about targets, ISAs combination and so on in spike, consult [this website](https://chipyard.readthedocs.io/en/latest/software/spike/). <br>
+
+
+
 # CVA6 RISC-V CPU 
 
 [![Build Status](https://github.com/openhwgroup/cva6/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/openhwgroup/cva6/actions/workflows/ci.yml) 
