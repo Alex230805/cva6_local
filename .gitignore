@@ -1,4 +1,5 @@
 .DS_Store
+tools/
 *.swp
 *.swo
 site/*
@@ -47,7 +48,6 @@ xrun_results/
 __pycache__
 .bender/
 Bender.lock
-/tools/
 /util/toolchain-builder/src/
 /util/toolchain-builder/build/
 # Both following lines are needed to list contents of ISA manual build dir.

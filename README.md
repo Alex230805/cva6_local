@@ -4,6 +4,30 @@ This is a local branch of cva6 RISC-V CPU and tools, any script and modification
 further research, and it's suggested to look at the original repo for official documentations and/or updates and 
 references. 
 
+
+# Environment variables
+
+Currently, the whole repo base the execution on already supposed and defined environemnt variables such as: 
+
+1. RISCV: the path where the toolchain is located
+2. SPIKE_PATH: the path where spike ( iss simulator ) is located
+
+Inside *util/toolchain-builder/README.md* are located instructions to proceed building the gcc toolchain, and after that the *$RISCV* 
+variable must point to that location. ( better if exported to be available to all scripts in the current bash session ) <br>
+Inside the repo are located part of important scripts in different locations, and many script share the same basic name like for the toolchain build process. 
+To avoid using the wrong script, follow the official information listed specifically inside *util/toolchain-builder/README.md* for the toolchain only.
+<br>
+*SPIKE_PATH* refers to the location where the spike simulation programs and relative library can be found, this is generally the $ROOT_DIR/tools location 
+( where $ROOT_DIR is the location of the local cva6 repo in the host ) if the official scripts for the installation are followed. <br><br>
+
+To begin with, a compete environment must first:
+
+- source *"verif/sim/setup-env.sh"*  
+- using the scripts *"verif/regress/install-spike.sh"* and *"verif/regress/install-verilator.sh"* to install under *tools/* the necessary software
+- editing *$PATH* to include the binary located inside *tools/*
+
+Under some circumstances, the build process might fail for spike, specifically on C type *ssize_t*. To solve this replace the affected file with *ptrdiff_t* located inside *<stddef.h>*<br>
+
 # CVA6 RISC-V CPU 
 
 [![Build Status](https://github.com/openhwgroup/cva6/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/openhwgroup/cva6/actions/workflows/ci.yml) 

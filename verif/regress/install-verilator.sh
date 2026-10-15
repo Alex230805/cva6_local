@@ -69,7 +69,7 @@ if [ ! -f "$VERILATOR_INSTALL_DIR/bin/verilator" ]; then
       git apply $VERILATOR_PATCH || true
     fi
     # Generate the config script and configure Verilator.
-    autoconf && ./configure --prefix="$VERILATOR_INSTALL_DIR" && make -j${NUM_JOBS}
+    autoconf && ./configure --prefix="$VERILATOR_INSTALL_DIR" && make -B -j${NUM_JOBS}
     # FORNOW: Accept failure in 'make test' (segfault issue on Debian10)
     make test || true
     echo "Installing Verilator in $VERILATOR_INSTALL_DIR..."
