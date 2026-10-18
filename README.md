@@ -34,11 +34,11 @@ For more informations about targets, ISAs combination and so on in spike, consul
 
 ## About specific versions of executable. 
 
-It's required to have an autoconf-2.69 and a GCC/G++ build around version 13 and version 14. The script execution under the folder docs/ serve to the build of the documentation. There, the executable needed for the installation are listed inside REQUIREMENT.md. <br>
+It's required to have an autoconf-2.69 and a GCC/G++ build around version 13 and version 14. *The script execution under the folder docs/ serve to the build of the documentation. There, the executable needed for the installation are listed inside REQUIREMENT.md.* <br>
 <br>
-For running the environment needed inside verif/core-v-verif and generally everything under verif/ folder it's necessary to have installed python3.11 to proceed without major problems. <br>
+For running the environment needed inside *verif/core-v-verif* and generally everything under *verif/* folder it's necessary to have installed *python3.11* to proceed without major problems. <br>
 <br>
-Inside verif/core-v-verif/ is located the general readme to install the basics and proceed with the testing of the core, it's suggested to consult it and install the python3.11 requirement under bin/requirement.txt. <br>
+*Inside verif/core-v-verif/ is located the general readme to install the basics and proceed with the testing of the core, it's suggested to consult it and install the python3.11 requirement under bin/requirement.txt.* <br>
 
 # CVA6 RISC-V CPU 
 
