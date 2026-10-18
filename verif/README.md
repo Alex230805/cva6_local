@@ -1,3 +1,29 @@
+# Python prerequisites
+
+As listed in the main README.md in the root of the project, it's suggested to have python3.11 installed in the system and available in the path of the OS. <br>
+For such reason you may need to install the local "venv" just to simplify using a specific version of python for this sole simulation purposes. <br>
+<br>
+To do that just select your python3.11 and create the venv folder: 
+
+```bash
+
+python3.11 -m venv venv
+
+```
+
+Then, you can set the current environment by sourcing it: 
+
+```bash
+
+source ./venv/bin/activate
+
+```
+
+The version of 1.23.2 of numpy ( required apparently by pandas 1.3.4 ) result mostly in compilation error for missing library. To address this error, it's suggested to change the fix and/or minor version of the pandas library according to semvers in order to maintain compatibility of major version 1.x.x of pandas.<br> 
+<br>
+In different environemnt the build may fail even if the right version of setup tools is installed and python3.11 is used, and to address this it's suggested to try obtaining the already compiled dependency and install them manually in the current active venv. <br>
+By using 'pip show [package-name]' you can find where the currently active python env place new modules and library.<br>
+
 # CVA6: Verification Environment for the CVA6 CORE-V processor core
 
 - [Directories](#directories)

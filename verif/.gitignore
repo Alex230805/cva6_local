@@ -26,6 +26,8 @@ __pycache__
 /.cproject
 /.project
 .dvt/
+venv/
+.venv/
 dvt_build.log
 xrun.history
 xrun.log
