@@ -1,5 +1,26 @@
 [
   {
+    "id": 45676727469,
+    "source": "github-actions",
+    "simulator": "verilator",
+    "run_number": 29,
+    "status": "completed",
+    "conclusion": "failure",
+    "html_url": "https://github.com/Alex230805/cva6_local/actions/runs/45676727469",
+    "head_branch": "dependabot/submodules/verif/core-v-verif-e2b55ce",
+    "head_sha": "c8aef815",
+    "event": "pull_request",
+    "created_at": "2026-11-25T18:35:34Z",
+    "updated_at": "2026-11-25T18:37:31Z",
+    "run_started_at": "2026-11-25T18:35:34Z",
+    "duration_seconds": 117,
+    "total_jobs": 0,
+    "passed_jobs": 0,
+    "failed_jobs": 0,
+    "skipped_jobs": 0,
+    "jobs": []
+  },
+  {
     "id": 45676707960,
     "source": "github-actions",
     "simulator": "verilator",
